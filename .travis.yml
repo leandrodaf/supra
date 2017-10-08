@@ -12,11 +12,10 @@ before_script:
   - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
   - npm install --global bower
   - npm install
-  - bower install
+  - npm run bower
 
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS travis;'
-
 
 script: 
   - npm run dev
