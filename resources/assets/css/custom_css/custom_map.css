@@ -1,0 +1,5 @@
+.jqvmap-zoomin,
+.jqvmap-zoomout {
+    box-sizing  : content-box;
+    padding-top : 5px;
+}

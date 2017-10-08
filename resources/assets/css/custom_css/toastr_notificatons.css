@@ -1,0 +1,153 @@
+.btn {
+    padding : 6px 4px;
+}
+.btn.clear {
+    color : #333;
+}
+.toast-success {
+    background-color : #66cc99;
+}
+.toast-info {
+    background-color : #66ccff;
+}
+.toast-error {
+    background-color : #ff6666;
+}
+.toast-warning {
+    background-color : #f0ad4e;
+}
+.text-info.message {
+    margin-bottom : 20px;
+}
+/* buttons xs responsive*/
+
+@media only screen and (max-width : 480px) {
+    .toastrshow {
+        margin-top : 10px;
+    }
+}
+/*notification.html*/
+
+.notify_page .btn {
+    margin-top : 20px;
+}
+textarea {
+    resize : vertical;
+}
+/*outline buttons*/
+
+.btn-outline-default,
+.btn-outline-default:hover,
+.btn-outline-default:focus {
+    background-color : rgba(220, 220, 220, .1);
+    border           : 1px solid #dcdcdc;
+    color            : #dcdcdc;
+    border-radius    : 2px;
+}
+.btn-outline-primary,
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    background-color : rgba(66, 139, 202, .1);
+    border           : 1px solid #6699cc;
+    color            : #6699cc;
+    border-radius    : 2px;
+}
+.ui-pnotify .alert-primary {
+    background-color : rgba(102, 153, 204, 1);
+    border           : 1px solid #0069C4;
+}
+.btn-outline-success,
+.btn-outline-success:hover,
+.btn-outline-success:focus {
+    background-color : rgba(34, 214, 157, .1);
+    border           : 1px solid #66cc99;
+    color            : #66cc99;
+    border-radius    : 2px;
+}
+.ui-pnotify .alert-success {
+    background-color : rgba(102, 204, 153, 1);
+    border           : 1px solid #66cc99;
+}
+.btn-outline-info,
+.btn-outline-info:hover,
+.btn-outline-info:focus {
+    background-color : rgba(79, 193, 233, .1);
+    border           : 1px solid #66ccff;
+    color            : #66ccff;
+    border-radius    : 2px;
+}
+.ui-pnotify .alert-info {
+    background-color : rgba(102, 204, 255, 1);
+    border           : 1px solid #66ccff;
+}
+.btn-outline-danger,
+.btn-outline-danger:hover,
+.btn-outline-danger:focus {
+    background-color : rgba(251, 134, 120, .1);
+    border           : 1px solid #ff6666;
+    color            : #ff6666;
+    border-radius    : 2px;
+}
+.ui-pnotify .alert-danger {
+    background-color : rgba(255, 102, 102, 1);
+    border           : 1px solid #ff6666;
+}
+.btn-outline-warning,
+.btn-outline-warning:hover,
+.btn-outline-warning:focus {
+    background-color : rgba(255, 182, 95, .1);
+    border           : 1px solid #ffcc66;
+    color            : #ffcc66;
+    border-radius    : 2px;
+}
+.ui-pnotify .alert-warning {
+    background-color : rgba(240, 173, 78, 1);
+    border           : 1px solid #f0ad4e;
+}
+.source {
+    width : 80%;
+}
+.notif-types {
+    margin         : 0 0 18px 0;
+    border         : 1px solid #eee;
+    padding-bottom : 19px;
+    border-radius  : 2px;
+}
+.m-t-30 {
+    margin-top : 30px;
+}
+.m-t-35 {
+    margin-top : 35px;
+}
+.ui-pnotify.translucent.ui-pnotify-fade-in {
+    opacity : .8;
+}
+/* Notification Responsive */
+@media only screen and (max-width : 767px) {
+    html > body > .ui-pnotify {
+        bottom : auto !important;
+        left   : 0 !important;
+        margin : 0 !important;
+        right  : 0 !important;
+        top    : 60px !important;
+        width  : auto !important;
+    }
+    html > body > .ui-pnotify .notification {
+        border-radius : 0 !important;
+        height        : auto !important;
+        position      : static !important;
+        width         : 100%;
+    }
+    html > body > .ui-pnotify .notification .ui-pnotify-title,
+    html > body > .ui-pnotify .notification .ui-pnotify-text {
+        padding-right : 35px !important;
+    }
+    html > body > .ui-pnotify .notification .ui-pnotify-sticker {
+        display : none !important;
+    }
+    html > body > .ui-pnotify .notification .ui-pnotify-closer {
+        display    : block !important;
+        font-size  : 24px !important;
+        visibility : visible !important;
+    }
+}

@@ -1,0 +1,29 @@
+.ct-series-a .ct-line,
+.ct-series-a .ct-point {
+    stroke : #f0ad4e;
+}
+.ct-series-b .ct-line,
+.ct-series-b .ct-point {
+    stroke : #66ccff;
+}
+.ct-series-c .ct-line,
+.ct-series-c .ct-point {
+    stroke : #66cc99;
+}
+.ct-series-d .ct-line,
+.ct-series-d .ct-point {
+    stroke : #ff6666;
+}
+.ct-series-a .ct-bar {
+    /* Colour of your bars */
+    stroke : #f0ad4e;
+}
+.ct-series-b .ct-bar {
+    /* Colour of your bars */
+    stroke : #66ccff;
+}
+@media screen and (max-width : 425px) {
+    .panel-heading .clickable {
+        display : none;
+    }
+}

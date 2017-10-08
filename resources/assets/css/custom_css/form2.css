@@ -1,0 +1,67 @@
+.input-group-addon.primary {
+    color            : rgb(255, 255, 255);
+    background-color : #6699cc;
+    border-color     : #6699cc;
+}
+.input-group-addon.success {
+    color            : rgb(255, 255, 255);
+    background-color : #33cc66;
+    border-color     : #33cc66;
+}
+.input-group-addon.info {
+    color            : rgb(255, 255, 255);
+    background-color : #66ccff;
+    border-color     : #66ccff;
+}
+.input-group-addon.warning {
+    color            : rgb(255, 255, 255);
+    background-color : #ffcc66;
+    border-color     : #ffcc66;
+}
+.input-group-addon.danger {
+    color            : rgb(255, 255, 255);
+    background-color : #ff6666;
+    border-color     : #ff6666;
+}
+.padding {
+    padding : 9px 5px;
+}
+.padding7 {
+    padding-top : 7px;
+}
+.marginTop {
+    margin-top : 15px;
+}
+.page-header {
+    margin    : 10px 0 20px 0;
+    font-size : 22px;
+}
+.has-error .help-block, .has-error .input-group-addon, .has-error .radio, .has-error .radio-inline {
+    color : #ff6666;
+}
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+    position    : absolute;
+    margin-left : 1px;
+}
+.passtrengthMeter > input.form-control {
+    padding: 6px 12px;
+}
+/*payment card*/
+#card-form label {
+    width       : 100%;
+}
+.card-wrapper .jp-card {
+    min-width   : 238px;
+}
+
+ /*sweet alert css*/
+
+.swal2-modal {
+    background-color : #fff;
+    font-family      : "Hind", "sans-serif";
+    border-radius    : 0;
+}
+.swal2-confirm {
+    font-size     : 14px !important;
+    margin-bottom : 5px !important;
+}

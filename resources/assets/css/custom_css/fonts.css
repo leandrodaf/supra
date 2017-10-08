@@ -1,0 +1,40 @@
+.icon_set > .row > div {
+    font-size : 18px;
+    padding   : 20px 15px;
+}
+.icon_group {
+    position         : relative;
+    background-color : #ffffff;
+}
+.icon_set,
+.icon_cover {
+    height : 330px;
+    width  : 100%;
+}
+.right-side.strech .icon_set ul li {
+    padding : 20px 35px;
+}
+.icon_cover a {
+    position  : relative;
+    top       : 50%;
+    transform : translateY(-50%);
+}
+.iconset_name {
+    padding-left : 15px;
+}
+.icon_set {
+    color : #6699cc;
+}
+.icon_set:hover + .icon_cover,
+.icon_cover:hover {
+    transform  : scale(1);
+    transition : all 0.5s;
+}
+.icon_cover {
+    position         : absolute;
+    top              : 0;
+    left             : 0;
+    background-color : rgba(79, 193, 233, 0.2);
+    transition       : all 0.5s;
+    transform        : scale(0);
+}

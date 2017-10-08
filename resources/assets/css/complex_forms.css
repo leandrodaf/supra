@@ -1,0 +1,35 @@
+#complex-form {
+    border           : 1px solid #aaa;
+    background-color : #fff;
+    border-radius    : 3px;
+    padding-top      : 20px;
+    padding-bottom   : 20px;
+}
+.grid-form h3 {
+    font-size : 22px;
+}
+.grid-form fieldset legend {
+    border-bottom : 2px solid #777;
+    color         : #666;
+    margin-bottom : 0;
+    font-size: 16px;
+}
+.grid-form [data-row-span] [data-field-span] label:first-child {
+    font-size      : small;
+    letter-spacing : 0.5px;
+}
+.grid-form [data-row-span] [data-field-span]:hover,
+.grid-form [data-row-span] [data-field-span].focus {
+    background-color : #f5f5f5;
+}
+.select2-container {
+    vertical-align : middle;
+    border         : 1px solid #ccc;
+    border-radius  : 2px;
+}
+.select2-container--bootstrap .select2-selection {
+    background-color : #EBF1F6;
+}
+.select2-container--bootstrap:hover .select2-selection {
+    background-color : #fff;
+}

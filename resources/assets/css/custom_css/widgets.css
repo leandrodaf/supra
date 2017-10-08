@@ -1,0 +1,181 @@
+.img_space, .img_widget {
+    border-radius : 50%;
+
+}
+.img_space {
+    margin-left      : -120px;
+    width            : 155px;
+    height           : 155px;
+    padding          : 5px;
+    background-color : #EBF1F6;
+}
+.fa-stack {
+    margin-left : 20px;
+}
+.faceb {
+    color : #6699cc;
+}
+.googleplus {
+    color : #ff6666;
+}
+.tweet {
+    color : #66ccff;
+}
+.flick {
+    color : #ccc;
+}
+.youtube {
+    color : #ff6666;
+}
+.text-dark {
+    color : #797979;
+}
+.m-b-0 {
+    margin-bottom : 0;
+}
+.card-box {
+    padding               : 16px;
+    border                : 1px solid rgba(54, 64, 74, 0.19);
+    -webkit-border-radius : 3px;
+    border-radius         : 3px;
+    -moz-border-radius    : 3px;
+    background-clip       : padding-box;
+    margin-bottom         : 20px;
+    background-color      : #ffffff;
+}
+/*========= second widget code ===============*/
+.widget-bg-color-icon .bg-icon-info {
+    background-color : rgba(185, 209, 287, 1);
+    border           : 1px solid #6699cc;
+}
+.widget-bg-color-icon .bg-icon {
+    height                : 80px;
+    width                 : 80px;
+    text-align            : center;
+    -webkit-border-radius : 50%;
+    border-radius         : 50%;
+    -moz-border-radius    : 50%;
+    background-clip       : padding-box;
+}
+.widget-bg-color-icon .bg-icon i {
+    font-size   : 32px;
+    line-height : 80px;
+}
+.border_success {
+    border : 1px solid #66cc99;
+}
+.m-r-5 {
+    margin-right : 5px;
+}
+.border_danger {
+    border : 1px solid rgba(255, 163, 163, 1);
+}
+/*======= list box one css ===========*/
+
+.slider-content .post-info {
+    background-color           : #ffffff;
+    padding                    : 20px;
+    border-bottom-left-radius  : 4px;
+    border-bottom-right-radius : 4px;
+}
+.carousel {
+    position : relative;
+}
+.text-muted {
+    color : #DCDCDC;
+}
+.slider-content.m-b-20 {
+    margin-bottom : 20px;
+    border: 1px solid rgba(54, 64, 74, 0.19);
+    border-radius: 3px;
+}
+.panel-widget .panel-heading {
+    border-bottom    : 0;
+    background-color : #ffffff;
+}
+/*===== third widget code =========*/
+.profile-widget .bg-profile {
+    height : 125px;
+}
+.bg-custom1 {
+    background-color : #418AC9;
+}
+.profile-widget .img-thumbnail {
+    margin-top : -42px;
+    border     : none;
+}
+.img-circle {
+    border-radius : 50%;
+}
+.p-0 {
+    padding : 0;
+}
+.p-t-b-20 {
+    padding : 20px 0;
+}
+.p-b-10 {
+    padding-bottom : 10px;
+}
+.m-t-20 {
+    margin-top : 20px;
+}
+.social_icons {
+    font-size : 20px;
+}
+/*===== image photographer=====*/
+.img_alt {
+    width  : 65px;
+    height : auto;
+    float  : left;
+    border : 8px solid #fff;
+}
+.nav_border > li > a {
+    border-bottom : 1px solid #eee;
+    padding       : 10px 2px;
+    line-height   : 20px;
+}
+.panel-heading.stat {
+    background-color : #f0ad4e;
+    color            : #fff;
+}
+.user-username {
+    margin-left : 75px;
+}
+.user-po {
+    margin-left : 75px;
+}
+/*======= featured widget ===========*/
+.fa.pull-left {
+    margin-right : 5px;
+}
+.padding-right-small {
+    padding-right : 8px;
+}
+.padding-top-small {
+    padding-top : 12px;
+}
+.padding-bottom {
+    padding-bottom : 16px;
+}
+.p-b-0 {
+    padding-bottom : 0;
+}
+.ih-item.square {
+    width : 100%;
+}
+.ih-item.square img {
+    height : 202px;
+}
+.ih-item.square.effect1.colored .info {
+    background : #66ccff;
+}
+.ih-item.square.effect1.top_to_bottom .info p {
+    color     : #fff;
+    font-size : 13px;
+}
+.list-group-item {
+    padding : 12px 15px;
+}
+.panel-widget .careers-item {
+    height : 100px;
+}

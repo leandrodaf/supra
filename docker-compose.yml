@@ -1,0 +1,41 @@
+# v2 syntax
+version: '2'
+
+# Named volumes
+volumes:
+
+  # Redis Data
+  supra-redis-data:
+    driver: local
+
+services:
+  # Redis
+  cache:
+    image: ambientum/redis:3.2
+    container_name: supra-redis
+    command: --appendonly yes
+    volumes:
+      - supra-redis-data:/data
+    ports:
+      - "6379:6379"
+
+  # PHP (with Caddy)
+  app:
+    image: ambientum/php:7.0-caddy
+    container_name: supra-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "80:8080"
+    links:
+      - cache
+
+  # Laravel Queues
+  queue:
+    image: ambientum/php:7.0
+    container_name: supra-queue
+    command: php artisan queue:listen
+    volumes:
+      - .:/var/www/app
+    links:
+      - cache

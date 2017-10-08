@@ -1,0 +1,13 @@
+
+.skin-default .sidebar a {
+    color                  : #808b9c;
+    -webkit-font-smoothing : antialiased;
+}
+.skin-default .icon-list li a:hover {
+    background : #EEEEEE;
+}
+@media screen and (min-width : 550px) {
+    .skin-default .navbar .navbar-right > .nav {
+        margin-right : 15px;
+    }
+}

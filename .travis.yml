@@ -1,0 +1,34 @@
+language: php
+
+php:
+  - "7.1"
+
+before_script:
+  - cp .env.travis .env
+  - composer self-update
+  - composer install --no-interaction
+  - php artisan key:generate
+  - php artisan migrate:refresh --seed
+  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+  - npm install --global bower
+  - npm install
+  - bower install
+
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS travis;'
+
+
+script: 
+  - npm run dev
+  - vendor/bin/phpunit --configuration phpunit.xml --coverage-text
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+    - vendor
+    - $HOME/.cache/bower
+    - $HOME/.npm
+    - $HOME/resources/assets/vendors
+env:
+  - TRAVIS_NODE_VERSION="7"

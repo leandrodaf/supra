@@ -1,0 +1,82 @@
+.input-group-sm > .input-group-addon {
+    padding : 3px 10px;
+}
+.input-group-lg > .input-group-addon {
+    padding : 9px 16px;
+}
+.has-success .input-group-addon,
+.has-error .input-group-addon {
+    color : #fff;
+}
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group {
+    z-index : 0 !important;
+}
+.form-bordered .form-group > div {
+    padding     : 15px;
+    border-left : 1px solid #efefef;
+}
+.form-bordered .form-group {
+    margin        : 0;
+    border-bottom : 1px solid #efefef;
+}
+.form-bordered .control-label {
+    padding-top   : 17px;
+    margin-bottom : 0;
+    text-align    : right;
+}
+.form-bordered-row .form-group {
+    margin        : 0;
+    border-bottom : 1px solid #efefef;
+}
+.form-bordered-row .control-label {
+    padding-top   : 17px;
+    margin-bottom : 0;
+    text-align    : right;
+}
+.form-bordered-row .form-group > div {
+    padding : 15px;
+}
+.right_aligned button {
+    margin-left : 7px;
+}
+.has-success .input-group-addon,
+.has-error .input-group-addon {
+    color : #555;
+}
+.proc {
+    position : relative;
+    top      : -25px;
+    left     : 95%;
+}
+@media only screen and (max-width : 768px) {
+    .form-bordered .form-group > div {
+        border : none;
+    }
+}
+@media only screen and (max-width : 425px) {
+    .proc {
+        position : relative;
+        top      : -25px;
+        left     : 91%;
+    }
+}
+#tab3 .form-horizontal .radio, #tab3 .form-horizontal .checkbox,
+#tab3 .form-horizontal .radio-inline,#tab3 .form-horizontal .checkbox-inline {
+    padding-top: 0;
+    margin-bottom: 4px;
+}
+.m-l-10 {
+    margin-left :10px;
+}
+.panel-heading.tab-list {
+    padding: 2px 0 0 10px;
+}
+.tab-list .nav-tabs {
+    border-bottom: 0;
+}
+@media (min-width: 768px){
+    .form-inline .form-group {
+        margin-bottom: 13px;
+    }
+}

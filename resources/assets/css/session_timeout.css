@@ -1,0 +1,14 @@
+/***Session Timeout custom css***/
+.note.note-success {
+    background-color : #eef7ea;
+    margin      : 0 0 20px 0;
+    padding: 27px 15px 15px 15px;
+    border-left : 5px solid #bbdba1;
+}
+.note .alert-information {
+    font-size: 18px;
+}
+.note .official-link {
+    margin-top: 13px;
+    display: inline-block;
+}

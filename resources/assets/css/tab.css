@@ -1,0 +1,194 @@
+.faq-cat-content {
+    margin-top : 25px;
+}
+.faq-cat-tabs li a {
+    padding          : 15px 10px 15px 10px;
+    background-color : #ffffff;
+    border           : 1px solid #dddddd;
+    color            : #777777;
+}
+.tab-content.faq-cat-content .panel {
+    box-shadow : 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.nav-tabs li a:focus,
+.panel-heading a:focus {
+    outline : none;
+}
+.panel-heading a,
+.panel-heading a:hover,
+.panel-heading a:focus {
+    text-decoration : none;
+    color           : #777777;
+}
+.faq-cat-content .panel-heading:hover {
+    background-color : #efefef;
+}
+.active-faq {
+    border-left : 5px solid #888888;
+}
+.panel-faq .panel-heading .panel-title span {
+    font-size   : 13px;
+    font-weight : normal;
+}
+.nav-tabs-custom > .nav-tabs > li.active {
+    border-top-color : #6699cc;
+}
+/* tool bar */
+
+.btn-toolbar {
+    width   : 40px;
+    height  : 40px;
+    padding : 10px 6px;
+}
+.tool-item {
+    display        : block;
+    text-align     : center;
+    padding-bottom : 10px;
+    padding-right  : 17px;
+    transition     : none;
+}
+.tool-item:hover {
+    color      : #fff;
+    background : 0 !important;
+}
+.toolbar_animate {
+    padding : 25px;
+}
+.btn-toolbar-primary {
+    background-color : #6699cc !important;
+}
+.btn-toolbar-primary:hover {
+    background-color : #6699cc;
+}
+.btn-toolbar-danger {
+    background-color : #ff6666 !important;
+}
+.btn-toolbar-danger:hover {
+    background-color : #ff6666;
+}
+.btn-toolbar-warning {
+    background-color : #f0ad4e !important;
+}
+.btn-toolbar-warning:hover {
+    background-color : #f0ad4e;
+}
+.btn-toolbar-info {
+    background-color : #66ccff !important;
+}
+.btn-toolbar-info:hover {
+    background-color : #66ccff;
+}
+.btn-toolbar-success {
+    background-color : #66cc99 !important;
+}
+.btn-toolbar-success:hover {
+    background-color : #66cc99;
+}
+.toolbar-primary {
+    background : #6699cc;
+}
+.toolbar-primary .tool-item.selected,
+.toolbar-primary .tool-item:hover {
+    background : #6699cc;
+}
+.toolbar-danger {
+    background : #ff6666;
+}
+.toolbar-danger .tool-item.selected,
+.toolbar-danger .tool-item:hover {
+    background : #ff6666;
+}
+.toolbar-warning {
+    background : #f0ad4e;
+}
+.toolbar-danger .tool-item.selected,
+.toolbar-danger .tool-item:hover {
+    background : #f0ad4e;
+}
+.toolbar-info {
+    background : #66ccff;
+}
+.toolbar-info .tool-item.selected,
+.toolbar-info .tool-item:hover {
+    background : #66ccff;
+}
+.toolbar-success {
+    background : #66cc99;
+}
+.toolbar-success .tool-item.selected,
+.toolbar-success .tool-item:hover {
+    background : #66cc99;
+}
+.btn-toolbar-light,
+.toolbar-light {
+    background-color : #dcdcdc;
+}
+.btn-toolbar-light.pressed,
+.btn-toolbar-light:hover {
+    background-color : #e4e4e4;
+}
+.btn-toolbar-dark,
+.toolbar-dark {
+    background-color : #66ccff;
+}
+.btn-toolbar-dark.pressed,
+.btn-toolbar-dark:hover {
+    background-color : #66ccff;
+}
+.btn-toolbar-default i {
+    color : #fff;
+}
+.toolbar-info.tool-top .arrow {
+    border-color : #66ccff transparent transparent;
+}
+.toolbar-light.tool-top .arrow {
+    border-color : #dcdcdc transparent transparent;
+}
+.toolbar-dark.tool-top .arrow {
+    border-color : #66ccff transparent transparent;
+}
+.toolbar-primary.tool-top .arrow {
+    border-color : #6699cc transparent transparent;
+}
+.toolbar-warning.tool-top .arrow {
+    border-color : #f0ad4e transparent transparent;
+}
+.toolbar-success.tool-top .arrow {
+    border-color : #66cc99 transparent transparent;
+}
+.toolbar-success.tool-right .arrow {
+    border-color : transparent #66cc99 transparent transparent;
+}
+.toolbar-danger.tool-bottom .arrow {
+    border-color : transparent transparent #ff6666;
+}
+.toolbar-danger.tool-top .arrow {
+    border-color : #ff6666 transparent transparent;
+}
+.toolbar-warning.tool-left .arrow {
+    border-color : transparent transparent transparent #f0ad4e;
+}
+.toolbar-info.tool-right .arrow {
+    border-color : transparent #66ccff transparent transparent;
+}
+.toolbar-success.tool-bottom .arrow {
+    border-color : transparent transparent #66cc99;
+}
+.toolbar-danger.tool-left .arrow {
+    border-color : transparent transparent transparent #ff6666;
+}
+/*toolbar responsive*/
+
+@media only screen and (max-width : 768px) {
+    .feature-toolbar {
+        margin-top : 10px;
+    }
+}
+
+.wenk-area {
+    border: 1px solid #ccc;
+    padding: 3px 12px;
+    border-radius: 3px;
+    display: inline-block;
+    cursor: default;
+}

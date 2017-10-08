@@ -1,0 +1,115 @@
+/*pricing table 1*/
+.span-btn, .span-btn:hover {
+    color: #666;
+    background-color: #DCDCDC;
+    border-color: #DCDCDC;
+}
+.span-btn.active, .span-btn.active:hover {
+    color: #fff;
+    background-color: #376ea4;
+    border-color: #2d5986;
+}
+/*table styles*/
+.modal-1 {
+    border         : 1px solid #B6D1CC;
+    border-radius  : 3px;
+    margin-top     : 20px;
+    margin-bottom  : 10px;
+    padding-bottom : 25px;
+}
+.modal-1 .pack-heading {
+    background-color : #E1EFEF;
+    padding          : 2px 0;
+    height           : 145px;
+}
+.pack-heading p {
+    color  : #555;
+    margin : 13px 0;
+}
+.modal-1 .pack-title {
+    font-size : 22px;
+    color     : #677777;
+}
+.modal-1 .pack-price {
+    font-size : 36px;
+    position  : relative;
+}
+.modal-1 .pack-price span {
+    font-size : 18px;
+    color     : #777;
+}
+.modal-1 .pack-price .dollar {
+    font-size : 22px;
+    color     : #777;
+    top       : -20px;
+    display   : inline;
+}
+.modal-1 .section-head {
+    font-size   : 15px;
+    font-weight : bold;
+    color       : #60B6A3;
+    margin      : 40px 0 15px;
+}
+.modal-1 .pack-details li {
+    line-height : 38px;
+    color       : #555;
+    font-size   : 14px;
+}
+.modal-1 .pack-details li.text-dummy {
+    color : #999;
+}
+.modal-1 .btn-getit {
+    -webkit-border-radius : 3px;
+    -moz-border-radius    : 3px;
+    border-radius         : 3px;
+    padding               : 5px 17px;
+    margin-top            : 30px;
+}
+.modal-1 .trending-tag {
+    height   : 79px;
+    overflow : hidden;
+    position : absolute;
+    left     : 15px;
+    top      : 20px;
+    width    : 80px;
+}
+.tag-design {
+    font              : bold 12px Noto Sans;
+    background-color  : #3AAE97;
+    padding-top       : 22px;
+    position          : relative;
+    text-align        : center;
+    top               : -12px;
+    left              : -40px;
+    -webkit-transform : rotate(-45deg);
+    -moz-transform    : rotate(-45deg);
+    -ms-transform     : rotate(-45deg);
+    -o-transform      : rotate(-45deg);
+    transform         : rotate(-45deg);
+    width             : 116px;
+    height            : 61px;
+}
+.pro-option {
+    font-size   : 24px;
+    line-height : 24px;
+    margin      : 25px 0;
+}
+.contact-info {
+    font-size     : 14px;
+    margin-bottom : 20px;
+}
+.btn-contact {
+    color         : #4080bf;
+    border        : 1px solid #4080bf;
+    padding       : 6px 25px;
+    border-radius : 20px;
+}
+.btn-contact:hover {
+    background-color : #4080bf;
+    color            : #fff;
+}
+@media screen and (max-width : 767px) {
+    .modal-1 .trending-tag {
+        top : 0;
+    }
+}

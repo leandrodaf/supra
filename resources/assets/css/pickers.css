@@ -1,0 +1,20 @@
+#example28 + .btn-group > .multiselect {
+    min-width : 65px;
+}
+.bootstrap-touchspin-up, .bootstrap-touchspin-down {
+    border-radius : 0 !important;
+}
+.clockface > div {
+    overflow : hidden;
+}
+@media only screen and (min-width : 769px ) and (max-width : 1440px ) {
+    #example28-values {
+        margin-top : 10px;
+    }
+}
+@media (max-width : 320px ) {
+    .bootstrap-datetimepicker-widget.dropdown-menu {
+        width : 100%;
+        left  : 30px !important;
+    }
+}

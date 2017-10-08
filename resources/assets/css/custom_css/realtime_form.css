@@ -1,0 +1,96 @@
+
+.trip-type, .trip-type-multi {
+    background-color: rgba(0, 0, 0, .35);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin: 21px auto 0;
+    padding: 7px;
+}
+.trip-type .icon, .trip-type-multi .icon {
+    color     : #FFF;
+    font-size : 20px;
+}
+#adult:focus, #adult-multi:focus,
+#child:focus, #child-multi:focus,
+#infant:focus, #infant-multi:focus {
+    border-color : #CCC;
+    outline      : 0;
+    box-shadow   : none;
+}
+.multi-flight-data {
+    padding-top: 10px;
+    padding-bottom: 7px;
+    border-bottom : 1px dashed #EEEEEE;
+}
+#nonsingle-stop .remove-flight {
+    position: absolute;
+    right: 9px;
+    bottom: 15px;
+    background-color: #ff6666;
+    color: #fff;
+    padding: 2px;
+    border-radius: 50px;
+}
+.price-alert {
+    margin-top : 10px;
+}
+.radio-inline, .radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline {
+    padding-top: 7px;
+    margin-left: 18px;
+}
+@media screen and (max-width : 767px) {
+    .trip-type {
+        margin : 41px auto -60px;
+        background: 0;
+    }
+    .trip-type .icon, .trip-type-multi .icon {
+        color: rgba(0, 0, 0, .35);
+    }
+}
+/*cab booking*/
+.ride-time .ride-on {
+    background-color : #C5E043;
+    display          : inline-block;
+    padding          : 5px 10px;
+}
+.ride-time input[type=radio] {
+    display : none
+}
+.ride-time input[type=radio]:checked + .ride-on {
+    background-color : #241009;
+    color            : #C5E043;
+}
+.cab-types .cab-type {
+    background-color : #eee;
+    display          : inline-block;
+    padding: 4% 10%;
+}
+.cab-types input[type=radio] {
+    display : none
+}
+.cab-types input[type=radio]:checked + .cab-type {
+    background-color : #241009;
+    color            : #eee;
+}
+/*gmaps*/
+.gmap {
+    width  : 100%;
+    height : 300px;
+    margin : 5px auto;
+}
+.chooseon-map {
+    margin-top: 24px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+@media screen and (min-width : 768px) {
+    .m-l-16 {
+        margin-left: -16px;
+    }
+}
+@media screen and (max-width : 767px) {
+    .m-r-20 {
+        margin-right: 21px;
+    }
+}

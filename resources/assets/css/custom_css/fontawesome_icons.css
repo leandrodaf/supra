@@ -1,0 +1,95 @@
+.fa-icon {
+    text-align         : center;
+    padding            : 20px 0;
+    margin             : 10px 0;
+    height             : 89px;
+    transition         : all .2s linear;
+    -o-transition      : all .2s linear;
+    -moz-transition    : all .2s linear;
+    -webkit-transition : all .2s linear;
+}
+.fa-icon:hover {
+    background-color   : #dcdcdc;
+    padding            : 15px 0;
+    transition         : all .2s linear;
+    -o-transition      : all .2s linear;
+    -moz-transition    : all .2s linear;
+    -webkit-transition : all .2s linear;
+}
+.fa-icon:hover i {
+    font-size : 30px;
+}
+.fa-icon:hover .text-muted {
+    color : #888;
+}
+.fa-icon i {
+    font-size     : 24px;
+    color         : #428bca;
+    margin-bottom : 10px;
+}
+input[type="range"] {
+    cursor : pointer;
+}
+.input-group {
+    width         : 100%;
+    margin-bottom : 10px;
+}
+.input-group-addon {
+    border           : none;
+    background-color : transparent;
+}
+.input-group input[type="range"] {
+    border     : none;
+    box-shadow : none;
+}
+.input-group input[type="text"] {
+    border-radius : 17px !important;
+}
+form {
+    text-align : center;
+    padding    : 10px;
+}
+.iconoption_toggle {
+    border-radius    : 5px 0 0 5px;
+    border           : 1px solid rgba(0, 0, 0, 0.298039);
+    border-right     : none;
+    position         : fixed;
+    top              : 188px;
+    right            : 0;
+    background-color : rgba(238, 238, 238, 0.4);
+    padding          : 7px;
+    z-index          : 999998;
+    cursor           : pointer;
+}
+.iconoption_toggle i {
+    color     : rgb(119, 119, 119);
+    font-size : 20px;
+}
+.right_175 {
+    right : 175px;
+}
+.iconoptions {
+    position         : fixed;
+    padding          : 6px;
+    height           : 240px;
+    width            : 175px;
+    background-color : #fff;
+    z-index          : 9999999;
+    top              : 100px;
+    right            : -175px;
+    border           : 2px solid #428bca;
+}
+.right_0 {
+    right : 0;
+}
+.iconoptions > button {
+    border        : none;
+    border-radius : 4px;
+    margin-top    : 10px;
+    display       : block;
+}
+.iconoptions .active,
+.iconoptions .active:focus,
+.iconoptions .active:hover {
+    background-color : #ffb65f !important;
+}

@@ -1,0 +1,114 @@
+.card-box {
+    padding               : 16px;
+    border                : 1px solid rgba(54, 64, 74, 0.19);
+    -webkit-border-radius : 3px;
+    border-radius         : 3px;
+    -moz-border-radius    : 3px;
+    background-clip       : padding-box;
+    margin-bottom         : 20px;
+    background-color      : #ffffff;
+}
+/*========= second widget code ===============*/
+.widget-bg-color-icon .bg-icon-info {
+    background-color : rgba(185, 209, 287, 1);
+    border           : 1px solid #6699cc;
+}
+.widget-bg-color-icon .bg-icon {
+    height                : 80px;
+    width                 : 80px;
+    text-align            : center;
+    -webkit-border-radius : 50%;
+    border-radius         : 50%;
+    -moz-border-radius    : 50%;
+    background-clip       : padding-box;
+}
+.widget-bg-color-icon .bg-icon i {
+    font-size   : 32px;
+    line-height : 80px;
+}
+.image_back {
+    background-image : url(../../img/gallery/full/35.jpg);
+    padding          : 65px;
+    color            : #fff;
+}
+.circle_back_img {
+    background-image : url("../../img/gallery/full/39.jpg");
+    padding          : 70px;
+}
+.bowman_img {
+    background-image : url("../../img/gallery/full/32.jpg");
+}
+.p-56 {
+    padding : 56px;
+}
+.weather_img {
+    background-image : url("../../img/gallery/full/40.jpg");
+    padding          : 80px;
+}
+.demo {
+    background-color : rgba(0, 0, 0, 0.4);
+}
+@media screen and (max-width : 1200px) {
+    .p-56 {
+        padding : 65px 56px;
+    }
+}
+
+/*main widgets*/
+
+.main-widgets h4 {
+    margin-bottom : 15px;
+    margin-top    : 13px;
+    color         : #777;
+    position      : relative;
+}
+.main-widgets .status-data {
+    background-color : rgba(251, 134, 120, .2);
+    border           : 1.5px solid #FF8787;
+    border-radius    : 2px;
+    margin-bottom    : 13px;
+    position         : relative;
+}
+.main-widgets .sales-data {
+    background-color : rgba(255, 182, 95, .3);
+    border           : 1.5px solid #ffcc66;
+    border-radius    : 2px;
+    margin-bottom    : 13px;
+    position         : relative;
+
+}
+.main-widgets .server-load {
+    background-color : rgba(79, 193, 233, .3);
+    border           : 1.5px solid #66ccff;
+    border-radius    : 2px;
+    margin-bottom    : 13px;
+    position         : relative;
+
+}
+.main-widgets .status-data:before,
+.main-widgets .sales-data:before,
+.main-widgets .server-load:before {
+    content    : '';
+    position   : absolute;
+    width      : 100%;
+    height     : 100%;
+    top        : 0;
+    left       : 0;
+    opacity    : 0.9;
+    z-index    : 0;
+    background : #fff;
+}
+.main-widgets hr {
+    border           : 0;
+    height           : 1px;
+    margin           : 10px 0;
+    background-image : linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .6), rgba(0, 0, 0, 0));
+}
+.main-widgets .daily-data,
+.main-widgets .monthly-data {
+    border-right : 1px solid #ccc;
+    color : #555;
+}
+.main-widgets .actual {
+    color : #555;
+}

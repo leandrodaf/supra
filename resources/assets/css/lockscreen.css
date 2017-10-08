@@ -1,0 +1,184 @@
+/* Fonts Imported from Google */
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,600';
+/*   Core: General style
+----------------------------*/
+body {
+    font-family : 'Open Sans', sans-serif;
+    background  : radial-gradient(ellipse at center, #5A93AF 0%, #004E74 100%);
+    height      : 100%;
+    padding-top : 5%;
+
+}
+html, body {
+    position : relative;
+    height   : 100%;
+}
+.lockscreen-container {
+    position   : relative;
+    margin     : 80px auto;
+    padding    : 20px 40px 40px;
+    text-align : center;
+}
+#output {
+    position    : absolute;
+    width       : 80%;
+    top         : -75px;
+    left        : 50%;
+    color       : #fff;
+    margin-left : -40%;
+}
+#output.alert-success {
+    background-color: rgba(255, 255, 255, .3);
+    font-size: 15px;
+    padding: 12px;
+    border     : 0;
+}
+.avatar {
+    position        : absolute;
+    width           : 100px;
+    height          : 100px;
+    z-index         : 2;
+    top             : 71px;
+    left            : 50%;
+    margin-left     : -50px;
+    border-radius   : 100%;
+    border          : 2px solid #aaa;
+    background-size : cover;
+}
+.form-box input {
+    width      : 100%;
+    padding    : 10px;
+    text-align : center;
+    height     : 40px;
+    border     : 1px solid #ccc;;
+    background : #fafafa;
+    transition : 0.2s ease-in-out;
+
+}
+.form-box input:focus {
+    outline    : 0;
+    background : #eee;
+}
+.form-box form {
+    margin-top : 50px;
+}
+.form-box input {
+    border-radius : 28px;
+}
+.form-box button.login {
+    margin-top       : 41px;
+    padding          : 5px;
+    border-radius    : 33px;
+    background-color : rgba(255, 255, 255, .3);
+}
+.animated {
+    -webkit-animation-duration  : 1s;
+    animation-duration          : 1s;
+    -webkit-animation-fill-mode : both;
+    animation-fill-mode         : both;
+}
+.btn:focus, .btn:active:focus {
+    outline : 0;
+}
+.form-box button.btn-submit {
+    padding: 5px 12px;
+    color: #fff;
+}
+@-webkit-keyframes fadeInUp {
+    0% {
+        opacity           : 0;
+        -webkit-transform : translateY(20px);
+        transform         : translateY(20px);
+    }
+
+    100% {
+        opacity           : 1;
+        -webkit-transform : translateY(0);
+        transform         : translateY(0);
+    }
+}
+@keyframes fadeInUp {
+    0% {
+        opacity           : 0;
+        -webkit-transform : translateY(20px);
+        -ms-transform     : translateY(20px);
+        transform         : translateY(20px);
+    }
+
+    100% {
+        opacity           : 1;
+        -webkit-transform : translateY(0);
+        -ms-transform     : translateY(0);
+        transform         : translateY(0);
+    }
+}
+.fadeInUp {
+    -webkit-animation-name : fadeInUp;
+    animation-name         : fadeInUp;
+}
+.avatar {
+    background-image : url('../img/authors/avatar1.jpg');
+}
+/*error animation*/
+.error_anim {
+    animation           : shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+    transform           : translate3d(0, 0, 0);
+    border              : 1px solid #aaa;
+    box-shadow          : 0 0 7px #ff6666;
+    backface-visibility : hidden;
+    perspective         : 1000px;
+}
+@keyframes shake {
+    10%, 90% {
+        transform : translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform : translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform : translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform : translate3d(4px, 0, 0);
+    }
+}
+/*error animation*/
+/*==== Preloader ====*/
+.preloader {
+    position            : fixed;
+    width               : 100%;
+    height              : 100%;
+    top                 : 0;
+    left                : 0;
+    z-index             : 100000;
+    backface-visibility : hidden;
+    background          : #ffffff;
+}
+.loader_img {
+    width               : 50px;
+    height              : 50px;
+    position            : absolute;
+    left                : 50%;
+    top                 : 50%;
+    background-position : center;
+    margin              : -25px 0 0 -25px;
+}
+@media screen and (max-width : 767px) {
+    .form-box form {
+        margin-top : 135px;
+    }
+    .form-box button.login {
+        margin-top : 13px;
+    }
+    .user-name {
+        color : #FFF;
+    }
+}
+@media screen and (min-width : 768px) {
+    .form-box button.btn-submit {
+        margin-top : 65px;
+    }
+}

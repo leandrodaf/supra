@@ -1,0 +1,204 @@
+    /*global css*/
+    
+    .right-side {
+        margin-left: 0;
+        padding-top: 0;
+    }
+    /*page level*/
+    
+    .horizontal_menu {
+        background-color: #FAFAFA;
+        border-bottom: 0;
+        margin-top: 51px;
+    }
+    
+    .slimmenu .has-submenu .menu-list {
+        font-weight: 600;
+        color: #2E576B;
+    }
+    
+    ul.slimmenu li a {
+        font-size: 15px;
+    }
+    
+    ul.slimmenu li .sub-toggle>i {
+        font-size: 14px;
+    }
+    
+    .slimmenu .has-submenu .active,
+    .active.menu-dropdown > a {
+        background: #48CFAD;
+        color: #fff;
+    }
+    
+    ul.slimmenu > li {
+        width: 17%;
+    }
+    
+    ul.slimmenu li > ul {
+        padding-left: 0;
+    }
+    
+    ul.slimmenu li .sub-toggle {
+        background: none;
+    }
+    
+    ul.slimmenu li ul {
+        top: 102%;
+        border: 1px solid #dcdcdc;
+    }
+    
+    ul.slimmenu li ul li a {
+        padding: 12px 16px;
+        width: 100%;
+    }
+    
+    ul.slimmenu li ul li,
+    ul.slimmenu li {
+        background: #fff;
+    }
+    
+    ul.slimmenu li a:hover {
+        background: #f1f1f1;
+        color: #48CFAD;
+    }
+    
+    .slimmenu .has-submenu .sub-list {
+        font-size: 14px !important;
+    }
+    
+    .slimmenu .has-submenu ul li a {
+        font-size: 12px !important;
+    }
+    
+    #navigation .has-submenu ul li {
+        width: 100%;
+        border-bottom: 1px solid #eeeeee;
+    }
+    /*for smaller screens hemburger*/
+    
+    .menu-collapser {
+        color: #555;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f5f5f5;
+        margin: 5px;
+    }
+    
+    ul.collapsed {
+        border: 1px solid #ccc;
+    }
+    
+    .Sample_placehold {
+        width: 100%;
+    }
+    
+    @media screen and (max-width: 560px) {
+        .horizontal_menu {
+            margin-top: 106px;
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        ul.slimmenu {
+            width: 70%;
+        }
+        .horizontal_menu {
+            width: 83%;
+            padding-left: 15%;
+        }
+        .collapse-button {
+            left: 9px;
+            height: 30px;
+        }
+        .menu-collapser {
+            text-align: right;
+            width: 130px;
+        }
+        .slimmenu.collapsed {
+            position: absolute;
+            z-index: 1;
+        }
+        .horizontal_menu {
+            width: 90%;
+            padding-left: 10%;
+        }
+        .slimmenu .has-submenu .sub-list {
+            padding-left: 30px;
+        }
+        .slimmenu .has-submenu ul li a {
+            padding-left: 50px;
+        }
+        ul.slimmenu.collapsed li .sub-toggle {
+            width: 100%;
+            text-align: right;
+            padding-right: 17px;
+        }
+        .collapse-button .icon-bar {
+            transition: 0.2s;
+        }
+        .rotate45deg {
+            position: absolute;
+            left: 10px;
+            top: 11px;
+            transition: 0.3s;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        .display-none {
+            transition: 0.01s;
+            visibility: hidden;
+        }
+        .rotate-45deg {
+            transition: 0.3s;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+    }
+    
+    @media screen and (min-width: 769px) and (max-width: 992px) {
+        .main-menu:after {
+            content: '';
+            height: 70%;
+            width: 1px;
+            position: absolute;
+            right: 0;
+            top: 15%;
+            background-color: #e5e5e5;
+        }
+        ul.slimmenu {
+            width: 97%;
+        }
+        ul.slimmenu > li:nth-child(3) {
+            width: 20%;
+        }
+        .horizontal_menu {
+            border-bottom: 1px solid #ccc;
+            padding-left: 2%;
+        }
+        ul.slimmenu > li {
+            width: 20%;
+        }
+    }
+    
+    @media screen and (min-width: 993px) {
+        .main-menu:after {
+            content: '';
+            height: 70%;
+            width: 1px;
+            position: absolute;
+            right: 0;
+            top: 15%;
+            background-color: #e5e5e5;
+        }
+        .horizontal_menu {
+            border-bottom: 1px solid #ccc;
+            padding-left: 13%;
+        }
+    }

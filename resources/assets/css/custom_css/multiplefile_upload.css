@@ -1,0 +1,17 @@
+.table-responsive > .table > tbody > tr > td {
+    white-space : normal;
+}
+.table-responsive {
+    overflow-y : visible;
+    overflow-x : visible;
+}
+@media only screen and (max-width : 767px) {
+    .files img,
+    .files canvas {
+        max-width : none;
+    }
+    .table-responsive {
+        border     : none;
+        overflow-x : scroll;
+    }
+}
