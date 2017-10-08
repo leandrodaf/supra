@@ -26,4 +26,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+    /**
+     * Get the phone record associated with the user.
+     */
+    public function getPessoa()
+    {
+        return $this->hasOne('App\UsuarioPessoa', 'usuario_id')->get()[0]->getPessoa();
+    }
+
 }
