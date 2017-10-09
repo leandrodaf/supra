@@ -37,9 +37,9 @@ class Pessoa extends Model
     /**
      * Get the phone record associated with the user.
      */
-    public function tipoPessoa()
+    public function getTipoPessoa()
     {
-        return $this->hasOne('App\TipoPessoa', 'id', 'tipo_pessoas_id')->get();
+        return $this->hasOne('App\TipoPessoa', 'id', 'tipo_pessoas_id');
     }
 
 }
