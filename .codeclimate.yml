@@ -1,3 +1,21 @@
-## other configuration excluded from example...
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        - php
+
+  phpcodesniffer:
+    enabled: true
+    config:
+      standard: "PSR2"
+
+  phpmd:
+    enabled: true
+
+ratings:
+  paths:
+    - "**.php"
+
 exclude_paths:
-- "**.js"
+  - "**.js"
