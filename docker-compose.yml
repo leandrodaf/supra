@@ -3,12 +3,30 @@ version: '2'
 
 # Named volumes
 volumes:
-
+  # MySQL Data
+  supra-mysql-data:
+    driver: local
+    
   # Redis Data
   supra-redis-data:
     driver: local
 
 services:
+
+  # MySQL (5.7)
+  mysql:
+    image: ambientum/mysql:5.7
+    container_name: supra-mysql
+    volumes:
+      - supra-mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=supra
+      - MYSQL_DATABASE=supra
+      - MYSQL_USER=supra
+      - MYSQL_PASSWORD=supra
+
   # Redis
   cache:
     image: ambientum/redis:3.2
@@ -28,6 +46,7 @@ services:
     ports:
       - "80:8080"
     links:
+      - mysql
       - cache
 
   # Laravel Queues
@@ -38,4 +57,5 @@ services:
     volumes:
       - .:/var/www/app
     links:
+      - mysql
       - cache
