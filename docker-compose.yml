@@ -4,7 +4,7 @@ version: '2'
 # Named volumes
 volumes:
   # MySQL Data
-  sandbox-mysql-data:
+  supra-mysql-data:
     driver: local
     
   # Redis Data
@@ -16,16 +16,16 @@ services:
   # MySQL (5.7)
   mysql:
     image: ambientum/mysql:5.7
-    container_name: sandbox-mysql
+    container_name: supra-mysql
     volumes:
-      - sandbox-mysql-data:/var/lib/mysql
+      - supra-mysql-data:/var/lib/mysql
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=sandbox
-      - MYSQL_DATABASE=sandbox
-      - MYSQL_USER=sandbox
-      - MYSQL_PASSWORD=sandbox
+      - MYSQL_ROOT_PASSWORD=supra
+      - MYSQL_DATABASE=supra
+      - MYSQL_USER=supra
+      - MYSQL_PASSWORD=supra
 
   # Redis
   cache:
