@@ -1,90 +1,107 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Login - SUPRA</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/favicon.ico"/>
-    <!-- Bootstrap -->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- end of bootstrap -->
-    <!--page level css -->
-    <link type="text/css" href="{{asset('vendors/themify/css/themify-icons.css')}}" rel="stylesheet"/>
-    <link href="{{asset('vendors/iCheck/css/all.css')}}" rel="stylesheet">
-    <link href="{{asset('vendors/bootstrapvalidator/css/bootstrapValidator.min.css')}}" rel="stylesheet"/>
-    <link href="{{asset('css/login.css')}}" rel="stylesheet">
-    <!--end page level css-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>InfyOm Laravel Generator</title>
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/AdminLTE.min.css">
+
+    <!-- iCheck -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/skins/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="{{ url('/home') }}"><b>InfyOm </b>Generator</a>
+    </div>
 
-<body id="sign-in">
-<div class="preloader">
-    <div class="loader_img"><img src="{{asset('img/loader.gif')}}" alt="loading..." height="64" width="64"></div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 login-form">
-            <div class="panel-header">
-                <h2 class="text-center">
-                    <img src="{{asset('img/pages/clear_black.png')}}" alt="Logo">
-                </h2>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+
+        <form method="post" action="{{ url('/login') }}">
+            {!! csrf_field() !!}
+
+            <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
+                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+                @endif
             </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <form action="{{ route('login') }}" id="authentication" method="post" class="login_validator">
 
-                            {{ csrf_field() }}
+            <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
+                <input type="password" class="form-control" placeholder="Password" name="password">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+                @endif
 
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="sr-only"> E-mail</label>
-                                <input type="text" class="form-control  form-control-lg" id="email" name="email"
-                                       placeholder="E-mail">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="sr-only">Password</label>
-                                <input type="password" class="form-control form-control-lg" id="password"
-                                       name="password" placeholder="Password">
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="form-group checkbox">
-                                <label for="remember">
-                                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>&nbsp; Mater logado
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Entrar" class="btn btn-primary btn-block"/>
-                            </div>
-                            <a href="{{ route('password.request') }}" id="forgot" class="forgot"> Esqueceu sua senha ? </a>
-
-                            <span class="pull-right sign-up">É novo aqui? <a href="{{route('register')}}">Registre-se!</a></span>
-                        </form>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox" name="remember"> Remember Me
+                        </label>
                     </div>
                 </div>
-
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+                <!-- /.col -->
             </div>
-        </div>
-    </div>
-</div>
-<!-- global js -->
-<script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
-<!-- end of global js -->
-<!-- page level js -->
-<script type="text/javascript" src="{{asset('vendors/iCheck/js/icheck.js')}}"></script>
-<script src="{{asset('vendors/bootstrapvalidator/js/bootstrapValidator.min.js')}}" type="text/javascript"></script>
-<script type="text/javascript" src="{{asset('js/custom_js/login.js')}}"></script>
-<!-- end of page level js -->
-</body>
+        </form>
 
+        <a href="{{ url('/password/reset') }}">I forgot my password</a><br>
+        <a href="{{ url('/register') }}" class="text-center">Register a new membership</a>
+
+    </div>
+    <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/js/app.min.js"></script>
+<script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+        });
+    });
+</script>
+</body>
 </html>
