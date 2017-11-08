@@ -17,7 +17,8 @@ before_install:
 
 script: 
   - npm run dev
-  - vendor/bin/phpunit --coverage-text
+  - vendor/bin/phpunit
+  - php travis/coverage-checker.php travis/clover.xml 75
 
 cache:
   yarn: true
