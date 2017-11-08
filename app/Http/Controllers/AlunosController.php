@@ -80,7 +80,6 @@ class AlunosController extends AppBaseController
             $emails
         );
 
-
         $flash = new Flash();
         $flash::success('Aluno criado com sucesso.');
 
@@ -90,13 +89,13 @@ class AlunosController extends AppBaseController
     /**
      * Display the specified Alunos.
      *
-     * @param  int $id
+     * @param  int $idAluno
      *
      * @return Response
      */
-    public function show($id)
+    public function show($idAluno)
     {
-        $alunos = $this->alunosRepository->findWithoutFail($id);
+        $alunos = $this->alunosRepository->findWithoutFail($idAluno);
 
         if (empty($alunos)) {
             $flash = new Flash();
@@ -112,16 +111,16 @@ class AlunosController extends AppBaseController
     /**
      * Show the form for editing the specified Alunos.
      *
-     * @param  int $id
+     * @param  int $idAluno
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($idAluno)
     {
         $tipo_pessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
         $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
 
-        $alunos = $this->alunosRepository->findWithoutFail($id);
+        $alunos = $this->alunosRepository->findWithoutFail($idAluno);
 
 
         if (empty($alunos)) {
@@ -137,12 +136,12 @@ class AlunosController extends AppBaseController
     /**
      * Update the specified Alunos in storage.
      *
-     * @param  int $id
+     * @param  int $idAluno
      * @param UpdateAlunosRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdateAlunosRequest $request)
+    public function update($idAluno, UpdateAlunosRequest $request)
     {
 
         $input = $request->all();
@@ -150,7 +149,7 @@ class AlunosController extends AppBaseController
         $emails = array_get($input, 'email');
         array_forget($input, 'email');
 
-        $alunos = $this->alunosRepository->findWithoutFail($id);
+        $alunos = $this->alunosRepository->findWithoutFail($idAluno);
 
         if (empty($alunos)) {
             $flash = new Flash();
@@ -163,7 +162,7 @@ class AlunosController extends AppBaseController
         }
 
         $input['data_nascimento_aluno'] = \Carbon\Carbon::parse($input['data_nascimento_aluno'])->format('Y-m-d');
-        $alunos = $this->alunosRepository->update($input, $id);
+        $alunos = $this->alunosRepository->update($input, $idAluno);
 
         if (!empty($emails))
             $alunos->email()->createMany($emails);
@@ -171,41 +170,41 @@ class AlunosController extends AppBaseController
         $flash = new Flash();
         $flash::success('Aluno Atualizado com sucesso.');
 
-        return redirect(route('alunos.show', $id));
+        return redirect(route('alunos.show', $idAluno));
     }
 
 
     /**
      * Update the specified Alunos in storage.
      *
-     * @param  int $id
+     * @param  int $idAluno
      * @param Request $request
      *
      * @return Response
      */
-    public function updateResponsaveis($id, Request $request)
+    public function updateResponsaveis($idAluno, Request $request)
     {
         $input = $request->all();
-        $alunos = $this->alunosRepository->findWithoutFail($id);
+        $alunos = $this->alunosRepository->findWithoutFail($idAluno);
         $alunos->pessoa()->sync($input['responsavel']);
 
         $flash = new Flash();
         $flash::success('Aluno Atualizado com sucesso.');
 
-        return redirect(route('alunos.show', $id));
+        return redirect(route('alunos.show', $idAluno));
     }
 
 
     /**
      * Remove the specified Alunos from storage.
      *
-     * @param  int $id
+     * @param  int $idAluno
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($idAluno)
     {
-        $alunos = $this->alunosRepository->findWithoutFail($id);
+        $alunos = $this->alunosRepository->findWithoutFail($idAluno);
 
         if (empty($alunos)) {
             $flash = new Flash();
@@ -214,7 +213,7 @@ class AlunosController extends AppBaseController
             return redirect(route('alunos.index'));
         }
 
-        $this->alunosRepository->delete($id);
+        $this->alunosRepository->delete($idAluno);
 
         $flash = new Flash();
         $flash::success('Alunos deleted successfully.');
@@ -226,11 +225,11 @@ class AlunosController extends AppBaseController
     /**
      * Remove the specified Alunos from storage.
      *
-     * @param  int $id
+     * @param  int $idAluno
      *
      * @return Response
      */
-    public function desvincularAluno($id, Request $request)
+    public function desvincularAluno($idAluno, Request $request)
     {
         $alunos = $this->alunosRepository->findWithoutFail($request->id);
 
@@ -241,7 +240,7 @@ class AlunosController extends AppBaseController
             return redirect(route('alunos.index'));
         }
 
-        $alunos->pessoa()->detach($id);
+        $alunos->pessoa()->detach($idAluno);
 
         $flash = new Flash();
         $flash::success('Alunos deleted successfully.');
