@@ -73,9 +73,9 @@ class PessoaController extends AppBaseController
      *
      * @return Response
      */
-    public function show($id)
+    public function show($idPessoa)
     {
-        $pessoa = $this->pessoaRepository->findWithoutFail($id);
+        $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
 
         if (empty($pessoa)) {
             $flash = new Flash();
@@ -94,9 +94,9 @@ class PessoaController extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($idPessoa)
     {
-        $pessoa = $this->pessoaRepository->findWithoutFail($id);
+        $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
 
         if (empty($pessoa)) {
             $flash = new Flash();
@@ -116,9 +116,9 @@ class PessoaController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdatePessoaRequest $request)
+    public function update($idPessoa, UpdatePessoaRequest $request)
     {
-        $pessoa = $this->pessoaRepository->findWithoutFail($id);
+        $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
 
         if (empty($pessoa)) {
             $flash = new Flash();
@@ -127,7 +127,7 @@ class PessoaController extends AppBaseController
             return redirect(route('pessoas.index'));
         }
 
-        $pessoa = $this->pessoaRepository->update($request->all(), $id);
+        $pessoa = $this->pessoaRepository->update($request->all(), $idPessoa);
 
         $flash = new Flash();
         $flash::success('Pessoa updated successfully.');
@@ -142,9 +142,9 @@ class PessoaController extends AppBaseController
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($idPessoa)
     {
-        $pessoa = $this->pessoaRepository->findWithoutFail($id);
+        $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
 
         if (empty($pessoa)) {
             $flash = new Flash();
@@ -153,7 +153,7 @@ class PessoaController extends AppBaseController
             return redirect(route('pessoas.index'));
         }
 
-        $this->pessoaRepository->delete($id);
+        $this->pessoaRepository->delete($idPessoa);
 
         $flash = new Flash();
         $flash::success('Pessoa deleted successfully.');
