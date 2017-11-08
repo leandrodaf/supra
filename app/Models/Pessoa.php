@@ -107,7 +107,11 @@ class Pessoa extends Model
      **/
     public function tipoPessoa()
     {
-        return $this->hasOne(\App\Models\TipoPessoa::class, 'id', 'tipo_pessoas_id')->select('id', 'nome');
+        return $this->hasOne(
+            \App\Models\TipoPessoa::class,
+            'id',
+            'tipo_pessoas_id'
+        )->select('id', 'nome');
     }
 
     /**
@@ -115,7 +119,9 @@ class Pessoa extends Model
      **/
     public function aluno()
     {
-        return $this->belongsToMany(\App\Models\Alunos::class);
+        return $this->belongsToMany(
+            \App\Models\Alunos::class
+        );
     }
 
     /**
@@ -123,7 +129,9 @@ class Pessoa extends Model
      **/
     public function email()
     {
-        return $this->belongsToMany(\App\Models\Email::class);
+        return $this->belongsToMany(
+            \App\Models\Email::class
+        );
     }
 
     /**
@@ -131,7 +139,9 @@ class Pessoa extends Model
      **/
     public function endereco()
     {
-        return $this->belongsToMany(\App\Models\Endereco::class);
+        return $this->belongsToMany(
+            \App\Models\Endereco::class
+        );
     }
 
     /**
@@ -139,7 +149,8 @@ class Pessoa extends Model
      **/
     public function telefone()
     {
-        return $this->belongsToMany(\App\Models\Telefone::class);
+        return $this->belongsToMany(
+            \App\Models\Telefone::class
+        );
     }
-
 }

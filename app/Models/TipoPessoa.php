@@ -13,12 +13,10 @@ class TipoPessoa extends Model
      */
     protected $table = 'tipo_pessoas';
 
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = ['nome', 'status'];
-
 }
