@@ -125,7 +125,9 @@ class Alunos extends Model
      **/
     public function email()
     {
-        return $this->belongsToMany(\App\Models\Email::class, 'aluno_email', 'aluno_id', 'email_id')->withPivot('flg_principal');
+        return $this->belongsToMany(
+            \App\Models\Email::class, 'aluno_email', 'aluno_id', 'email_id'
+        )->withPivot('flg_principal');
     }
 
     /**
