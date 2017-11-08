@@ -57,8 +57,7 @@ class PessoaController extends AppBaseController
     public function store(CreatePessoaRequest $request)
     {
         $input = $request->all();
-
-        $pessoa = $this->pessoaRepository->create($input);
+        $this->pessoaRepository->create($input);
 
         $flash = new Flash();
         $flash::success('Pessoa saved successfully.');
