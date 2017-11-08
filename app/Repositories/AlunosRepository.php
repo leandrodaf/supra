@@ -45,8 +45,7 @@ class AlunosRepository extends BaseRepository
         return Alunos::class;
     }
 
-
-    public function create_avatar(CreateAlunosRequest $request)
+    public function createAvatar(CreateAlunosRequest $request)
     {
         if ($request->hasFile('foto_aluno')) {
             $avatar = $request->file('foto_aluno');
@@ -55,11 +54,9 @@ class AlunosRepository extends BaseRepository
 
             return $filename;
         }
-
     }
 
-
-    public function update_avatar(UpdateAlunosRequest $request)
+    public function updateAvatar(UpdateAlunosRequest $request)
     {
         if ($request->hasFile('foto_aluno')) {
             $avatar = $request->file('foto_aluno');
@@ -68,8 +65,6 @@ class AlunosRepository extends BaseRepository
 
             return $filename;
         }
-
     }
-
 
 }

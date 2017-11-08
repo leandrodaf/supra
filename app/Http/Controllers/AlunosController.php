@@ -71,7 +71,7 @@ class AlunosController extends AppBaseController
 
 
         $input['data_nascimento_aluno'] = \Carbon\Carbon::parse($input['data_nascimento_aluno'])->format('Y-m-d');
-        $input['foto_aluno'] = $this->alunosRepository->create_avatar($request);
+        $input['foto_aluno'] = $this->alunosRepository->createAvatar($request);
 
         $alunos = $this->alunosRepository->create($input);
 
@@ -155,7 +155,7 @@ class AlunosController extends AppBaseController
         }
 
         if ($request->hasFile('foto_aluno')) {
-            $input['foto_aluno'] = $this->alunosRepository->update_avatar($request);
+            $input['foto_aluno'] = $this->alunosRepository->updateAvatar($request);
         }
 
         $input['data_nascimento_aluno'] = \Carbon\Carbon::parse($input['data_nascimento_aluno'])->format('Y-m-d');
