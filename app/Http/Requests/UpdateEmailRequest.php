@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Alunos;
+use App\Models\Email;
 
-class CreateAlunosRequest extends FormRequest
+class UpdateEmailRequest extends FormRequest
 {
 
     /**
@@ -25,9 +25,6 @@ class CreateAlunosRequest extends FormRequest
      */
     public function rules()
     {
-        return Alunos::$rules;
+        return Email::$rules;
     }
-
-
-
 }

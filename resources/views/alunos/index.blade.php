@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('styles')
+@endsection
+
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">Alunos</h1>
@@ -15,7 +18,7 @@
 
         <div class="clearfix"></div>
         <div class="box box-primary">
-            <div class="box-body no-padding" tabindex="1">
+            <div class="box-body " tabindex="1">
                 @include('alunos.table')
             </div>
         </div>

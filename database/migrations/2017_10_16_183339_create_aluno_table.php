@@ -17,8 +17,7 @@ class CreateAlunoTable extends Migration
             $table->increments('id');
             $table->string('nome_aluno');
             $table->string('foto_aluno')->nullable();
-            $table->string('rg_aluno', 12);
-            $table->char('sexo_aluno', 1);
+            $table->string('rg_aluno', 13)->unique();
             $table->boolean('flg_certidao_nascimento_aluno');
             $table->boolean('flg_carteira_vacinacao_aluno');
             $table->boolean('flg_frequentou_escola_aluno');
@@ -27,7 +26,9 @@ class CreateAlunoTable extends Migration
             $table->integer('qtd_irmaos_aluno')->nullable();
             $table->date('data_nascimento_aluno');
             $table->integer('tipo_pessoas_id')->unsigned();
+            $table->integer('sexo_aluno')->unsigned();
             $table->foreign('tipo_pessoas_id')->references('id')->on('tipo_pessoas')->onDelete('cascade');
+            $table->foreign('sexo_aluno')->references('id')->on('generos')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

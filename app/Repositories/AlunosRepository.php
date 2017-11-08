@@ -4,16 +4,19 @@ namespace App\Repositories;
 
 use App\Models\Alunos;
 use InfyOm\Generator\Common\BaseRepository;
-use
-    /**
-     * Class AlunosRepository
-     * @package App\Repositories
-     * @version November 1, 2017, 2:53 pm UTC
-     *
-     * @method Alunos findWithoutFail($id, $columns = ['*'])
-     * @method Alunos find($id, $columns = ['*'])
-     * @method Alunos first($columns = ['*'])
-     */
+use Intervention\Image\ImageManagerStatic as Image;
+use App\Http\Requests\CreateAlunosRequest;
+use App\Http\Requests\UpdateAlunosRequest;
+
+/**
+ * Class AlunosRepository
+ * @package App\Repositories
+ * @version November 1, 2017, 2:53 pm UTC
+ *
+ * @method Alunos findWithoutFail($id, $columns = ['*'])
+ * @method Alunos find($id, $columns = ['*'])
+ * @method Alunos first($columns = ['*'])
+ */
 class AlunosRepository extends BaseRepository
 {
     /**
@@ -42,11 +45,30 @@ class AlunosRepository extends BaseRepository
         return Alunos::class;
     }
 
-    public function uploadAvatar($avatar)
+
+    public function create_avatar(CreateAlunosRequest $request)
     {
-        $filename = time() . '.' . $avatar->getClientOriginalExtension();
-        Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/avatars/' . $filename));
-        return $filename;
+        if ($request->hasFile('foto_aluno')) {
+            $avatar = $request->file('foto_aluno');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/avatars/' . $filename));
+
+            return $filename;
+        }
+
+    }
+
+
+    public function update_avatar(UpdateAlunosRequest $request)
+    {
+        if ($request->hasFile('foto_aluno')) {
+            $avatar = $request->file('foto_aluno');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/avatars/' . $filename));
+
+            return $filename;
+        }
+
     }
 
 

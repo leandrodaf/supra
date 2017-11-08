@@ -25,6 +25,12 @@ class UpdateAlunosRequest extends FormRequest
      */
     public function rules()
     {
-        return Alunos::$rules;
+
+        $rules = Alunos::$rules;
+
+        $rules['rg_aluno'] .= ',rg_aluno,' . $this->id;
+
+
+        return $rules;
     }
 }

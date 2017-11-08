@@ -5,3 +5,7 @@
     <a href="{!! route('alunos.index') !!}"><i class="fa fa-edit"></i><span>Alunos</span></a>
 </li>
 
+<li class="{{ Request::is('emails*') ? 'active' : '' }}">
+    <a href="{!! route('emails.index') !!}"><i class="fa fa-edit"></i><span>Emails</span></a>
+</li>
+

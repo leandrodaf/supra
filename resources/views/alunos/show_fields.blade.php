@@ -1,96 +1,79 @@
 <div class="row">
     <div class="col-lg-6">
 
-        <!-- Nome Aluno Field -->
-        <div class="form-group">
-                {!! Form::label('nome_aluno', 'Nome Aluno:') !!}
-            <p>{!! $alunos->nome_aluno !!}</p>
-        </div>
+        <dl class="dl-horizontal">
+            <!-- Nome Aluno Field -->
+            <dt>{!! Form::label('nome_aluno', 'Nome Aluno:') !!}</dt>
+            <dd>{!! $alunos->nome_aluno !!}</dd>
 
+            <!-- Rg Aluno Field -->
+            <dt> {!! Form::label('rg_aluno', 'RG:') !!}</dt>
+            <dd> {!! $alunos->rg_aluno !!}</dd>
 
+            <!-- Data Nascimento Aluno Field -->
+            <dt> {!! Form::label('data_nascimento_aluno', 'Data nascimento:') !!}</dt>
+            <dd> {!! \Carbon\Carbon::parse($alunos->data_nascimento_aluno)->format('d/m/Y') !!}</dd>
 
-        <!-- Rg Aluno Field -->
-        <div class="form-group">
-            {!! Form::label('rg_aluno', 'Rg Aluno:') !!}
-            <p>{!! $alunos->rg_aluno !!}</p>
-        </div>
-        <!-- Data Nascimento Aluno Field -->
-        <div class="form-group">
-            {!! Form::label('data_nascimento_aluno', 'Data Nascimento Aluno:') !!}
-            <p>{!! $alunos->data_nascimento_aluno !!}</p>
-        </div>
+            <!-- Tipo Pessoas Id Field -->
+            <dt> {!! Form::label('tipo_pessoas_id', 'Tipo:') !!}</dt>
+            <dd> {!! $alunos->tipoPessoa->nome !!}</dd>
 
-        <!-- Tipo Pessoas Id Field -->
-        <div class="form-group">
-            {!! Form::label('tipo_pessoas_id', 'Tipo Pessoas Id:') !!}
-            <p>{!! $alunos->tipo_pessoas_id !!}</p>
-        </div>
+            <!-- Tipo Pessoas Id Field -->
+            <dt> {!! Form::label('email', count($alunos->email) > 1 ?'E-mails:':'E-mail') !!}</dt>
 
-        <!-- Created At Field -->
-        <div class="form-group">
-            {!! Form::label('created_at', 'Created At:') !!}
-            <p>{!! $alunos->created_at !!}</p>
-        </div>
+            @foreach($alunos->email as $email)
+                <dd> {{$email->email}} <span class="label label-info">{{$email['pivot']->flg_principal ? "P":""}}</span></dd>
+            @endforeach
 
+            <!-- Created At Field -->
+            <dt> {!! Form::label('created_at', 'Criado em:') !!} </dt>
+            <dd> {!! \Carbon\Carbon::parse($alunos->created_at)->format('d/m/Y') !!}</dd>
 
-        <!-- Deleted At Field -->
-        <div class="form-group">
-            {!! Form::label('deleted_at', 'Deleted At:') !!}
-            <p>{!! $alunos->deleted_at !!}</p>
-        </div>
+            @if(!empty($alunos->deleted_at))
+                    <!-- Deleted At Field -->
+                    <dt> {!! Form::label('deleted_at', 'Deletado em:') !!} </dt>
+                    <dd>{!! \Carbon\Carbon::parse($alunos->deleted_at)->format('d/m/Y') !!} </dd>
+            @endif
+            <!-- Sexo Aluno Field -->
+            <dt> {!! Form::label('sexo_aluno', 'Sexo Aluno:') !!} </dt>
+            <dd> {!! $alunos->genero->nome !!}</dd>
+
+            <!-- Flg Certidao Nascimento Aluno Field -->
+            <dt> {!! Form::label('flg_certidao_nascimento_aluno', 'Apresentou Certidão de nascimento:') !!} </dt>
+            <dd> {!! $alunos->flg_certidao_nascimento_aluno ? "Apresentou": "Não"!!}</dd>
+
+            <!-- Flg Carteira Vacinacao Aluno Field -->
+
+            <dt> {!! Form::label('flg_carteira_vacinacao_aluno', 'Apresentou carteira de vacinação:') !!} </dt>
+            <dd> {!! $alunos->flg_carteira_vacinacao_aluno ? "Apresentou": "Não"!!}</dd>
+
+            <!-- Flg Frequentou Escola Aluno Field -->
+
+            <dt> {!! Form::label('flg_frequentou_escola_aluno', 'Frequentou outras escola:') !!} </dt>
+            <dd>{!! $alunos->flg_frequentou_escola_aluno ? "Apresentou": "Não"!!} </dd>
+
+            <!-- Flg Irmaos Aluno Field -->
+            <dt> {!! Form::label('flg_irmaos_aluno', 'Possui irmãos:') !!} </dt>
+            <dd>{!! $alunos->flg_irmaos_aluno ? "Sim": "Não"!!} </dd>
+
+            @if($alunos->flg_irmaos_aluno || $alunos->qtd_irmaos_aluno != 0)
+                <!-- Qtd Irmaos Aluno Field -->
+                    <dt> {!! Form::label('qtd_irmaos_aluno', 'Irmãos:') !!} </dt>
+                    <dd> {!! $alunos->qtd_irmaos_aluno !!}</dd>
+            @endif
+
+            <!-- Flg Juntos Aos Pais Aluno Field -->
+            <dt> {!! Form::label('flg_juntos_aos_pais_aluno', 'Mora com os pais:') !!} </dt>
+            <dd>{!! $alunos->flg_juntos_aos_pais_aluno ? "Sim": "Não"!!} </dd>
+
+            <!-- Updated At Field -->
+            <dt> {!! Form::label('updated_at', 'Ultima atualização:') !!} </dt>
+            <dd>{!! $alunos->updated_at !!} </dd>
+        </dl>
+
 
     </div>
-    <div class="col-lg-6">
-        <!-- Sexo Aluno Field -->
-        <div class="form-group">
-            {!! Form::label('sexo_aluno', 'Sexo Aluno:') !!}
-            <p>{!! $alunos->sexo_aluno !!}</p>
-        </div>
 
-        <!-- Flg Certidao Nascimento Aluno Field -->
-        <div class="form-group">
-            {!! Form::label('flg_certidao_nascimento_aluno', 'Flg Certidao Nascimento Aluno:') !!}
-            <p>{!! $alunos->flg_certidao_nascimento_aluno !!}</p>
-        </div>
-
-        <!-- Flg Carteira Vacinacao Aluno Field -->
-        <div class="form-group">
-            {!! Form::label('flg_carteira_vacinacao_aluno', 'Flg Carteira Vacinacao Aluno:') !!}
-            <p>{!! $alunos->flg_carteira_vacinacao_aluno !!}</p>
-        </div>
-
-        <!-- Flg Frequentou Escola Aluno Field -->
-        <div class="form-group">
-            {!! Form::label('flg_frequentou_escola_aluno', 'Flg Frequentou Escola Aluno:') !!}
-            <p>{!! $alunos->flg_frequentou_escola_aluno !!}</p>
-
-        </div>
-
-        <!-- Flg Irmaos Aluno Field -->
-        <div class="form-group">
-            {!! Form::label('flg_irmaos_aluno', 'Flg Irmaos Aluno:') !!}
-            <p>{!! $alunos->flg_irmaos_aluno !!}</p>
-        </div>
-
-        <!-- Flg Juntos Aos Pais Aluno Field -->
-        <div class="form-group">
-            {!! Form::label('flg_juntos_aos_pais_aluno', 'Flg Juntos Aos Pais Aluno:') !!}
-            <p>{!! $alunos->flg_juntos_aos_pais_aluno !!}</p>
-        </div>
-
-        <!-- Qtd Irmaos Aluno Field -->
-        <div class="form-group">
-            {!! Form::label('qtd_irmaos_aluno', 'Qtd Irmaos Aluno:') !!}
-            <p>{!! $alunos->qtd_irmaos_aluno !!}</p>
-
-        </div>
-
-        <!-- Updated At Field -->
-        <div class="form-group">
-            {!! Form::label('updated_at', 'Updated At:') !!}
-            <p>{!! $alunos->updated_at !!}</p>
-        </div>
-    </div>
 
 </div>
 

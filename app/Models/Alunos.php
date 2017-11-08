@@ -90,17 +90,19 @@ class Alunos extends Model
     public static $rules = [
         'nome_aluno' => 'required|min:3|max:255',
         'foto_aluno' => '',
-        'rg_aluno' => 'required|max:12',
+        'rg_aluno' => 'required|min:12|unique:alunos',
         'sexo_aluno' => 'required',
         'flg_certidao_nascimento_aluno' => 'required',
         'flg_carteira_vacinacao_aluno' => 'required',
         'flg_frequentou_escola_aluno' => 'required',
         'flg_irmaos_aluno' => 'required',
         'flg_juntos_aos_pais_aluno' => 'required',
-        'qtd_irmaos_aluno' => 'min:1|max:10',
+        'qtd_irmaos_aluno' => 'nullable|min:1|max:10',
         'data_nascimento_aluno' => 'required|date',
-        'tipo_pessoas_id' => 'required'
+        'tipo_pessoas_id' => 'required',
     ];
+
+//'email.*' => 'email|distinct|unique:alunos'
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -111,28 +113,28 @@ class Alunos extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function genero()
+    {
+        return $this->hasOne(\App\Models\Genero::class, 'id', 'sexo_aluno')->select('id', 'nome');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
     public function email()
     {
-        return $this->belongsToMany(\App\Models\AlunoEmail::class)->withPivot('email_id', 'aluno_id');
+        return $this->belongsToMany(\App\Models\Email::class, 'aluno_email', 'aluno_id', 'email_id')->withPivot('flg_principal');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function endereco()
-    {
-        return $this->belongsToMany(\App\Models\Endereco::class)->withPivot('endereco_id', 'aluno_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function escola()
-    {
-        return $this->belongsToMany(\App\Models\AlunoEscola::class)->withPivot('escola_id', 'aluno_id');
-    }
+//    public function endereco()
+//    {
+//        return $this->belongsToMany(\App\Models\Endereco::class)->withPivot('endereco_id', 'aluno_id');
+//    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -145,8 +147,8 @@ class Alunos extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function telefone()
-    {
-        return $this->belongsToMany(\App\Models\AlunoTelefone::class)->withPivot('telefone_id', 'aluno_id');
-    }
+//    public function telefone()
+//    {
+//        return $this->belongsToMany(\App\Models\AlunoTelefone::class)->withPivot('telefone_id', 'aluno_id');
+//    }
 }

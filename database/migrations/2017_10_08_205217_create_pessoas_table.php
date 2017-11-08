@@ -18,7 +18,7 @@ class CreatePessoasTable extends Migration
             $table->string('nome');
             $table->string('cpf_cnpj', 18)->nullable();
             $table->boolean('sexo')->nullable();
-            $table->string('rg', 12)->nullable();
+            $table->string('rg', 13)->nullable();
             $table->date('dataNascimento')->nullable();
             $table->string('estadoCivil')->nullable();
             $table->string('razaoSocial')->nullable();

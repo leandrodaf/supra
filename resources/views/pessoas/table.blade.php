@@ -29,7 +29,7 @@
             <td>{!! $pessoa->nomeFantasia !!}</td>
             <td>{!! $pessoa->inscricaoEstadual !!}</td>
             <td>{!! $pessoa->nacionalidade !!}</td>
-            <td>{!! $pessoa->status !!}</td>
+            <td>{!! $pessoa->status != 0 ? "Ativa":"Inativo" !!}</td>
             <td>{!! $pessoa->tipo_pessoas_id !!}</td>
             <td>
                 {!! Form::open(['route' => ['pessoas.destroy', $pessoa->id], 'method' => 'delete']) !!}

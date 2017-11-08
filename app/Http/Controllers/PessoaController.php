@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class PessoaController extends AppBaseController
 {
@@ -107,7 +108,7 @@ class PessoaController extends AppBaseController
     /**
      * Update the specified Pessoa in storage.
      *
-     * @param  int              $id
+     * @param  int $id
      * @param UpdatePessoaRequest $request
      *
      * @return Response
@@ -151,5 +152,27 @@ class PessoaController extends AppBaseController
         Flash::success('Pessoa deleted successfully.');
 
         return redirect(route('pessoas.index'));
+    }
+
+
+    /**
+     * Show the application dataAjax.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dataAjax(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = DB::table("pessoas")
+                ->select("id", "nome")
+                ->where('nome', 'LIKE', "%$search%")
+                ->limit(5)
+                ->get();
+        }
+
+        return response()->json($data);
     }
 }
