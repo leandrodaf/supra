@@ -21,6 +21,7 @@ class CreateEnderecosTable extends Migration
             $table->string('cidade')->nullable();
             $table->string('complemento')->nullable();
             $table->string('bairro')->nullable();
+            $table->char('estado', 2)->nullable();
             $table->string('pais')->nullable();
             $table->timestamps();
         });

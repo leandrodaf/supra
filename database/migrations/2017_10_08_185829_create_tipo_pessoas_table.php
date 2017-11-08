@@ -18,6 +18,7 @@ class CreateTipoPessoasTable extends Migration
             $table->string('nome');
             $table->boolean('status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

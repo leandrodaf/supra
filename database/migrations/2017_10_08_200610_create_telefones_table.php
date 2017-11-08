@@ -17,6 +17,7 @@ class CreateTelefonesTable extends Migration
             $table->increments('id');
             $table->string('numero', 17);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

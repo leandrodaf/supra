@@ -16,9 +16,9 @@ class CreatePessoasTable extends Migration
         Schema::create('pessoas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->string('cpfCnpj', 18)->nullable();
+            $table->string('cpf_cnpj', 18)->nullable();
             $table->boolean('sexo')->nullable();
-            $table->string('rg', 12)->nullable();
+            $table->string('rg', 13)->nullable();
             $table->date('dataNascimento')->nullable();
             $table->string('estadoCivil')->nullable();
             $table->string('razaoSocial')->nullable();
@@ -30,6 +30,7 @@ class CreatePessoasTable extends Migration
             $table->unique(['tipo_pessoas_id']);
             $table->foreign('tipo_pessoas_id')->references('id')->on('tipo_pessoas')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

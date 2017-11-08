@@ -1,91 +1,109 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Reset Password | Clear Admin Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/favicon.ico"/>
-    <!-- Bootstrap -->
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <!-- end of bootstrap -->
-    <!--page level css -->
-    <link href="{{asset('vendors/bootstrapvalidator/css/bootstrapValidator.min.css')}}" rel="stylesheet"/>
-    <link href="{{asset('css/login.css')}}" rel="stylesheet">
-    <!--end page level css-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>InfyOm Laravel Generator</title>
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/AdminLTE.min.css">
+
+    <!-- iCheck -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/css/skins/_all-skins.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="{{ url('/home') }}"><b>InfyOm </b>Generator</a>
+    </div>
 
-<body id="sign-in">
-<div class="preloader">
-    <div class="loader_img"><img src="{{asset('img/loader.gif')}}" alt="loading..." height="64" width="64"></div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 login-form">
-            <h2 class="text-center">
-                <img src="{{asset('img/pages/clear_black.png')}}" alt="Logo">
-            </h2>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Reset your password</p>
+
+        <form method="post" action="{{ url('/password/reset') }}">
+            {!! csrf_field() !!}
+
+            <input type="hidden" name="token" value="{{ $token }}">
+
+            <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
+                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                @if ($errors->has('email'))
+                    <span class="help-block">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+                @endif
+            </div>
+
+            <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group has-feedback{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm password">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+
+                @if ($errors->has('password_confirmation'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                    </span>
+                @endif
+            </div>
+
             <div class="row">
-                <div class="col-xs-12">
-                    <h4 class="text-center">Reset Password</h4>
-                </div>
-                <div class="col-xs-12">
-                    <form action="{{ route('password.request') }}" id="authentication" method="post"
-                          class="reset_validator">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="password" class="sr-only">E-mail</label>
-                            <input type="password" class="form-control form-control-lg" id="password"
-                                   name="email" value="{{ $email or old('email') }}" placeholder="E-mail">
-                            @if ($errors->has('email'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="sr-only">Senha</label>
-                            <input type="password" class="form-control form-control-lg" id="password"
-                                   name="password" placeholder="Password">
-
-                            @if ($errors->has('password'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            <label for="confirm-password" class="sr-only">Confirmar senha</label>
-                            <input type="password" class="form-control form-control-lg" id="confirm-password"
-                                   name="password_confirmation" placeholder="Confirmar senha">
-
-                            @if ($errors->has('password_confirmation'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" value="Resetar senha" class="btn btn-primary center-block"/>
-                        </div>
-                    </form>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary pull-right">
+                        <i class="fa fa-btn fa-refresh"></i>Reset Password
+                    </button>
                 </div>
             </div>
-        </div>
+        </form>
+
     </div>
 </div>
-<!-- global js -->
-<script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script>
-<script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
-<!-- end of global js -->
-<!-- page level js -->
-<script src="{{asset('vendors/bootstrapvalidator/js/bootstrapValidator.min.js')}}" type="text/javascript"></script>
-<script type="text/javascript" src="{{asset('js/custom_js/reset_password.js')}}"></script>
-<!-- end of page level js -->
-</body>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
+<script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+        });
+    });
+</script>
+</body>
 </html>
