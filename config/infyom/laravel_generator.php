@@ -31,7 +31,7 @@ return [
 
         'api_controller'    => app_path('Http/Controllers/API/'),
 
-        'test_trait'        => base_path('tests/traits/'),
+//        'test_trait'        => base_path('tests/traits/'),
 
         'repository_test'   => base_path('tests/'),
 
