@@ -17,7 +17,7 @@ before_install:
 
 script: 
   - npm run dev
-  - vendor/bin/phpunit --configuration phpunit.xml --coverage-text
+  - vendor/bin/phpunit --coverage-text
 
 cache:
   yarn: true
