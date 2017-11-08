@@ -57,7 +57,7 @@ class EmailController extends AppBaseController
     {
         $input = $request->all();
 
-        $email = $this->emailRepository->create($input);
+        $this->emailRepository->create($input);
 
         $flash = new Flash();
         $flash::success('Email saved successfully.');
@@ -68,13 +68,13 @@ class EmailController extends AppBaseController
     /**
      * Display the specified Email.
      *
-     * @param  int $id
+     * @param  int $idEmail
      *
      * @return Response
      */
-    public function show($id)
+    public function show($idEmail)
     {
-        $email = $this->emailRepository->findWithoutFail($id);
+        $email = $this->emailRepository->findWithoutFail($idEmail);
 
         if (empty($email)) {
             $flash = new Flash();
@@ -89,13 +89,13 @@ class EmailController extends AppBaseController
     /**
      * Show the form for editing the specified Email.
      *
-     * @param  int $id
+     * @param  int $idEmail
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($idEmail)
     {
-        $email = $this->emailRepository->findWithoutFail($id);
+        $email = $this->emailRepository->findWithoutFail($idEmail);
 
         if (empty($email)) {
             $flash = new Flash();
@@ -110,14 +110,14 @@ class EmailController extends AppBaseController
     /**
      * Update the specified Email in storage.
      *
-     * @param  int $id
+     * @param  int $idEmail
      * @param UpdateEmailRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdateEmailRequest $request)
+    public function update($idEmail, UpdateEmailRequest $request)
     {
-        $email = $this->emailRepository->findWithoutFail($id);
+        $email = $this->emailRepository->findWithoutFail($idEmail);
 
         if (empty($email)) {
             $flash = new Flash();
@@ -126,7 +126,7 @@ class EmailController extends AppBaseController
             return redirect(route('emails.index'));
         }
 
-        $email = $this->emailRepository->update($request->all(), $id);
+        $email = $this->emailRepository->update($request->all(), $idEmail);
 
         $flash = new Flash();
         $flash::success('Email updated successfully.');
@@ -137,13 +137,13 @@ class EmailController extends AppBaseController
     /**
      * Remove the specified Email from storage.
      *
-     * @param  int $id
+     * @param  int $idEmail
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($idEmail)
     {
-        $email = $this->emailRepository->findWithoutFail($id);
+        $email = $this->emailRepository->findWithoutFail($idEmail);
 
         if (empty($email)) {
             $flash = new Flash();
@@ -152,7 +152,7 @@ class EmailController extends AppBaseController
             return redirect(route('emails.index'));
         }
 
-        $this->emailRepository->delete($id);
+        $this->emailRepository->delete($idEmail);
 
         $flash = new Flash();
         $flash::success('Email deleted successfully.');
