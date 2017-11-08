@@ -111,7 +111,8 @@ class Alunos extends Model
     {
         return $this->hasOne(
             \App\Models\TipoPessoa::class,
-            'id', 'tipo_pessoas_id'
+            'id',
+            'tipo_pessoas_id'
         )->select('id', 'nome');
     }
 
@@ -122,7 +123,8 @@ class Alunos extends Model
     {
         return $this->hasOne(
             \App\Models\Genero::class,
-            'id', 'sexo_aluno'
+            'id',
+            'sexo_aluno'
         )->select('id', 'nome');
     }
 
@@ -133,7 +135,9 @@ class Alunos extends Model
     {
         return $this->belongsToMany(
             \App\Models\Email::class,
-            'aluno_email', 'aluno_id', 'email_id'
+            'aluno_email',
+            'aluno_id',
+            'email_id'
         )->withPivot('flg_principal');
     }
 
@@ -152,7 +156,9 @@ class Alunos extends Model
     {
         return $this->belongsToMany(
             \App\Models\Pessoa::class,
-            'aluno_pessoa', 'aluno_id', 'pessoa_id'
+            'aluno_pessoa',
+            'aluno_id',
+            'pessoa_id'
         )->withPivot('flg_principal', 'flg_autorizado');
     }
 
