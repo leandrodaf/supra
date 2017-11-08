@@ -59,7 +59,8 @@ class EmailController extends AppBaseController
 
         $email = $this->emailRepository->create($input);
 
-        Flash::success('Email saved successfully.');
+        $flash = new Flash();
+        $flash::success('Email saved successfully.');
 
         return redirect(route('emails.index'));
     }
@@ -76,7 +77,8 @@ class EmailController extends AppBaseController
         $email = $this->emailRepository->findWithoutFail($id);
 
         if (empty($email)) {
-            Flash::error('Email not found');
+            $flash = new Flash();
+            $flash::error('Email not found');
 
             return redirect(route('emails.index'));
         }
@@ -96,7 +98,8 @@ class EmailController extends AppBaseController
         $email = $this->emailRepository->findWithoutFail($id);
 
         if (empty($email)) {
-            Flash::error('Email not found');
+            $flash = new Flash();
+            $flash::error('Email not found');
 
             return redirect(route('emails.index'));
         }
@@ -107,7 +110,7 @@ class EmailController extends AppBaseController
     /**
      * Update the specified Email in storage.
      *
-     * @param  int              $id
+     * @param  int $id
      * @param UpdateEmailRequest $request
      *
      * @return Response
@@ -117,14 +120,16 @@ class EmailController extends AppBaseController
         $email = $this->emailRepository->findWithoutFail($id);
 
         if (empty($email)) {
-            Flash::error('Email not found');
+            $flash = new Flash();
+            $flash::error('Email not found');
 
             return redirect(route('emails.index'));
         }
 
         $email = $this->emailRepository->update($request->all(), $id);
 
-        Flash::success('Email updated successfully.');
+        $flash = new Flash();
+        $flash::success('Email updated successfully.');
 
         return redirect(route('emails.index'));
     }
@@ -141,14 +146,16 @@ class EmailController extends AppBaseController
         $email = $this->emailRepository->findWithoutFail($id);
 
         if (empty($email)) {
-            Flash::error('Email not found');
+            $flash = new Flash();
+            $flash::error('Email not found');
 
             return redirect(route('emails.index'));
         }
 
         $this->emailRepository->delete($id);
 
-        Flash::success('Email deleted successfully.');
+        $flash = new Flash();
+        $flash::('Email deleted successfully.');
 
         return redirect()->back();
     }

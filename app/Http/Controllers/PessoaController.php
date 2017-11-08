@@ -60,7 +60,8 @@ class PessoaController extends AppBaseController
 
         $pessoa = $this->pessoaRepository->create($input);
 
-        Flash::success('Pessoa saved successfully.');
+        $flash = new Flash();
+        $flash::success('Pessoa saved successfully.');
 
         return redirect(route('pessoas.index'));
     }
@@ -77,7 +78,8 @@ class PessoaController extends AppBaseController
         $pessoa = $this->pessoaRepository->findWithoutFail($id);
 
         if (empty($pessoa)) {
-            Flash::error('Pessoa not found');
+            $flash = new Flash();
+            $flash::error('Pessoa not found');
 
             return redirect(route('pessoas.index'));
         }
@@ -97,7 +99,8 @@ class PessoaController extends AppBaseController
         $pessoa = $this->pessoaRepository->findWithoutFail($id);
 
         if (empty($pessoa)) {
-            Flash::error('Pessoa not found');
+            $flash = new Flash();
+            $flash::error('Pessoa not found');
 
             return redirect(route('pessoas.index'));
         }
@@ -118,14 +121,16 @@ class PessoaController extends AppBaseController
         $pessoa = $this->pessoaRepository->findWithoutFail($id);
 
         if (empty($pessoa)) {
-            Flash::error('Pessoa not found');
+            $flash = new Flash();
+            $flash::error('Pessoa not found');
 
             return redirect(route('pessoas.index'));
         }
 
         $pessoa = $this->pessoaRepository->update($request->all(), $id);
 
-        Flash::success('Pessoa updated successfully.');
+        $flash = new Flash();
+        $flash::success('Pessoa updated successfully.');
 
         return redirect(route('pessoas.index'));
     }
@@ -142,14 +147,16 @@ class PessoaController extends AppBaseController
         $pessoa = $this->pessoaRepository->findWithoutFail($id);
 
         if (empty($pessoa)) {
-            Flash::error('Pessoa not found');
+            $flash = new Flash();
+            $flash::error('Pessoa not found');
 
             return redirect(route('pessoas.index'));
         }
 
         $this->pessoaRepository->delete($id);
 
-        Flash::success('Pessoa deleted successfully.');
+        $flash = new Flash();
+        $flash::success('Pessoa deleted successfully.');
 
         return redirect(route('pessoas.index'));
     }

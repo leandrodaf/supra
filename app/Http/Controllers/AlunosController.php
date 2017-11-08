@@ -81,7 +81,8 @@ class AlunosController extends AppBaseController
         );
 
 
-        Flash::success('Aluno criado com sucesso.');
+        $flash = new Flash();
+        $flash::success('Aluno criado com sucesso.');
 
         return redirect(route('alunos.show', $alunos->id));
     }
@@ -98,7 +99,8 @@ class AlunosController extends AppBaseController
         $alunos = $this->alunosRepository->findWithoutFail($id);
 
         if (empty($alunos)) {
-            Flash::error('Aluno não encontrado.');
+            $flash = new Flash();
+            $flash::error('Aluno não encontrado.');
 
             return redirect(route('alunos.index'));
         }
@@ -123,7 +125,8 @@ class AlunosController extends AppBaseController
 
 
         if (empty($alunos)) {
-            Flash::error('Aluno não encontrado');
+            $flash = new Flash();
+            $flash::error('Aluno não encontrado');
 
             return redirect(route('alunos.index'));
         }
@@ -150,7 +153,8 @@ class AlunosController extends AppBaseController
         $alunos = $this->alunosRepository->findWithoutFail($id);
 
         if (empty($alunos)) {
-            Flash::error('Aluno não encontrado');
+            $flash = new Flash();
+            $flash::error('Aluno não encontrado');
             return redirect(route('alunos.index'));
         }
 
@@ -164,7 +168,8 @@ class AlunosController extends AppBaseController
         if (!empty($emails))
             $alunos->email()->createMany($emails);
 
-        Flash::success('Aluno Atualizado com sucesso.');
+        $flash = new Flash();
+        $flash::success('Aluno Atualizado com sucesso.');
 
         return redirect(route('alunos.show', $id));
     }
@@ -184,7 +189,8 @@ class AlunosController extends AppBaseController
         $alunos = $this->alunosRepository->findWithoutFail($id);
         $alunos->pessoa()->sync($input['responsavel']);
 
-        Flash::success('Aluno Atualizado com sucesso.');
+        $flash = new Flash();
+        $flash::success('Aluno Atualizado com sucesso.');
 
         return redirect(route('alunos.show', $id));
     }
@@ -202,14 +208,16 @@ class AlunosController extends AppBaseController
         $alunos = $this->alunosRepository->findWithoutFail($id);
 
         if (empty($alunos)) {
-            Flash::error('Alunos not found');
+            $flash = new Flash();
+            $flash::error('Alunos not found');
 
             return redirect(route('alunos.index'));
         }
 
         $this->alunosRepository->delete($id);
 
-        Flash::success('Alunos deleted successfully.');
+        $flash = new Flash();
+        $flash::success('Alunos deleted successfully.');
 
         return redirect(route('alunos.index'));
     }
@@ -227,14 +235,16 @@ class AlunosController extends AppBaseController
         $alunos = $this->alunosRepository->findWithoutFail($request->id);
 
         if (empty($alunos)) {
-            Flash::error('Aluno não encontrado');
+            $flash = new Flash();
+            $flash::error('Aluno não encontrado');
 
             return redirect(route('alunos.index'));
         }
 
         $alunos->pessoa()->detach($id);
 
-        Flash::success('Alunos deleted successfully.');
+        $flash = new Flash();
+        $flash::success('Alunos deleted successfully.');
 
         return redirect()->back();
     }
