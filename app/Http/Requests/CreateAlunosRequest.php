@@ -27,7 +27,4 @@ class CreateAlunosRequest extends FormRequest
     {
         return Alunos::$rules;
     }
-
-
-
 }

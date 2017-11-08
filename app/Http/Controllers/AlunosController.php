@@ -31,8 +31,6 @@ class AlunosController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $columns = ['id', 'name', 'email', 'created_at', 'updated_at'];
-
         $this->alunosRepository->pushCriteria(new RequestCriteria($request));
         $alunos = $this->alunosRepository->all();
 
@@ -47,12 +45,10 @@ class AlunosController extends AppBaseController
      */
     public function create()
     {
-        $tipo_pessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $tipoPessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
         $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
 
-        return view('alunos.create')->with(compact('tipo_pessoas', 'generos'));
-//        return view('alunos.create');
-
+        return view('alunos.create')->with(compact('tipoPessoas', 'generos'));
     }
 
     /**
@@ -69,13 +65,11 @@ class AlunosController extends AppBaseController
         $emails = array_get($input, 'email');
         array_forget($input, 'email');
 
-
         $input['data_nascimento_aluno'] = \Carbon\Carbon::parse($input['data_nascimento_aluno'])->format('Y-m-d');
         $input['foto_aluno'] = $this->alunosRepository->createAvatar($request);
 
         $alunos = $this->alunosRepository->create($input);
 
-        return dd($emails);
         $alunos->email()->createMany(
             $emails
         );
@@ -117,7 +111,7 @@ class AlunosController extends AppBaseController
      */
     public function edit($idAluno)
     {
-        $tipo_pessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $tipoPessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
         $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
 
         $alunos = $this->alunosRepository->findWithoutFail($idAluno);
@@ -130,7 +124,7 @@ class AlunosController extends AppBaseController
             return redirect(route('alunos.index'));
         }
 
-        return view('alunos.edit')->with('alunos', $alunos)->with(compact('tipo_pessoas', 'generos'));
+        return view('alunos.edit')->with('alunos', $alunos)->with(compact('tipoPessoas', 'generos'));
     }
 
     /**
@@ -164,8 +158,9 @@ class AlunosController extends AppBaseController
         $input['data_nascimento_aluno'] = \Carbon\Carbon::parse($input['data_nascimento_aluno'])->format('Y-m-d');
         $alunos = $this->alunosRepository->update($input, $idAluno);
 
-        if (!empty($emails))
+        if (!empty($emails)) {
             $alunos->email()->createMany($emails);
+        }
 
         $flash = new Flash();
         $flash::success('Aluno Atualizado com sucesso.');

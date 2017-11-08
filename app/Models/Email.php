@@ -55,7 +55,6 @@ class Email extends Model
      * @var array
      */
     public static $rules = [
-
     ];
 
     /**
@@ -73,5 +72,4 @@ class Email extends Model
     {
         return $this->belongsToMany(\App\Models\Pessoa::class);
     }
-
 }
