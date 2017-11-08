@@ -155,7 +155,7 @@ class EmailController extends AppBaseController
         $this->emailRepository->delete($id);
 
         $flash = new Flash();
-        $flash::('Email deleted successfully.');
+        $flash::success('Email deleted successfully.');
 
         return redirect()->back();
     }
