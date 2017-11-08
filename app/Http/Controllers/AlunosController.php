@@ -242,6 +242,4 @@ class AlunosController extends AppBaseController
 
         return redirect()->back();
     }
-
-
 }

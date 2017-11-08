@@ -9,4 +9,5 @@ return array(
         'forceDefault' => false,
         'forceExtension' => 'jpg',
     )
+
 );

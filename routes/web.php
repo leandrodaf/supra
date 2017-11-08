@@ -24,27 +24,19 @@ Route::resource('pessoas', 'PessoaController');
 
 Route::get(
     'alunos/getAjax',
-    'PessoaController@dataAjax')
-    ->name('alunos.getAjaxSelect2');
+    'PessoaController@dataAjax'
+    )->name('alunos.getAjaxSelect2');
 
 Route::post(
     'alunos/responsaveis/{responsavel}',
-    'AlunosController@updateResponsaveis')
-    ->name('alunos.updateResponsaveis');
+    'AlunosController@updateResponsaveis'
+    )->name('alunos.updateResponsaveis');
 
 Route::post(
     'alunos/responsaveis/{responsavel}/desvincular',
-    'AlunosController@desvincularAluno')
-    ->name('alunos.desvincularAluno');
+    'AlunosController@desvincularAluno'
+    )->name('alunos.desvincularAluno');
 
 Route::resource('alunos', 'AlunosController');
 
 Route::resource('emails', 'EmailController');
-
-
-
-
-//Route::get('alunos', 'AlunosController@getEmails');
-
-
-
