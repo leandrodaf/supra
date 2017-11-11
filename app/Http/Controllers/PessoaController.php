@@ -44,7 +44,12 @@ class PessoaController extends AppBaseController
      */
     public function create()
     {
-        return view('pessoas.create');
+        $tipoPessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $estadoCivil = \App\Models\EstadoCivil::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $nacionalidades = \App\Models\Nacionalidade::where('status', '=', 1)->get()->pluck('nome', 'id');
+
+        return view('pessoas.create')->with(compact('tipoPessoas', 'generos', 'estadoCivil', 'nacionalidades'));
     }
 
     /**
@@ -60,7 +65,7 @@ class PessoaController extends AppBaseController
         $this->pessoaRepository->create($input);
 
         $flash = new Flash();
-        $flash::success('Pessoa saved successfully.');
+        $flash::success('Pessoa criada com sucesso.');
 
         return redirect(route('pessoas.index'));
     }
@@ -78,7 +83,7 @@ class PessoaController extends AppBaseController
 
         if (empty($pessoa)) {
             $flash = new Flash();
-            $flash::error('Pessoa not found');
+            $flash::error('Pessoa não encontrada.');
 
             return redirect(route('pessoas.index'));
         }
@@ -97,14 +102,19 @@ class PessoaController extends AppBaseController
     {
         $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
 
+        $tipoPessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $estadoCivil = \App\Models\EstadoCivil::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $nacionalidades = \App\Models\Nacionalidade::where('status', '=', 1)->get()->pluck('nome', 'id');
+
         if (empty($pessoa)) {
             $flash = new Flash();
-            $flash::error('Pessoa not found');
+            $flash::error('Pessoa não encontrada.');
 
             return redirect(route('pessoas.index'));
         }
 
-        return view('pessoas.edit')->with('pessoa', $pessoa);
+        return view('pessoas.edit')->with(compact('pessoa', 'nacionalidades', 'estadoCivil', 'tipoPessoas', 'generos'));
     }
 
     /**
@@ -129,7 +139,7 @@ class PessoaController extends AppBaseController
         $pessoa = $this->pessoaRepository->update($request->all(), $idPessoa);
 
         $flash = new Flash();
-        $flash::success('Pessoa updated successfully.');
+        $flash::success('Pessoa atualizada com sucesso.');
 
         return redirect(route('pessoas.index'));
     }
@@ -147,7 +157,7 @@ class PessoaController extends AppBaseController
 
         if (empty($pessoa)) {
             $flash = new Flash();
-            $flash::error('Pessoa not found');
+            $flash::error('Pessoa não encontrada.');
 
             return redirect(route('pessoas.index'));
         }

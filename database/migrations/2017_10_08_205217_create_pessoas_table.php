@@ -16,19 +16,22 @@ class CreatePessoasTable extends Migration
         Schema::create('pessoas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->string('cpf_cnpj', 18)->nullable();
-            $table->boolean('sexo')->nullable();
+            $table->string('cpf_cnpj', 18);
+            $table->boolean('sexo');
             $table->string('rg', 13)->nullable();
-            $table->date('dataNascimento')->nullable();
-            $table->string('estadoCivil')->nullable();
+            $table->date('dataNascimento');
             $table->string('razaoSocial')->nullable();
             $table->string('nomeFantasia')->nullable();
             $table->string('inscricaoEstadual')->nullable();
-            $table->string('nacionalidade')->nullable();
             $table->boolean('status');
+            $table->integer('nacionalidade')->unsigned();
+            $table->foreign('nacionalidade')->references('id')->on('nacionalidades')->onDelete('cascade');
+            $table->integer('estadoCivil')->unsigned();
+            $table->foreign('estadoCivil')->references('id')->on('estado_civil')->onDelete('cascade');
             $table->integer('tipo_pessoas_id')->unsigned();
             $table->unique(['tipo_pessoas_id']);
             $table->foreign('tipo_pessoas_id')->references('id')->on('tipo_pessoas')->onDelete('cascade');
+
             $table->timestamps();
             $table->softDeletes();
         });

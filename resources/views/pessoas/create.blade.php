@@ -12,7 +12,7 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'pessoas.store']) !!}
+                    {!! Form::open(['route' => 'pessoas.store', 'id' => 'criarPessoa']) !!}
 
                         @include('pessoas.fields')
 
@@ -21,4 +21,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{asset('/js/features/pessoas.js')}}"></script>
 @endsection

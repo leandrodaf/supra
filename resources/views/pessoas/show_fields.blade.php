@@ -1,96 +1,98 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $pessoa->id !!}</p>
-</div>
+<dl class="dl-horizontal">
 
-<!-- Nome Field -->
-<div class="form-group">
-    {!! Form::label('nome', 'Nome:') !!}
-    <p>{!! $pessoa->nome !!}</p>
-</div>
+    @if(!empty($pessoa->id))
+    <!-- Id Field -->
+    <dt>{!! Form::label('id', 'Id:') !!}</dt>
+    <dd>{!! $pessoa->id !!}</dd>
+    @endif
 
-<!-- Cpf Cnpj Field -->
-<div class="form-group">
-    {!! Form::label('cpf_cnpj', 'Cpf Cnpj:') !!}
-    <p>{!! $pessoa->cpf_cnpj !!}</p>
-</div>
+    @if(!empty($pessoa->nome))
+    <!-- Nome Field -->
+    <dt>{!! Form::label('nome', 'Nome:') !!}</dt>
+    <dd>{!! $pessoa->nome !!}</dd>
+    @endif
 
-<!-- Sexo Field -->
-<div class="form-group">
-    {!! Form::label('sexo', 'Sexo:') !!}
-    <p>{!! $pessoa->sexo !!}</p>
-</div>
+    @if(!empty($pessoa->cpf_cnpj))
+    <!-- Cpf Cnpj Field -->
+    <dt>{!! Form::label('cpf_cnpj', strlen($pessoa->cpf_cnpj) != 14 ? "CNPJ":"CPF") !!}</dt>
+    <dd>{!! $pessoa->cpf_cnpj !!}</dd>
+    @endif
 
-<!-- Rg Field -->
-<div class="form-group">
-    {!! Form::label('rg', 'Rg:') !!}
-    <p>{!! $pessoa->rg !!}</p>
-</div>
+    @if(!empty($pessoa->genero->nome))
+    <!-- Sexo Field -->
+    <dt>{!! Form::label('sexo', 'Sexo:') !!}</dt>
+    <dd>{!! $pessoa->genero->nome !!}</dd>
+    @endif
 
-<!-- Datanascimento Field -->
-<div class="form-group">
-    {!! Form::label('dataNascimento', 'Datanascimento:') !!}
-    <p>{!! $pessoa->dataNascimento !!}</p>
-</div>
+    @if(!empty($pessoa->rg))
+    <!-- Rg Field -->
+    <dt>{!! Form::label('rg', 'RG:') !!}</dt>
+    <dd>{!! $pessoa->rg !!}</dd>
+    @endif
 
-<!-- Estadocivil Field -->
-<div class="form-group">
-    {!! Form::label('estadoCivil', 'Estadocivil:') !!}
-    <p>{!! $pessoa->estadoCivil !!}</p>
-</div>
+    @if(!empty($pessoa->dataNascimento))
+    <!-- Datanascimento Field -->
+    <dt>{!! Form::label('dataNascimento', 'Nascimento:') !!}</dt>
+    <dd>{!! $pessoa->dataNascimento !!}</dd>
+    @endif
 
-<!-- Razaosocial Field -->
-<div class="form-group">
-    {!! Form::label('razaoSocial', 'Razaosocial:') !!}
-    <p>{!! $pessoa->razaoSocial !!}</p>
-</div>
+    @if(!empty($pessoa->getEstadoCivil->nome))
+    <!-- Estadocivil Field -->
+    <dt>{!! Form::label('estadoCivil', 'Estado Civil:') !!}</dt>
+    <dd>{!! $pessoa->getEstadoCivil->nome !!}</dd>
+    @endif
 
-<!-- Nomefantasia Field -->
-<div class="form-group">
-    {!! Form::label('nomeFantasia', 'Nomefantasia:') !!}
-    <p>{!! $pessoa->nomeFantasia !!}</p>
-</div>
+    @if(!empty($pessoa->razaoSocial))
+    <!-- Razaosocial Field -->
+    <dt>{!! Form::label('razaoSocial', 'Razao Social:') !!}</dt>
+    <dd>{!! $pessoa->razaoSocial !!}</dd>
+    @endif
 
-<!-- Inscricaoestadual Field -->
-<div class="form-group">
-    {!! Form::label('inscricaoEstadual', 'Inscricaoestadual:') !!}
-    <p>{!! $pessoa->inscricaoEstadual !!}</p>
-</div>
+    @if(!empty($pessoa->nomeFantasia))
+    <!-- Nomefantasia Field -->
+    <dt>{!! Form::label('nomeFantasia', 'Nome Fantasia:') !!}</dt>
+    <dd>{!! $pessoa->nomeFantasia !!}</dd>
+    @endif
 
-<!-- Nacionalidade Field -->
-<div class="form-group">
-    {!! Form::label('nacionalidade', 'Nacionalidade:') !!}
-    <p>{!! $pessoa->nacionalidade !!}</p>
-</div>
+    @if(!empty($pessoa->inscricaoEstadual))
+    <!-- Inscricaoestadual Field -->
+    <dt>{!! Form::label('inscricaoEstadual', 'Inscricao Estadual:') !!}</dt>
+    <dd>{!! $pessoa->inscricaoEstadual !!}</dd>
+    @endif
 
-<!-- Status Field -->
-<div class="form-group">
-    {!! Form::label('status', 'Status:') !!}
-    <p>{!! $pessoa->status !!}</p>
-</div>
+    @if(!empty($pessoa->getNacionalidade->nome))
+    <!-- Nacionalidade Field -->
+    <dt>{!! Form::label('nacionalidade', 'Nacionalidade:') !!}</dt>
+    <dd>{!! $pessoa->getNacionalidade->nome !!}</dd>
+    @endif
 
-<!-- Tipo Pessoas Id Field -->
-<div class="form-group">
-    {!! Form::label('tipo_pessoas_id', 'Tipo Pessoas Id:') !!}
-    <p>{!! $pessoa->tipo_pessoas_id !!}</p>
-</div>
+    @if(!empty($pessoa->status))
+    <!-- Status Field -->
+    <dt>{!! Form::label('status', 'Status:') !!}</dt>
+    <dd>{!! $pessoa->status ? "Ativo":"Inativo"!!}</p>
+    @endif
 
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $pessoa->created_at !!}</p>
-</div>
+    @if(!empty($pessoa->tipoPessoa->nome))
+        <!-- Tipo Pessoas Id Field -->
+    <dt>{!! Form::label('tipo_pessoas_id', 'Tipo Pessoa:') !!}</dt>
+    <dd>{!! $pessoa->tipoPessoa->nome !!}</dd>
+    @endif
 
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $pessoa->updated_at !!}</p>
-</div>
+    @if(!empty($pessoa->created_at))
+    <!-- Created At Field -->
+    <dt>{!! Form::label('created_at', 'Criando em:') !!}</dt>
+    <dd>{!! $pessoa->created_at !!}</dd>
+    @endif
 
-<!-- Deleted At Field -->
-<div class="form-group">
-    {!! Form::label('deleted_at', 'Deleted At:') !!}
-    <p>{!! $pessoa->deleted_at !!}</p>
-</div>
+    @if(!empty($pessoa->updated_at))
+    <!-- Updated At Field -->
+    <dt>{!! Form::label('updated_at', 'Atualizado em:') !!}</dt>
+    <dd>{!! $pessoa->updated_at !!}</dd>
+    @endif
 
+    @if(!empty($pessoa->deleted_at))
+    <!-- Deleted At Field -->
+        <dt>{!! Form::label('deleted_at', 'Deletado em:') !!}</dt>
+        <dd>{!! $pessoa->deleted_at !!}</dd>
+    @endif
+</dl>

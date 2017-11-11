@@ -31,5 +31,12 @@ class TipoPessoaTableSeeder extends Seeder
                 'status' => "1",
             ]
         );
+
+        DB::table('tipo_pessoas')->insert(
+            [
+                'nome' => "Professor",
+                'status' => "1",
+            ]
+        );
     }
 }

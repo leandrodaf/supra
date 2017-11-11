@@ -39,18 +39,18 @@
             <dd> {!! $alunos->genero->nome !!}</dd>
 
             <!-- Flg Certidao Nascimento Aluno Field -->
-            <dt> {!! Form::label('flg_certidao_nascimento_aluno', 'Apresentou Certidão de nascimento:') !!} </dt>
+            <dt> {!! Form::label('flg_certidao_nascimento_aluno', 'Certidão de nascimento:') !!} </dt>
             <dd> {!! $alunos->flg_certidao_nascimento_aluno ? "Apresentou": "Não"!!}</dd>
 
             <!-- Flg Carteira Vacinacao Aluno Field -->
 
-            <dt> {!! Form::label('flg_carteira_vacinacao_aluno', 'Apresentou carteira de vacinação:') !!} </dt>
+            <dt> {!! Form::label('flg_carteira_vacinacao_aluno', 'Carteira de vacinação:') !!} </dt>
             <dd> {!! $alunos->flg_carteira_vacinacao_aluno ? "Apresentou": "Não"!!}</dd>
 
             <!-- Flg Frequentou Escola Aluno Field -->
 
-            <dt> {!! Form::label('flg_frequentou_escola_aluno', 'Frequentou outras escola:') !!} </dt>
-            <dd>{!! $alunos->flg_frequentou_escola_aluno ? "Apresentou": "Não"!!} </dd>
+            <dt> {!! Form::label('flg_frequentou_escola_aluno', 'Freq. outras escola:') !!} </dt>
+            <dd>{!! $alunos->flg_frequentou_escola_aluno ? "Sim": "Não"!!} </dd>
 
             <!-- Flg Irmaos Aluno Field -->
             <dt> {!! Form::label('flg_irmaos_aluno', 'Possui irmãos:') !!} </dt>
@@ -68,7 +68,7 @@
 
             <!-- Updated At Field -->
             <dt> {!! Form::label('updated_at', 'Ultima atualização:') !!} </dt>
-            <dd>{!! $alunos->updated_at !!} </dd>
+            <dd>{!! $alunos->updated_at->format('d/m/Y')  !!} </dd>
         </dl>
 
 

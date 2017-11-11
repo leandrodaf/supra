@@ -45,7 +45,7 @@
                             <div style="overflow: hidden">
                                 <h3 class="profile-name justificado">{!! $alunos->nome_aluno !!}</h3>
                                 <small>
-                                    {!! $alunos->tipoPessoa['nome'] !!}: {!! $alunos->id !!}
+                                    ID {!! $alunos->tipoPessoa['nome'] !!}: {!! $alunos->id !!}
                                 </small>
                             </div>
                         </div>

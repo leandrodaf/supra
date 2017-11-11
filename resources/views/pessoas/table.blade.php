@@ -1,41 +1,33 @@
-<table class="table table-responsive" id="pessoas-table">
+<table class="table table-striped table-bordered dt-responsive nowrap" id="pessoas-table">
     <thead>
-        <tr>
-            <th>Nome</th>
-        <th>Cpf Cnpj</th>
+    <tr>
+        <th>Nome</th>
+        <th>CPF/CNPJ</th>
         <th>Sexo</th>
-        <th>Rg</th>
-        <th>Datanascimento</th>
-        <th>Estadocivil</th>
-        <th>Razaosocial</th>
-        <th>Nomefantasia</th>
-        <th>Inscricaoestadual</th>
-        <th>Nacionalidade</th>
+        <th>Nascimento</th>
+        <th>Estado Civil</th>
         <th>Status</th>
-        <th>Tipo Pessoas Id</th>
-            <th colspan="3">Action</th>
-        </tr>
+        <th>Tipo Pessoas</th>
+        <th>Ação</th>
+    </tr>
     </thead>
     <tbody>
     @foreach($pessoas as $pessoa)
         <tr>
             <td>{!! $pessoa->nome !!}</td>
             <td>{!! $pessoa->cpf_cnpj !!}</td>
-            <td>{!! $pessoa->sexo !!}</td>
-            <td>{!! $pessoa->rg !!}</td>
-            <td>{!! $pessoa->dataNascimento !!}</td>
-            <td>{!! $pessoa->estadoCivil !!}</td>
-            <td>{!! $pessoa->razaoSocial !!}</td>
-            <td>{!! $pessoa->nomeFantasia !!}</td>
-            <td>{!! $pessoa->inscricaoEstadual !!}</td>
-            <td>{!! $pessoa->nacionalidade !!}</td>
+            <td>{!! $pessoa->genero->nome !!}</td>
+            <td>{!! \Carbon\Carbon::parse($pessoa->dataNascimento)->format('d/m/Y') !!}</td>
+            <td>{!! $pessoa->getEstadoCivil->nome !!}</td>
             <td>{!! $pessoa->status != 0 ? "Ativa":"Inativo" !!}</td>
-            <td>{!! $pessoa->tipo_pessoas_id !!}</td>
+            <td>{!! $pessoa->tipoPessoa->nome !!}</td>
             <td>
                 {!! Form::open(['route' => ['pessoas.destroy', $pessoa->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('pessoas.show', [$pessoa->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('pessoas.edit', [$pessoa->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="{!! route('pessoas.show', [$pessoa->id]) !!}" class='btn btn-default btn-xs'><i
+                                class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('pessoas.edit', [$pessoa->id]) !!}" class='btn btn-default btn-xs'><i
+                                class="glyphicon glyphicon-edit"></i></a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}

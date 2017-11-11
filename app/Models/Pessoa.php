@@ -70,14 +70,14 @@ class Pessoa extends Model
         'id' => 'integer',
         'nome' => 'string',
         'cpf_cnpj' => 'string',
-        'sexo' => 'boolean',
+        'sexo' => 'integer',
         'rg' => 'string',
         'dataNascimento' => 'date',
-        'estadoCivil' => 'string',
+        'estadoCivil' => 'integer',
         'razaoSocial' => 'string',
         'nomeFantasia' => 'string',
         'inscricaoEstadual' => 'string',
-        'nacionalidade' => 'string',
+        'nacionalidade' => 'integer',
         'status' => 'boolean',
         'tipo_pessoas_id' => 'integer'
     ];
@@ -89,15 +89,15 @@ class Pessoa extends Model
      */
     public static $rules = [
         'nome' => 'required|min:3|max:255',
-        'cpf_cnpj' => 'min:14|max:19',
-        'sexo' => 'max:1',
-        'rg' => 'min:9|max:12',
-        'dataNascimento' => 'date',
-        'estadoCivil' => 'boolean',
+        'cpf_cnpj' => 'required|max:19|min:14',
+        'sexo' => 'required|max:1',
+        'rg' => 'min:12',
+        'dataNascimento' => 'required|date',
+        'estadoCivil' => 'required',
         'razaoSocial' => 'min:3|max:255',
         'nomeFantasia' => 'min:3|max:255',
         'inscricaoEstadual' => 'min:3|max:255',
-        'nacionalidade' => 'max:1',
+        'nacionalidade' => 'required|max:1',
         'status' => 'required',
         'tipo_pessoas_id' => 'required'
     ];
@@ -111,6 +111,42 @@ class Pessoa extends Model
             \App\Models\TipoPessoa::class,
             'id',
             'tipo_pessoas_id'
+        )->select('id', 'nome');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function genero()
+    {
+        return $this->hasOne(
+            \App\Models\Genero::class,
+            'id',
+            'sexo'
+        )->select('id', 'nome');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function getEstadoCivil()
+    {
+        return $this->hasOne(
+            \App\Models\EstadoCivil::class,
+            'id',
+            'estadoCivil'
+        )->select('id', 'nome');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function getNacionalidade()
+    {
+        return $this->hasOne(
+            \App\Models\Nacionalidade::class,
+            'id',
+            'nacionalidade'
         )->select('id', 'nome');
     }
 
