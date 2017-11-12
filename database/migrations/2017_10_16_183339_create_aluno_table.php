@@ -25,8 +25,8 @@ class CreateAlunoTable extends Migration
             $table->boolean('flg_juntos_aos_pais_aluno');
             $table->integer('qtd_irmaos_aluno')->nullable();
             $table->date('data_nascimento_aluno');
-            $table->integer('tipo_pessoas_id')->unsigned();
             $table->integer('sexo_aluno')->unsigned();
+            $table->integer('tipo_pessoas_id')->unsigned();
             $table->foreign('tipo_pessoas_id')->references('id')->on('tipo_pessoas')->onDelete('cascade');
             $table->foreign('sexo_aluno')->references('id')->on('generos')->onDelete('cascade');
             $table->timestamps();

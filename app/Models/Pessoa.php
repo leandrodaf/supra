@@ -94,12 +94,14 @@ class Pessoa extends Model
         'rg' => 'min:12',
         'dataNascimento' => 'required|date',
         'estadoCivil' => 'required',
-        'razaoSocial' => 'min:3|max:255',
-        'nomeFantasia' => 'min:3|max:255',
-        'inscricaoEstadual' => 'min:3|max:255',
+        'razaoSocial' => '',
+        'nomeFantasia' => '',
+        'inscricaoEstadual' => '',
         'nacionalidade' => 'required|max:1',
         'status' => 'required',
-        'tipo_pessoas_id' => 'required'
+        'tipo_pessoas_id' => 'required',
+        'enderecos.numero' => 'required',
+        'enderecos.cep' => 'required',
     ];
 
     /**
@@ -153,16 +155,6 @@ class Pessoa extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function aluno()
-    {
-        return $this->belongsToMany(
-            \App\Models\Alunos::class
-        );
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
     public function email()
     {
         return $this->belongsToMany(
@@ -176,7 +168,10 @@ class Pessoa extends Model
     public function endereco()
     {
         return $this->belongsToMany(
-            \App\Models\Endereco::class
+            \App\Models\Endereco::class,
+            'pessoa_endereco',
+            'pessoa_id',
+            'endereco_id'
         );
     }
 

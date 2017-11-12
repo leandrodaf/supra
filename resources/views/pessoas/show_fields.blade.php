@@ -81,7 +81,7 @@
     @if(!empty($pessoa->created_at))
     <!-- Created At Field -->
     <dt>{!! Form::label('created_at', 'Criando em:') !!}</dt>
-    <dd>{!! $pessoa->created_at !!}</dd>
+    <dd>{!! $pessoa->created_at->format('d/m/Y') !!}</dd>
     @endif
 
     @if(!empty($pessoa->updated_at))

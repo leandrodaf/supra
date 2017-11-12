@@ -4,14 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateAlunosRequest;
 use App\Http\Requests\UpdateAlunosRequest;
-use App\Models\Alunos;
 use App\Repositories\AlunosRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use Yajra\Datatables\Datatables;
 
 class AlunosController extends AppBaseController
 {
@@ -70,9 +67,12 @@ class AlunosController extends AppBaseController
 
         $alunos = $this->alunosRepository->create($input);
 
-        $alunos->email()->createMany(
-            $emails
-        );
+        if (!empty($emails)) {
+            $alunos->email()->createMany(
+                $emails
+            );
+        }
+
 
         $flash = new Flash();
         $flash::success('Aluno criado com sucesso.');
@@ -180,8 +180,18 @@ class AlunosController extends AppBaseController
     public function updateResponsaveis($idAluno, Request $request)
     {
         $input = $request->all();
+
         $alunos = $this->alunosRepository->findWithoutFail($idAluno);
-        $alunos->pessoa()->sync($input['responsavel']);
+
+        $responsaveis = [];
+
+        foreach ($alunos->pessoa as $responsavel) {
+            $responsaveis[] = $responsavel->id;
+        }
+
+        array_push($responsaveis, intval($input['responsavel']));
+
+        $alunos->pessoa()->sync($responsaveis);
 
         $flash = new Flash();
         $flash::success('Aluno Atualizado com sucesso.');

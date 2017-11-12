@@ -20,6 +20,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+
+Route::get(
+    'alunos/getInfoUser/{idPessoa}',
+    'PessoaController@getInfoUser'
+)->name('pessoas.getInfoUser');
+
 Route::resource('pessoas', 'PessoaController');
 
 Route::get(
@@ -40,3 +46,6 @@ Route::post(
 Route::resource('alunos', 'AlunosController');
 
 Route::resource('emails', 'EmailController');
+
+
+Route::resource('dadosMedicos', 'DadosMedicosController');

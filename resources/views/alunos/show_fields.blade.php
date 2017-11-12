@@ -12,7 +12,7 @@
 
             <!-- Data Nascimento Aluno Field -->
             <dt> {!! Form::label('data_nascimento_aluno', 'Data nascimento:') !!}</dt>
-            <dd> {!! \Carbon\Carbon::parse($alunos->data_nascimento_aluno)->format('d/m/Y') !!}</dd>
+            <dd> {!! $alunos->data_nascimento_aluno->format('d/m/Y') !!}</dd>
 
             <!-- Tipo Pessoas Id Field -->
             <dt> {!! Form::label('tipo_pessoas_id', 'Tipo:') !!}</dt>
@@ -27,7 +27,7 @@
 
             <!-- Created At Field -->
             <dt> {!! Form::label('created_at', 'Criado em:') !!} </dt>
-            <dd> {!! \Carbon\Carbon::parse($alunos->created_at)->format('d/m/Y') !!}</dd>
+            <dd> {!! $alunos->created_at->format('d/m/Y') !!}</dd>
 
             @if(!empty($alunos->deleted_at))
                     <!-- Deleted At Field -->

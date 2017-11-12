@@ -17,7 +17,7 @@
             <td>{!! $pessoa->nome !!}</td>
             <td>{!! $pessoa->cpf_cnpj !!}</td>
             <td>{!! $pessoa->genero->nome !!}</td>
-            <td>{!! \Carbon\Carbon::parse($pessoa->dataNascimento)->format('d/m/Y') !!}</td>
+            <td>{!! $pessoa->dataNascimento->format('d/m/Y') !!}</td>
             <td>{!! $pessoa->getEstadoCivil->nome !!}</td>
             <td>{!! $pessoa->status != 0 ? "Ativa":"Inativo" !!}</td>
             <td>{!! $pessoa->tipoPessoa->nome !!}</td>

@@ -116,6 +116,19 @@ class Alunos extends Model
         )->select('id', 'nome');
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function medico()
+    {
+        return $this->hasOne(
+            \App\Models\DadosMedicos::class,
+            'id',
+            'dados_medicos_id'
+        );
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
