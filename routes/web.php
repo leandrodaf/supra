@@ -47,7 +47,4 @@ Route::resource('alunos', 'AlunosController');
 
 Route::resource('emails', 'EmailController');
 
-
-Route::resource(
-    'dadosMedicos',
-    'DadosMedicosController');
+Route::resource('dadosMedicos', 'DadosMedicosController');
