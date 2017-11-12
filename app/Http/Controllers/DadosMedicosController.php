@@ -25,7 +25,7 @@ class DadosMedicosController extends AppBaseController
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request)
+    public function index()
     {
         return response()->json(['errors' => 'Não encontrado']);
     }
@@ -58,13 +58,13 @@ class DadosMedicosController extends AppBaseController
     /**
      * Display the specified DadosMedicos.
      *
-     * @param  int $id
+     * @param  int $idDadosMedicos
      *
      * @return Response
      */
-    public function show($id)
+    public function show($idDadosMedicos)
     {
-        $dadosMedicos = $this->dadosMedicosRepository->findWithoutFail($id);
+        $dadosMedicos = $this->dadosMedicosRepository->findWithoutFail($idDadosMedicos);
 
         if (empty($dadosMedicos)) {
             return response()->json(['errors' => 'Não encontrado']);
@@ -80,45 +80,44 @@ class DadosMedicosController extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($idDadosMedicos)
     {
-
     }
 
     /**
      * Update the specified DadosMedicos in storage.
      *
-     * @param  int $id
+     * @param  int $idDadosMedicos
      * @param UpdateDadosMedicosRequest $request
      *
      * @return Response
      */
-    public function update($id, UpdateDadosMedicosRequest $request)
+    public function update($idDadosMedicos, UpdateDadosMedicosRequest $request)
     {
-        $dadosMedicos = $this->dadosMedicosRepository->findWithoutFail($id);
+        $dadosMedicos = $this->dadosMedicosRepository->findWithoutFail($idDadosMedicos);
 
         if (empty($dadosMedicos)) {
             return response()->json(['errors' => 'Não encontrado']);
         }
 
-        $dadosMedicos = $this->dadosMedicosRepository->update($request->all(), $id);
+        $dadosMedicos = $this->dadosMedicosRepository->update($request->all(), $idDadosMedicos);
         return response()->json($dadosMedicos);
     }
 
     /**
      * Remove the specified DadosMedicos from storage.
      *
-     * @param  int $id
+     * @param  int $idDadosMedicos
      *
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($idDadosMedicos)
     {
-        $dadosMedicos = $this->dadosMedicosRepository->findWithoutFail($id);
+        $dadosMedicos = $this->dadosMedicosRepository->findWithoutFail($idDadosMedicos);
 
         if (empty($dadosMedicos)) {
             return response()->json(['errors' => 'Não encontrado']);
         }
-        $this->dadosMedicosRepository->delete($id);
+        $this->dadosMedicosRepository->delete($idDadosMedicos);
     }
 }
