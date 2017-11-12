@@ -29,4 +29,9 @@ $(document).ready(function () {
 
     $('#criarPessoa').validator();
 
+    $("#cep").mask("99999-999", {placeholder: "_____-___"});
+    $("#rg").mask("99.999.999-99", {placeholder: "__.___.___-_"});
+    $("#cpf_cnpj").mask("999.999.999-99", {placeholder: "___.___.___-__"});
+
+
 });

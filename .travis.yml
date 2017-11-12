@@ -1,7 +1,10 @@
+sudo: required
 language: php
+dist: trusty
 
 php:
-  - "7.1"
+  - 7.0
+  - 7.1
 
 before_script:
   - cp .env.travis .env
@@ -17,15 +20,14 @@ before_install:
 
 script: 
   - npm run dev
-  - vendor/bin/phpunit --configuration phpunit.xml --coverage-text
+  - vendor/bin/phpunit
 
 cache:
   yarn: true
   directories:
     - node_modules
-    - vendor
     - $HOME/.cache/bower
     - $HOME/.npm
-    - $HOME/resources/assets/vendors
+    - resources/assets/vendors
 env:
   - TRAVIS_NODE_VERSION="7"

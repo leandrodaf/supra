@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>InfyOm Generator</title>
+    <title>SUPRA Administrador </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="stylesheet" href="{{asset('css/all.css')}}">
@@ -78,18 +78,18 @@
                                              class="img-circle" alt="User Image"/>
                                         <p>
                                             {!! Auth::user()->name !!}
-                                            <small>Member since {!! Auth::user()->created_at->format('M. Y') !!}</small>
+                                            <small>Desde {!! Auth::user()->created_at->format('d/m/y') !!}</small>
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            <a href="#" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
                                             <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                Sign out
+                                                Deslogar
                                             </a>
                                             <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                                                   style="display: none;">
@@ -115,6 +115,7 @@
             </div>
         </div>
 
+
         <!-- Main Footer -->
         <footer class="main-footer footer navbar-fixed-bottom" style="max-height: 100px;text-align: center">
             <strong>Copyright © 2017 <a href="#">SUPRA</a>.</strong> Todos os direitos reservados.
@@ -137,7 +138,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{!! url('/') !!}">
-                    InfyOm Generator
+                    Administrador
                 </a>
             </div>
 

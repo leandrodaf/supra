@@ -43,7 +43,7 @@
 <!-- Tipo Pessoas Id Field -->
 <div class="form-group {{$errors->has('tipo_pessoas_id') ? "has-error":""}} col-sm-6">
     {!! Form::label('tipo_pessoas_id', 'Tipo Pessoas:') !!}
-    {!! Form::select('tipo_pessoas_id', $tipoPessoas, !empty($alunos) ?$alunos->tipo_pessoas:null, ['class' => 'form-control']) !!}
+    {!! Form::select('tipo_pessoas_id', $tipoPessoas, !empty($alunos) ?$alunos->tipo_pessoas:1, ['class' => 'form-control']) !!}
 </div>
 
 

@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePessoaRequest;
 use App\Http\Requests\UpdatePessoaRequest;
 use App\Repositories\PessoaRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use Illuminate\Support\Facades\DB;
 
 class PessoaController extends AppBaseController
 {
@@ -62,12 +61,43 @@ class PessoaController extends AppBaseController
     public function store(CreatePessoaRequest $request)
     {
         $input = $request->all();
-        $this->pessoaRepository->create($input);
+        $enderecos['endereco'] = array_get($input, 'enderecos');
+        array_forget($input, 'enderecos');
+
+        $pessoa = $this->pessoaRepository->create($input);
+
+        $pessoa->endereco()->createMany($enderecos);
 
         $flash = new Flash();
         $flash::success('Pessoa criada com sucesso.');
 
-        return redirect(route('pessoas.index'));
+        return redirect(route('pessoas.show', $pessoa->id));
+    }
+
+    /**
+     * Display the specified Pessoa.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function getInfoUser($idPessoa)
+    {
+        $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
+
+        $resposta = [];
+
+        $resposta['nome'] = $pessoa->nome;
+        $resposta['cpf_cnpj'] = $pessoa->cpf_cnpj;
+        $resposta['sexo'] = $pessoa->genero->nome;
+        $resposta['rg'] = $pessoa->rg;
+        $resposta['dataNascimento'] = $pessoa->dataNascimento->format('d/m/Y');
+        $resposta['status'] = $pessoa->status;
+        $resposta['nacionalidade'] = $pessoa->getNacionalidade->nome;
+        $resposta['estadoCivil'] = $pessoa->getEstadoCivil->nome;
+
+
+        return response()->json($resposta);
     }
 
     /**
@@ -127,21 +157,33 @@ class PessoaController extends AppBaseController
      */
     public function update($idPessoa, UpdatePessoaRequest $request)
     {
+        $input = $request->all();
+
         $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
 
         if (empty($pessoa)) {
             $flash = new Flash();
-            $flash::error('Pessoa not found');
+            $flash::error('Pessoa não encontrada');
 
             return redirect(route('pessoas.index'));
         }
 
-        $pessoa = $this->pessoaRepository->update($request->all(), $idPessoa);
+        $enderecoModel = new \App\Models\Endereco();
+
+        $enderecos = array_get($input, 'enderecos');
+        array_forget($input, 'enderecos');
+        array_forget($enderecos, 'id');
+
+        $enderecos = $enderecoModel::updateOrCreate(['id' => $pessoa->endereco->first()->id], $enderecos);
+
+        $pessoa->endereco()->sync($enderecos->id);
+
+        $pessoa = $this->pessoaRepository->update($input, $idPessoa);
 
         $flash = new Flash();
         $flash::success('Pessoa atualizada com sucesso.');
 
-        return redirect(route('pessoas.index'));
+        return redirect(route('pessoas.show', $pessoa->id));
     }
 
     /**

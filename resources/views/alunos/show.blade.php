@@ -58,6 +58,23 @@
                     <!-- /.box-body -->
                 </div>
 
+
+                <div class="box">
+                    <div class="box-header with-border">
+                        <div class="box-tools pull-right">
+                        </div>
+                        <div class="box-title" style="overflow: hidden">
+                            <i class="fa fa-heartbeat"></i> Dados médicos
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        @include('alunos.medico')
+                    </div>
+                </div>
+                <div class="box">
+                </div>
+                <div class="box">
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="box">
@@ -69,7 +86,7 @@
                                 <i class="fa fa-minus"></i>
                             </button>
 
-                            @if(count($alunos->pessoa) <= 2)
+                            @if(count($alunos->pessoa) <= 2 && count($alunos->pessoa) != 0)
                                 <a class="btn btn-box-tool">
                                     <i data-toggle="modal"
                                        data-target="#modal-default" class="fa fa-users"></i>

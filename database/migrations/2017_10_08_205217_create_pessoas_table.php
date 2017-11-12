@@ -26,12 +26,14 @@ class CreatePessoasTable extends Migration
             $table->boolean('status');
             $table->integer('nacionalidade')->unsigned();
             $table->foreign('nacionalidade')->references('id')->on('nacionalidades')->onDelete('cascade');
+
             $table->integer('estadoCivil')->unsigned();
             $table->foreign('estadoCivil')->references('id')->on('estado_civil')->onDelete('cascade');
+
             $table->integer('tipo_pessoas_id')->unsigned();
-            $table->unique(['tipo_pessoas_id']);
             $table->foreign('tipo_pessoas_id')->references('id')->on('tipo_pessoas')->onDelete('cascade');
 
+            $table->unique(['cpf_cnpj', 'rg']);
             $table->timestamps();
             $table->softDeletes();
         });
