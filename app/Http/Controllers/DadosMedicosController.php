@@ -74,17 +74,6 @@ class DadosMedicosController extends AppBaseController
     }
 
     /**
-     * Show the form for editing the specified DadosMedicos.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function edit($idDadosMedicos)
-    {
-    }
-
-    /**
      * Update the specified DadosMedicos in storage.
      *
      * @param  int $idDadosMedicos
