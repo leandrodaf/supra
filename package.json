@@ -31,6 +31,7 @@
     "lodash": "^4.17.4",
     "select2": "^4.0.6-rc.0",
     "spinkit": "^1.2.5",
+    "twitter-bootstrap-wizard": "^1.2.0",
     "vue": "^2.1.10"
   }
 }

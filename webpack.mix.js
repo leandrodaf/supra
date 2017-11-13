@@ -17,7 +17,7 @@ mix.sass('resources/assets/sass/app.scss', 'public/css');
 // Alunos
 mix.copy('resources/assets/js/custom_js/alunos.js', 'public/js/features/');
 mix.copy('resources/assets/js/custom_js/pessoas.js', 'public/js/features/');
-
+mix.copy('resources/assets/js/custom_js/matricula.js', 'public/js/features/');
 //Mix Plugins style
 mix.styles([
     'node_modules/bootstrap3/dist/css/bootstrap.css',
@@ -47,5 +47,6 @@ mix.scripts([
     'node_modules/bootstrap-validator/js/validator.js',
     'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
     'node_modules/datatables.net/js/jquery.dataTables.js',
-    'node_modules/datatables.net-bs/js/dataTables.bootstrap.js'
+    'node_modules/datatables.net-bs/js/dataTables.bootstrap.js',
+    'node_modules/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js'
 ], 'public/js/all.js');

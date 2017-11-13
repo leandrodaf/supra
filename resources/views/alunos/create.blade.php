@@ -21,6 +21,14 @@
 
                     @include('alunos.fields')
 
+
+
+                    <!-- Submit Field -->
+                        <div class="form-group col-sm-12">
+                            {!! Form::submit(!empty($alunos) ? 'Atualizar aluno':'Criar aluno', ['class' => 'btn btn-primary']) !!}
+                            <a href="{!! route('alunos.index') !!}" class="btn btn-default">Cancelar</a>
+                        </div>
+
                     {!! Form::close() !!}
                 </div>
             </div>

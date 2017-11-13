@@ -1,6 +1,5 @@
 {{ Form::hidden('id', null) }}
 
-
 <!-- Foto Aluno Field -->
 <div class="form-group {{$errors->has('foto_aluno') ? "has-error":""}} col-sm-12">
 
@@ -15,7 +14,7 @@
 
 <!-- Nome Aluno Field -->
 <div class="form-group {{$errors->has('nome_aluno') ? "has-error":""}} col-sm-6">
-    {!! Form::label('nome_aluno', 'Nome Aluno:') !!}
+    {!! Form::label('nome_aluno', 'Nome completo:') !!}
     {!! Form::text('nome_aluno', null, ['class' => 'form-control', 'required'=>'required']) !!}
 </div>
 
@@ -30,19 +29,19 @@
 
 <!-- Data Nascimento Aluno Field -->
 <div class="form-group {{$errors->has('data_nascimento_aluno') ? "has-error":""}} col-sm-6">
-    {!! Form::label('data_nascimento_aluno', 'Data Nascimento Aluno:') !!}
+    {!! Form::label('data_nascimento_aluno', 'Nascimento:') !!}
     {!! Form::text('data_nascimento_aluno', null, ['class' => 'form-control', 'required'=>'required', 'data-date-format' => 'mm/dd/yyyy']) !!}
 </div>
 
 <!-- Sexo Aluno Field -->
 <div class="form-group {{$errors->has('sexo_aluno') ? "has-error":""}} col-sm-6">
-    {!! Form::label('sexo_aluno', 'Sexo Aluano:') !!}
+    {!! Form::label('sexo_aluno', 'Sexo:') !!}
     {!! Form::select('sexo_aluno', $generos, !empty($alunos)? $alunos->sexo_aluno:null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Tipo Pessoas Id Field -->
 <div class="form-group {{$errors->has('tipo_pessoas_id') ? "has-error":""}} col-sm-6">
-    {!! Form::label('tipo_pessoas_id', 'Tipo Pessoas:') !!}
+    {!! Form::label('tipo_pessoas_id', 'Tipo:') !!}
     {!! Form::select('tipo_pessoas_id', $tipoPessoas, !empty($alunos) ?$alunos->tipo_pessoas:1, ['class' => 'form-control']) !!}
 </div>
 
@@ -163,8 +162,3 @@
 
 </div>
 
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit(!empty($alunos) ? 'Atualizar aluno':'Criar aluno', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('alunos.index') !!}" class="btn btn-default">Cancelar</a>
-</div>
