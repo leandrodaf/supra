@@ -13,14 +13,18 @@
                 <div class="row">
                 {!! Form::model($alunos, ['route' => ['alunos.update', $alunos->id], 'files' => true, 'method' => 'patch', 'id' => 'formularioAlunos', 'data-toggle' => 'validator']) !!}
                 @include('alunos.fields')
+                    <div class="form-group col-sm-12">
+                        {!! Form::submit(!empty($alunos) ? 'Atualizar aluno':'Criar aluno', ['class' => 'btn btn-primary']) !!}
+                        <a href="{!! route('alunos.index') !!}" class="btn btn-default">Cancelar</a>
+                    </div>
                 {!! Form::close() !!}
                 @if(!empty($alunos->email))
                     <!-- lista de emails -->
-                    @foreach($alunos->email->toArray() as $email)
-                        {!! Form::open(['route' => ['emails.destroy', $email['id']], 'method' => 'delete', 'id' => "#deletar-".$email['id']]) !!}
-                        {!! Form::close() !!}
-                    @endforeach
-                @endif
+                        @foreach($alunos->email->toArray() as $email)
+                            {!! Form::open(['route' => ['emails.destroy', $email['id']], 'method' => 'delete', 'id' => "#deletar-".$email['id']]) !!}
+                            {!! Form::close() !!}
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>

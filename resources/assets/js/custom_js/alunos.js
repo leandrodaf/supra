@@ -60,7 +60,7 @@ $(document).ready(function () {
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: "http://localhost/alunos/getInfoUser/" + id.id,
+                url: "/alunos/getInfoUser/" + id.id,
                 cache: true,
                 success: function (data) {
                     $('#nomedynamic').text(data.nome);
@@ -95,7 +95,7 @@ $(document).ready(function () {
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: "http://localhost/dadosMedicos/" + id,
+                url: "/dadosMedicos/" + id,
                 cache: true,
                 success: function (data) {
                     if (data.errors) {

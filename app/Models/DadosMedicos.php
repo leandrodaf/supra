@@ -44,7 +44,7 @@ class DadosMedicos extends Model
     use SoftDeletes;
 
     public $table = 'dados_medicos';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -92,7 +92,7 @@ class DadosMedicos extends Model
         'convulsao' => 'boolean',
         'medicamentotomar' => 'string',
         'alergia' => 'boolean',
-        'sintomasalergia' => 'boolean',
+        'sintomasalergia' => 'string',
         'visao' => 'boolean',
         'fala' => 'boolean',
         'audicao' => 'boolean',
@@ -106,7 +106,7 @@ class DadosMedicos extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
     /**
@@ -114,6 +114,6 @@ class DadosMedicos extends Model
      **/
     public function alunos()
     {
-        return $this->hasMany(\App\Models\Aluno::class);
+        return $this->hasOne(\App\Models\Alunos::class);
     }
 }

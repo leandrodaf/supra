@@ -26,6 +26,12 @@ Route::get(
     'PessoaController@getInfoUser'
 )->name('pessoas.getInfoUser');
 
+
+Route::post(
+    'pessoas/storeAjax',
+    'PessoaController@storeAjax'
+)->name('pessoa.storeAjax');
+
 Route::resource('pessoas', 'PessoaController');
 
 Route::get(
@@ -48,3 +54,6 @@ Route::resource('alunos', 'AlunosController');
 Route::resource('emails', 'EmailController');
 
 Route::resource('dadosMedicos', 'DadosMedicosController');
+
+Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
+Route::post('matricula', 'MatriculaController@store')->name('matricula.store');

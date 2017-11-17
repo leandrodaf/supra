@@ -7,7 +7,7 @@
 <!-- Cpf Cnpj Field -->
 <div class="form-group {{$errors->has('cpf_cnpj') ? "has-error":""}} col-sm-6">
     {!! Form::label('cpf_cnpj', 'CPF:') !!}
-    {!! Form::text('cpf_cnpj', null, ['class' => 'form-control','required'=>'required']) !!}
+    {!! Form::text('cpf_cnpj', null, ['class' => 'form-control validatecpf','required'=>'required']) !!}
 </div>
 
 <!-- Rg Field -->
@@ -43,20 +43,20 @@
 
 <!-- Razaosocial Field -->
 {{--<div class="form-group {{$errors->has('razaoSocial') ? "has-error":""}} col-sm-6">--}}
-    {{--{!! Form::label('razaoSocial', 'Razão social:') !!}--}}
-    {{--{!! Form::text('razaoSocial', null, ['class' => 'form-control']) !!}--}}
+{{--{!! Form::label('razaoSocial', 'Razão social:') !!}--}}
+{{--{!! Form::text('razaoSocial', null, ['class' => 'form-control']) !!}--}}
 {{--</div>--}}
 
 <!-- Nomefantasia Field -->
 {{--<div class="form-group {{$errors->has('nomeFantasia') ? "has-error":""}} col-sm-6">--}}
-    {{--{!! Form::label('nomeFantasia', 'Nome fantasia:') !!}--}}
-    {{--{!! Form::text('nomeFantasia', null, ['class' => 'form-control']) !!}--}}
+{{--{!! Form::label('nomeFantasia', 'Nome fantasia:') !!}--}}
+{{--{!! Form::text('nomeFantasia', null, ['class' => 'form-control']) !!}--}}
 {{--</div>--}}
 
 <!-- Inscricaoestadual Field -->
 {{--<div class="form-group {{$errors->has('inscricaoEstadual') ? "has-error":""}} col-sm-6">--}}
-    {{--{!! Form::label('inscricaoEstadual', 'Inscrição estadual:') !!}--}}
-    {{--{!! Form::text('inscricaoEstadual', null, ['class' => 'form-control']) !!}--}}
+{{--{!! Form::label('inscricaoEstadual', 'Inscrição estadual:') !!}--}}
+{{--{!! Form::text('inscricaoEstadual', null, ['class' => 'form-control']) !!}--}}
 {{--</div>--}}
 
 
@@ -112,7 +112,11 @@
     </div>
 
     <div class="form-group {{$errors->has('enderecos.estado') ? "has-error":""}} col-sm-6">
-        {!! Form::text('enderecos[estado]', !empty($pessoa)? count($pessoa->endereco) != 0? $pessoa->endereco[0]->estado:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Estado', 'id' => 'estado']) !!}
+{{--        {!! Form::text('enderecos[estado]', !empty($pessoa)? count($pessoa->endereco) != 0? $pessoa->endereco[0]->estado:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Estado', 'id' => 'estado']) !!}--}}
+
+        {!! Form::select('enderecos[estado]', array('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO',), null, ['class' => 'form-control','required'=>'required', 'id'=> 'estado']) !!}
+
+
     </div>
 
     <div class="form-group {{$errors->has('enderecos.pais') ? "has-error":""}} col-sm-6">
@@ -120,11 +124,3 @@
     </div>
 
 </div>
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('pessoas.index') !!}" class="btn btn-default">Cancel</a>
-</div>
-
-

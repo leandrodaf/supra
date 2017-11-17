@@ -75,6 +75,24 @@ class PessoaController extends AppBaseController
     }
 
     /**
+     * Store a newly created Pessoa in storage.
+     *
+     * @param CreatePessoaRequest $request
+     *
+     * @return Response
+     */
+    public function storeAjax(CreatePessoaRequest $request)
+    {
+        $input = $request->all();
+
+        $enderecos['endereco'] = array_get($input, 'enderecos');
+        array_forget($input, 'enderecos');
+        $pessoa = $this->pessoaRepository->create($input);
+        $pessoa->endereco()->createMany($enderecos);
+        return response()->json($pessoa);
+    }
+
+    /**
      * Display the specified Pessoa.
      *
      * @param  int $id

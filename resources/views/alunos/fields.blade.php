@@ -1,6 +1,5 @@
 {{ Form::hidden('id', null) }}
 
-
 <!-- Foto Aluno Field -->
 <div class="form-group {{$errors->has('foto_aluno') ? "has-error":""}} col-sm-12">
 
@@ -15,7 +14,7 @@
 
 <!-- Nome Aluno Field -->
 <div class="form-group {{$errors->has('nome_aluno') ? "has-error":""}} col-sm-6">
-    {!! Form::label('nome_aluno', 'Nome Aluno:') !!}
+    {!! Form::label('nome_aluno', 'Nome completo:') !!}
     {!! Form::text('nome_aluno', null, ['class' => 'form-control', 'required'=>'required']) !!}
 </div>
 
@@ -30,19 +29,19 @@
 
 <!-- Data Nascimento Aluno Field -->
 <div class="form-group {{$errors->has('data_nascimento_aluno') ? "has-error":""}} col-sm-6">
-    {!! Form::label('data_nascimento_aluno', 'Data Nascimento Aluno:') !!}
+    {!! Form::label('data_nascimento_aluno', 'Nascimento:') !!}
     {!! Form::text('data_nascimento_aluno', null, ['class' => 'form-control', 'required'=>'required', 'data-date-format' => 'mm/dd/yyyy']) !!}
 </div>
 
 <!-- Sexo Aluno Field -->
 <div class="form-group {{$errors->has('sexo_aluno') ? "has-error":""}} col-sm-6">
-    {!! Form::label('sexo_aluno', 'Sexo Aluano:') !!}
+    {!! Form::label('sexo_aluno', 'Sexo:') !!}
     {!! Form::select('sexo_aluno', $generos, !empty($alunos)? $alunos->sexo_aluno:null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Tipo Pessoas Id Field -->
 <div class="form-group {{$errors->has('tipo_pessoas_id') ? "has-error":""}} col-sm-6">
-    {!! Form::label('tipo_pessoas_id', 'Tipo Pessoas:') !!}
+    {!! Form::label('tipo_pessoas_id', 'Tipo:') !!}
     {!! Form::select('tipo_pessoas_id', $tipoPessoas, !empty($alunos) ?$alunos->tipo_pessoas:1, ['class' => 'form-control']) !!}
 </div>
 
@@ -80,7 +79,6 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            {!! Form::hidden('flg_certidao_nascimento_aluno', false) !!}
             <label class="checkbox-inline">{!! Form::radio('flg_certidao_nascimento_aluno', '1', null) !!} Sim</label>
             <label class="checkbox-inline">{!! Form::radio('flg_certidao_nascimento_aluno', '0', true) !!} Não</label>
         </label>
@@ -91,12 +89,11 @@
 <!-- Flg Carteira Vacinacao Aluno Field -->
 <div class="form-group {{$errors->has('flg_carteira_vacinacao_aluno') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('flg_carteira_vacinacao_aluno', 'Apresentou carteira de vacinacaox:') !!}
+        {!! Form::label('flg_carteira_vacinacao_aluno', 'Apresentou carteira de vacinação:') !!}
     </div>
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            {!! Form::hidden('flg_carteira_vacinacao_aluno', false) !!}
             <label class="checkbox-inline">{!! Form::radio('flg_carteira_vacinacao_aluno', '1', null) !!} Sim</label>
             <label class="checkbox-inline">{!! Form::radio('flg_carteira_vacinacao_aluno', '0', true) !!} Não</label>
         </label>
@@ -113,7 +110,6 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            {!! Form::hidden('flg_frequentou_escola_aluno', false) !!}
             <label class="checkbox-inline">{!! Form::radio('flg_frequentou_escola_aluno', '1', null) !!} Sim</label>
             <label class="checkbox-inline">{!! Form::radio('flg_frequentou_escola_aluno', '0', true) !!} Não</label>
         </label>
@@ -124,12 +120,11 @@
 <div class="form-group {{$errors->has('flg_irmaos_aluno') ? "has-error":""}} col-sm-12">
 
     <div class="col-sm-3 -align-right">
-        {!! Form::label('flg_irmaos_aluno', 'Possui irmãos:') !!}
+        {!! Form::label('flg_irmaos_alunoLabel', 'Possui irmãos:') !!}
     </div>
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            {!! Form::hidden('flg_irmaos_aluno', false) !!}
             <label class="checkbox-inline">{!! Form::radio('flg_irmaos_aluno', '1', null) !!} Sim</label>
             <label class="checkbox-inline">{!! Form::radio('flg_irmaos_aluno', '0', true) !!} Não</label>
         </label>
@@ -155,7 +150,6 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            {!! Form::hidden('flg_juntos_aos_pais_aluno', false) !!}
             <label class="checkbox-inline">{!! Form::radio('flg_juntos_aos_pais_aluno', '1', true) !!} Sim</label>
             <label class="checkbox-inline">{!! Form::radio('flg_juntos_aos_pais_aluno', '0', true) !!} Não</label>
         </label>
@@ -163,8 +157,3 @@
 
 </div>
 
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit(!empty($alunos) ? 'Atualizar aluno':'Criar aluno', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('alunos.index') !!}" class="btn btn-default">Cancelar</a>
-</div>

@@ -16,7 +16,7 @@ class CreateAlunoTable extends Migration
         Schema::create('alunos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome_aluno');
-            $table->string('foto_aluno')->nullable();
+            $table->string('foto_aluno')->nullable()->default("avatarPadrao.jpg");
             $table->string('rg_aluno', 13)->unique();
             $table->boolean('flg_certidao_nascimento_aluno');
             $table->boolean('flg_carteira_vacinacao_aluno');
