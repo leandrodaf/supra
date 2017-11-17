@@ -4,7 +4,3 @@
 <li class="{{ Request::is('alunos*') ? 'active' : '' }}">
     <a href="{!! route('alunos.index') !!}"><i class="fa fa-edit"></i><span>Alunos</span></a>
 </li>
-<li class="{{ Request::is('dadosMedicos*') ? 'active' : '' }}">
-    <a href="{!! route('dadosMedicos.index') !!}"><i class="fa fa-edit"></i><span>Dados Medicos</span></a>
-</li>
-

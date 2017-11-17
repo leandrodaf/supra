@@ -7,6 +7,7 @@ use InfyOm\Generator\Common\BaseRepository;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Requests\CreateAlunosRequest;
 use App\Http\Requests\UpdateAlunosRequest;
+use App\Http\Requests\StoreAlunoMatricula;
 
 /**
  * Class AlunosRepository
@@ -46,6 +47,18 @@ class AlunosRepository extends BaseRepository
     }
 
     public function createAvatar(CreateAlunosRequest $request)
+    {
+        if ($request->hasFile('foto_aluno')) {
+            $avatar = $request->file('foto_aluno');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/avatars/' . $filename));
+
+            return $filename;
+        }
+    }
+
+
+    public function matriculaAvatar(StoreAlunoMatricula $request)
     {
         if ($request->hasFile('foto_aluno')) {
             $avatar = $request->file('foto_aluno');

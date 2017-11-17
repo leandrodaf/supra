@@ -90,7 +90,7 @@
 <!-- Flg Carteira Vacinacao Aluno Field -->
 <div class="form-group {{$errors->has('flg_carteira_vacinacao_aluno') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('flg_carteira_vacinacao_aluno', 'Apresentou carteira de vacinacaox:') !!}
+        {!! Form::label('flg_carteira_vacinacao_aluno', 'Apresentou carteira de vacinação:') !!}
     </div>
 
     <div class="col-sm-3 -align-left">
@@ -123,7 +123,7 @@
 <div class="form-group {{$errors->has('flg_irmaos_aluno') ? "has-error":""}} col-sm-12">
 
     <div class="col-sm-3 -align-right">
-        {!! Form::label('flg_irmaos_aluno', 'Possui irmãos:') !!}
+        {!! Form::label('flg_irmaos_alunoLabel', 'Possui irmãos:') !!}
     </div>
 
     <div class="col-sm-3 -align-left">

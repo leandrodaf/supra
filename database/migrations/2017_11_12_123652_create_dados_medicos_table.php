@@ -27,7 +27,7 @@ class CreateDadosMedicosTable extends Migration
             $table->boolean('convulsao');
             $table->string('medicamentotomar')->nullable();
             $table->boolean('alergia');
-            $table->boolean('sintomasalergia');
+            $table->string('sintomasalergia')->nullable();;
             $table->boolean('visao');
             $table->boolean('fala');
             $table->boolean('audicao');

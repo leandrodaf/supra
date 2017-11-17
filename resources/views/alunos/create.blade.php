@@ -17,7 +17,7 @@
             <div class="box-body">
                 <div class="row">
 
-                    {!! Form::open(['route' => 'alunos.store', 'files' => true, 'id' => 'formularioAlunos', 'data-toggle' => 'validator']) !!}
+                    {!! Form::open(['route' => 'alunos.store', 'files' => true, 'id' => 'formularioAlunos', 'data-toggle' => 'validator', 'autocomplete' => 'off']) !!}
 
                     @include('alunos.fields')
 

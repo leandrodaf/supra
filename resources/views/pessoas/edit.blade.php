@@ -23,5 +23,6 @@
 @endsection
 
 @section('scripts')
+    <script src="{{asset('js/plugins/jquery.cpfcnpj.min.js')}}"></script>
     <script src="{{asset('/js/features/pessoas.js')}}"></script>
 @endsection

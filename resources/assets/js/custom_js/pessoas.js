@@ -2,6 +2,23 @@
 
 $(document).ready(function () {
 
+    $('.validatecpf').cpfcnpj({
+        mask: true,
+        validate: 'cpfcnpj',
+        event: 'blur',
+        handler: '.validatecpf',
+        ifValid: function (input) {
+            input.removeClass("error");
+        },
+        ifInvalid: function (input) {
+            input.addClass("error");
+        }
+    });
+
+    $('#estado').select2({
+        width: '100%'
+    });
+
     $('#nacionalidade').select2({
         width: '100%'
     });
@@ -33,5 +50,72 @@ $(document).ready(function () {
     $("#rg").mask("99.999.999-99", {placeholder: "__.___.___-_"});
     $("#cpf_cnpj").mask("999.999.999-99", {placeholder: "___.___.___-__"});
 
+//Busca CEP Async
 
+    function limpa_formulário_cep() {
+        $("#rua").val("");
+        $("#bairro").val("");
+        $("#cidade").val("");
+        $("#complemento").val("");
+        $("#pais").val("");
+        $("#ibge").val("");
+
+    }
+
+    $("#cep").blur(function () {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = $(this).val().replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if (validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#rua").val("...");
+                $("#bairro").val("...");
+                $("#cidade").val("...");
+                $("#complemento").val("...");
+                $("#pais").val("...");
+                $("#ibge").val("...");
+
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#rua").val(dados.logradouro);
+                        $("#bairro").val(dados.bairro);
+                        $("#cidade").val(dados.localidade);
+                        $("#complemento").val(dados.complemento);
+                        // $("#estado").val(dados.uf);
+                        $("#pais").val("Brasil");
+                        $("#ibge").val(dados.ibge);
+
+                        $('#estado option').filter(function () {
+                            return ($(this).text() == dados.uf);
+                        }).prop('selected', true).trigger('change');
+
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        limpa_formulário_cep();
+                    }
+                });
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    });
 });
