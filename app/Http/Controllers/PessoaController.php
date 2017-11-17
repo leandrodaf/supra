@@ -90,9 +90,7 @@ class PessoaController extends AppBaseController
         $pessoa = $this->pessoaRepository->create($input);
         $pessoa->endereco()->createMany($enderecos);
         return response()->json($pessoa);
-
     }
-
 
     /**
      * Display the specified Pessoa.

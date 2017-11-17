@@ -73,5 +73,4 @@ class MatriculaController extends AppBaseController
 
         return redirect(route('alunos.show', $aluno->id));
     }
-
 }
