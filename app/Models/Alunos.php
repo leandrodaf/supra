@@ -58,7 +58,8 @@ class Alunos extends Model
         'flg_juntos_aos_pais_aluno',
         'qtd_irmaos_aluno',
         'data_nascimento_aluno',
-        'tipo_pessoas_id'
+        'tipo_pessoas_id',
+        'dados_medicos_id'
     ];
 
     /**
@@ -79,7 +80,8 @@ class Alunos extends Model
         'flg_juntos_aos_pais_aluno' => 'boolean',
         'qtd_irmaos_aluno' => 'integer',
         'data_nascimento_aluno' => 'date',
-        'tipo_pessoas_id' => 'integer'
+        'tipo_pessoas_id' => 'integer',
+        'dados_medicos_id' => 'integer',
     ];
 
     /**
@@ -100,6 +102,8 @@ class Alunos extends Model
         'qtd_irmaos_aluno' => 'nullable|min:1|max:10',
         'data_nascimento_aluno' => 'required|date',
         'tipo_pessoas_id' => 'required',
+        'dados_medicos_id' => 'required',
+
     ];
 
 //'email.*' => 'email|distinct|unique:alunos'

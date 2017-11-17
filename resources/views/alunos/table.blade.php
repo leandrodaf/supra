@@ -32,10 +32,10 @@
                     <a href="{!! route('alunos.edit', [$alunos->id]) !!}" class="btn btn-default btn-xs">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
-                    <a onclick="return confirm('Você deseja excluir o aluno(a) {!! $alunos->nome_aluno !!}?')"
-                       class="btn btn-default btn-xs">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </a>
+                    {{--<a onclick="return confirm('Você deseja excluir o aluno(a) {!! $alunos->nome_aluno !!}?')"--}}
+                       {{--class="btn btn-default btn-xs">--}}
+                        {{--<i class="glyphicon glyphicon-trash"></i>--}}
+                    {{--</a>--}}
                     {!! Form::close() !!}
 
                 </div>

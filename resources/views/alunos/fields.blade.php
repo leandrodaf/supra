@@ -79,7 +79,6 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            {!! Form::hidden('flg_certidao_nascimento_aluno', false) !!}
             <label class="checkbox-inline">{!! Form::radio('flg_certidao_nascimento_aluno', '1', null) !!} Sim</label>
             <label class="checkbox-inline">{!! Form::radio('flg_certidao_nascimento_aluno', '0', true) !!} Não</label>
         </label>
@@ -95,7 +94,6 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            {!! Form::hidden('flg_carteira_vacinacao_aluno', false) !!}
             <label class="checkbox-inline">{!! Form::radio('flg_carteira_vacinacao_aluno', '1', null) !!} Sim</label>
             <label class="checkbox-inline">{!! Form::radio('flg_carteira_vacinacao_aluno', '0', true) !!} Não</label>
         </label>
@@ -112,7 +110,6 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            {!! Form::hidden('flg_frequentou_escola_aluno', false) !!}
             <label class="checkbox-inline">{!! Form::radio('flg_frequentou_escola_aluno', '1', null) !!} Sim</label>
             <label class="checkbox-inline">{!! Form::radio('flg_frequentou_escola_aluno', '0', true) !!} Não</label>
         </label>
@@ -128,7 +125,6 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            {!! Form::hidden('flg_irmaos_aluno', false) !!}
             <label class="checkbox-inline">{!! Form::radio('flg_irmaos_aluno', '1', null) !!} Sim</label>
             <label class="checkbox-inline">{!! Form::radio('flg_irmaos_aluno', '0', true) !!} Não</label>
         </label>
@@ -154,7 +150,6 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            {!! Form::hidden('flg_juntos_aos_pais_aluno', false) !!}
             <label class="checkbox-inline">{!! Form::radio('flg_juntos_aos_pais_aluno', '1', true) !!} Sim</label>
             <label class="checkbox-inline">{!! Form::radio('flg_juntos_aos_pais_aluno', '0', true) !!} Não</label>
         </label>

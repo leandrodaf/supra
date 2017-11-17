@@ -114,6 +114,6 @@ class DadosMedicos extends Model
      **/
     public function alunos()
     {
-        return $this->hasMany(\App\Models\Aluno::class);
+        return $this->hasOne(\App\Models\Alunos::class);
     }
 }

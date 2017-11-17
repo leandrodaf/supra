@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreAlunoMatricula;
 use App\Repositories\AlunosRepository;
 use Flash;
@@ -16,6 +15,7 @@ class MatriculaController extends AppBaseController
     {
         $this->alunosRepository = $alunosRepo;
     }
+
     public function index()
     {
         $tipoPessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
@@ -33,37 +33,45 @@ class MatriculaController extends AppBaseController
 
         $input = $request->all();
 
+        $emails = array_get($input, 'email');
         $responsaveis = array_get($input, 'responsaveis');
         $dadosMedicos = array_get($input, 'dadosMedicos');
-        $emails = array_get($input, 'email');
 
         array_forget($input, 'responsaveis');
         array_forget($input, 'dadosMedicos');
         array_forget($input, 'email');
 
-
         $input['data_nascimento_aluno'] = \Carbon\Carbon::parse($input['data_nascimento_aluno'])->format('Y-m-d');
         $input['foto_aluno'] = $this->alunosRepository->matriculaAvatar($request);
 
-        $alunos = $this->alunosRepository->create($input);
+        $aluno = $this->alunosRepository->create($input);
 
         if (!empty($emails)) {
-            $alunos->email()->createMany(
+            $aluno->email()->createMany(
                 $emails
             );
         }
 
-        $alunos->medico()->create(
-            $dadosMedicos
-        );
+        if (!empty($responsaveis)) {
+            $aluno->pessoa()->sync($responsaveis);
+        }
 
+        if (!empty($dadosMedicos)) {
+            $medicos = $aluno->medico()->create(
+                $dadosMedicos
+            );
 
-        $alunos->pessoa()->sync($responsaveis);
+            $aluno->dados_medicos_id = $medicos->id;
+
+            $aluno->save();
+
+        }
+
 
         $flash = new Flash();
         $flash::success('Aluno criado com sucesso.');
 
-        return redirect(route('alunos.show', $alunos->id));
+        return redirect(route('alunos.show', $aluno->id));
     }
 
 }

@@ -2,18 +2,21 @@
 
 $(document).ready(function () {
 
-    $('.validatecpf').cpfcnpj({
-        mask: true,
-        validate: 'cpfcnpj',
-        event: 'blur',
-        handler: '.validatecpf',
-        ifValid: function (input) {
-            input.removeClass("error");
-        },
-        ifInvalid: function (input) {
-            input.addClass("error");
-        }
-    });
+    if ($(".validatecpf").length) {
+        $('.validatecpf').cpfcnpj({
+            mask: true,
+            validate: 'cpfcnpj',
+            event: 'blur',
+            handler: '.validatecpf',
+            ifValid: function (input) {
+                input.removeClass("error");
+            },
+            ifInvalid: function (input) {
+                input.addClass("error");
+            }
+        });
+    }
+
 
     $('#estado').select2({
         width: '100%'

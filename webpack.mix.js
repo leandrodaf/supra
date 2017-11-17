@@ -20,7 +20,7 @@ mix.copy('resources/assets/js/custom_js/pessoas.js', 'public/js/features/');
 mix.copy('resources/assets/js/custom_js/matricula.js', 'public/js/features/');
 
 mix.copy('resources/assets/js/plugins/jquery.cpfcnpj.min.js', 'public/js/plugins/jquery.cpfcnpj.min.js');
-
+mix.copy('resources/assets/images/avatarPadrao.jpg', 'public/uploads/');
 
 //Mix Plugins style
 mix.styles([

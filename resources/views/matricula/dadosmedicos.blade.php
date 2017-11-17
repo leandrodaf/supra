@@ -1,7 +1,7 @@
 <!-- Flg Certidao Nascimento Aluno Field -->
 <div class="form-group {{$errors->has('flg_certidao_nascimento_aluno') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('flg_certidao_nascimento_aluno', 'Apresentou certidao de nascimento:') !!}
+        {!! Form::label('flg_certidao_nascimento_aluno', 'Certidao de nascimento:') !!}
     </div>
 
     <div class="col-sm-3 -align-left">
@@ -16,7 +16,7 @@
 <!-- sarampo -->
 <div class="form-group {{$errors->has('sarampo') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('sarampo', 'Aprensentou sarampo') !!}
+        {!! Form::label('sarampo', 'Sarampo') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -29,7 +29,7 @@
 <!-- rubeola -->
 <div class="form-group {{$errors->has('rubeola') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('rubeola', 'Aprensentou rubeola') !!}
+        {!! Form::label('rubeola', 'Rubeola') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -42,7 +42,7 @@
 <!-- catapora -->
 <div class="form-group {{$errors->has('catapora') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('catapora', 'Aprensentou catapora') !!}
+        {!! Form::label('catapora', 'Catapora') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -55,7 +55,7 @@
 <!-- escarlatina -->
 <div class="form-group {{$errors->has('escarlatina') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('escarlatina', 'Aprensentou escarlatina') !!}
+        {!! Form::label('escarlatina', 'Escarlatina') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -80,7 +80,7 @@
 <!-- bronquite -->
 <div class="form-group {{$errors->has('bronquite') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('bronquite', 'Aprensentou bronquite') !!}
+        {!! Form::label('bronquite', 'Bronquite') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -93,7 +93,7 @@
 <!-- faltadear -->
 <div class="form-group {{$errors->has('faltadear') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('faltadear', 'Aprensentou faltadear') !!}
+        {!! Form::label('faltadear', 'Faltadear') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -106,7 +106,7 @@
 <!-- diabete -->
 <div class="form-group {{$errors->has('diabete') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('diabete', 'Aprensentou diabete') !!}
+        {!! Form::label('diabete', 'Diabete') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -119,7 +119,7 @@
 <!-- refluxo -->
 <div class="form-group {{$errors->has('refluxo') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('refluxo', 'Aprensentou refluxo') !!}
+        {!! Form::label('refluxo', 'Refluxo') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -132,7 +132,7 @@
 <!-- convulsao -->
 <div class="form-group {{$errors->has('convulsao') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('convulsao', 'Aprensentou convulsao') !!}
+        {!! Form::label('convulsao', 'Convulsao') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -145,7 +145,7 @@
 <!-- medicamentotomar -->
 <div class="form-group {{$errors->has('medicamentotomar') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('medicamentotomar', 'Aprensentou medicamentotomar') !!}
+        {!! Form::label('medicamentotomar', 'Quais medicamentos tomar') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -157,7 +157,7 @@
 <!-- alergia -->
 <div class="form-group {{$errors->has('alergia') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('alergia', 'Aprensentou alergia') !!}
+        {!! Form::label('alergia', 'Alergia') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -170,7 +170,7 @@
 <!-- sintomasalergia -->
 <div class="form-group {{$errors->has('sintomasalergia') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('sintomasalergia', 'Aprensentou sintomasalergia') !!}
+        {!! Form::label('sintomasalergia', 'Sintomas da alergia') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -183,7 +183,7 @@
 <!-- visao -->
 <div class="form-group {{$errors->has('visao') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('visao', 'Aprensentou visao') !!}
+        {!! Form::label('visao', 'Deficiente visaul') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -196,7 +196,7 @@
 <!-- fala -->
 <div class="form-group {{$errors->has('fala') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('fala', 'Aprensentou fala') !!}
+        {!! Form::label('fala', 'Deficiencia na fala') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -209,7 +209,7 @@
 <!-- audicao -->
 <div class="form-group {{$errors->has('audicao') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('audicao', 'Aprensentou audicao') !!}
+        {!! Form::label('audicao', 'Deficiente auditivo') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -222,7 +222,7 @@
 <!-- edfisica -->
 <div class="form-group {{$errors->has('edfisica') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('edfisica', 'Aprensentou edfisica') !!}
+        {!! Form::label('edfisica', 'Deficiente Fisica') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -235,7 +235,7 @@
 <!-- outradeficienciax -->
 <div class="form-group {{$errors->has('outradeficienciax') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('outradeficienciax', 'Aprensentou outradeficienciax') !!}
+        {!! Form::label('outradeficienciax', 'Outra deficiente ') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">

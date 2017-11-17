@@ -38,7 +38,7 @@ class StoreAlunoMatricula extends FormRequest
             'tipo_pessoas_id' => 'required',
             'email.*' => 'required',
             'responsaveis.*' => 'required',
-            'dadosMedicos.*' => 'required',
+            'dadosMedicos.*' => 'required'
         ];
     }
 }

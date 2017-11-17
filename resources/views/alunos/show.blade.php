@@ -37,9 +37,8 @@
                             </div>
 
                         </div>
-
                         <div class="box-title" style="overflow: hidden">
-                            <img src="{{asset('uploads/avatars/'.$alunos->foto_aluno)}}"
+                            <img src="{{$alunos->foto_aluno == "avatarPadrao.jpg" ? asset('uploads/'.$alunos->foto_aluno):asset('uploads/avatars/'.$alunos->foto_aluno)}}"
                                  class="avatar img-radius pull-left"
                                  style="margin-right: 25px; width: 100px; border-radius: 4px">
                             <div style="overflow: hidden">
