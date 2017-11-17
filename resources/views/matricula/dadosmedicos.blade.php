@@ -1,18 +1,3 @@
-<!-- Flg Certidao Nascimento Aluno Field -->
-<div class="form-group {{$errors->has('flg_certidao_nascimento_aluno') ? "has-error":""}} col-sm-12">
-    <div class="col-sm-3 -align-right">
-        {!! Form::label('flg_certidao_nascimento_aluno', 'Certidao de nascimento:') !!}
-    </div>
-
-    <div class="col-sm-3 -align-left">
-        <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('flg_certidao_nascimento_aluno', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('flg_certidao_nascimento_aluno', '0', true) !!} Não</label>
-        </label>
-    </div>
-
-</div>
-
 <!-- sarampo -->
 <div class="form-group {{$errors->has('sarampo') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">

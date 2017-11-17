@@ -11,7 +11,7 @@
                         </a>
                     </td>
                     <td class="verInfo" id="{{$responsavel->id}}" data-toggle="modal" data-target="#detalhes">
-                        {{$responsavel->nome}}
+                        <span class="informacoesTitulo"  style="cursor:pointer;" data-placement="top" title="Clique para ver o perfil de {{$responsavel->nome}}">{{$responsavel->nome}}</span>
                     </td>
                     <td>
                         @if($responsavel->pivot->flg_autorizado)
