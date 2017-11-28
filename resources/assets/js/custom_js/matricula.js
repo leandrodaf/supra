@@ -98,12 +98,6 @@ $(document).ready(function () {
     });
 
 
-    $('input').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-blue',
-        increaseArea: '5%' // optional
-    });
-
     $('#nacionalidade').select2({
         width: '100%'
     });
@@ -244,11 +238,11 @@ $(document).ready(function () {
 
     });
 
-    $('input').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-blue',
-        increaseArea: '20%'
-    });
+    // $('input').iCheck({
+    //     checkboxClass: 'icheckbox_square',
+    //     radioClass: 'iradio_square',
+    //     increaseArea: '20%'
+    // });
 
 
     $('.sw-btn-next').val("Próximo");

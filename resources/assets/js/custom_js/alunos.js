@@ -49,11 +49,11 @@ $(document).ready(function () {
             startDate: reduzirDiasData(2192)
         });
 
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '5%'
-        });
+        // $('input').iCheck({
+        //     checkboxClass: 'icheckbox_square-blue',
+        //     radioClass: 'iradio_square-blue',
+        //     increaseArea: '5%'
+        // });
 
         $("#rg_aluno").mask("99.999.999-9");
 
