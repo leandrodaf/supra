@@ -65,9 +65,19 @@
                         <div class="box-title" style="overflow: hidden">
                             <i class="fa fa-heartbeat"></i> Dados médicos
                         </div>
+                        <div class="box-tools pull-right">
+                            <a class="btn btn-box-tool" data-toggle="modal" data-target="#editarDadosMedicos" >
+                                <i class="glyphicon glyphicon-edit"></i>
+                                Editar
+                            </a>
+                        </div>
+
                     </div>
                     <div class="box-body">
                         @include('alunos.medico')
+                    </div>
+                    <div class="overlay"  style="display:none;" id="loadingDadosMedicos">
+                        <i class="fa fa-refresh fa-spin"></i>
                     </div>
                 </div>
                 <div class="box">

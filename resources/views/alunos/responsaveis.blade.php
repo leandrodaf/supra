@@ -87,7 +87,7 @@
 
                     <dt>Estado civil</dt>
                     <dd id="estadoCivildynamic"></dd>
-
+                </dl>
             </div>
         </div>
 

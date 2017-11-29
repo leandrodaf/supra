@@ -83,14 +83,21 @@ class DadosMedicosController extends AppBaseController
      */
     public function update($idDadosMedicos, UpdateDadosMedicosRequest $request)
     {
+
+        $input = $request->all();
+
+        $data = array_get($input, 'dadosMedicos');
+//        array_forget($input, 'dadosMedicos');
+
         $dadosMedicos = $this->dadosMedicosRepository->findWithoutFail($idDadosMedicos);
 
         if (empty($dadosMedicos)) {
             return response()->json(['errors' => 'Não encontrado']);
         }
 
-        $dadosMedicos = $this->dadosMedicosRepository->update($request->all(), $idDadosMedicos);
-        return response()->json($dadosMedicos);
+        $dados = $this->dadosMedicosRepository->update($data, $idDadosMedicos);
+
+        return response()->json($dados);
     }
 
     /**
