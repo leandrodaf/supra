@@ -60,6 +60,7 @@ $(document).ready(function () {
     $('.verInfo').click(function (data) {
         var id = this;
         $.ajax({
+            async:true,
             type: "GET",
             dataType: "json",
             url: "/alunos/getInfoUser/" + id.id,
@@ -102,6 +103,7 @@ $(document).ready(function () {
     var carregaDadosMedicos = function (data) {
         var id = $('.dadosMedicos').get(0).id;
         $.ajax({
+            async:true,
             type: "GET",
             dataType: "json",
             url: "/dadosMedicos/" + id,
@@ -205,6 +207,7 @@ $(document).ready(function () {
         placeholder: 'Selecione um responsável',
         "language": "pt-BR",
         ajax: {
+            async:true,
             url: '/alunos/getAjax',
             dataType: 'json',
             delay: 250,
@@ -226,6 +229,7 @@ $(document).ready(function () {
         // var id = $('.numeroResponsavel').get(0).id;
 
         $.ajax({
+            async:true,
             url: '/dadosMedicos/1',
             type: 'POST',
             data: $('#formDadosMedicos').serialize(),
