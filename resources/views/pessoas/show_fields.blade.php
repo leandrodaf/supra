@@ -69,7 +69,7 @@
     @if(!empty($pessoa->status))
     <!-- Status Field -->
     <dt>{!! Form::label('status', 'Status:') !!}</dt>
-    <dd>{!! $pessoa->status ? "Ativo":"Inativo"!!}</p>
+    <dd>{!! $pessoa->status ? "Ativo":"Inativo"!!}</dd>
     @endif
 
     @if(!empty($pessoa->tipoPessoa->nome))

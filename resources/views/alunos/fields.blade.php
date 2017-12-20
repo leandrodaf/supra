@@ -60,7 +60,7 @@
                 <dt>
 
 
-                    <a href="#deletar-{{$email['id']}}" class="btn btn-default btn-flat"
+                    <a href="#deletar-{{$email['id']}}" class="btn btn-default btn-flat {{count($alunos->email->toArray()) >1 ?"":"disabled" }}"
                        onclick="document.getElementById({!! "'#deletar-".$email['id']."'" !!}).submit();" {{count($alunos->email->toArray()) >1 ?"":"disabled" }}>
                         <i class="glyphicon glyphicon-trash"></i>
                     </a>
