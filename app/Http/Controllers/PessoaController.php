@@ -61,12 +61,26 @@ class PessoaController extends AppBaseController
     public function store(CreatePessoaRequest $request)
     {
         $input = $request->all();
+
+//        return dd($input);
+
         $enderecos['endereco'] = array_get($input, 'enderecos');
         array_forget($input, 'enderecos');
+        $emails = array_get($input, 'email');
+        array_forget($input, 'email');
+
 
         $pessoa = $this->pessoaRepository->create($input);
 
-        $pessoa->endereco()->createMany($enderecos);
+        if (!empty($pessoa)) {
+            $pessoa->endereco()->createMany($enderecos);
+        }
+
+        if (!empty($emails)) {
+            $pessoa->email()->createMany(
+                $emails
+            );
+        }
 
         $flash = new Flash();
         $flash::success('Pessoa criada com sucesso.');

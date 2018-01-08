@@ -121,4 +121,27 @@ $(document).ready(function () {
             limpa_formulário_cep();
         }
     });
+
+    let validateEmail = function (email) {
+        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    };
+
+    $('#email').select2({
+        width: '100%',
+        tags: true,
+        tokenSeparators: [',', ';', ' '],
+        placeholder: "Digite os emails",
+        createTag: function (term, data) {
+            let value = term.term;
+            if (validateEmail(value)) {
+                return {
+                    id: value,
+                    text: value
+                };
+            }
+            return null;
+        }
+    });
+
 });
