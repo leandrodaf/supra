@@ -158,8 +158,11 @@ class Pessoa extends Model
     public function email()
     {
         return $this->belongsToMany(
-            \App\Models\Email::class
-        );
+            \App\Models\Email::class,
+            'pessoa_email',
+            'pessoa_id',
+            'email_id'
+        )->withPivot('flg_principal');
     }
 
     /**

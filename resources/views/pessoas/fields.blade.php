@@ -77,6 +77,31 @@
     </label>
 </div>
 
+<div class="form-group {{$errors->has('email') ? "has-error":""}} col-sm-5">
+    {!! Form::label('email', 'Email:') !!}
+    <select id="email" name="email[][email]" multiple="multiple"></select>
+
+    @if(!empty($alunos) )
+        <p></p>
+        {!! Form::label('email', 'E-mails cadastrados:') !!}
+        <dl class="dl-horizontal">
+            <p></p>
+            <!-- lista de emails -->
+            @foreach($alunos->email->toArray() as $email)
+                <dt>
+
+
+                    <a href="#deletar-{{$email['id']}}" class="btn btn-default btn-flat {{count($alunos->email->toArray()) >1 ?"":"disabled" }}"
+                       onclick="document.getElementById({!! "'#deletar-".$email['id']."'" !!}).submit();" {{count($alunos->email->toArray()) >1 ?"":"disabled" }}>
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </dt>
+                <dd>{{$email['email']}}</dd>
+            @endforeach
+        </dl>
+    @endif
+</div>
+
 <div class="form-group {{$errors->has('endereco') ? "has-error":""}} col-sm-12">
     {!! Form::label('endereco', 'Endereço:') !!}
 </div>
