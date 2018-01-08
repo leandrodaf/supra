@@ -11,8 +11,8 @@
     @foreach($salas as $sala)
         <tr>
             <td>{!! $sala->nome_sala !!}</td>
-            <td>{!! $sala->status !!}</td>
-            <td>{!! $sala->capacidade !!}</td>
+            <td>{!! $sala->status ? "Ativo": "Inativo"!!}</td>
+            <td>{!! $sala->capacidade . " Alunos"!!}</td>
             <td>
                 {!! Form::open(['route' => ['salas.destroy', $sala->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

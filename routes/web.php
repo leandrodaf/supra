@@ -63,3 +63,5 @@ Route::post('matricula', 'MatriculaController@store')->name('matricula.store');
 Route::resource('salas', 'SalaController');
 
 Route::resource('salas', 'SalaController');
+
+Route::resource('materias', 'MateriaController');
