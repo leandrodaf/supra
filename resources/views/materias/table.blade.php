@@ -3,7 +3,7 @@
         <tr>
             <th>Nome</th>
         <th>Status</th>
-            <th colspan="3">Ação</th>
+            <th colspan="3">Ações</th>
         </tr>
     </thead>
     <tbody>

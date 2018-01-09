@@ -17,3 +17,7 @@
     <a href="{!! route('funcoes.index') !!}"><i class="fa fa-edit"></i><span>Funções</span></a>
 </li>
 
+<li class="{{ Request::is('setores*') ? 'active' : '' }}">
+    <a href="{!! route('setores.index') !!}"><i class="fa fa-edit"></i><span>Setores</span></a>
+</li>
+

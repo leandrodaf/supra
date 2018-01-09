@@ -67,3 +67,5 @@ Route::resource('salas', 'SalaController');
 Route::resource('materias', 'MateriaController');
 
 Route::resource('funcoes', 'FuncaoController');
+
+Route::resource('setores', 'SetorController');
