@@ -13,3 +13,7 @@
     <a href="{!! route('materias.index') !!}"><i class="fa fa-edit"></i><span>Materias</span></a>
 </li>
 
+<li class="{{ Request::is('funcoes*') ? 'active' : '' }}">
+    <a href="{!! route('funcoes.index') !!}"><i class="fa fa-edit"></i><span>Funções</span></a>
+</li>
+
