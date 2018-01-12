@@ -6,7 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Sala
+ * Class Classroom
  * @package App\Models
  * @version January 8, 2018, 8:28 pm -02
  *
@@ -23,11 +23,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean status
  * @property integer capacidade
  */
-class Sala extends Model
+class Classroom extends Model
 {
     use SoftDeletes;
 
-    public $table = 'sala';
+    public $table = 'classroom';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';

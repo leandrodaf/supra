@@ -2,19 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\Sala;
+use App\Models\Classroom;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
- * Class SalaRepository
+ * Class ClassroomRepository
  * @package App\Repositories
  * @version January 8, 2018, 8:28 pm -02
  *
- * @method Sala findWithoutFail($id, $columns = ['*'])
- * @method Sala find($id, $columns = ['*'])
- * @method Sala first($columns = ['*'])
+ * @method Classroom findWithoutFail($id, $columns = ['*'])
+ * @method Classroom find($id, $columns = ['*'])
+ * @method Classroom first($columns = ['*'])
 */
-class SalaRepository extends BaseRepository
+class ClassroomRepository extends BaseRepository
 {
     /**
      * @var array
@@ -30,6 +30,6 @@ class SalaRepository extends BaseRepository
      **/
     public function model()
     {
-        return Sala::class;
+        return Classroom::class;
     }
 }

@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Sala;
+use App\Models\Classroom;
 
-class CreateSalaRequest extends FormRequest
+class UpdateClassroomRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class CreateSalaRequest extends FormRequest
      */
     public function rules()
     {
-        return Sala::$rules;
+        return Classroom::$rules;
     }
 }

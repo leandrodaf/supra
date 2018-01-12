@@ -6,7 +6,7 @@
 </li>
 
 <li class="{{ Request::is('salas*') ? 'active' : '' }}">
-    <a href="{!! route('salas.index') !!}"><i class="fa fa-edit"></i><span>Salas</span></a>
+    <a href="{!! route('classrooms.index') !!}"><i class="fa fa-edit"></i><span>Salas</span></a>
 </li>
 
 <li class="{{ Request::is('schoolSubjectRepositorys*') ? 'active' : '' }}">

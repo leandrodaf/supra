@@ -40,8 +40,6 @@ Route::post(
 
 Route::resource('alunos', 'AlunosController');
 
-Route::resource("salas", 'SalaController');
-
 Route::resource('emails', 'EmailController');
 
 Route::resource('dadosMedicos', 'DadosMedicosController');
@@ -49,9 +47,7 @@ Route::resource('dadosMedicos', 'DadosMedicosController');
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::post('matricula', 'MatriculaController@store')->name('matricula.store');
 
-Route::resource('salas', 'SalaController');
-
-Route::resource('salas', 'SalaController');
+Route::resource('classrooms', 'ClassroomController');
 
 Route::resource('schoolsubject', 'SchoolSubjectController');
 

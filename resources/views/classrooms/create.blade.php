@@ -7,11 +7,16 @@
         </h1>
     </section>
     <div class="content">
+        @include('adminlte-templates::common.errors')
         <div class="box box-primary">
+
             <div class="box-body">
-                <div class="row" style="padding-left: 20px">
-                    @include('salas.show_fields')
-                    <a href="{!! route('salas.index') !!}" class="btn btn-default">Back</a>
+                <div class="row">
+                    {!! Form::open(['route' => 'classrooms.store']) !!}
+
+                        @include('classrooms.fields')
+
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
