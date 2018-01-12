@@ -49,7 +49,7 @@ class PessoaController extends AppBaseController
         $estadoCivil = \App\Models\EstadoCivil::where('status', '=', 1)->get()->pluck('nome', 'id');
         $nacionalidades = \App\Models\Nacionalidade::where('status', '=', 1)->get()->pluck('nome', 'id');
 
-        $departmentes = \App\Models\Setor::where('status', '=', 1)->get();
+        $departments = \App\Models\Setor::where('status', '=', 1)->get();
         $roles = \App\Models\Role::where('status', '=', 1)->get();
 
         return view('pessoas.create')->with(compact('tipoPessoas', 'generos', 'estadoCivil', 'nacionalidades', 'setores', 'funcoes'));
@@ -81,7 +81,7 @@ class PessoaController extends AppBaseController
         array_forget($input, 'email');
 
 
-        $departmentes = array_get($input, 'setores');
+        $departments = array_get($input, 'setores');
         array_forget($input, 'setores');
 
         $roles = array_get($input, 'funcoes');
@@ -103,9 +103,9 @@ class PessoaController extends AppBaseController
             );
         }
 
-        if (!empty($departmentes)) {
+        if (!empty($departments)) {
             $pessoa->setor()->createMany(
-                $departmentes
+                $departments
             );
         }
 

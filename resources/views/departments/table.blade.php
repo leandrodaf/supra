@@ -7,7 +7,7 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($departmentes as $department)
+    @foreach($departments as $department)
         <tr>
             <td>{!! $department->nome !!}</td>
             <td>{!! $department->status ? "Ativo": "Inativo"!!}</td>
