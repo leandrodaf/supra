@@ -16,5 +16,5 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('funcoes.index') !!}" class="btn btn-default">Cancelar</a>
+    <a href="{!! route('roles.index') !!}" class="btn btn-default">Cancelar</a>
 </div>

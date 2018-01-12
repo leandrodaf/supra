@@ -50,7 +50,7 @@ class PessoaController extends AppBaseController
         $nacionalidades = \App\Models\Nacionalidade::where('status', '=', 1)->get()->pluck('nome', 'id');
 
         $setores = \App\Models\Setor::where('status', '=', 1)->get();
-        $funcoes = \App\Models\Funcao::where('status', '=', 1)->get();
+        $roles = \App\Models\Role::where('status', '=', 1)->get();
 
         return view('pessoas.create')->with(compact('tipoPessoas', 'generos', 'estadoCivil', 'nacionalidades', 'setores', 'funcoes'));
     }
@@ -84,7 +84,7 @@ class PessoaController extends AppBaseController
         $setores = array_get($input, 'setores');
         array_forget($input, 'setores');
 
-        $funcoes = array_get($input, 'funcoes');
+        $roles = array_get($input, 'funcoes');
         array_forget($input, 'funcoes');
 
 
@@ -109,9 +109,9 @@ class PessoaController extends AppBaseController
             );
         }
 
-        if (!empty($funcoes)) {
-            $pessoa->funcao()->createMany(
-                $funcoes
+        if (!empty($roles)) {
+            $pessoa->role()->createMany(
+                $roles
             );
         }
 

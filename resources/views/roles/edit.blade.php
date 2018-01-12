@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($funcoes, ['route' => ['funcoes.update', $funcoes->id], 'method' => 'patch']) !!}
+                   {!! Form::model($roles, ['route' => ['roles.update', $roles->id], 'method' => 'patch']) !!}
 
-                        @include('funcoes.fields')
+                        @include('roles.fields')
 
                    {!! Form::close() !!}
                </div>

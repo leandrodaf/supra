@@ -2,19 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\Funcao;
+use App\Models\Role;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
- * Class FuncaoRepository
+ * Class RoleRepository
  * @package App\Repositories
  * @version January 8, 2018, 9:03 pm -02
  *
- * @method Funcao findWithoutFail($id, $columns = ['*'])
- * @method Funcao find($id, $columns = ['*'])
- * @method Funcao first($columns = ['*'])
+ * @method Role findWithoutFail($id, $columns = ['*'])
+ * @method Role find($id, $columns = ['*'])
+ * @method Role first($columns = ['*'])
 */
-class FuncaoRepository extends BaseRepository
+class RoleRepository extends BaseRepository
 {
     /**
      * @var array
@@ -29,6 +29,6 @@ class FuncaoRepository extends BaseRepository
      **/
     public function model()
     {
-        return Funcao::class;
+        return Role::class;
     }
 }

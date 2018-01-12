@@ -11,7 +11,7 @@ class FuncoesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('funcao')->insert([
+        DB::table('role')->insert([
                 [
                     'nome' => "Faxineiro",
                     'status' => "1",

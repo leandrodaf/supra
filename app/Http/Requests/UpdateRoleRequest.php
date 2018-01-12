@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Funcao;
+use App\Models\Role;
 
-class CreateFuncaoRequest extends FormRequest
+class UpdateRoleRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class CreateFuncaoRequest extends FormRequest
      */
     public function rules()
     {
-        return Funcao::$rules;
+        return Role::$rules;
     }
 }

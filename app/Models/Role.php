@@ -6,7 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Funcao
+ * Class Role
  * @package App\Models
  * @version January 8, 2018, 9:03 pm -02
  *
@@ -22,11 +22,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string nome
  * @property boolean status
  */
-class Funcao extends Model
+class Role extends Model
 {
     use SoftDeletes;
 
-    public $table = 'funcao';
+    public $table = 'role';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';

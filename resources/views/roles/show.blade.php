@@ -3,20 +3,15 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Função
+            Funções
         </h1>
     </section>
     <div class="content">
-        @include('adminlte-templates::common.errors')
         <div class="box box-primary">
-
             <div class="box-body">
-                <div class="row">
-                    {!! Form::open(['route' => 'funcoes.store']) !!}
-
-                        @include('funcoes.fields')
-
-                    {!! Form::close() !!}
+                <div class="row" style="padding-left: 20px">
+                    @include('roles.show_fields')
+                    <a href="{!! route('roles.index') !!}" class="btn btn-default">Voltar</a>
                 </div>
             </div>
         </div>
