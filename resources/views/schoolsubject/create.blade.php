@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Materias
+            Diciplinas escolares
         </h1>
     </section>
     <div class="content">
@@ -12,9 +12,9 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'materias.store']) !!}
+                    {!! Form::open(['route' => 'schoolsubject.store']) !!}
 
-                        @include('materias.fields')
+                        @include('schoolsubject.fields')
 
                     {!! Form::close() !!}
                 </div>

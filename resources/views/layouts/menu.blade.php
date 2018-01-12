@@ -9,8 +9,8 @@
     <a href="{!! route('salas.index') !!}"><i class="fa fa-edit"></i><span>Salas</span></a>
 </li>
 
-<li class="{{ Request::is('materias*') ? 'active' : '' }}">
-    <a href="{!! route('materias.index') !!}"><i class="fa fa-edit"></i><span>Materias</span></a>
+<li class="{{ Request::is('schoolSubjectRepositorys*') ? 'active' : '' }}">
+    <a href="{!! route('schoolsubject.index') !!}"><i class="fa fa-edit"></i><span>Materias</span></a>
 </li>
 
 <li class="{{ Request::is('roles*') ? 'active' : '' }}">

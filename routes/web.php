@@ -53,7 +53,7 @@ Route::resource('salas', 'SalaController');
 
 Route::resource('salas', 'SalaController');
 
-Route::resource('materias', 'MateriaController');
+Route::resource('schoolsubject', 'SchoolSubjectController');
 
 Route::get(
     'roles/getAjax',

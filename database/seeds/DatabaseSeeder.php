@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PessoaResponsavelTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(DepartmentTableSeeder::class);
-        $this->call(MateriasTableSeeder::class);
+        $this->call(SchoolSubjectsTableSeeder::class);
     }
 }

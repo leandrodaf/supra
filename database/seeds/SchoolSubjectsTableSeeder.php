@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class MateriasTableSeeder extends Seeder
+class SchoolSubjectsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class MateriasTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('materia')->insert([
+        DB::table('schoolsubject')->insert([
 
             ['nome' => 'PORTUGUÊS',
                 'status' => "1"

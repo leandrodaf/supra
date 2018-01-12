@@ -2,19 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\Materia;
+use App\Models\SchoolSubject;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
- * Class MateriaRepository
+ * Class SchoolSubjectRepository
  * @package App\Repositories
  * @version January 8, 2018, 8:44 pm -02
  *
- * @method Materia findWithoutFail($id, $columns = ['*'])
- * @method Materia find($id, $columns = ['*'])
- * @method Materia first($columns = ['*'])
+ * @method SchoolSubject findWithoutFail($id, $columns = ['*'])
+ * @method SchoolSubject find($id, $columns = ['*'])
+ * @method SchoolSubject first($columns = ['*'])
 */
-class MateriaRepository extends BaseRepository
+class SchoolSubjectRepository extends BaseRepository
 {
     /**
      * @var array
@@ -29,6 +29,6 @@ class MateriaRepository extends BaseRepository
      **/
     public function model()
     {
-        return Materia::class;
+        return SchoolSubject::class;
     }
 }

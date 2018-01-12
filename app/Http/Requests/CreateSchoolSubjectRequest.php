@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Materia;
+use App\Models\SchoolSubject;
 
-class CreateMateriaRequest extends FormRequest
+class CreateSchoolSubjectRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class CreateMateriaRequest extends FormRequest
      */
     public function rules()
     {
-        return Materia::$rules;
+        return SchoolSubject::$rules;
     }
 }
