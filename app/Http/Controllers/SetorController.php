@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class SetorController extends AppBaseController
 {
@@ -34,6 +35,27 @@ class SetorController extends AppBaseController
 
         return view('setores.index')
             ->with('setores', $setores);
+    }
+
+
+    /**
+     * Show the application dataAjax.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dataAjax(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = DB::table("setor")
+                ->select("id", "nome")
+                ->where('nome', 'LIKE', "%$search%")
+                ->get();
+        }
+
+        return response()->json($data);
     }
 
     /**

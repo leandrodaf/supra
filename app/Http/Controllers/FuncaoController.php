@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class FuncaoController extends AppBaseController
 {
@@ -34,6 +35,26 @@ class FuncaoController extends AppBaseController
 
         return view('funcoes.index')
             ->with('funcoes', $funcoes);
+    }
+
+    /**
+     * Show the application dataAjax.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function dataAjax(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $data = DB::table("funcao")
+                ->select("id", "nome")
+                ->where('nome', 'LIKE', "%$search%")
+                ->get();
+        }
+
+        return response()->json($data);
     }
 
     /**

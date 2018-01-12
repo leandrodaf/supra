@@ -23,7 +23,7 @@ class CreatePessoasTable extends Migration
             $table->string('razaoSocial')->nullable();
             $table->string('nomeFantasia')->nullable();
             $table->string('inscricaoEstadual')->nullable();
-            $table->boolean('status');
+            $table->boolean('status')->default(true);
             $table->integer('nacionalidade')->unsigned();
             $table->foreign('nacionalidade')->references('id')->on('nacionalidades')->onDelete('cascade');
 

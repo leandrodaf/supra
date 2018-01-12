@@ -58,7 +58,16 @@ class Pessoa extends Model
         'inscricaoEstadual',
         'nacionalidade',
         'status',
-        'tipo_pessoas_id'
+        'tipo_pessoas_id',
+        'data_admissao',
+        'numero_ctps',
+        'ctps_serie',
+        'pis',
+        'salario_base',
+        'vale_refeicao',
+        'plano_saude',
+        'vale_transporte',
+        'contato_emergencial',
     ];
 
     /**
@@ -79,7 +88,16 @@ class Pessoa extends Model
         'inscricaoEstadual' => 'string',
         'nacionalidade' => 'integer',
         'status' => 'boolean',
-        'tipo_pessoas_id' => 'integer'
+        'tipo_pessoas_id' => 'integer',
+        'data_admissao' => 'date',
+        'numero_ctps' => 'string',
+        'ctps_serie' => 'string',
+        'pis' => 'string',
+        'salario_base' => 'double',
+        'vale_refeicao' => 'double',
+        'plano_saude' => 'string',
+        'vale_transporte' => 'double',
+        'contato_emergencial' => 'string',
     ];
 
     /**
@@ -92,16 +110,16 @@ class Pessoa extends Model
         'cpf_cnpj' => 'required|max:19|min:14',
         'sexo' => 'required|max:1',
         'rg' => 'min:12',
-        'dataNascimento' => 'required|date',
+        'dataNascimento' => 'required',
         'estadoCivil' => 'required',
         'razaoSocial' => '',
         'nomeFantasia' => '',
         'inscricaoEstadual' => '',
         'nacionalidade' => 'required|max:1',
-        'status' => 'required',
         'tipo_pessoas_id' => 'required',
         'enderecos.numero' => 'required',
-        'enderecos.cep' => 'required',
+        'enderecos.cep' => 'required'
+
     ];
 
     /**
@@ -183,8 +201,24 @@ class Pessoa extends Model
      **/
     public function telefone()
     {
-        return $this->belongsToMany(
-            \App\Models\Telefone::class
-        );
+        return $this->belongsToMany('App\Models\Telefone');
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function funcao()
+    {
+        return $this->hasMany('App\Models\Funcao');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function setor()
+    {
+        return $this->hasMany('App\Models\Setor');
+    }
+
 }

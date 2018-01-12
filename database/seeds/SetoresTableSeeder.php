@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TipoPessoaTableSeeder extends Seeder
+class SetoresTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,29 +11,23 @@ class TipoPessoaTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipo_pessoas')->insert([
+        DB::table('setor')->insert([
             [
-                'nome' => "Aluno",
+                'nome' => "Departamento financeiro",
                 'status' => "1",
             ],
             [
-                'nome' => "Responsável",
+                'nome' => "Setor acadêmico",
                 'status' => "1",
             ],
             [
-                'nome' => "Autorizado",
+                'nome' => "Área pedagógica",
                 'status' => "1",
             ],
             [
-                'nome' => "Professor",
-                'status' => "1",
-            ],
-            [
-                'nome' => "Empresa",
+                'nome' => "Marketing",
                 'status' => "1",
             ]
         ]);
-
-
     }
 }

@@ -27,10 +27,10 @@
     {!! Form::text('rg_aluno', null, ['class' => 'form-control', 'required'=>'required']) !!}
 </div>
 
-<!-- Data Nascimento Aluno Field -->
+<!-- Datanascimento Field -->
 <div class="form-group {{$errors->has('data_nascimento_aluno') ? "has-error":""}} col-sm-6">
-    {!! Form::label('data_nascimento_aluno', 'Nascimento:') !!}
-    {!! Form::text('data_nascimento_aluno', null, ['class' => 'form-control', 'required'=>'required', 'data-date-format' => 'mm/dd/yyyy']) !!}
+    {!! Form::label('data_nascimento_aluno', 'Data admissão:') !!}
+    {!! Form::text('data_nascimento_aluno', null, ['class' => 'form-control', 'format' => 'dd/MM/yyyy']) !!}
 </div>
 
 <!-- Sexo Aluno Field -->

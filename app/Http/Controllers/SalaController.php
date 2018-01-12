@@ -59,7 +59,7 @@ class SalaController extends AppBaseController
 
         $sala = $this->salaRepository->create($input);
 
-        Flash::success('Sala saved successfully.');
+        Flash::success('Sala salva com sucesso.');
 
         return redirect(route('salas.index'));
     }
@@ -76,7 +76,7 @@ class SalaController extends AppBaseController
         $sala = $this->salaRepository->findWithoutFail($id);
 
         if (empty($sala)) {
-            Flash::error('Sala not found');
+            Flash::error('Sala não encontrada');
 
             return redirect(route('salas.index'));
         }

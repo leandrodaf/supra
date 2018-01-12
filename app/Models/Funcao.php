@@ -57,8 +57,14 @@ class Funcao extends Model
      * @var array
      */
     public static $rules = [
-        
+        'nome' => 'required|min:3|max:255',
+        'status' => 'required',
     ];
+
+    public function pessoa()
+    {
+        return $this->belongsToMany('App\Models\Pessoa');
+    }
 
     
 }

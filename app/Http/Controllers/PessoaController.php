@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Helpers\Helpers;
 
 class PessoaController extends AppBaseController
 {
@@ -43,12 +44,15 @@ class PessoaController extends AppBaseController
      */
     public function create()
     {
-        $tipoPessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $tipoPessoas = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '!=', 1]])->get()->pluck('nome', 'id');
         $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
         $estadoCivil = \App\Models\EstadoCivil::where('status', '=', 1)->get()->pluck('nome', 'id');
         $nacionalidades = \App\Models\Nacionalidade::where('status', '=', 1)->get()->pluck('nome', 'id');
 
-        return view('pessoas.create')->with(compact('tipoPessoas', 'generos', 'estadoCivil', 'nacionalidades'));
+        $setores = \App\Models\Setor::where('status', '=', 1)->get();
+        $funcoes = \App\Models\Funcao::where('status', '=', 1)->get();
+
+        return view('pessoas.create')->with(compact('tipoPessoas', 'generos', 'estadoCivil', 'nacionalidades', 'setores', 'funcoes'));
     }
 
     /**
@@ -60,25 +64,54 @@ class PessoaController extends AppBaseController
      */
     public function store(CreatePessoaRequest $request)
     {
+
+        $helper = new Helpers();
         $input = $request->all();
 
-//        return dd($input);
+        $input['dataNascimento'] = $helper->formataDataPtBr($input['dataNascimento']);
+        $input['data_admissao'] = $helper->formataDataPtBr($input['data_admissao']);
+        $input['salario_base'] = $helper->formataValoresMonetarios($input['salario_base']);
+        $input['vale_refeicao'] = $helper->formataValoresMonetarios($input['vale_refeicao']);
+        $input['vale_transporte'] = $helper->formataValoresMonetarios($input['vale_transporte']);
 
         $enderecos['endereco'] = array_get($input, 'enderecos');
         array_forget($input, 'enderecos');
+
         $emails = array_get($input, 'email');
         array_forget($input, 'email');
 
 
+        $setores = array_get($input, 'setores');
+        array_forget($input, 'setores');
+
+        $funcoes = array_get($input, 'funcoes');
+        array_forget($input, 'funcoes');
+
+
+
         $pessoa = $this->pessoaRepository->create($input);
 
-        if (!empty($pessoa)) {
-            $pessoa->endereco()->createMany($enderecos);
+        if (!empty($enderecos)) {
+            $pessoa->endereco()->createMany(
+                $enderecos
+            );
         }
 
         if (!empty($emails)) {
             $pessoa->email()->createMany(
                 $emails
+            );
+        }
+
+        if (!empty($setores)) {
+            $pessoa->setor()->createMany(
+                $setores
+            );
+        }
+
+        if (!empty($funcoes)) {
+            $pessoa->funcao()->createMany(
+                $funcoes
             );
         }
 
@@ -142,6 +175,7 @@ class PessoaController extends AppBaseController
     public function show($idPessoa)
     {
         $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
+
 
         if (empty($pessoa)) {
             $flash = new Flash();

@@ -66,6 +66,16 @@ Route::resource('salas', 'SalaController');
 
 Route::resource('materias', 'MateriaController');
 
+Route::get(
+    'funcoes/getAjax',
+    'FuncaoController@dataAjax'
+)->name('funcoes.getAjaxSelect2');
+
 Route::resource('funcoes', 'FuncaoController');
+
+Route::get(
+    'setores/getAjax',
+    'SetorController@dataAjax'
+)->name('setores.getAjaxSelect2');
 
 Route::resource('setores', 'SetorController');
