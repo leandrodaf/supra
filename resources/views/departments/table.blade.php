@@ -7,15 +7,15 @@
         </tr>
     </thead>
     <tbody>
-    @foreach($setores as $setor)
+    @foreach($departmentes as $department)
         <tr>
-            <td>{!! $setor->nome !!}</td>
-            <td>{!! $setor->status ? "Ativo": "Inativo"!!}</td>
+            <td>{!! $department->nome !!}</td>
+            <td>{!! $department->status ? "Ativo": "Inativo"!!}</td>
             <td>
-                {!! Form::open(['route' => ['setores.destroy', $setor->id], 'method' => 'delete']) !!}
+                {!! Form::open(['route' => ['departments.destroy', $department->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('setores.edit', [$setor->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    {{--<a href="{!! route('setores.edit', [$setor->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>--}}
+                    <a href="{!! route('departments.edit', [$department->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    {{--<a href="{!! route('departments.edit', [$department->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>--}}
                     {{--{!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}--}}
                 </div>
 {{--                {!! Form::close() !!}--}}

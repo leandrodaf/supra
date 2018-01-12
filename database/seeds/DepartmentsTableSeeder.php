@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SetoresTableSeeder extends Seeder
+class DepartmentTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class SetoresTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('setor')->insert([
+        DB::table('department')->insert([
             [
                 'nome' => "Departamento financeiro",
                 'status' => "1",

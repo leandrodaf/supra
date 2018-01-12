@@ -63,8 +63,8 @@ Route::get(
 Route::resource('roles', 'RoleController');
 
 Route::get(
-    'setores/getAjax',
-    'SetorController@dataAjax'
-)->name('setores.getAjaxSelect2');
+    'departments/getAjax',
+    'DepartmentController@dataAjax'
+)->name('departments.getAjaxSelect2');
 
-Route::resource('setores', 'SetorController');
+Route::resource('departments', 'DepartmentController');

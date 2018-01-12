@@ -6,7 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Setor
+ * Class Department
  * @package App\Models
  * @version January 9, 2018, 11:49 am -02
  *
@@ -22,11 +22,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string nome
  * @property boolean status
  */
-class Setor extends Model
+class Department extends Model
 {
     use SoftDeletes;
 
-    public $table = 'setor';
+    public $table = 'department';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';

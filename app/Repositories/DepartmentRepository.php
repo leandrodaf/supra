@@ -2,19 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\Setor;
+use App\Models\Department;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
- * Class SetorRepository
+ * Class DepartmentRepository
  * @package App\Repositories
  * @version January 9, 2018, 11:49 am -02
  *
- * @method Setor findWithoutFail($id, $columns = ['*'])
- * @method Setor find($id, $columns = ['*'])
- * @method Setor first($columns = ['*'])
+ * @method Department findWithoutFail($id, $columns = ['*'])
+ * @method Department find($id, $columns = ['*'])
+ * @method Department first($columns = ['*'])
 */
-class SetorRepository extends BaseRepository
+class DepartmentRepository extends BaseRepository
 {
     /**
      * @var array
@@ -29,6 +29,6 @@ class SetorRepository extends BaseRepository
      **/
     public function model()
     {
-        return Setor::class;
+        return Department::class;
     }
 }

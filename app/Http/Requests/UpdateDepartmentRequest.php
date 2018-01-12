@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Setor;
+use App\Models\Department;
 
-class CreateSetorRequest extends FormRequest
+class UpdateDepartmentRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class CreateSetorRequest extends FormRequest
      */
     public function rules()
     {
-        return Setor::$rules;
+        return Department::$rules;
     }
 }

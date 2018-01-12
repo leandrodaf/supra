@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSetorTable extends Migration
+class CreateDepartmentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSetorTable extends Migration
      */
     public function up()
     {
-        Schema::create('setor', function (Blueprint $table) {
+        Schema::create('department', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
             $table->boolean('status');
@@ -29,6 +29,6 @@ class CreateSetorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('setor');
+        Schema::dropIfExists('department');
     }
 }

@@ -13,11 +13,11 @@
     <a href="{!! route('materias.index') !!}"><i class="fa fa-edit"></i><span>Materias</span></a>
 </li>
 
-<li class="{{ Request::is('funcoes*') ? 'active' : '' }}">
-    <a href="{!! route('funcoes.index') !!}"><i class="fa fa-edit"></i><span>Funções</span></a>
+<li class="{{ Request::is('roles*') ? 'active' : '' }}">
+    <a href="{!! route('roles.index') !!}"><i class="fa fa-edit"></i><span>Funções</span></a>
 </li>
 
-<li class="{{ Request::is('setores*') ? 'active' : '' }}">
-    <a href="{!! route('setores.index') !!}"><i class="fa fa-edit"></i><span>Setores</span></a>
+<li class="{{ Request::is('departments*') ? 'active' : '' }}">
+    <a href="{!! route('departments.index') !!}"><i class="fa fa-edit"></i><span>Setores</span></a>
 </li>
 

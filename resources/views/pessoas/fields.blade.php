@@ -127,8 +127,8 @@
             {!! Form::label('setor', 'Setor:') !!}
             <select class="form-control" id="setorFuncionario" name="setores[][setores_id]" multiple="multiple">
 
-                @foreach($setores as $setor)
-                    <option value="{{ $setor->id }}">{{$setor->nome}}</option>
+                @foreach($departmentes as $department)
+                    <option value="{{ $department->id }}">{{$department->nome}}</option>
                 @endforeach
             </select>
         </div>
@@ -138,8 +138,8 @@
             {!! Form::label('funcao', 'Função do funcionário:') !!}
             <select class="form-control" id="funcaoFuncionario" name="funcoes[][funcoes_id]" multiple="multiple">
 
-            @foreach($funcoes as $funcao)
-                <option value="{{ $funcao->id }}">{{$funcao->nome}}</option>
+            @foreach($roles as $role)
+                <option value="{{ $role->id }}">{{$role->nome}}</option>
             @endforeach
             </select>
         </div>
