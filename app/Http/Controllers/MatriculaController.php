@@ -20,13 +20,13 @@ class MatriculaController extends AppBaseController
     public function index()
     {
         $tipoPessoas = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '=', 1]])->get()->pluck('nome', 'id');
-        $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
         $estadoCivil = \App\Models\EstadoCivil::where('status', '=', 1)->get()->pluck('nome', 'id');
         $nacionalidades = \App\Models\Nacionalidade::where('status', '=', 1)->get()->pluck('nome', 'id');
-        $departments = \App\Models\Setor::where('status', '=', 1)->get();
-        $roles = \App\Models\Funcao::where('status', '=', 1)->get();
+        $departments = \App\Models\Department::where('status', '=', 1)->get();
+        $roles = \App\Models\Role::where('status', '=', 1)->get();
 
-        return view('matricula.index')->with(compact('tipoPessoas', 'generos', 'estadoCivil', 'nacionalidades','setores','funcoes'));
+        return view('matricula.index')->with(compact('tipoPessoas', 'genders', 'estadoCivil', 'nacionalidades','departments','roles'));
     }
 
 

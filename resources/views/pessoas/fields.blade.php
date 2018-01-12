@@ -47,7 +47,7 @@
 <div class="form-group {{$errors->has('sexo') ? "has-error":""}} col-sm-6">
     {!! Form::label('sexo', 'Sexo:') !!}
     <label class="checkbox-inline">
-        {!! Form::select('sexo', $generos, !empty($pessoa)? $pessoa->sexo:null, ['class' => 'form-control','required'=>'required']) !!}
+        {!! Form::select('sexo', $genders, !empty($pessoa)? $pessoa->sexo:null, ['class' => 'form-control','required'=>'required']) !!}
     </label>
 </div>
 <div class="form-group  col-sm-6">
@@ -124,7 +124,7 @@
 
 
         <div class="form-group {{$errors->has('funcao') ? "has-error":""}} col-sm-6">
-            {!! Form::label('setor', 'Setor:') !!}
+            {!! Form::label('setor', 'Department:') !!}
             <select class="form-control" id="setorFuncionario" name="setores[][setores_id]" multiple="multiple">
 
                 @foreach($departments as $department)

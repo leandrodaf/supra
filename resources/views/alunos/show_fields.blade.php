@@ -36,7 +36,7 @@
             @endif
             <!-- Sexo Aluno Field -->
             <dt> {!! Form::label('sexo_aluno', 'Sexo Aluno:') !!} </dt>
-            <dd> {!! $alunos->genero->nome !!}</dd>
+            <dd> {!! $alunos->gender->nome !!}</dd>
 
             <!-- Flg Certidao Nascimento Aluno Field -->
             <dt> {!! Form::label('flg_certidao_nascimento_aluno', 'Certidão de nascimento:') !!} </dt>

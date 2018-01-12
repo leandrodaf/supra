@@ -36,7 +36,7 @@
 <!-- Sexo Aluno Field -->
 <div class="form-group {{$errors->has('sexo_aluno') ? "has-error":""}} col-sm-6">
     {!! Form::label('sexo_aluno', 'Sexo:') !!}
-    {!! Form::select('sexo_aluno', $generos, !empty($alunos)? $alunos->sexo_aluno:null, ['class' => 'form-control']) !!}
+    {!! Form::select('sexo_aluno', $genders, !empty($alunos)? $alunos->sexo_aluno:null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Tipo Pessoas Id Field -->

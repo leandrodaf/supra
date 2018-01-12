@@ -69,7 +69,7 @@ class DepartmentController extends AppBaseController
     }
 
     /**
-     * Store a newly created Setor in storage.
+     * Store a newly created Department in storage.
      *
      * @param CreateDepartmentRequest $request
      *
@@ -81,7 +81,7 @@ class DepartmentController extends AppBaseController
 
         $department = $this->departmentRepository->create($input);
 
-        Flash::success('Setor salvo com sucesso.');
+        Flash::success('Department salvo com sucesso.');
 
         return redirect(route('departments.index'));
     }
@@ -98,7 +98,7 @@ class DepartmentController extends AppBaseController
         $department = $this->departmentRepository->findWithoutFail($id);
 
         if (empty($department)) {
-            Flash::error('Setor não encontrado');
+            Flash::error('Department não encontrado');
 
             return redirect(route('departments.index'));
         }
@@ -118,7 +118,7 @@ class DepartmentController extends AppBaseController
         $department = $this->departmentRepository->findWithoutFail($id);
 
         if (empty($department)) {
-            Flash::error('Setor não encontrado');
+            Flash::error('Department não encontrado');
 
             return redirect(route('departments.index'));
         }
@@ -127,7 +127,7 @@ class DepartmentController extends AppBaseController
     }
 
     /**
-     * Update the specified Setor in storage.
+     * Update the specified Department in storage.
      *
      * @param  int              $id
      * @param UpdateDepartmentRequest $request
@@ -139,20 +139,20 @@ class DepartmentController extends AppBaseController
         $department = $this->departmentRepository->findWithoutFail($id);
 
         if (empty($department)) {
-            Flash::error('Setor não encontrado');
+            Flash::error('Department não encontrado');
 
             return redirect(route('departments.index'));
         }
 
         $department = $this->departmentRepository->update($request->all(), $id);
 
-        Flash::success('Setor updated successfully.');
+        Flash::success('Department updated successfully.');
 
         return redirect(route('departments.index'));
     }
 
     /**
-     * Remove the specified Setor from storage.
+     * Remove the specified Department from storage.
      *
      * @param  int $id
      *
@@ -163,14 +163,14 @@ class DepartmentController extends AppBaseController
         $department = $this->departmentRepository->findWithoutFail($id);
 
         if (empty($department)) {
-            Flash::error('Setor não encontrado');
+            Flash::error('Department não encontrado');
 
             return redirect(route('departments.index'));
         }
 
         $this->departmentRepository->delete($id);
 
-        Flash::success('Setor deletado com sucesso.');
+        Flash::success('Department deletado com sucesso.');
 
         return redirect(route('departments.index'));
     }

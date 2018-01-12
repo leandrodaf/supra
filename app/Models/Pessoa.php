@@ -137,10 +137,10 @@ class Pessoa extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function genero()
+    public function gender()
     {
         return $this->hasOne(
-            \App\Models\Genero::class,
+            \App\Models\Gender::class,
             'id',
             'sexo'
         )->select('id', 'nome');
@@ -210,7 +210,7 @@ class Pessoa extends Model
      **/
     public function funcao()
     {
-        return $this->hasMany('App\Models\Funcao');
+        return $this->hasMany('App\Models\Role');
     }
 
     /**
@@ -218,7 +218,7 @@ class Pessoa extends Model
      **/
     public function setor()
     {
-        return $this->hasMany('App\Models\Setor');
+        return $this->hasMany('App\Models\Department');
     }
 
 }

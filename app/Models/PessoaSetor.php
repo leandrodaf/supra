@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class PessoaSetor extends Pivot
+class PessoaDepartment extends Pivot
 {
     /**
      * The table associated with the model.

@@ -45,14 +45,14 @@ class PessoaController extends AppBaseController
     public function create()
     {
         $tipoPessoas = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '!=', 1]])->get()->pluck('nome', 'id');
-        $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
         $estadoCivil = \App\Models\EstadoCivil::where('status', '=', 1)->get()->pluck('nome', 'id');
         $nacionalidades = \App\Models\Nacionalidade::where('status', '=', 1)->get()->pluck('nome', 'id');
 
-        $departments = \App\Models\Setor::where('status', '=', 1)->get();
+        $departments = \App\Models\Department::where('status', '=', 1)->get();
         $roles = \App\Models\Role::where('status', '=', 1)->get();
 
-        return view('pessoas.create')->with(compact('tipoPessoas', 'generos', 'estadoCivil', 'nacionalidades', 'setores', 'funcoes'));
+        return view('pessoas.create')->with(compact('tipoPessoas', 'genders', 'estadoCivil', 'nacionalidades', 'departments', 'roles'));
     }
 
     /**
@@ -81,11 +81,11 @@ class PessoaController extends AppBaseController
         array_forget($input, 'email');
 
 
-        $departments = array_get($input, 'setores');
-        array_forget($input, 'setores');
+        $departments = array_get($input, 'departments');
+        array_forget($input, 'departments');
 
-        $roles = array_get($input, 'funcoes');
-        array_forget($input, 'funcoes');
+        $roles = array_get($input, 'roles');
+        array_forget($input, 'roles');
 
 
 
@@ -154,7 +154,7 @@ class PessoaController extends AppBaseController
 
         $resposta['nome'] = $pessoa->nome;
         $resposta['cpf_cnpj'] = $pessoa->cpf_cnpj;
-        $resposta['sexo'] = $pessoa->genero->nome;
+        $resposta['sexo'] = $pessoa->gender->nome;
         $resposta['rg'] = $pessoa->rg;
         $resposta['dataNascimento'] = $pessoa->dataNascimento->format('d/m/Y');
         $resposta['status'] = $pessoa->status;
@@ -199,7 +199,7 @@ class PessoaController extends AppBaseController
         $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
 
         $tipoPessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
-        $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
         $estadoCivil = \App\Models\EstadoCivil::where('status', '=', 1)->get()->pluck('nome', 'id');
         $nacionalidades = \App\Models\Nacionalidade::where('status', '=', 1)->get()->pluck('nome', 'id');
 
@@ -210,7 +210,7 @@ class PessoaController extends AppBaseController
             return redirect(route('pessoas.index'));
         }
 
-        return view('pessoas.edit')->with(compact('pessoa', 'nacionalidades', 'estadoCivil', 'tipoPessoas', 'generos'));
+        return view('pessoas.edit')->with(compact('pessoa', 'nacionalidades', 'estadoCivil', 'tipoPessoas', 'genders'));
     }
 
     /**

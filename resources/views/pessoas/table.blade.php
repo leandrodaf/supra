@@ -16,7 +16,7 @@
         <tr>
             <td>{!! $pessoa->nome !!}</td>
             <td>{!! $pessoa->cpf_cnpj !!}</td>
-            <td>{!! $pessoa->genero->nome !!}</td>
+            <td>{!! $pessoa->gender->nome !!}</td>
             <td>{!! $pessoa->dataNascimento->format('d/m/Y') !!}</td>
             <td>{!! $pessoa->getEstadoCivil->nome !!}</td>
             <td>{!! $pessoa->status != 0 ? "Ativa":"Inativo" !!}</td>

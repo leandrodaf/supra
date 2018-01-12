@@ -18,10 +18,10 @@
     <dd>{!! $pessoa->cpf_cnpj !!}</dd>
     @endif
 
-    @if(!empty($pessoa->genero->nome))
+    @if(!empty($pessoa->gender->nome))
     <!-- Sexo Field -->
     <dt>{!! Form::label('sexo', 'Sexo:') !!}</dt>
-    <dd>{!! $pessoa->genero->nome !!}</dd>
+    <dd>{!! $pessoa->gender->nome !!}</dd>
     @endif
 
     @if(!empty($pessoa->rg))

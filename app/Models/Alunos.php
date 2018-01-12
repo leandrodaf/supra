@@ -135,10 +135,10 @@ class Alunos extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function genero()
+    public function gender()
     {
         return $this->hasOne(
-            \App\Models\Genero::class,
+            \App\Models\Gender::class,
             'id',
             'sexo_aluno'
         )->select('id', 'nome');
