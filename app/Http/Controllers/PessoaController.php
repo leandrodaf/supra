@@ -81,12 +81,11 @@ class PessoaController extends AppBaseController
         array_forget($input, 'email');
 
 
-        $departments = array_get($input, 'departments');
-        array_forget($input, 'departments');
+        $departments = array_get($input, 'department');
+        array_forget($input, 'department');
 
-        $roles = array_get($input, 'roles');
-        array_forget($input, 'roles');
-
+        $roles = array_get($input, 'role');
+        array_forget($input, 'role');
 
 
         $pessoa = $this->pessoaRepository->create($input);
@@ -104,13 +103,13 @@ class PessoaController extends AppBaseController
         }
 
         if (!empty($departments)) {
-            $pessoa->setor()->createMany(
+            $pessoa->departments()->createMany(
                 $departments
             );
         }
 
         if (!empty($roles)) {
-            $pessoa->role()->createMany(
+            $pessoa->roles()->createMany(
                 $roles
             );
         }

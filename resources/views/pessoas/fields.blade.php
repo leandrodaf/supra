@@ -125,7 +125,7 @@
 
         <div class="form-group {{$errors->has('funcao') ? "has-error":""}} col-sm-6">
             {!! Form::label('setor', 'Department:') !!}
-            <select class="form-control" id="setorFuncionario" name="setores[][setores_id]" multiple="multiple">
+            <select class="form-control" id="setorFuncionario" name="department[][department]" multiple="multiple">
 
                 @foreach($departments as $department)
                     <option value="{{ $department->id }}">{{$department->nome}}</option>
@@ -136,7 +136,7 @@
 
         <div class="form-group {{$errors->has('funcao') ? "has-error":""}} col-sm-6">
             {!! Form::label('funcao', 'Função do funcionário:') !!}
-            <select class="form-control" id="funcaoFuncionario" name="funcoes[][funcoes_id]" multiple="multiple">
+            <select class="form-control" id="funcaoFuncionario" name="role[][role]" multiple="multiple">
 
             @foreach($roles as $role)
                 <option value="{{ $role->id }}">{{$role->nome}}</option>

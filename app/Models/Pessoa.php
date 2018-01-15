@@ -199,26 +199,37 @@ class Pessoa extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function telefone()
+    public function telefones()
     {
         return $this->belongsToMany('App\Models\Telefone');
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function funcao()
+    public function departments()
     {
-        return $this->hasMany('App\Models\Role');
+        return $this->belongsToMany(
+            \App\Models\Department::class,
+            'pessoa_department',
+            'pessoa_id',
+            'departments_id'
+        );
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function setor()
+    public function roles()
     {
-        return $this->hasMany('App\Models\Department');
+        return $this->belongsToMany(
+            \App\Models\Role::class,
+            'pessoa_role',
+            'pessoa_id',
+            'roles_id'
+        );
     }
+
+
 
 }

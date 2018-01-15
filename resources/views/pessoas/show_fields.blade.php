@@ -24,6 +24,8 @@
     <dd>{!! $pessoa->gender->nome !!}</dd>
     @endif
 
+
+
     @if(!empty($pessoa->rg))
     <!-- Rg Field -->
     <dt>{!! Form::label('rg', 'RG:') !!}</dt>

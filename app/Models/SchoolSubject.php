@@ -26,7 +26,7 @@ class SchoolSubject extends Model
 {
     use SoftDeletes;
 
-    public $table = 'schoolsubject';
+    public $table = 'schoolsubjects';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
