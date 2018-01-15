@@ -25,11 +25,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean sexo
  * @property string rg
  * @property date dataNascimento
- * @property string estadoCivil
+ * @property string familySituation
  * @property string razaoSocial
  * @property string nomeFantasia
  * @property string inscricaoEstadual
- * @property string nacionalidade
+ * @property string citizenship
  * @property boolean status
  * @property integer tipo_pessoas_id
  */
@@ -52,13 +52,22 @@ class Pessoa extends Model
         'sexo',
         'rg',
         'dataNascimento',
-        'estadoCivil',
+        'familySituation',
         'razaoSocial',
         'nomeFantasia',
         'inscricaoEstadual',
-        'nacionalidade',
+        'citizenship',
         'status',
-        'tipo_pessoas_id'
+        'tipo_pessoas_id',
+        'data_admissao',
+        'numero_ctps',
+        'ctps_serie',
+        'pis',
+        'salario_base',
+        'vale_refeicao',
+        'plano_saude',
+        'vale_transporte',
+        'contato_emergencial',
     ];
 
     /**
@@ -73,13 +82,22 @@ class Pessoa extends Model
         'sexo' => 'integer',
         'rg' => 'string',
         'dataNascimento' => 'date',
-        'estadoCivil' => 'integer',
+        'familySituation' => 'integer',
         'razaoSocial' => 'string',
         'nomeFantasia' => 'string',
         'inscricaoEstadual' => 'string',
-        'nacionalidade' => 'integer',
+        'citizenship' => 'integer',
         'status' => 'boolean',
-        'tipo_pessoas_id' => 'integer'
+        'tipo_pessoas_id' => 'integer',
+        'data_admissao' => 'date',
+        'numero_ctps' => 'string',
+        'ctps_serie' => 'string',
+        'pis' => 'string',
+        'salario_base' => 'double',
+        'vale_refeicao' => 'double',
+        'plano_saude' => 'string',
+        'vale_transporte' => 'double',
+        'contato_emergencial' => 'string',
     ];
 
     /**
@@ -92,16 +110,16 @@ class Pessoa extends Model
         'cpf_cnpj' => 'required|max:19|min:14',
         'sexo' => 'required|max:1',
         'rg' => 'min:12',
-        'dataNascimento' => 'required|date',
-        'estadoCivil' => 'required',
+        'dataNascimento' => 'required',
+        'familySituation' => 'required',
         'razaoSocial' => '',
         'nomeFantasia' => '',
         'inscricaoEstadual' => '',
-        'nacionalidade' => 'required|max:1',
-        'status' => 'required',
+        'citizenship' => 'required|max:1',
         'tipo_pessoas_id' => 'required',
         'enderecos.numero' => 'required',
-        'enderecos.cep' => 'required',
+        'enderecos.cep' => 'required'
+
     ];
 
     /**
@@ -119,10 +137,10 @@ class Pessoa extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function genero()
+    public function gender()
     {
         return $this->hasOne(
-            \App\Models\Genero::class,
+            \App\Models\Gender::class,
             'id',
             'sexo'
         )->select('id', 'nome');
@@ -131,24 +149,24 @@ class Pessoa extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function getEstadoCivil()
+    public function getFamilySituation()
     {
         return $this->hasOne(
-            \App\Models\EstadoCivil::class,
+            \App\Models\FamilySituation::class,
             'id',
-            'estadoCivil'
+            'familySituation'
         )->select('id', 'nome');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function getNacionalidade()
+    public function getCitizenship()
     {
         return $this->hasOne(
-            \App\Models\Nacionalidade::class,
+            \App\Models\Citizenship::class,
             'id',
-            'nacionalidade'
+            'citizenship'
         )->select('id', 'nome');
     }
 
@@ -183,8 +201,24 @@ class Pessoa extends Model
      **/
     public function telefone()
     {
-        return $this->belongsToMany(
-            \App\Models\Telefone::class
-        );
+        return $this->belongsToMany('App\Models\Telefone');
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function funcao()
+    {
+        return $this->hasMany('App\Models\Role');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function setor()
+    {
+        return $this->hasMany('App\Models\Department');
+    }
+
 }

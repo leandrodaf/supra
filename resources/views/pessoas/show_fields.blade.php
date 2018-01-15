@@ -18,10 +18,10 @@
     <dd>{!! $pessoa->cpf_cnpj !!}</dd>
     @endif
 
-    @if(!empty($pessoa->genero->nome))
+    @if(!empty($pessoa->gender->nome))
     <!-- Sexo Field -->
     <dt>{!! Form::label('sexo', 'Sexo:') !!}</dt>
-    <dd>{!! $pessoa->genero->nome !!}</dd>
+    <dd>{!! $pessoa->gender->nome !!}</dd>
     @endif
 
     @if(!empty($pessoa->rg))
@@ -36,10 +36,10 @@
     <dd>{!! $pessoa->dataNascimento !!}</dd>
     @endif
 
-    @if(!empty($pessoa->getEstadoCivil->nome))
-    <!-- Estadocivil Field -->
-    <dt>{!! Form::label('estadoCivil', 'Estado Civil:') !!}</dt>
-    <dd>{!! $pessoa->getEstadoCivil->nome !!}</dd>
+    @if(!empty($pessoa->getFamilySituation->nome))
+    <!-- familySituation Field -->
+    <dt>{!! Form::label('familySituation', 'Estado Civil:') !!}</dt>
+    <dd>{!! $pessoa->getFamilySituation->nome !!}</dd>
     @endif
 
     @if(!empty($pessoa->razaoSocial))
@@ -60,10 +60,10 @@
     <dd>{!! $pessoa->inscricaoEstadual !!}</dd>
     @endif
 
-    @if(!empty($pessoa->getNacionalidade->nome))
-    <!-- Nacionalidade Field -->
-    <dt>{!! Form::label('nacionalidade', 'Nacionalidade:') !!}</dt>
-    <dd>{!! $pessoa->getNacionalidade->nome !!}</dd>
+    @if(!empty($pessoa->getCitizenship->nome))
+    <!-- Citizenship Field -->
+    <dt>{!! Form::label('citizenship', 'Nacionalidade:') !!}</dt>
+    <dd>{!! $pessoa->getCitizenship->nome !!}</dd>
     @endif
 
     @if(!empty($pessoa->status))

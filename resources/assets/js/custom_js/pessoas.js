@@ -5,7 +5,7 @@ $(document).ready(function () {
     if ($(".validatecpf").length) {
         $('.validatecpf').cpfcnpj({
             mask: true,
-            validate: 'cpfcnpj',
+            validate: 'cpf',
             event: 'blur',
             handler: '.validatecpf',
             ifValid: function (input) {
@@ -17,15 +17,101 @@ $(document).ready(function () {
         });
     }
 
+    $('#tipo_pessoas_id').change(function () {
+        let changeTipoPessoa = $("#tipo_pessoas_id option:selected").val();
+
+        if (changeTipoPessoa !== "4") {
+            $('#dadosProfessor').hide();
+
+            $('#setorFuncionario').val('').trigger('change');
+            $('#funcaoFuncionario').val('').trigger('change');
+
+            $('#setorFuncionario').removeAttr('required');
+            $('#funcaoFuncionario').removeAttr('required');
+            $('#data_admissao').removeAttr('required');
+
+            $('#data_admissao').val("");
+            $('#numero_ctps').val("");
+            $('#ctps_serie').val("");
+            $('#pis').val("");
+            $('#salario_base').val("");
+            $('#vale_refeicao').val("");
+            $('#vale_transporte').val("");
+            $('#contato_emergencial').val("");
+         } else {
+            $('#setorFuncionario').attr('required', 'required');
+            $('#funcaoFuncionario').attr('required', 'required');
+            $('#data_admissao').attr('required', 'required');
+            $('#dadosProfessor').show();
+        }
+
+        if (changeTipoPessoa !== "5") {
+            $('.cpfCnpj').text("CPF");
+            $('#cpf_cnpj').mask("999.999.999-99", {placeholder: "___.___.___-__"});
+            $('#cpf_cnpj').val("");
+            $('#razaoSocial').val("");
+            $('#nomeFantasia').val("");
+            $('#inscricaoEstadual').val("");
+
+            $('#tipoEmpresa').hide();
+        } else {
+            $('.cpfCnpj').text("CNPJ");
+            $("#cpf_cnpj").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
+            $('.validatecpf').cpfcnpj({
+                mask: true,
+                validate: 'cnpj',
+                event: 'blur',
+                handler: '.validatecpf',
+                ifValid: function (input) {
+                    input.removeClass("error");
+                },
+                ifInvalid: function (input) {
+                    input.addClass("error");
+                }
+            });
+
+            $('#tipoEmpresa').show();
+        }
+
+
+    });
+
+    $("#contato_emergencial").mask("(99) 9 9999-9999", {placeholder: "(__) _ ____-______"});
+    $('#salario_base').maskMoney({defaultZero:false});
+    $('#vale_refeicao').maskMoney({defaultZero:false});
+    $('#vale_transporte').maskMoney({defaultZero:false});
+
+    $("#dataNascimento").mask("99/99/9999", {placeholder: "__/__ /___"});
+    $("#data_admissao").mask("99/99/9999", {placeholder: "__/__ /___"});
+
+    $('#dataNascimento').datepicker({
+        autoclose: true,
+        locale: 'pt-BR',
+        format: 'dd/mm/yyyy'
+    });
+
+    $('#setorFuncionario').select2({
+        width: '100%',
+    });
+
+    $('#funcaoFuncionario').select2({
+        width: '100%'
+    });
+
+    $('#data_admissao').datepicker({
+        autoclose: true,
+        locale: 'pt-BR',
+        format: 'dd/mm/yyyy'
+    });
 
     $('#estado').select2({
         width: '100%'
     });
 
-    $('#nacionalidade').select2({
+    $('#citizenship').select2({
         width: '100%'
     });
-    $('#estadoCivil').select2({
+    $('#familySituation').select2({
         width: '100%'
     });
     $('#sexo').select2({
@@ -51,7 +137,6 @@ $(document).ready(function () {
 
     $("#cep").mask("99999-999", {placeholder: "_____-___"});
     $("#rg").mask("99.999.999-99", {placeholder: "__.___.___-_"});
-    $("#cpf_cnpj").mask("999.999.999-99", {placeholder: "___.___.___-__"});
 
 //Busca CEP Async
 
@@ -62,7 +147,6 @@ $(document).ready(function () {
         $("#complemento").val("");
         $("#pais").val("");
         $("#ibge").val("");
-
     }
 
     $("#cep").blur(function () {
@@ -143,5 +227,7 @@ $(document).ready(function () {
             return null;
         }
     });
+
+    disabled
 
 });

@@ -25,11 +25,11 @@ class PessoaRepository extends BaseRepository
         'sexo',
         'rg',
         'dataNascimento',
-        'estadoCivil',
+        'familySituation',
         'razaoSocial',
         'nomeFantasia',
         'inscricaoEstadual',
-        'nacionalidade',
+        'citizenship',
         'status',
         'tipo_pessoas_id'
     ];

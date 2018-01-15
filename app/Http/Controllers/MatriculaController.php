@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAlunoMatricula;
 use App\Repositories\AlunosRepository;
 use Flash;
+use App\Helpers\Helpers;
 
 class MatriculaController extends AppBaseController
 {
@@ -18,27 +19,31 @@ class MatriculaController extends AppBaseController
 
     public function index()
     {
-        $tipoPessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
-        $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
-        $estadoCivil = \App\Models\EstadoCivil::where('status', '=', 1)->get()->pluck('nome', 'id');
-        $nacionalidades = \App\Models\Nacionalidade::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $tipoPessoas = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '=', 1]])->get()->pluck('nome', 'id');
+        $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $familySituation = \App\Models\FamilySituation::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $citizenships = \App\Models\Citizenship::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $departments = \App\Models\Department::where('status', '=', 1)->get();
+        $roles = \App\Models\Role::where('status', '=', 1)->get();
 
-
-        return view('matricula.index')->with(compact('tipoPessoas', 'generos', 'estadoCivil', 'nacionalidades'));
+        return view('matricula.index')->with(compact('tipoPessoas', 'genders', 'familySituation', 'citizenships','departments','roles'));
     }
 
 
     public function store(StoreAlunoMatricula $request)
     {
 
+        $helper = new Helpers();
         $input = $request->all();
+
+        $input['data_nascimento_aluno'] = $helper->formataDataPtBr($input['dataNascimento']);
 
         $emails = array_get($input, 'email');
         $responsaveis = array_get($input, 'responsaveis');
-        $dadosMedicos = array_get($input, 'dadosMedicos');
+        $healthInformations = array_get($input, 'healthInformations');
 
         array_forget($input, 'responsaveis');
-        array_forget($input, 'dadosMedicos');
+        array_forget($input, 'healthInformations');
         array_forget($input, 'email');
 
         $input['data_nascimento_aluno'] = \Carbon\Carbon::parse($input['data_nascimento_aluno'])->format('Y-m-d');
@@ -56,12 +61,12 @@ class MatriculaController extends AppBaseController
             $aluno->pessoa()->sync($responsaveis);
         }
 
-        if (!empty($dadosMedicos)) {
-            $medicos = $aluno->medico()->create(
-                $dadosMedicos
+        if (!empty($healthInformations)) {
+            $healthInformations = $aluno->getHealthInformation()->create(
+                $healthInformations
             );
 
-            $aluno->dados_medicos_id = $medicos->id;
+            $aluno->healthInformations_id = $healthInformations->id;
 
             $aluno->save();
 

@@ -98,7 +98,7 @@ $(document).ready(function () {
     });
 
 
-    $('#nacionalidade').select2({
+    $('#citizenship').select2({
         width: '100%'
     });
 
@@ -200,8 +200,13 @@ $(document).ready(function () {
     };
 
     $('#data_nascimento_aluno').datepicker({
-        startDate: reduzirDiasData(2192)
+        autoclose: true,
+        startDate: reduzirDiasData(2192),
+        locale: 'pt-BR',
+        format: 'dd/mm/yyyy'
     });
+
+    $("#data_nascimento_aluno").mask("99/99/9999", {placeholder: "__/__ /___"});
 
     let validateEmail = function (email) {
 
@@ -228,7 +233,10 @@ $(document).ready(function () {
         }
     });
 
-    $('input[name="flg_irmaos_aluno"]').on('ifClicked', function (event) {
+
+
+
+    $('input[name="flg_irmaos_aluno"]').on('click', function (event) {
         if (this.value == 1) {
             $('#qtdAlunos').removeAttr("hidden", "hidden");
 
@@ -239,11 +247,6 @@ $(document).ready(function () {
 
     });
 
-    // $('input').iCheck({
-    //     checkboxClass: 'icheckbox_square',
-    //     radioClass: 'iradio_square',
-    //     increaseArea: '20%'
-    // });
 
 
     $('.sw-btn-next').val("Próximo");
@@ -264,7 +267,6 @@ $(document).ready(function () {
                         alert('Oops we still have error in the form');
                         return false;
                     } else {
-                        alert('Great! we are ready to submit form');
                         elmForm.submit();
                         return false;
                     }

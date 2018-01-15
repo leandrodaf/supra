@@ -61,6 +61,7 @@ mix.scripts([
     'node_modules/bootstrap-datepicker/js/locales/bootstrap-datepicker.pt-BR.js',
     'node_modules/bootstrap-validator/dist/validator.min.js',
     'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
+    'node_modules/jquery-maskmoney/dist/jquery.maskMoney.min.js',
     'node_modules/datatables.net/js/jquery.dataTables.js',
     'node_modules/datatables.net-bs/js/dataTables.bootstrap.js',
     'node_modules/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js',

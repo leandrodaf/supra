@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -51,19 +40,27 @@ Route::post(
 
 Route::resource('alunos', 'AlunosController');
 
-Route::resource("salas", 'SalaController');
-
 Route::resource('emails', 'EmailController');
 
-Route::resource('dadosMedicos', 'DadosMedicosController');
+Route::resource('healthInformations', 'HealthInformationsController');
 
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::post('matricula', 'MatriculaController@store')->name('matricula.store');
 
-Route::resource('salas', 'SalaController');
+Route::resource('classrooms', 'ClassroomController');
 
-Route::resource('salas', 'SalaController');
+Route::resource('schoolsubject', 'SchoolSubjectController');
 
-Route::resource('materias', 'MateriaController');
+Route::get(
+    'roles/getAjax',
+    'RoleController@dataAjax'
+)->name('roles.getAjaxSelect2');
 
-Route::resource('funcoes', 'FuncaoController');
+Route::resource('roles', 'RoleController');
+
+Route::get(
+    'departments/getAjax',
+    'DepartmentController@dataAjax'
+)->name('departments.getAjaxSelect2');
+
+Route::resource('departments', 'DepartmentController');

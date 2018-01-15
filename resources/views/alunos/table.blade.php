@@ -19,7 +19,7 @@
             </td>
             <td>{!! $alunos->nome_aluno !!}</td>
             <td>{!! $alunos->rg_aluno !!}</td>
-            <td>{!! $alunos->genero->nome !!}</td>
+            <td>{!! $alunos->gender->nome !!}</td>
             <td>{!! \Carbon\Carbon::parse($alunos->data_nascimento_aluno)->format('d/m/Y') !!}</td>
             <td>{!! $alunos->tipoPessoa->nome !!}</td>
             <td>

@@ -28,7 +28,7 @@ class CreateAlunoTable extends Migration
             $table->integer('sexo_aluno')->unsigned();
             $table->integer('tipo_pessoas_id')->unsigned();
             $table->foreign('tipo_pessoas_id')->references('id')->on('tipo_pessoas')->onDelete('cascade');
-            $table->foreign('sexo_aluno')->references('id')->on('generos')->onDelete('cascade');
+            $table->foreign('sexo_aluno')->references('id')->on('gender')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

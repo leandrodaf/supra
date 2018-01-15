@@ -11,32 +11,29 @@ class TipoPessoaTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tipo_pessoas')->insert(
+        DB::table('tipo_pessoas')->insert([
             [
                 'nome' => "Aluno",
                 'status' => "1",
-            ]
-        );
-
-        DB::table('tipo_pessoas')->insert(
+            ],
             [
                 'nome' => "Responsável",
                 'status' => "1",
-            ]
-        );
-
-        DB::table('tipo_pessoas')->insert(
+            ],
             [
                 'nome' => "Autorizado",
                 'status' => "1",
-            ]
-        );
-
-        DB::table('tipo_pessoas')->insert(
+            ],
             [
                 'nome' => "Professor",
                 'status' => "1",
+            ],
+            [
+                'nome' => "Empresa",
+                'status' => "1",
             ]
-        );
+        ]);
+
+
     }
 }

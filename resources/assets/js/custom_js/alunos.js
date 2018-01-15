@@ -78,8 +78,8 @@ $(document).ready(function () {
                     $('#statusdynamic').text("Inativo");
                 }
 
-                $('#nacionalidadedynamic').text(data.nacionalidade);
-                $('#estadoCivildynamic').text(data.estadoCivil);
+                $('#citizenshipdynamic').text(data.citizenship);
+                $('#familySituationdynamic').text(data.familySituation);
 
                 $('#dataNascimentodynamic').text(data.dataNascimento);
             },
@@ -100,19 +100,19 @@ $(document).ready(function () {
         }
     }
 
-    var carregaDadosMedicos = function (data) {
-        var id = $('.dadosMedicos').get(0).id;
+    var carregaHealthInformations = function (data) {
+        var id = $('.healthInformations').get(0).id;
         $.ajax({
             async:true,
             type: "GET",
             dataType: "json",
-            url: "/dadosMedicos/" + id,
+            url: "/healthInformations/" + id,
             cache: true,
             success: function (data) {
                 if (data.errors) {
-                    $('#errorsDadosMedicos').show();
+                    $('#errorsHealthInformations').show();
                 } else {
-                    $('.dadosMedicos').show();
+                    $('.healthInformations').show();
                     $('#sarampo').text(data.sarampo ? "Sim" : "Não");
                     analisaAlteraDados('sarampoField', data.sarampo);
 
@@ -171,17 +171,17 @@ $(document).ready(function () {
 
             },
             beforeSend: function () {
-                $('#loadingDadosMedicos').show();
+                $('#loadingHealthInformations').show();
             },
             complete: function () {
-                $('#loadingDadosMedicos').hide();
+                $('#loadingHealthInformations').hide();
             }
         });
     };
 
-    if ($('.dadosMedicos').length) {
+    if ($('.healthInformations').length) {
 
-        $('.dadosMedicos').on(carregaDadosMedicos());
+        $('.healthInformations').on(carregaHealthInformations());
 
     }
 
@@ -225,27 +225,27 @@ $(document).ready(function () {
         }
     });
 
-    $('#buttonAtualizarDadosMedicos').on('click', function () {
+    $('#buttonAtualizarHealthInformations').on('click', function () {
         // var id = $('.numeroResponsavel').get(0).id;
 
         $.ajax({
             async:true,
-            url: '/dadosMedicos/1',
+            url: '/healthInformations/1',
             type: 'POST',
-            data: $('#formDadosMedicos').serialize(),
+            data: $('#formHealthInformations').serialize(),
             dataType: 'JSON',
             success: function (data) {
-                carregaDadosMedicos();
-                $('#editarDadosMedicos').modal('hide');
+                carregaHealthInformations();
+                $('#editarHealthInformations').modal('hide');
             },
             beforeSend: function (before) {
-                $('#loadingAtualizaDadosMedicos').show('show');
+                $('#loadingAtualizaHealthInformations').show('show');
             },
             complete: function (complete) {
-                $('#loadingAtualizaDadosMedicos').hide('hide');
+                $('#loadingAtualizaHealthInformations').hide('hide');
             },
             error: function (error) {
-                $('#loadingAtualizaDadosMedicos').hide('hide');
+                $('#loadingAtualizaHealthInformations').hide('hide');
                 console.log(error);
             }
         });

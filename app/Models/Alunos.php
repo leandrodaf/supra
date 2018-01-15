@@ -59,7 +59,7 @@ class Alunos extends Model
         'qtd_irmaos_aluno',
         'data_nascimento_aluno',
         'tipo_pessoas_id',
-        'dados_medicos_id'
+        'healthInformations_id'
     ];
 
     /**
@@ -81,7 +81,7 @@ class Alunos extends Model
         'qtd_irmaos_aluno' => 'integer',
         'data_nascimento_aluno' => 'date',
         'tipo_pessoas_id' => 'integer',
-        'dados_medicos_id' => 'integer',
+        'healthInformations_id' => 'integer',
     ];
 
     /**
@@ -100,7 +100,7 @@ class Alunos extends Model
         'flg_irmaos_aluno' => 'required',
         'flg_juntos_aos_pais_aluno' => 'required',
         'qtd_irmaos_aluno' => 'nullable|min:1|max:10',
-        'data_nascimento_aluno' => 'required|date',
+//        'data_nascimento_aluno' => 'required',
         'tipo_pessoas_id' => 'required'
 
     ];
@@ -123,22 +123,22 @@ class Alunos extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function medico()
+    public function getHealthInformation()
     {
         return $this->hasOne(
-            \App\Models\DadosMedicos::class,
+            \App\Models\HealthInformations::class,
             'id',
-            'dados_medicos_id'
+            'healthInformations_id'
         );
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function genero()
+    public function gender()
     {
         return $this->hasOne(
-            \App\Models\Genero::class,
+            \App\Models\Gender::class,
             'id',
             'sexo_aluno'
         )->select('id', 'nome');

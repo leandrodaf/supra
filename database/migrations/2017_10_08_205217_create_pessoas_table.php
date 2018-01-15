@@ -23,12 +23,12 @@ class CreatePessoasTable extends Migration
             $table->string('razaoSocial')->nullable();
             $table->string('nomeFantasia')->nullable();
             $table->string('inscricaoEstadual')->nullable();
-            $table->boolean('status');
-            $table->integer('nacionalidade')->unsigned();
-            $table->foreign('nacionalidade')->references('id')->on('nacionalidades')->onDelete('cascade');
+            $table->boolean('status')->default(true);
+            $table->integer('citizenship')->unsigned();
+            $table->foreign('citizenship')->references('id')->on('citizenships')->onDelete('cascade');
 
-            $table->integer('estadoCivil')->unsigned();
-            $table->foreign('estadoCivil')->references('id')->on('estado_civil')->onDelete('cascade');
+            $table->integer('familySituation')->unsigned();
+            $table->foreign('familySituation')->references('id')->on('familySituation')->onDelete('cascade');
 
             $table->integer('tipo_pessoas_id')->unsigned();
             $table->foreign('tipo_pessoas_id')->references('id')->on('tipo_pessoas')->onDelete('cascade');

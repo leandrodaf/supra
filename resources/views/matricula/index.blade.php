@@ -71,7 +71,7 @@
                         </div>
                         <div id="step-3">
                             <div id="form-step-2" role="form" data-toggle="validator">
-                                @include('matricula.dadosmedicos')
+                                @include('matricula.healthInformations')
                             </div>
                         </div>
 
