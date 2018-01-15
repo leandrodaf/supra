@@ -40,10 +40,10 @@ class MatriculaController extends AppBaseController
 
         $emails = array_get($input, 'email');
         $responsaveis = array_get($input, 'responsaveis');
-        $dadosMedicos = array_get($input, 'dadosMedicos');
+        $healthInformations = array_get($input, 'healthInformations');
 
         array_forget($input, 'responsaveis');
-        array_forget($input, 'dadosMedicos');
+        array_forget($input, 'healthInformations');
         array_forget($input, 'email');
 
         $input['data_nascimento_aluno'] = \Carbon\Carbon::parse($input['data_nascimento_aluno'])->format('Y-m-d');
@@ -61,12 +61,12 @@ class MatriculaController extends AppBaseController
             $aluno->pessoa()->sync($responsaveis);
         }
 
-        if (!empty($dadosMedicos)) {
-            $medicos = $aluno->medico()->create(
-                $dadosMedicos
+        if (!empty($healthInformations)) {
+            $healthInformations = $aluno->getHealthInformation()->create(
+                $healthInformations
             );
 
-            $aluno->dados_medicos_id = $medicos->id;
+            $aluno->healthInformations_id = $healthInformations->id;
 
             $aluno->save();
 

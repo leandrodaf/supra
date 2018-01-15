@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddMedicoToAlunoTable extends Migration
+class AddHealthInformationsToAlunoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddMedicoToAlunoTable extends Migration
     public function up()
     {
         Schema::table('alunos', function (Blueprint $table) {
-            $table->integer('dados_medicos_id')->unsigned()->nullable();
-            $table->foreign('dados_medicos_id')->references('id')->on('dados_medicos')->onDelete('cascade');
+            $table->integer('healthInformations_id')->unsigned()->nullable();
+            $table->foreign('healthInformations_id')->references('id')->on('healthInformations')->onDelete('cascade');
         });
     }
 
@@ -27,8 +27,8 @@ class AddMedicoToAlunoTable extends Migration
     public function down()
     {
         Schema::table('alunos', function (Blueprint $table) {
-            $table->dropForeign('alunos_dados_medicos_id_foreign');
-            $table->dropColumn(['dados_medicos_id']);
+            $table->dropForeign('alunos_healthInformations_id_foreign');
+            $table->dropColumn(['healthInformations_id']);
         });
     }
 }

@@ -59,7 +59,7 @@ class Alunos extends Model
         'qtd_irmaos_aluno',
         'data_nascimento_aluno',
         'tipo_pessoas_id',
-        'dados_medicos_id'
+        'healthInformations_id'
     ];
 
     /**
@@ -81,7 +81,7 @@ class Alunos extends Model
         'qtd_irmaos_aluno' => 'integer',
         'data_nascimento_aluno' => 'date',
         'tipo_pessoas_id' => 'integer',
-        'dados_medicos_id' => 'integer',
+        'healthInformations_id' => 'integer',
     ];
 
     /**
@@ -123,12 +123,12 @@ class Alunos extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function medico()
+    public function getHealthInformation()
     {
         return $this->hasOne(
-            \App\Models\DadosMedicos::class,
+            \App\Models\HealthInformations::class,
             'id',
-            'dados_medicos_id'
+            'healthInformations_id'
         );
     }
 

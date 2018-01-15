@@ -5,8 +5,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[sarampo]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[sarampo]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[sarampo]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[sarampo]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -18,8 +18,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[rubeola]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[rubeola]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[rubeola]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[rubeola]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -31,8 +31,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[catapora]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[catapora]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[catapora]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[catapora]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -44,8 +44,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('escadadosMedicos[escarlatina]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[escarlatina]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('escahealthInformations[escarlatina]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[escarlatina]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -57,7 +57,7 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::textarea('dadosMedicos[outradoenca]', null,['rows' => '3']) !!}</label>
+            <label class="checkbox-inline">{!! Form::textarea('healthInformations[outradoenca]', null,['rows' => '3']) !!}</label>
         </label>
     </div>
 </div>
@@ -69,8 +69,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[bronquite]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[bronquite]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[bronquite]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[bronquite]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -82,8 +82,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[faltadear]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[faltadear]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[faltadear]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[faltadear]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -95,8 +95,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[diabete]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[diabete]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[diabete]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[diabete]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -108,8 +108,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[refluxo]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[refluxo]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[refluxo]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[refluxo]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -121,8 +121,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('codadosMedicos[convulsao]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[convulsao]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('cohealthInformations[convulsao]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[convulsao]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -134,7 +134,7 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::textarea('dadosMedicos[medicamentotomar]', null,['rows' => '3']) !!}</label>
+            <label class="checkbox-inline">{!! Form::textarea('healthInformations[medicamentotomar]', null,['rows' => '3']) !!}</label>
         </label>
     </div>
 </div>
@@ -146,8 +146,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[alergia]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[alergia]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[alergia]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[alergia]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -159,7 +159,7 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::textarea('dadosMedicos[sintomasalergia]', null,['rows' => '3']) !!}</label>
+            <label class="checkbox-inline">{!! Form::textarea('healthInformations[sintomasalergia]', null,['rows' => '3']) !!}</label>
         </label>
     </div>
 </div>
@@ -171,8 +171,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('radiodadosMedicos[visao]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[visao]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('radiohealthInformations[visao]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[visao]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -184,8 +184,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[fala]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[fala]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[fala]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[fala]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -197,8 +197,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[audicao]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[audicao]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[audicao]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[audicao]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -210,8 +210,8 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('edadosMedicos[edfisica]', '1', null) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('dadosMedicos[edfisica]', '0', true) !!} Não</label>
+            <label class="checkbox-inline">{!! Form::radio('ehealthInformations[edfisica]', '1', null) !!} Sim</label>
+            <label class="checkbox-inline">{!! Form::radio('healthInformations[edfisica]', '0', true) !!} Não</label>
         </label>
     </div>
 </div>
@@ -223,7 +223,7 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::textarea('dadosMedicos[outradeficienciax]', null,['rows' => '3']) !!} </label>
+            <label class="checkbox-inline">{!! Form::textarea('healthInformations[outradeficienciax]', null,['rows' => '3']) !!} </label>
         </label>
     </div>
 </div>

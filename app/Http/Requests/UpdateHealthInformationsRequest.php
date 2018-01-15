@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\DadosMedicos;
+use App\Models\HealthInformations;
 
-class UpdateDadosMedicosRequest extends FormRequest
+class UpdateHealthInformationsRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class UpdateDadosMedicosRequest extends FormRequest
      */
     public function rules()
     {
-        return DadosMedicos::$rules;
+        return HealthInformations::$rules;
     }
 }

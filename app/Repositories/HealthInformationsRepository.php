@@ -2,19 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\DadosMedicos;
+use App\Models\HealthInformations;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
- * Class DadosMedicosRepository
+ * Class HealthInformationsRepository
  * @package App\Repositories
  * @version November 12, 2017, 1:02 pm -02
  *
- * @method DadosMedicos findWithoutFail($id, $columns = ['*'])
- * @method DadosMedicos find($id, $columns = ['*'])
- * @method DadosMedicos first($columns = ['*'])
+ * @method HealthInformations findWithoutFail($id, $columns = ['*'])
+ * @method HealthInformations find($id, $columns = ['*'])
+ * @method HealthInformations first($columns = ['*'])
 */
-class DadosMedicosRepository extends BaseRepository
+class HealthInformationsRepository extends BaseRepository
 {
     /**
      * @var array
@@ -45,6 +45,6 @@ class DadosMedicosRepository extends BaseRepository
      **/
     public function model()
     {
-        return DadosMedicos::class;
+        return HealthInformations::class;
     }
 }

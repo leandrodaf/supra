@@ -6,7 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class DadosMedicos
+ * Class HealthInformations
  * @package App\Models
  * @version November 12, 2017, 1:02 pm -02
  *
@@ -39,11 +39,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean edfisica
  * @property string outradeficienciax
  */
-class DadosMedicos extends Model
+class HealthInformations extends Model
 {
     use SoftDeletes;
 
-    public $table = 'dados_medicos';
+    public $table = 'healthInformations';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
