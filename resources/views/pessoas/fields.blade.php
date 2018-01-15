@@ -36,10 +36,10 @@
     {!! Form::select('estadoCivil', $estadoCivil, !empty($pessoa)? $pessoa->estadoCivil:null, ['class' => 'form-control','required'=>'required']) !!}
 </div>
 
-<!-- Nacionalidade Field -->
-<div class="form-group {{$errors->has('nacionalidade') ? "has-error":""}} col-sm-6">
-    {!! Form::label('nacionalidade', 'Nacionalidade:') !!}
-    {!! Form::select('nacionalidade', $nacionalidades, !empty($pessoa)? $pessoa->nacionalidade:7, ['class' => 'form-control','required'=>'required']) !!}
+<!-- Citizenship Field -->
+<div class="form-group {{$errors->has('citizenship') ? "has-error":""}} col-sm-6">
+    {!! Form::label('citizenship', 'Nacionalidade:') !!}
+    {!! Form::select('citizenship', $citizenships, !empty($pessoa)? $pessoa->citizenship:7, ['class' => 'form-control','required'=>'required']) !!}
 </div>
 
 

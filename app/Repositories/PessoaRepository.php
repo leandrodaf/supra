@@ -29,7 +29,7 @@ class PessoaRepository extends BaseRepository
         'razaoSocial',
         'nomeFantasia',
         'inscricaoEstadual',
-        'nacionalidade',
+        'citizenship',
         'status',
         'tipo_pessoas_id'
     ];

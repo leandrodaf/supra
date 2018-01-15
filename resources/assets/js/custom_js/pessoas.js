@@ -108,7 +108,7 @@ $(document).ready(function () {
         width: '100%'
     });
 
-    $('#nacionalidade').select2({
+    $('#citizenship').select2({
         width: '100%'
     });
     $('#estadoCivil').select2({

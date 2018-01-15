@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Nacionalidade extends Model
+class Citizenship extends Model
 {
 
     /**
@@ -12,7 +12,7 @@ class Nacionalidade extends Model
      *
      * @var string
      */
-    protected $table = 'nacionalidades';
+    protected $table = 'citizenships';
 
 
     /**

@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string razaoSocial
  * @property string nomeFantasia
  * @property string inscricaoEstadual
- * @property string nacionalidade
+ * @property string citizenship
  * @property boolean status
  * @property integer tipo_pessoas_id
  */
@@ -56,7 +56,7 @@ class Pessoa extends Model
         'razaoSocial',
         'nomeFantasia',
         'inscricaoEstadual',
-        'nacionalidade',
+        'citizenship',
         'status',
         'tipo_pessoas_id',
         'data_admissao',
@@ -86,7 +86,7 @@ class Pessoa extends Model
         'razaoSocial' => 'string',
         'nomeFantasia' => 'string',
         'inscricaoEstadual' => 'string',
-        'nacionalidade' => 'integer',
+        'citizenship' => 'integer',
         'status' => 'boolean',
         'tipo_pessoas_id' => 'integer',
         'data_admissao' => 'date',
@@ -115,7 +115,7 @@ class Pessoa extends Model
         'razaoSocial' => '',
         'nomeFantasia' => '',
         'inscricaoEstadual' => '',
-        'nacionalidade' => 'required|max:1',
+        'citizenship' => 'required|max:1',
         'tipo_pessoas_id' => 'required',
         'enderecos.numero' => 'required',
         'enderecos.cep' => 'required'
@@ -161,12 +161,12 @@ class Pessoa extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function getNacionalidade()
+    public function getCitizenship()
     {
         return $this->hasOne(
-            \App\Models\Nacionalidade::class,
+            \App\Models\Citizenship::class,
             'id',
-            'nacionalidade'
+            'citizenship'
         )->select('id', 'nome');
     }
 

@@ -78,7 +78,7 @@ $(document).ready(function () {
                     $('#statusdynamic').text("Inativo");
                 }
 
-                $('#nacionalidadedynamic').text(data.nacionalidade);
+                $('#citizenshipdynamic').text(data.citizenship);
                 $('#estadoCivildynamic').text(data.estadoCivil);
 
                 $('#dataNascimentodynamic').text(data.dataNascimento);

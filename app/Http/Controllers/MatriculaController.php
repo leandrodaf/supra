@@ -22,11 +22,11 @@ class MatriculaController extends AppBaseController
         $tipoPessoas = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '=', 1]])->get()->pluck('nome', 'id');
         $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
         $estadoCivil = \App\Models\EstadoCivil::where('status', '=', 1)->get()->pluck('nome', 'id');
-        $nacionalidades = \App\Models\Nacionalidade::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $citizenships = \App\Models\Citizenship::where('status', '=', 1)->get()->pluck('nome', 'id');
         $departments = \App\Models\Department::where('status', '=', 1)->get();
         $roles = \App\Models\Role::where('status', '=', 1)->get();
 
-        return view('matricula.index')->with(compact('tipoPessoas', 'genders', 'estadoCivil', 'nacionalidades','departments','roles'));
+        return view('matricula.index')->with(compact('tipoPessoas', 'genders', 'estadoCivil', 'citizenships','departments','roles'));
     }
 
 

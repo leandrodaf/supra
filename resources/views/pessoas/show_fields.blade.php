@@ -60,10 +60,10 @@
     <dd>{!! $pessoa->inscricaoEstadual !!}</dd>
     @endif
 
-    @if(!empty($pessoa->getNacionalidade->nome))
-    <!-- Nacionalidade Field -->
-    <dt>{!! Form::label('nacionalidade', 'Nacionalidade:') !!}</dt>
-    <dd>{!! $pessoa->getNacionalidade->nome !!}</dd>
+    @if(!empty($pessoa->getCitizenship->nome))
+    <!-- Citizenship Field -->
+    <dt>{!! Form::label('citizenship', 'Nacionalidade:') !!}</dt>
+    <dd>{!! $pessoa->getCitizenship->nome !!}</dd>
     @endif
 
     @if(!empty($pessoa->status))

@@ -22,7 +22,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -36,7 +36,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -50,7 +50,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -64,7 +64,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -78,7 +78,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -92,7 +92,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -106,7 +106,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -120,7 +120,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -134,7 +134,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -148,7 +148,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -162,7 +162,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -176,7 +176,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -190,7 +190,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
@@ -204,7 +204,7 @@ class PessoaResponsavelTableSeeder extends Seeder
                 'razaoSocial' => null,
                 'nomeFantasia' => null,
                 'inscricaoEstadual' => null,
-                'nacionalidade' => 7,
+                'citizenship' => 7,
                 'status' => 1,
                 'tipo_pessoas_id' => 2
             ],
