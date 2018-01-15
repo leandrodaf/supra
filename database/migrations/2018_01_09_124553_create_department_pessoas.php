@@ -18,7 +18,7 @@ class CreateDepartmentPessoas extends Migration
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas')->onDelete('cascade');
             $table->integer('departments_id')->unsigned();
-            $table->foreign('departments_id')->references('id')->on('department')->onDelete('cascade');
+            $table->foreign('departments_id')->references('id')->on('departments')->onDelete('cascade');
             $table->char('flg_principal', 1)->nullable();
             $table->timestamps();
         });

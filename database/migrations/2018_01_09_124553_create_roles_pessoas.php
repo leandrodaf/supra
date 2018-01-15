@@ -18,7 +18,7 @@ class CreateRolesPessoas extends Migration
             $table->integer('pessoa_id')->unsigned();
             $table->foreign('pessoa_id')->references('id')->on('pessoas')->onDelete('cascade');
             $table->integer('roles_id')->unsigned();
-            $table->foreign('roles_id')->references('id')->on('role')->onDelete('cascade');
+            $table->foreign('roles_id')->references('id')->on('roles')->onDelete('cascade');
             $table->char('flg_principal', 1)->nullable();
             $table->timestamps();
         });

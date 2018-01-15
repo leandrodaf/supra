@@ -11,7 +11,7 @@ class FamilySituation extends Model
      *
      * @var string
      */
-    protected $table = 'familySituation';
+    protected $table = 'familySituations';
 
 
     /**

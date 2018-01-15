@@ -13,7 +13,7 @@ class CreateFamilySituationTable extends Migration
      */
     public function up()
     {
-        Schema::create('familySituation', function (Blueprint $table) {
+        Schema::create('familySituations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
             $table->boolean('status');
@@ -28,6 +28,6 @@ class CreateFamilySituationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('familySituation');
+        Schema::dropIfExists('familySituations');
     }
 }

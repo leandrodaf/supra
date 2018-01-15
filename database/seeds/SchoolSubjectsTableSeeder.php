@@ -11,7 +11,7 @@ class SchoolSubjectsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('schoolsubject')->insert([
+        DB::table('schoolsubjects')->insert([
 
             ['nome' => 'PORTUGUÊS',
                 'status' => "1"

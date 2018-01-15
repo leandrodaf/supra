@@ -13,7 +13,7 @@ class CreateClassroomTable extends Migration
      */
     public function up()
     {
-        Schema::create('classroom', function (Blueprint $table) {
+        Schema::create('classrooms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome_sala');
             $table->boolean('status');
@@ -30,6 +30,6 @@ class CreateClassroomTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('classroom');
+        Schema::dropIfExists('classrooms');
     }
 }
