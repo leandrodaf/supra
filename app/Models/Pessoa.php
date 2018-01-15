@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property boolean sexo
  * @property string rg
  * @property date dataNascimento
- * @property string estadoCivil
+ * @property string familySituation
  * @property string razaoSocial
  * @property string nomeFantasia
  * @property string inscricaoEstadual
@@ -52,7 +52,7 @@ class Pessoa extends Model
         'sexo',
         'rg',
         'dataNascimento',
-        'estadoCivil',
+        'familySituation',
         'razaoSocial',
         'nomeFantasia',
         'inscricaoEstadual',
@@ -82,7 +82,7 @@ class Pessoa extends Model
         'sexo' => 'integer',
         'rg' => 'string',
         'dataNascimento' => 'date',
-        'estadoCivil' => 'integer',
+        'familySituation' => 'integer',
         'razaoSocial' => 'string',
         'nomeFantasia' => 'string',
         'inscricaoEstadual' => 'string',
@@ -111,7 +111,7 @@ class Pessoa extends Model
         'sexo' => 'required|max:1',
         'rg' => 'min:12',
         'dataNascimento' => 'required',
-        'estadoCivil' => 'required',
+        'familySituation' => 'required',
         'razaoSocial' => '',
         'nomeFantasia' => '',
         'inscricaoEstadual' => '',
@@ -149,12 +149,12 @@ class Pessoa extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function getEstadoCivil()
+    public function getFamilySituation()
     {
         return $this->hasOne(
-            \App\Models\EstadoCivil::class,
+            \App\Models\FamilySituation::class,
             'id',
-            'estadoCivil'
+            'familySituation'
         )->select('id', 'nome');
     }
 

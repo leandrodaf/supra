@@ -79,7 +79,7 @@ $(document).ready(function () {
                 }
 
                 $('#citizenshipdynamic').text(data.citizenship);
-                $('#estadoCivildynamic').text(data.estadoCivil);
+                $('#familySituationdynamic').text(data.familySituation);
 
                 $('#dataNascimentodynamic').text(data.dataNascimento);
             },

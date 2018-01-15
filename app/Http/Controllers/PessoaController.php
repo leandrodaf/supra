@@ -46,13 +46,13 @@ class PessoaController extends AppBaseController
     {
         $tipoPessoas = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '!=', 1]])->get()->pluck('nome', 'id');
         $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
-        $estadoCivil = \App\Models\EstadoCivil::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $familySituation = \App\Models\FamilySituation::where('status', '=', 1)->get()->pluck('nome', 'id');
         $citizenships = \App\Models\Citizenship::where('status', '=', 1)->get()->pluck('nome', 'id');
 
         $departments = \App\Models\Department::where('status', '=', 1)->get();
         $roles = \App\Models\Role::where('status', '=', 1)->get();
 
-        return view('pessoas.create')->with(compact('tipoPessoas', 'genders', 'estadoCivil', 'citizenships', 'departments', 'roles'));
+        return view('pessoas.create')->with(compact('tipoPessoas', 'genders', 'familySituation', 'citizenships', 'departments', 'roles'));
     }
 
     /**
@@ -159,7 +159,7 @@ class PessoaController extends AppBaseController
         $resposta['dataNascimento'] = $pessoa->dataNascimento->format('d/m/Y');
         $resposta['status'] = $pessoa->status;
         $resposta['citizenship'] = $pessoa->getCitizenship->nome;
-        $resposta['estadoCivil'] = $pessoa->getEstadoCivil->nome;
+        $resposta['familySituation'] = $pessoa->getFamilySituation->nome;
 
 
         return response()->json($resposta);
@@ -200,7 +200,7 @@ class PessoaController extends AppBaseController
 
         $tipoPessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
         $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
-        $estadoCivil = \App\Models\EstadoCivil::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $familySituation = \App\Models\FamilySituation::where('status', '=', 1)->get()->pluck('nome', 'id');
         $citizenships = \App\Models\Citizenship::where('status', '=', 1)->get()->pluck('nome', 'id');
 
         if (empty($pessoa)) {
@@ -210,7 +210,7 @@ class PessoaController extends AppBaseController
             return redirect(route('pessoas.index'));
         }
 
-        return view('pessoas.edit')->with(compact('pessoa', 'citizenships', 'estadoCivil', 'tipoPessoas', 'genders'));
+        return view('pessoas.edit')->with(compact('pessoa', 'citizenships', 'familySituation', 'tipoPessoas', 'genders'));
     }
 
     /**

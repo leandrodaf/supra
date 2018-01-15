@@ -111,7 +111,7 @@ $(document).ready(function () {
     $('#citizenship').select2({
         width: '100%'
     });
-    $('#estadoCivil').select2({
+    $('#familySituation').select2({
         width: '100%'
     });
     $('#sexo').select2({

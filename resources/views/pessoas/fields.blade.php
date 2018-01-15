@@ -30,10 +30,10 @@
     {!! Form::text('dataNascimento', !empty($pessoa)? $pessoa->dataNascimento:null, ['class' => 'form-control','required'=>'required', 'format' => 'dd/MM/yyyy']) !!}
 </div>
 
-<!-- Estadocivil Field -->
-<div class="form-group {{$errors->has('estadoCivil') ? "has-error":""}} col-sm-6">
-    {!! Form::label('estadoCivil', 'Estado civil:') !!}
-    {!! Form::select('estadoCivil', $estadoCivil, !empty($pessoa)? $pessoa->estadoCivil:null, ['class' => 'form-control','required'=>'required']) !!}
+<!-- familySituation Field -->
+<div class="form-group {{$errors->has('familySituation') ? "has-error":""}} col-sm-6">
+    {!! Form::label('familySituation', 'Estado civil:') !!}
+    {!! Form::select('familySituation', $familySituation, !empty($pessoa)? $pessoa->familySituation:null, ['class' => 'form-control','required'=>'required']) !!}
 </div>
 
 <!-- Citizenship Field -->

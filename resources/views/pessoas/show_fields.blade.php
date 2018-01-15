@@ -36,10 +36,10 @@
     <dd>{!! $pessoa->dataNascimento !!}</dd>
     @endif
 
-    @if(!empty($pessoa->getEstadoCivil->nome))
-    <!-- Estadocivil Field -->
-    <dt>{!! Form::label('estadoCivil', 'Estado Civil:') !!}</dt>
-    <dd>{!! $pessoa->getEstadoCivil->nome !!}</dd>
+    @if(!empty($pessoa->getFamilySituation->nome))
+    <!-- familySituation Field -->
+    <dt>{!! Form::label('familySituation', 'Estado Civil:') !!}</dt>
+    <dd>{!! $pessoa->getFamilySituation->nome !!}</dd>
     @endif
 
     @if(!empty($pessoa->razaoSocial))

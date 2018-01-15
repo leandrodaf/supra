@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class EstadoCivilSeed extends Seeder
+class FamilySituationSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,35 +11,35 @@ class EstadoCivilSeed extends Seeder
      */
     public function run()
     {
-        DB::table('estado_civil')->insert(
+        DB::table('familySituation')->insert(
             [
-                'nome' => "Solteiro",
+                'nome' => "Solteiro(a)",
                 'status' => "1",
             ]
         );
 
-        DB::table('estado_civil')->insert(
+        DB::table('familySituation')->insert(
             [
-                'nome' => "Casado",
+                'nome' => "Casado(a)",
                 'status' => "1",
             ]
         );
 
-        DB::table('estado_civil')->insert(
+        DB::table('familySituation')->insert(
             [
-                'nome' => "Separado",
+                'nome' => "Separado(a)",
                 'status' => "1",
             ]
         );
 
-        DB::table('estado_civil')->insert(
+        DB::table('familySituation')->insert(
             [
-                'nome' => "Divorciado",
+                'nome' => "Divorciado(a)",
                 'status' => "1",
             ]
         );
 
-        DB::table('estado_civil')->insert(
+        DB::table('familySituation')->insert(
             [
                 'nome' => "Viúvo(a)",
                 'status' => "1",

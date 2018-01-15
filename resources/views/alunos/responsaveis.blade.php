@@ -86,7 +86,7 @@
                     <dd id="citizenshipdynamic"></dd>
 
                     <dt>Estado civil</dt>
-                    <dd id="estadoCivildynamic"></dd>
+                    <dd id="familySituationdynamic"></dd>
                 </dl>
             </div>
         </div>
