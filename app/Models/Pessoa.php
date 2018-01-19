@@ -27,7 +27,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property date dataNascimento
  * @property string familySituation
  * @property string razaoSocial
- * @property string nomeFantasia
  * @property string inscricaoEstadual
  * @property string citizenship
  * @property boolean status
@@ -54,7 +53,6 @@ class Pessoa extends Model
         'dataNascimento',
         'familySituation',
         'razaoSocial',
-        'nomeFantasia',
         'inscricaoEstadual',
         'citizenship',
         'status',
@@ -83,7 +81,6 @@ class Pessoa extends Model
         'rg' => 'string',
         'dataNascimento' => 'date',
         'razaoSocial' => 'string',
-        'nomeFantasia' => 'string',
         'inscricaoEstadual' => 'string',
         'status' => 'boolean',
         'citizenship' => 'integer',
@@ -113,7 +110,6 @@ class Pessoa extends Model
         'dataNascimento' => '',
         'familySituation' => '',
         'razaoSocial' => '',
-        'nomeFantasia' => '',
         'inscricaoEstadual' => '',
         'citizenship' => '',
         'tipo_pessoas_id' => '',

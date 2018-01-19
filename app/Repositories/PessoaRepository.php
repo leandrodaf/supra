@@ -28,7 +28,6 @@ class PessoaRepository extends BaseRepository
         'dataNascimento',
         'familySituation',
         'razaoSocial',
-        'nomeFantasia',
         'inscricaoEstadual',
         'citizenship',
         'status',
