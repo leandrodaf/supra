@@ -5,15 +5,21 @@ $(document).ready(function () {
     var form = $("#matriculaAluno");
     form.validate({
         errorPlacement: function errorPlacement(error, element) { element.before(error); },
-        rules: {
-            confirm: {
-            }
-        }
     });
-    form.children("div").steps({
+
+    var settings = {
+        labels: {
+            current: "Passo atual:",
+            pagination: "Páginação",
+            finish: "Finalizar",
+            next: "Próximo",
+            previous: "Voltar",
+            loading: "Carregando ..."
+        },
         headerTag: "h3",
         bodyTag: "section",
         transitionEffect: "slideLeft",
+        saveState: true,
         onStepChanging: function (event, currentIndex, newIndex)
         {
             form.validate().settings.ignore = ":disabled,:hidden";
@@ -26,9 +32,11 @@ $(document).ready(function () {
         },
         onFinished: function (event, currentIndex)
         {
-            alert("Submitted!");
+            form.submit();
         }
-    });
+    };
+
+    form.children("div").steps(settings);
 
     $('.validatecpf').cpfcnpj({
         mask: true,
@@ -236,15 +244,16 @@ $(document).ready(function () {
         format: 'dd/mm/yyyy'
     });
 
-    $('#data_nascimento_aluno').datepicker({
-        autoclose: true,
-        startDate: reduzirDiasData(2192),
-        locale: 'pt-BR',
-        format: 'dd/mm/yyyy',
-        orientation: 'bottom auto',
-    });
 
     $("#data_nascimento_aluno").mask("99/99/9999", {placeholder: "__/__ /___"});
+
+    $('#data_nascimento_aluno').datepicker({
+        autoclose: true,
+        // startDate: reduzirDiasData(2192),
+        locale: 'pt-BR',
+        format: 'dd/mm/yyyy',
+        orientation: 'bottom auto'
+    });
 
     $('#tipo_pessoas_id').select2();
     $('#sexo_aluno').select2();

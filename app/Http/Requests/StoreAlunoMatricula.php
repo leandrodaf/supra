@@ -34,7 +34,7 @@ class StoreAlunoMatricula extends FormRequest
             'flg_irmaos_aluno' => 'required',
             'flg_juntos_aos_pais_aluno' => 'required',
             'qtd_irmaos_aluno' => 'nullable|min:1|max:10',
-            'data_nascimento_aluno' => 'required|date',
+            'data_nascimento_aluno' => 'required',
             'tipo_pessoas_id' => 'required',
             'email.*' => 'required',
             'responsaveis.*' => 'required',

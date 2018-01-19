@@ -48,10 +48,12 @@ class AlunosController extends AppBaseController
      */
     public function store(CreateAlunosRequest $request)
     {
+        $helper = new Helpers();
         $input = $request->all();
         $emails = array_get($input, 'email');
         array_forget($input, 'email');
-        $input['data_nascimento_aluno'] = \Carbon\Carbon::parse($input['data_nascimento_aluno'])->format('Y-m-d');
+
+        $input['data_nascimento_aluno'] = $helper->formataDataPtBr($input['data_nascimento_aluno']);
         $input['foto_aluno'] = $this->alunosRepository->createAvatar($request);
         $alunos = $this->alunosRepository->create($input);
         if (!empty($emails)) {

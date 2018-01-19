@@ -92,6 +92,7 @@ class Alunos extends Model
     public static $rules = [
         'nome_aluno' => 'required|min:3|max:255',
         'foto_aluno' => '',
+        'data_nascimento_aluno' => '',
         'rg_aluno' => 'required|min:12|unique:alunos',
         'sexo_aluno' => 'required',
         'flg_certidao_nascimento_aluno' => 'required',
@@ -100,7 +101,6 @@ class Alunos extends Model
         'flg_irmaos_aluno' => 'required',
         'flg_juntos_aos_pais_aluno' => 'required',
         'qtd_irmaos_aluno' => 'nullable|min:1|max:10',
-//        'data_nascimento_aluno' => 'required',
         'tipo_pessoas_id' => 'required'
 
     ];
