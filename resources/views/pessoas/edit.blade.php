@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <meta name="tipo-user"  content="{{$pessoa->tipo_pessoas_id}}"/>
+
+@endsection
+
 @section('content')
     <section class="content-header">
         <h1>
@@ -15,7 +22,22 @@
 
                         @include('pessoas.fields')
 
+                   <div class="form-group col-sm-12">
+                       {!! Form::submit('Atualizar', ['class' => 'btn btn-primary']) !!}
+                       <a href="{!! route('pessoas.index') !!}" class="btn btn-default">Cancel</a>
+                   </div>
+
                    {!! Form::close() !!}
+                   @if(!empty($pessoa->email))
+                       <!-- lista de emails -->
+                           @foreach($pessoa->email->toArray() as $email)
+                               {!! Form::open(['route' => ['emails.destroy', $email['id']], 'method' => 'delete', 'id' => "#deletar-".$email['id']]) !!}
+                               {!! Form::close() !!}
+
+                               {!! Form::open(['route' => ['pessoa.emailMain', 'idPessoa' => $pessoa->id, 'idEmail'=> $email['id']], 'method' => 'post', 'id' => "#emailMain-".$email['id']]) !!}
+                               {!! Form::close() !!}
+                           @endforeach
+                       @endif
                </div>
            </div>
        </div>

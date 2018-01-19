@@ -15,19 +15,18 @@ class CreatePessoasTable extends Migration
     {
         Schema::create('pessoas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->string('cpf_cnpj', 18);
-            $table->boolean('sexo');
+            $table->string('nome')->nullable();;
+            $table->string('cpf_cnpj', 18)->nullable();;
+            $table->boolean('sexo')->nullable();;
             $table->string('rg', 13)->nullable();
-            $table->date('dataNascimento');
+            $table->date('dataNascimento')->nullable();;
             $table->string('razaoSocial')->nullable();
-            $table->string('nomeFantasia')->nullable();
             $table->string('inscricaoEstadual')->nullable();
             $table->boolean('status')->default(true);
-            $table->integer('citizenship')->unsigned();
+            $table->integer('citizenship')->unsigned()->nullable();
             $table->foreign('citizenship')->references('id')->on('citizenships')->onDelete('cascade');
 
-            $table->integer('familySituation')->unsigned();
+            $table->integer('familySituation')->unsigned()->nullable();
             $table->foreign('familySituation')->references('id')->on('familySituations')->onDelete('cascade');
 
             $table->integer('tipo_pessoas_id')->unsigned();

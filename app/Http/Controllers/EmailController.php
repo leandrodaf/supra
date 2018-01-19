@@ -147,7 +147,7 @@ class EmailController extends AppBaseController
 
         if (empty($email)) {
             $flash = new Flash();
-            $flash::error('Email not found');
+            $flash::error('Email não encontrado');
 
             return redirect(route('emails.index'));
         }
@@ -155,7 +155,7 @@ class EmailController extends AppBaseController
         $this->emailRepository->delete($idEmail);
 
         $flash = new Flash();
-        $flash::success('Email deleted successfully.');
+        $flash::success('Email deletado com sucesso.');
 
         return redirect()->back();
     }

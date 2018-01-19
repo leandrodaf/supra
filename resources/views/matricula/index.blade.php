@@ -31,52 +31,20 @@
             {!! Form::open(['route' => 'matricula.store', 'files' => true, 'id' => 'matriculaAluno', 'data-toggle' => 'validator', 'autocomplete' => 'off']) !!}
 
             <!-- SmartWizard html -->
-                <div id="smartwizard">
-                    <ul>
-                        <li>
-                            <a href="#step-1">
-                                <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-                                <br/>
-                                <small>Aluno</small>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#step-2">
-                                <i class="fa fa-users fa-2x" aria-hidden="true"></i>
-                                <br/>
-                                <small>Responsável</small>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#step-3">
-                                <i class="fa fa-heartbeat  fa-2x" aria-hidden="true"></i>
-                                <br/>
-                                <small>Dados médicos</small>
-                            </a>
-                        </li>
-
-                    </ul>
-
                     <div>
-                        <div id="step-1">
-                            <div id="form-step-0" role="form" data-toggle="validator">
-                                @include('matricula.aluno')
-                            </div>
-                        </div>
-                        <div id="step-2">
-                            <div id="form-step-1" role="form" data-toggle="validator">
-                                @include('matricula.responsaveis')
-                                <br/>
-                            </div>
-                        </div>
-                        <div id="step-3">
-                            <div id="form-step-2" role="form" data-toggle="validator">
-                                @include('matricula.healthInformations')
-                            </div>
-                        </div>
-
+                        <h3>Aluno</h3>
+                        <section>
+                            @include('matricula.aluno')
+                        </section>
+                        <h3>Responsável</h3>
+                        <section>
+                            @include('matricula.responsaveis')
+                        </section>
+                        <h3>Dados médicos</h3>
+                        <section>
+                            @include('matricula.healthInformations')
+                        </section>
                     </div>
-                </div>
 
                 {!! Form::close() !!}
             </div>

@@ -2,6 +2,31 @@
 
 $(document).ready(function () {
 
+    let validateEmail = function (email) {
+        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    };
+
+    $('#emailResponsavel').select2({
+        width: '100%',
+        tags: true,
+        tokenSeparators: [',', ';', ' '],
+        placeholder: "Digite os emails",
+        createTag: function (term, data) {
+            let value = term.term;
+            if (validateEmail(value)) {
+                return {
+                    id: value,
+                    text: value
+                };
+            }
+            return null;
+        }
+    });
+
+
+    $('#cpf_cnpj').mask("999.999.999-99", {placeholder: "___.___.___-__"});
+
     if ($(".validatecpf").length) {
         $('.validatecpf').cpfcnpj({
             mask: true,
@@ -38,7 +63,7 @@ $(document).ready(function () {
             $('#vale_refeicao').val("");
             $('#vale_transporte').val("");
             $('#contato_emergencial').val("");
-         } else {
+        } else {
             $('#setorFuncionario').attr('required', 'required');
             $('#funcaoFuncionario').attr('required', 'required');
             $('#data_admissao').attr('required', 'required');
@@ -50,11 +75,45 @@ $(document).ready(function () {
             $('#cpf_cnpj').mask("999.999.999-99", {placeholder: "___.___.___-__"});
             $('#cpf_cnpj').val("");
             $('#razaoSocial').val("");
-            $('#nomeFantasia').val("");
             $('#inscricaoEstadual').val("");
+
+            $('.rg').show();
+            $('#nomeLabel').text("Nome Completo:");
+
+            $('.sexo').show();
+            $('.dataNascimento').show();
+            $('.citizenship').show();
+            $('.familySituation').show();
+
+            $('#rg').attr('required', 'required');
+
+            $('#sexo').attr('required', 'required');
+            $('#dataNascimento').attr('required', 'required');
+            $('#citizenship').attr('required', 'required');
+            $('#familySituation').attr('required', 'required');
 
             $('#tipoEmpresa').hide();
         } else {
+            $('#rg').val("");
+            $('.rg').hide();
+
+            $('#sexo').val("");
+            $('.sexo').hide();
+            $('#dataNascimento').val("");
+            $('.dataNascimento').hide();
+            $('#citizenship').val("");
+            $('.citizenship').hide();
+            $('#familySituation').val("");
+            $('.familySituation').hide();
+
+            $('#rg').removeAttr('required');
+            $('#nomeLabel').text("Nome Fantasia:");
+            $('#sexo').removeAttr('required');
+            $('#dataNascimento').removeAttr('required');
+            $('#citizenship').removeAttr('required');
+            $('#familySituation').removeAttr('required');
+
+
             $('.cpfCnpj').text("CNPJ");
             $("#cpf_cnpj").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
             $('.validatecpf').cpfcnpj({
@@ -77,9 +136,9 @@ $(document).ready(function () {
     });
 
     $("#contato_emergencial").mask("(99) 9 9999-9999", {placeholder: "(__) _ ____-______"});
-    $('#salario_base').maskMoney({defaultZero:false});
-    $('#vale_refeicao').maskMoney({defaultZero:false});
-    $('#vale_transporte').maskMoney({defaultZero:false});
+    $('#salario_base').maskMoney({defaultZero: false});
+    $('#vale_refeicao').maskMoney({defaultZero: false});
+    $('#vale_transporte').maskMoney({defaultZero: false});
 
     $("#dataNascimento").mask("99/99/9999", {placeholder: "__/__ /___"});
     $("#data_admissao").mask("99/99/9999", {placeholder: "__/__ /___"});
@@ -115,7 +174,7 @@ $(document).ready(function () {
         width: '100%'
     });
     $('#sexo').select2({
-        width: '100%'
+        width: 'resolve'
     });
     $('#tipo_pessoas_id').select2({
         width: '100%'
@@ -206,28 +265,84 @@ $(document).ready(function () {
         }
     });
 
-    let validateEmail = function (email) {
-        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    };
 
-    $('#email').select2({
-        width: '100%',
-        tags: true,
-        tokenSeparators: [',', ';', ' '],
-        placeholder: "Digite os emails",
-        createTag: function (term, data) {
-            let value = term.term;
-            if (validateEmail(value)) {
-                return {
-                    id: value,
-                    text: value
-                };
-            }
-            return null;
+    var escolheTipoPessoa = () => {
+
+        if ($('meta[name="tipo-user"]').attr('content') == "4") {
+            $('#setorFuncionario').attr('required', 'required');
+            $('#funcaoFuncionario').attr('required', 'required');
+            $('#data_admissao').attr('required', 'required');
+            $('#dadosProfessor').show();
         }
-    });
 
-    disabled
+        if ($('meta[name="tipo-user"]').attr('content') == "5") {
+            $('#rg').val("");
+            $('.rg').hide();
+            $('#sexo').val("");
+            $('.sexo').hide();
+            $('#dataNascimento').val("");
+            $('.dataNascimento').hide();
+            $('#citizenship').val("");
+            $('.citizenship').hide();
+            $('#familySituation').val("");
+            $('.familySituation').hide();
+
+            $('#rg').removeAttr('required');
+            $('#sexo').removeAttr('required');
+            $('#dataNascimento').removeAttr('required');
+            $('#citizenship').removeAttr('required');
+            $('#familySituation').removeAttr('required');
+
+
+            $('.cpfCnpj').text("CNPJ");
+            $("#cpf_cnpj").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
+            $('.validatecpf').cpfcnpj({
+                mask: true,
+                validate: 'cnpj',
+                event: 'blur',
+                handler: '.validatecpf',
+                ifValid: function (input) {
+                    input.removeClass("error");
+                },
+                ifInvalid: function (input) {
+                    input.addClass("error");
+                }
+            });
+
+            $('#tipoEmpresa').show();
+        }
+    }
+
+    escolheTipoPessoa();
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('.listEmail').click(function () {
+
+        let ids = $(this).get(0).id.split('-');
+
+
+        $.ajax({
+            async: true,
+            url: '/pessoas/emailMain?idPessoa=' + ids[0] + '&idEmail=' + ids[1],
+            type: 'POST',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            data: function (data) {
+            },
+            success: function (data) {
+                window.location.reload();
+            },
+            beforeSend: function (before) {
+            },
+            complete: function (complete) {
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    })
+
 
 });

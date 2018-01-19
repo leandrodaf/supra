@@ -2,7 +2,6 @@
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
-
     <style>
         .justify-content-center {
             -ms-flex-pack: center !important;

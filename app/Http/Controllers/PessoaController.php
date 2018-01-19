@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePessoaRequest;
 use App\Http\Requests\UpdatePessoaRequest;
+use App\Models\Pessoa;
 use App\Repositories\PessoaRepository;
 use Flash;
 use Illuminate\Http\Request;
@@ -103,13 +104,13 @@ class PessoaController extends AppBaseController
         }
 
         if (!empty($departments)) {
-            $pessoa->departments()->createMany(
+            $pessoa->departments()->sync(
                 $departments
             );
         }
 
         if (!empty($roles)) {
-            $pessoa->roles()->createMany(
+            $pessoa->roles()->sync(
                 $roles
             );
         }
@@ -136,6 +137,12 @@ class PessoaController extends AppBaseController
         $pessoa = $this->pessoaRepository->create($input);
         $pessoa->endereco()->createMany($enderecos);
         return response()->json($pessoa);
+    }
+
+    public function mainEmailPessoaAjax(Request $request)
+    {
+        $parameters = $request->all();
+        return $this->pessoaRepository->setEmailMain($parameters['idPessoa'], $parameters['idEmail']);
     }
 
     /**
@@ -197,10 +204,13 @@ class PessoaController extends AppBaseController
     {
         $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
 
-        $tipoPessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $tipoPessoas = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '!=', 1]])->get()->pluck('nome', 'id');
         $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
         $familySituation = \App\Models\FamilySituation::where('status', '=', 1)->get()->pluck('nome', 'id');
         $citizenships = \App\Models\Citizenship::where('status', '=', 1)->get()->pluck('nome', 'id');
+
+        $departments = \App\Models\Department::where('status', '=', 1)->get();
+        $roles = \App\Models\Role::where('status', '=', 1)->get();
 
         if (empty($pessoa)) {
             $flash = new Flash();
@@ -209,7 +219,7 @@ class PessoaController extends AppBaseController
             return redirect(route('pessoas.index'));
         }
 
-        return view('pessoas.edit')->with(compact('pessoa', 'citizenships', 'familySituation', 'tipoPessoas', 'genders'));
+        return view('pessoas.edit')->with(compact('pessoa', 'citizenships', 'familySituation', 'tipoPessoas', 'genders', 'departments', 'roles'));
     }
 
     /**
@@ -222,7 +232,16 @@ class PessoaController extends AppBaseController
      */
     public function update($idPessoa, UpdatePessoaRequest $request)
     {
+        $helper = new Helpers();
+
         $input = $request->all();
+
+        $input['dataNascimento'] = $helper->formataDataPtBr($input['dataNascimento']);
+        $input['data_admissao'] = $helper->formataDataPtBr($input['data_admissao']);
+        $input['salario_base'] = $helper->formataValoresMonetarios($input['salario_base']);
+        $input['vale_refeicao'] = $helper->formataValoresMonetarios($input['vale_refeicao']);
+        $input['vale_transporte'] = $helper->formataValoresMonetarios($input['vale_transporte']);
+
 
         $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
 
@@ -239,11 +258,39 @@ class PessoaController extends AppBaseController
         array_forget($input, 'enderecos');
         array_forget($enderecos, 'id');
 
+        $emails = array_get($input, 'email');
+        array_forget($input, 'email');
+
+        $departments = array_get($input, 'department');
+        array_forget($input, 'department');
+
+        $roles = array_get($input, 'role');
+        array_forget($input, 'role');
+
         $enderecos = $enderecoModel::updateOrCreate(['id' => $pessoa->endereco->first()->id], $enderecos);
 
-        $pessoa->endereco()->sync($enderecos->id);
 
+        $pessoa->endereco()->sync($enderecos->id);
         $pessoa = $this->pessoaRepository->update($input, $idPessoa);
+
+
+        if (!empty($emails)) {
+            $pessoa->email()->createMany(
+                $emails
+            );
+        }
+
+        if (!empty($departments)) {
+            $pessoa->departments()->sync(
+                $departments
+            );
+        }
+
+        if (!empty($roles)) {
+            $pessoa->roles()->sync(
+                $roles
+            );
+        }
 
         $flash = new Flash();
         $flash::success('Pessoa atualizada com sucesso.');
@@ -289,9 +336,15 @@ class PessoaController extends AppBaseController
 
         if ($request->has('q')) {
             $search = $request->q;
-            $data = DB::table("pessoas")
-                ->select("id", "nome")
-                ->where('nome', 'LIKE', "%$search%")
+
+            $pessoa = new Pessoa();
+
+            $data = $pessoa
+                ->select("id", "nome", 'cpf_cnpj')
+                ->where([
+                    ['nome', 'LIKE', "%$search%"],
+                    ['tipo_pessoas_id', '=', ['2','3']]
+                    ])
                 ->limit(5)
                 ->get();
         }

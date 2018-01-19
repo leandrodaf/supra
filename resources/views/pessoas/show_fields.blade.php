@@ -14,7 +14,7 @@
 
     @if(!empty($pessoa->cpf_cnpj))
     <!-- Cpf Cnpj Field -->
-    <dt>{!! Form::label('cpf_cnpj', strlen($pessoa->cpf_cnpj) != 14 ? "CNPJ":"CPF") !!}</dt>
+    <dt>{!! Form::label('cpf_cnpj', strlen($pessoa->cpf_cnpj) != 14 ? "CNPJ:":"CPF:") !!}</dt>
     <dd>{!! $pessoa->cpf_cnpj !!}</dd>
     @endif
 
@@ -37,6 +37,13 @@
     <dt>{!! Form::label('dataNascimento', 'Nascimento:') !!}</dt>
     <dd>{!! $pessoa->dataNascimento !!}</dd>
     @endif
+
+        @if(count($pessoa->email) != 0)
+            <dt>{!! Form::label('email', 'Emails:') !!}</dt>
+            @foreach($pessoa->email as $email)
+                <dd>{!! $email->email !!}</dd>
+            @endforeach
+        @endif
 
     @if(!empty($pessoa->getFamilySituation->nome))
     <!-- familySituation Field -->
@@ -74,6 +81,23 @@
     <dd>{!! $pessoa->status ? "Ativo":"Inativo"!!}</dd>
     @endif
 
+    @if(count($pessoa->roles) != 0)
+        <!-- roles Field -->
+        <dt> {!! Form::label('role', count($pessoa->roles) > 1 ?'Funções:':'Função') !!}</dt>
+        @foreach($pessoa->roles as $role)
+            <dd> {{$role->nome}} <span class="label label-info">{{$role['pivot']->flg_principal ? "Principal":""}}</span></dd>
+        @endforeach
+    @endif
+
+     @if(count($pessoa->departments) != 0)
+        <!-- roles Field -->
+         <dt> {!! Form::label('departments', count($pessoa->departments) > 1 ?'Departamentos:':'Departamento:') !!}</dt>
+        @foreach($pessoa->departments as $department)
+            <dd>{{$department->nome}} <span class="label label-info">{{$department['pivot']->flg_principal ? "Principal":""}}</span></dd>
+        @endforeach
+    @endif
+
+
     @if(!empty($pessoa->tipoPessoa->nome))
         <!-- Tipo Pessoas Id Field -->
     <dt>{!! Form::label('tipo_pessoas_id', 'Tipo Pessoa:') !!}</dt>
@@ -89,12 +113,12 @@
     @if(!empty($pessoa->updated_at))
     <!-- Updated At Field -->
     <dt>{!! Form::label('updated_at', 'Atualizado em:') !!}</dt>
-    <dd>{!! $pessoa->updated_at !!}</dd>
+    <dd>{!! $pessoa->updated_at->format('d/m/Y') !!}</dd>
     @endif
 
     @if(!empty($pessoa->deleted_at))
     <!-- Deleted At Field -->
         <dt>{!! Form::label('deleted_at', 'Deletado em:') !!}</dt>
-        <dd>{!! $pessoa->deleted_at !!}</dd>
+        <dd>{!! $pessoa->deleted_at->format('d/m/Y') !!}</dd>
     @endif
 </dl>

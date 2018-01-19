@@ -7,8 +7,8 @@
 
 
 <!-- Nome Field -->
-<div class="form-group {{$errors->has('nome') ? "has-error":""}} col-sm-6">
-    {!! Form::label('nome', 'Nome:') !!}
+<div class="form-group nome {{$errors->has('nome') ? "has-error":""}} col-sm-6">
+    {!! Form::label('nome', 'Nome Completo:', ['id' => 'nomeLabel']) !!}
     {!! Form::text('nome', null, ['class' => 'form-control','required'=>'required']) !!}
 </div>
 
@@ -19,32 +19,32 @@
 </div>
 
 <!-- Rg Field -->
-<div class="form-group {{$errors->has('rg') ? "has-error":""}} col-sm-6">
+<div class="form-group rg {{$errors->has('rg') ? "has-error":""}} col-sm-6">
     {!! Form::label('rg', 'Rg:') !!}
     {!! Form::text('rg', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Datanascimento Field -->
-<div class="form-group {{$errors->has('dataNascimento') ? "has-error":""}} col-sm-6">
+<div class="form-group dataNascimento {{$errors->has('dataNascimento') ? "has-error":""}} col-sm-6">
     {!! Form::label('dataNascimento', 'Nascimento:') !!}
-    {!! Form::text('dataNascimento', !empty($pessoa)? $pessoa->dataNascimento:null, ['class' => 'form-control','required'=>'required', 'format' => 'dd/MM/yyyy']) !!}
+    {!! Form::text('dataNascimento', !empty($pessoa->dataNascimento)? $pessoa->dataNascimento->format('d/m/Y') :null, ['class' => 'form-control','required'=>'required', 'format' => 'dd/MM/yyyy']) !!}
 </div>
 
 <!-- familySituation Field -->
-<div class="form-group {{$errors->has('familySituation') ? "has-error":""}} col-sm-6">
+<div class="form-group familySituation {{$errors->has('familySituation') ? "has-error":""}} col-sm-6">
     {!! Form::label('familySituation', 'Estado civil:') !!}
     {!! Form::select('familySituation', $familySituation, !empty($pessoa)? $pessoa->familySituation:null, ['class' => 'form-control','required'=>'required']) !!}
 </div>
 
 <!-- Citizenship Field -->
-<div class="form-group {{$errors->has('citizenship') ? "has-error":""}} col-sm-6">
+<div class="form-group citizenship {{$errors->has('citizenship') ? "has-error":""}} col-sm-6">
     {!! Form::label('citizenship', 'Nacionalidade:') !!}
     {!! Form::select('citizenship', $citizenships, !empty($pessoa)? $pessoa->citizenship:7, ['class' => 'form-control','required'=>'required']) !!}
 </div>
 
 
 <!-- Sexo Field -->
-<div class="form-group {{$errors->has('sexo') ? "has-error":""}} col-sm-6">
+<div class="form-group sexo {{$errors->has('sexo') ? "has-error":""}} col-sm-6">
     {!! Form::label('sexo', 'Sexo:') !!}
     <label class="checkbox-inline">
         {!! Form::select('sexo', $genders, !empty($pessoa)? $pessoa->sexo:null, ['class' => 'form-control','required'=>'required']) !!}
@@ -58,25 +58,32 @@
 
 <div class="form-group {{$errors->has('email') ? "has-error":""}} col-sm-6">
     {!! Form::label('email', 'Email:') !!}
-    <select id="email" name="email[][email]" multiple="multiple"></select>
+    <select id="emailResponsavel" name="email[][email]" multiple="multiple"></select>
 
-    @if(!empty($alunos) )
+    @if(!empty($pessoa) )
         <p></p>
         {!! Form::label('email', 'E-mails cadastrados:') !!}
         <dl class="dl-horizontal">
             <p></p>
             <!-- lista de emails -->
-            @foreach($alunos->email->toArray() as $email)
+            @foreach($pessoa->email->toArray() as $email)
                 <dt>
 
 
-                    <a href="#deletar-{{$email['id']}}"
-                       class="btn btn-default btn-flat {{count($alunos->email->toArray()) >1 ?"":"disabled" }}"
-                       onclick="document.getElementById({!! "'#deletar-".$email['id']."'" !!}).submit();" {{count($alunos->email->toArray()) >1 ?"":"disabled" }}>
+                    <a href="#deletar-{{$pessoa['id']}}"
+                       class="btn btn-default btn-flat {{count($pessoa->email->toArray()) >1 && $email['pivot']['flg_principal'] != 1 ?"":"disabled" }}"
+                       onclick="document.getElementById({!! "'#deletar-".$email['id']."'" !!}).submit();" {{count($pessoa->email->toArray()) >1 ?"":"disabled" }}>
+
                         <i class="glyphicon glyphicon-trash"></i>
+
                     </a>
+                    {{--onclick="document.getElementById({!! "'#emailMain-".$email['id']."'" !!}).submit();--}}
+
                 </dt>
-                <dd>{{$email['email']}}</dd>
+                <dd>
+                    <a  class="listEmail" href="#mainEmail" {{count($pessoa->email->toArray()) >1 && $email['pivot']['flg_principal'] != 1 ?'':'data-toggle="tooltip"' }} id="{{$pessoa->id.'-'.$email['id']}}" title="{{$email['pivot']['flg_principal'] != 0 ? "E-mail principal": "Tornar o e-mail principal"}}">{{$email['email']}}</a>
+                    <span class="label label-info">{{$email['pivot']['flg_principal'] == 1 ? "Principal":""}}</span>
+                </dd>
             @endforeach
         </dl>
     @endif
@@ -96,12 +103,6 @@
         <div class="form-group {{$errors->has('razaoSocial') ? "has-error":""}} col-sm-6">
             {!! Form::label('razaoSocial', 'Razão social:') !!}
             {!! Form::text('razaoSocial', null, ['class' => 'form-control']) !!}
-        </div>
-
-        <!-- Nomefantasia Field -->
-        <div class="form-group {{$errors->has('nomeFantasia') ? "has-error":""}} col-sm-6">
-            {!! Form::label('nomeFantasia', 'Nome fantasia:') !!}
-            {!! Form::text('nomeFantasia', null, ['class' => 'form-control']) !!}
         </div>
 
         <!-- Inscricaoestadual Field -->
@@ -124,8 +125,8 @@
 
 
         <div class="form-group {{$errors->has('funcao') ? "has-error":""}} col-sm-6">
-            {!! Form::label('setor', 'Department:') !!}
-            <select class="form-control" id="setorFuncionario" name="department[][department]" multiple="multiple">
+            {!! Form::label('setor', 'Departamento:') !!}
+            <select class="form-control" id="setorFuncionario" name="department[]" multiple="multiple">
 
                 @foreach($departments as $department)
                     <option value="{{ $department->id }}">{{$department->nome}}</option>
@@ -136,7 +137,7 @@
 
         <div class="form-group {{$errors->has('funcao') ? "has-error":""}} col-sm-6">
             {!! Form::label('funcao', 'Função do funcionário:') !!}
-            <select class="form-control" id="funcaoFuncionario" name="role[][role]" multiple="multiple">
+            <select class="form-control" id="funcaoFuncionario" name="role[]" multiple="multiple">
 
             @foreach($roles as $role)
                 <option value="{{ $role->id }}">{{$role->nome}}</option>
@@ -149,7 +150,7 @@
         <!-- Datanascimento Field -->
         <div class="form-group {{$errors->has('data_admissao') ? "has-error":""}} col-sm-6">
             {!! Form::label('data_admissao', 'Data admissão:') !!}
-            {!! Form::text('data_admissao', !empty($pessoa)? $pessoa->data_admissao:null, ['class' => 'form-control', 'format' => 'dd/MM/yyyy']) !!}
+            {!! Form::text('data_admissao', !empty($pessoa->data_admissao)? $pessoa->data_admissao->format('d/m/Y') :null, ['class' => 'form-control', 'format' => 'dd/MM/yyyy']) !!}
         </div>
 
         <div class="form-group {{$errors->has('numero_ctps') ? "has-error":""}} col-sm-6">
