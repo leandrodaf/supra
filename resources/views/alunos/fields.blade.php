@@ -29,8 +29,8 @@
 
 <!-- Datanascimento Field -->
 <div class="form-group {{$errors->has('data_nascimento_aluno') ? "has-error":""}} col-sm-6">
-    {!! Form::label('data_nascimento_aluno', 'Data admissão:') !!}
-    {!! Form::text('data_nascimento_aluno', null, ['class' => 'form-control', 'format' => 'dd/MM/yyyy']) !!}
+    {!! Form::label('data_nascimento_aluno', 'Data de nascimento:') !!}
+    {!! Form::text('data_nascimento_aluno', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Sexo Aluno Field -->

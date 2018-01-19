@@ -36,7 +36,6 @@ class MatriculaController extends AppBaseController
         $helper = new Helpers();
         $input = $request->all();
 
-        $input['data_nascimento_aluno'] = $helper->formataDataPtBr($input['dataNascimento']);
 
         $emails = array_get($input, 'email');
         $responsaveis = array_get($input, 'responsaveis');
@@ -46,7 +45,8 @@ class MatriculaController extends AppBaseController
         array_forget($input, 'healthInformations');
         array_forget($input, 'email');
 
-        $input['data_nascimento_aluno'] = \Carbon\Carbon::parse($input['data_nascimento_aluno'])->format('Y-m-d');
+        $input['data_nascimento_aluno'] = $helper->formataDataPtBr($input['data_nascimento_aluno']);
+
         $input['foto_aluno'] = $this->alunosRepository->matriculaAvatar($request);
 
         $aluno = $this->alunosRepository->create($input);
