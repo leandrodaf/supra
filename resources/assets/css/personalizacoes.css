@@ -2,3 +2,11 @@
     pointer-events: none;
     cursor: default;
 }
+
+.wizard > .content > .body {
+    float: left !important;
+     position: relative !important;
+    /* width: 95%; */
+    /* height: 95%; */
+    padding: 2.5% !important;;
+}

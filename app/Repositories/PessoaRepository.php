@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Pessoa;
+use GuzzleHttp\Psr7\Response;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
@@ -13,7 +14,7 @@ use InfyOm\Generator\Common\BaseRepository;
  * @method Pessoa findWithoutFail($id, $columns = ['*'])
  * @method Pessoa find($id, $columns = ['*'])
  * @method Pessoa first($columns = ['*'])
-*/
+ */
 class PessoaRepository extends BaseRepository
 {
     /**
@@ -27,7 +28,6 @@ class PessoaRepository extends BaseRepository
         'dataNascimento',
         'familySituation',
         'razaoSocial',
-        'nomeFantasia',
         'inscricaoEstadual',
         'citizenship',
         'status',
@@ -41,4 +41,32 @@ class PessoaRepository extends BaseRepository
     {
         return Pessoa::class;
     }
+
+
+    public function setEmailMain($pessoa, $idEmail)
+    {
+
+        $pessoa = $this->findWithoutFail($pessoa);
+        if (count($pessoa->email) == 1) {
+            $emailUnico = $pessoa->email->get(0);
+            $emailUnico->pivot->flg_principal = 1;
+            $emailUnico->pivot->save();
+        } else {
+
+
+            foreach ($pessoa->email as $email) {
+                if ($email->id == $idEmail) {
+                    $email->pivot->flg_principal = 1;
+                } else {
+                    $email->pivot->flg_principal = 0;
+
+                }
+                $email->pivot->save();
+            }
+        }
+
+        return response()->json($pessoa->email);
+
+    }
+
 }

@@ -30,4 +30,5 @@ class EmailRepository extends BaseRepository
     {
         return Email::class;
     }
+
 }

@@ -27,7 +27,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property date dataNascimento
  * @property string familySituation
  * @property string razaoSocial
- * @property string nomeFantasia
  * @property string inscricaoEstadual
  * @property string citizenship
  * @property boolean status
@@ -54,7 +53,6 @@ class Pessoa extends Model
         'dataNascimento',
         'familySituation',
         'razaoSocial',
-        'nomeFantasia',
         'inscricaoEstadual',
         'citizenship',
         'status',
@@ -82,12 +80,11 @@ class Pessoa extends Model
         'sexo' => 'integer',
         'rg' => 'string',
         'dataNascimento' => 'date',
-        'familySituation' => 'integer',
         'razaoSocial' => 'string',
-        'nomeFantasia' => 'string',
         'inscricaoEstadual' => 'string',
-        'citizenship' => 'integer',
         'status' => 'boolean',
+        'citizenship' => 'integer',
+        'familySituation' => 'integer',
         'tipo_pessoas_id' => 'integer',
         'data_admissao' => 'date',
         'numero_ctps' => 'string',
@@ -106,19 +103,18 @@ class Pessoa extends Model
      * @var array
      */
     public static $rules = [
-        'nome' => 'required|min:3|max:255',
-        'cpf_cnpj' => 'required|max:19|min:14',
-        'sexo' => 'required|max:1',
-        'rg' => 'min:12',
-        'dataNascimento' => 'required',
-        'familySituation' => 'required',
+        'nome' => '',
+        'cpf_cnpj' => 'unique:pessoas,id',
+        'sexo' => '',
+        'rg' => '',
+        'dataNascimento' => '',
+        'familySituation' => '',
         'razaoSocial' => '',
-        'nomeFantasia' => '',
         'inscricaoEstadual' => '',
-        'citizenship' => 'required|max:1',
-        'tipo_pessoas_id' => 'required',
-        'enderecos.numero' => 'required',
-        'enderecos.cep' => 'required'
+        'citizenship' => '',
+        'tipo_pessoas_id' => '',
+        'enderecos.numero' => '',
+        'enderecos.cep' => ''
 
     ];
 
@@ -213,7 +209,7 @@ class Pessoa extends Model
             \App\Models\Department::class,
             'pessoa_department',
             'pessoa_id',
-            'departments_id'
+            'department_id'
         );
     }
 
@@ -226,10 +222,9 @@ class Pessoa extends Model
             \App\Models\Role::class,
             'pessoa_role',
             'pessoa_id',
-            'roles_id'
+            'role_id'
         );
     }
-
 
 
 }

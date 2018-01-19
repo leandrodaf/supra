@@ -38,8 +38,7 @@ mix.styles([
     'node_modules/select2/dist/css/select2.min.css',
     'node_modules/ionicons/dist/css/ionicons.css',
     'node_modules/datatables.net-bs/css/dataTables.bootstrap.css',
-    'node_modules/smartwizard/dist/css/smart_wizard.css',
-    'node_modules/smartwizard/dist/css/smart_wizard_theme_circles.css',
+    'node_modules/jquery-steps/demo/css/jquery.steps.css',
     'resources/assets/css/personalizacoes.css'
 ], 'public/css/all.css');
 
@@ -65,6 +64,7 @@ mix.scripts([
     'node_modules/datatables.net/js/jquery.dataTables.js',
     'node_modules/datatables.net-bs/js/dataTables.bootstrap.js',
     'node_modules/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js',
-    'node_modules/smartwizard/dist/js/jquery.smartWizard.min.js',
+    'node_modules/jquery-steps/build/jquery.steps.js',
+    'node_modules/jquery-validation/dist/jquery.validate.js'
     // 'resources/assets/js/plugins/jquery.uploadPreview.min.js'
 ], 'public/js/all.js');

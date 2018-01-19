@@ -34,7 +34,7 @@
             <nav class="navbar navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
-                        <a href="#" class="logo">
+                        <a href="{{route('home')}}" class="logo">
                             <b>SU</b>PRA
                         </a>
 
@@ -57,14 +57,24 @@
                                     {{--<li class="divider"></li>--}}
                                 </ul>
                             </li>
-                        </ul>
 
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Configurações<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    @include('layouts.menuConfiguracoes')
+                                    {{--<li class="divider"></li>--}}
+                                </ul>
+                            </li>
+                        </ul>
+<!-- Form 
                         <form action="#" method="get" class="navbar-form navbar-left" role="search">
                             <div class="input-group">
                                 <input type="text" name="q" class="form-control" id="navbar-search-input"
                                        placeholder="Pesquisa rápida..."/>
                             </div>
-                        </form>
+                        </form>-->
 
                     </div>
                     <!-- /.navbar-collapse -->

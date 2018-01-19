@@ -2,6 +2,34 @@
 
 $(document).ready(function () {
 
+    var form = $("#matriculaAluno");
+    form.validate({
+        errorPlacement: function errorPlacement(error, element) { element.before(error); },
+        rules: {
+            confirm: {
+            }
+        }
+    });
+    form.children("div").steps({
+        headerTag: "h3",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        onStepChanging: function (event, currentIndex, newIndex)
+        {
+            form.validate().settings.ignore = ":disabled,:hidden";
+            return form.valid();
+        },
+        onFinishing: function (event, currentIndex)
+        {
+            form.validate().settings.ignore = ":disabled";
+            return form.valid();
+        },
+        onFinished: function (event, currentIndex)
+        {
+            alert("Submitted!");
+        }
+    });
+
     $('.validatecpf').cpfcnpj({
         mask: true,
         validate: 'cpfcnpj',
@@ -146,11 +174,12 @@ $(document).ready(function () {
     $("#rg").mask("99.999.999-99", {placeholder: "__.___.___-_"});
     $("#cpf_cnpj").mask("999.999.999-99", {placeholder: "___.___.___-__"});
 
+
     $('#responsavel1').select2({
         width: '100%',
         allowClear: true,
         placeholder: 'Selecione o responsável 1',
-        "language": "pt-BR",
+        language: 'pt-BR',
         ajax: {
             url: '/alunos/getAjax',
             dataType: 'json',
@@ -159,7 +188,7 @@ $(document).ready(function () {
                 return {
                     results: $.map(data, function (item) {
                         return {
-                            text: item.nome,
+                            text: item.nome + ' - ' + item.cpf_cnpj,
                             id: item.id
                         }
                     })
@@ -182,7 +211,7 @@ $(document).ready(function () {
                 return {
                     results: $.map(data, function (item) {
                         return {
-                            text: item.nome,
+                            text: item.nome + ' - ' + item.cpf_cnpj,
                             id: item.id
                         }
                     })
@@ -199,22 +228,32 @@ $(document).ready(function () {
         return dataVenc.getDate() + "/" + (dataVenc.getMonth() + 1) + "/" + dataVenc.getFullYear();
     };
 
-    $('#data_nascimento_aluno').datepicker({
+    $("#dataNascimento").mask("99/99/9999", {placeholder: "__/__ /___"});
+
+    $('#dataNascimento').datepicker({
         autoclose: true,
-        startDate: reduzirDiasData(2192),
         locale: 'pt-BR',
         format: 'dd/mm/yyyy'
     });
 
+    $('#data_nascimento_aluno').datepicker({
+        autoclose: true,
+        startDate: reduzirDiasData(2192),
+        locale: 'pt-BR',
+        format: 'dd/mm/yyyy',
+        orientation: 'bottom auto',
+    });
+
     $("#data_nascimento_aluno").mask("99/99/9999", {placeholder: "__/__ /___"});
 
-    let validateEmail = function (email) {
-
-        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    }
     $('#tipo_pessoas_id').select2();
     $('#sexo_aluno').select2();
+
+    let validateEmail = function (email) {
+        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    };
+
 
     $('#email').select2({
         width: '100%',
@@ -233,8 +272,22 @@ $(document).ready(function () {
         }
     });
 
-
-
+    $('#emailResponsavel').select2({
+        width: '100%',
+        tags: true,
+        tokenSeparators: [',', ';', ' '],
+        placeholder: "Digite os emails",
+        createTag: function (term, data) {
+            let value = term.term;
+            if (validateEmail(value)) {
+                return {
+                    id: value,
+                    text: value
+                };
+            }
+            return null;
+        }
+    });
 
     $('input[name="flg_irmaos_aluno"]').on('click', function (event) {
         if (this.value == 1) {
@@ -255,71 +308,6 @@ $(document).ready(function () {
     $('#form-responsavel').validator();
     // $('#matriculaAluno').validator();
     // Toolbar extra buttons
-    var btnFinish = $('<button></button>').text('Finalizar')
-        .addClass('btn btn-info')
-        .on('click', function () {
-            if (!$(this).hasClass('disabled')) {
-                var elmForm = $("#matriculaAluno");
-                if (elmForm) {
-                    elmForm.validator('validate');
-                    var elmErr = elmForm.find('.has-error');
-                    if (elmErr && elmErr.length > 0) {
-                        alert('Oops we still have error in the form');
-                        return false;
-                    } else {
-                        elmForm.submit();
-                        return false;
-                    }
-                }
-            }
-        });
-
-    var btnCancel = $('<button></button>').text('Cancelar')
-        .addClass('btn btn-danger')
-        .on('click', function () {
-            $('#smartwizard').smartWizard("reset");
-            $('#matriculaAluno').find("input, textarea").val("");
-        });
-
-    // Smart Wizard
-    $('#smartwizard').smartWizard({
-        selected: 0,
-        theme: 'circles',
-        transitionEffect: 'fade',
-        toolbarSettings: {
-            toolbarPosition: 'bottom',
-            toolbarExtraButtons: [btnFinish, btnCancel]
-        },
-        anchorSettings: {
-            markDoneStep: true, // add done css
-            markAllPreviousStepsAsDone: true, // When a step selected by url hash, all previous steps are marked done
-            removeDoneStepOnNavigateBack: true, // While navigate back done step after active step will be cleared
-            enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
-        }
-    });
-
-    $("#smartwizard").on("leaveStep", function (e, anchorObject, stepNumber, stepDirection) {
-        var elmForm = $("#form-step-" + stepNumber);
-
-        if (stepDirection === 'forward' && elmForm) {
-            elmForm.validator('validate');
-            var elmErr = elmForm.children('.has-error');
-            if (elmErr && elmErr.length > 0) {
-                return false;
-            }
-        }
-        return true;
-    });
-
-    $("#smartwizard").on("showStep", function (e, anchorObject, stepNumber, stepDirection) {
-        // Enable finish button only on last step
-        if (stepNumber == 3) {
-            $('.btn-finish').removeClass('disabled');
-        } else {
-            $('.btn-finish').addClass('disabled');
-        }
-    });
-
 
     $('#estado').select2({
         width: '100%'

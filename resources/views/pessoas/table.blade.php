@@ -3,9 +3,6 @@
     <tr>
         <th>Nome</th>
         <th>CPF/CNPJ</th>
-        <th>Sexo</th>
-        <th>Nascimento</th>
-        <th>Estado Civil</th>
         <th>Status</th>
         <th>Tipo Pessoas</th>
         <th>Ação</th>
@@ -16,9 +13,6 @@
         <tr>
             <td>{!! $pessoa->nome !!}</td>
             <td>{!! $pessoa->cpf_cnpj !!}</td>
-            <td>{!! $pessoa->gender->nome !!}</td>
-            <td>{!! $pessoa->dataNascimento->format('d/m/Y') !!}</td>
-            <td>{!! $pessoa->getFamilySituation->nome !!}</td>
             <td>{!! $pessoa->status != 0 ? "Ativa":"Inativo" !!}</td>
             <td>{!! $pessoa->tipoPessoa->nome !!}</td>
             <td>
@@ -26,9 +20,9 @@
                 <div class='btn-group'>
                     <a href="{!! route('pessoas.show', [$pessoa->id]) !!}" class='btn btn-default btn-xs'><i
                                 class="glyphicon glyphicon-eye-open"></i></a>
-                    {{--<a href="{!! route('pessoas.edit', [$pessoa->id]) !!}" class='btn btn-default btn-xs'><i--}}
-                                {{--class="glyphicon glyphicon-edit"></i></a>--}}
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                    <a href="{!! route('pessoas.edit', [$pessoa->id]) !!}" class='btn btn-default btn-xs'><i
+                                class="glyphicon glyphicon-edit"></i></a>
+                    {{--{!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}--}}
                 </div>
                 {!! Form::close() !!}
             </td>
