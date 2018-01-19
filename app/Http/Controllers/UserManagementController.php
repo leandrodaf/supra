@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Flash;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class UserManagementController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['permission:Administrador geral']);
+    }
+
     public function index(){
 
         $users = User::all();
@@ -28,6 +37,7 @@ class UserManagementController extends Controller
     {
         $user = User::find($idUser);
 
+//        return dd($user->permissions);
 
         if (empty($user)) {
             $flash = new Flash();
