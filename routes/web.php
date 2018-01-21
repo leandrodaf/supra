@@ -67,3 +67,5 @@ Route::get(
 )->name('departments.getAjaxSelect2');
 
 Route::resource('departments', 'DepartmentController');
+
+Route::resource('user/management', 'UserManagementController');
