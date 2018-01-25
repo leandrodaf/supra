@@ -1,6 +1,33 @@
 "use strict";
 
 $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('.verInfo').click(function (data) {
+        var id = this;
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            url: "/alunos/getInfoUser/" + id.id,
+            cache: true,
+            success: function success(data) {
+                $('#nomedynamic').text(data.nome);
+                $('#sexodynamic').text(data.sexo);
+                $('#dataNascimentodynamic').text(data.dataNascimento);
+                $('#rgdynamic').text(data.rg);
+                $('#redirectdynamic').attr('href', '/alunos/' + data.id);
+
+            },
+            beforeSend: function beforeSend() {
+                $('#loadingResponsavel').show();
+            },
+            complete: function complete() {
+                $('#loadingResponsavel').hide();
+            }
+        });
+    });
+
 
     let validateEmail = function (email) {
         let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -56,6 +83,7 @@ $(document).ready(function () {
             $('#data_admissao').removeAttr('required');
 
             $('#data_admissao').val("");
+
             $('#numero_ctps').val("");
             $('#ctps_serie').val("");
             $('#pis').val("");
@@ -63,11 +91,44 @@ $(document).ready(function () {
             $('#vale_refeicao').val("");
             $('#vale_transporte').val("");
             $('#contato_emergencial').val("");
+
+
+
+            $('#bronquite').val("");
+            $('#diabetes').val("");
+            $('#alergia').val("");
+            $('#faltadear').val("");
+            $('#convulsao').val("");
+            $('#sintomas').val("");
+
+            $('#bronquite').hide();
+            $('#diabetes').hide();
+            $('#alergia').hide();
+            $('#faltadear').hide();
+            $('#convulsao').hide();
+            $('#sintomas').hide();
+
         } else {
+            $('#bronquite').attr('required', 'required');
+            $('#diabetes').attr('required', 'required');
+            $('#alergia').attr('required', 'required');
+            $('#faltadear').attr('required', 'required');
+            $('#convulsao').attr('required', 'required');
+            $('#sintomas').attr('required', 'required');
+
             $('#setorFuncionario').attr('required', 'required');
             $('#funcaoFuncionario').attr('required', 'required');
             $('#data_admissao').attr('required', 'required');
+
             $('#dadosProfessor').show();
+
+            $('#bronquite').show();
+            $('#diabetes').show();
+            $('#alergia').show();
+            $('#faltadear').show();
+            $('#convulsao').show();
+            $('#sintomas').show();
+
         }
 
         if (changeTipoPessoa !== "5") {
@@ -115,7 +176,9 @@ $(document).ready(function () {
 
 
             $('.cpfCnpj').text("CNPJ");
+
             $("#cpf_cnpj").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
+
             $('.validatecpf').cpfcnpj({
                 mask: true,
                 validate: 'cnpj',
@@ -194,21 +257,21 @@ $(document).ready(function () {
 
     $('#criarPessoa').validator();
 
-    $("#cep").mask("99999-999", {placeholder: "_____-___"});
+    $("#zipCode").mask("99999-999", {placeholder: "_____-___"});
     $("#rg").mask("99.999.999-99", {placeholder: "__.___.___-_"});
 
 //Busca CEP Async
 
     function limpa_formulário_cep() {
-        $("#rua").val("");
-        $("#bairro").val("");
-        $("#cidade").val("");
-        $("#complemento").val("");
-        $("#pais").val("");
+        $("#street").val("");
+        $("#neighborhood").val("");
+        $("#city").val("");
+        $("#complement").val("");
+        $("#country").val("");
         $("#ibge").val("");
     }
 
-    $("#cep").blur(function () {
+    $("#zipCode").blur(function () {
 
         //Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
@@ -223,11 +286,11 @@ $(document).ready(function () {
             if (validacep.test(cep)) {
 
                 //Preenche os campos com "..." enquanto consulta webservice.
-                $("#rua").val("...");
-                $("#bairro").val("...");
-                $("#cidade").val("...");
-                $("#complemento").val("...");
-                $("#pais").val("...");
+                $("#street").val("...");
+                $("#neighborhood").val("...");
+                $("#city").val("...");
+                $("#complement").val("...");
+                $("#country").val("...");
                 $("#ibge").val("...");
 
                 //Consulta o webservice viacep.com.br/
@@ -235,12 +298,12 @@ $(document).ready(function () {
 
                     if (!("erro" in dados)) {
                         //Atualiza os campos com os valores da consulta.
-                        $("#rua").val(dados.logradouro);
-                        $("#bairro").val(dados.bairro);
-                        $("#cidade").val(dados.localidade);
-                        $("#complemento").val(dados.complemento);
+                        $("#street").val(dados.logradouro);
+                        $("#neighborhood").val(dados.bairro);
+                        $("#city").val(dados.localidade);
+                        $("#complement").val(dados.complemento);
                         // $("#estado").val(dados.uf);
-                        $("#pais").val("Brasil");
+                        $("#country").val("Brasil");
                         $("#ibge").val(dados.ibge);
 
                         $('#estado option').filter(function () {
@@ -315,7 +378,6 @@ $(document).ready(function () {
 
     escolheTipoPessoa();
 
-    $('[data-toggle="tooltip"]').tooltip();
 
     $('.listEmail').click(function () {
 

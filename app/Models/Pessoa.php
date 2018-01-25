@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @property \App\Models\TipoPessoa tipoPessoa
  * @property \Illuminate\Database\Eloquent\Collection alunoEmail
- * @property \Illuminate\Database\Eloquent\Collection alunoEndereco
+ * @property \Illuminate\Database\Eloquent\Collection alunolocation
  * @property \Illuminate\Database\Eloquent\Collection alunoEscola
  * @property \Illuminate\Database\Eloquent\Collection AlunoPessoa
  * @property \Illuminate\Database\Eloquent\Collection alunoTelefone
  * @property \Illuminate\Database\Eloquent\Collection PessoaEmail
- * @property \Illuminate\Database\Eloquent\Collection PessoaEndereco
+ * @property \Illuminate\Database\Eloquent\Collection Pessoalocation
  * @property \Illuminate\Database\Eloquent\Collection PessoaTelefone
  * @property \Illuminate\Database\Eloquent\Collection UsuarioPessoa
  * @property string nome
@@ -113,10 +113,22 @@ class Pessoa extends Model
         'inscricaoEstadual' => '',
         'citizenship' => '',
         'tipo_pessoas_id' => '',
-        'enderecos.numero' => '',
-        'enderecos.cep' => ''
+        'locations.number' => '',
+        'locations.zipCode' => ''
 
     ];
+
+
+    public function alunos()
+    {
+        return $this->belongsToMany(
+            \App\Models\Alunos::class,
+            'aluno_pessoa',
+            'pessoa_id',
+            'aluno_id'
+        )->withPivot('flg_principal', 'flg_autorizado');
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -157,6 +169,18 @@ class Pessoa extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
+    public function getHealthInformation()
+    {
+        return $this->hasOne(
+            \App\Models\HealthInformations::class,
+            'id',
+            'healthInformations_id'
+        );
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
     public function getCitizenship()
     {
         return $this->hasOne(
@@ -179,17 +203,30 @@ class Pessoa extends Model
         )->withPivot('flg_principal');
     }
 
+
+    public function mainEmail()
+    {
+
+        $emails = $this->email()->get();
+
+        if (!isset($emails)) {
+            return $emails[0];
+        } else {
+            return false;
+        }
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function endereco()
+    public function location()
     {
         return $this->belongsToMany(
-            \App\Models\Endereco::class,
-            'pessoa_endereco',
+            \App\Models\Location::class,
+            'pessoa_location',
             'pessoa_id',
-            'endereco_id'
-        );
+            'location_id'
+        )->withPivot('flg_principal');
     }
 
     /**

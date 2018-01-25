@@ -60,10 +60,10 @@ $(document).ready(function () {
     $('.verInfo').click(function (data) {
         var id = this;
         $.ajax({
-            async:true,
+            async: true,
             type: "GET",
             dataType: "json",
-            url: "/alunos/getInfoUser/" + id.id,
+            url: "/pessoas/getInfoUser/" + id.id,
             cache: true,
             success: function (data) {
                 $('#nomedynamic').text(data.nome);
@@ -71,6 +71,7 @@ $(document).ready(function () {
                 $('#sexodynamic').text(data.sexo);
                 $('#rgdynamic').text(data.rg);
                 $('#nascimentodynamic').text(data.dataNascimento);
+                $('#redirectdynamic').attr('href', '/pessoas/' + data.id);
 
                 if (data.status == 1) {
                     $('#statusdynamic').text("Ativo");
@@ -103,7 +104,7 @@ $(document).ready(function () {
     var carregaHealthInformations = function (data) {
         var id = $('.healthInformations').get(0).id;
         $.ajax({
-            async:true,
+            async: true,
             type: "GET",
             dataType: "json",
             url: "/healthInformations/" + id,
@@ -124,9 +125,12 @@ $(document).ready(function () {
 
                     $('#escarlatina').text(data.escarlatina ? "Sim" : "Não");
                     analisaAlteraDados('escarlatinaField', data.escarlatina);
-
-                    $('#outradoenca').text(data.outradoenca);
-                    $('#outradoencaField').val(data.outradoenca);
+                    if (data.outradoenca == null) {
+                        $('.outrasdoencas').hide()
+                    } else {
+                        $('#outradoenca').text(data.outradoenca);
+                        $('#outradoencaField').val(data.outradoenca);
+                    }
 
                     $('#bronquite').text(data.bronquite ? "Sim" : "Não");
                     analisaAlteraDados('bronquiteField', data.bronquite);
@@ -143,14 +147,22 @@ $(document).ready(function () {
                     $('#convulsao').text(data.convulsao ? "Sim" : "Não");
                     analisaAlteraDados('convulsaoField', data.convulsao);
 
-                    $('#medicamentotomar').text(data.medicamentotomar);
-                    $('#medicamentotomarField').val(data.medicamentotomar);
+                    if(data.medicamentotomar == null) {
+                        $('.medicamosTomar').hide()
+                    } else {
+                        $('#medicamentotomar').text(data.medicamentotomar);
+                        $('#medicamentotomarField').val(data.medicamentotomar);
+                    }
 
                     $('#alergia').text(data.alergia ? "Sim" : "Não");
                     analisaAlteraDados('alergiaField', data.alergia);
 
-                    $('#sintomasalergia').text(data.sintomasalergia);
-                    $('#sintomasalergiaField').val(data.sintomasalergia);
+                    if (data.sintomasalergia == null) {
+                        $('.sintomasalergia').hide()
+                    } else {
+                        $('#sintomasalergia').text(data.sintomasalergia);
+                        $('#sintomasalergiaField').val(data.sintomasalergia);
+                    }
 
                     $('#visao').text(data.visao ? "Sim" : "Não");
                     analisaAlteraDados('visaoField', data.visao);
@@ -164,9 +176,12 @@ $(document).ready(function () {
                     $('#edfisica').text(data.edfisica ? "Sim" : "Não");
                     analisaAlteraDados('edfisicaField', data.edfisica);
 
-                    $('#outradeficienciax').text(data.outradeficienciax);
-                    $('#outradeficienciaxField').val(data.outradeficienciax);
-
+                    if (data.outradeficienciax == null) {
+                        $('.outrasDeficiencias').hide()
+                    } else {
+                        $('#outradeficienciax').text(data.outradeficienciax);
+                        $('#outradeficienciaxField').val(data.outradeficienciax);
+                    }
                 }
 
             },
@@ -207,15 +222,15 @@ $(document).ready(function () {
         placeholder: 'Selecione um responsável',
         "language": "pt-BR",
         ajax: {
-            async:true,
-            url: '/alunos/getAjax',
+            async: true,
+            url: '/pessoas/getAjax',
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
                 return {
                     results: $.map(data, function (item) {
                         return {
-                            text: item.nome,
+                            text: item.nome + ' - ' + item.cpf_cnpj + ' (' + item.tipo_pessoas_id != 2 ? "Autorizado" : "Responsável" + ')',
                             id: item.id
                         }
                     })
@@ -225,11 +240,17 @@ $(document).ready(function () {
         }
     });
 
+
+    let checkStatusTypePerson = function (value) {
+        return
+    }
+
+
     $('#buttonAtualizarHealthInformations').on('click', function () {
         // var id = $('.numeroResponsavel').get(0).id;
 
         $.ajax({
-            async:true,
+            async: true,
             url: '/healthInformations/1',
             type: 'POST',
             data: $('#formHealthInformations').serialize(),

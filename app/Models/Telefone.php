@@ -19,7 +19,7 @@ class Telefone extends Model
      *
      * @var array
      */
-    protected $fillable = ['numero'];
+    protected $fillable = ['number'];
 
     /**
      * GET Aluno

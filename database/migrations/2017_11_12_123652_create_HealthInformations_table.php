@@ -15,23 +15,23 @@ class CreateHealthInformationsTable extends Migration
     {
         Schema::create('healthInformations', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('sarampo');
-            $table->boolean('rubeola');
-            $table->boolean('catapora');
-            $table->boolean('escarlatina');
+            $table->boolean('sarampo')->nullable();
+            $table->boolean('rubeola')->nullable();
+            $table->boolean('catapora')->nullable();
+            $table->boolean('escarlatina')->nullable();
             $table->string('outradoenca')->nullable();
-            $table->boolean('bronquite');
-            $table->boolean('faltadear');
-            $table->boolean('diabete');
-            $table->boolean('refluxo');
-            $table->boolean('convulsao');
+            $table->boolean('bronquite')->nullable();
+            $table->boolean('faltadear')->nullable();
+            $table->boolean('diabete')->nullable();
+            $table->boolean('refluxo')->nullable();
+            $table->boolean('convulsao')->nullable();
             $table->string('medicamentotomar')->nullable();
-            $table->boolean('alergia');
+            $table->boolean('alergia')->nullable();
             $table->string('sintomasalergia')->nullable();;
-            $table->boolean('visao');
-            $table->boolean('fala');
-            $table->boolean('audicao');
-            $table->boolean('edfisica');
+            $table->boolean('visao')->nullable();
+            $table->boolean('fala')->nullable();
+            $table->boolean('audicao')->nullable();
+            $table->boolean('edfisica')->nullable();
             $table->string('outradeficienciax')->nullable();
             $table->timestamps();
             $table->softDeletes();

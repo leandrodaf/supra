@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Endereco extends Model
+class Location extends Model
 {
 
     /**
@@ -12,7 +12,7 @@ class Endereco extends Model
      *
      * @var string
      */
-    protected $table = 'enderecos';
+        protected $table = 'locations';
 
 
     /**
@@ -21,15 +21,15 @@ class Endereco extends Model
      * @var array
      */
     protected $fillable = [
-        'cep',
-        'rua',
-        'numero',
-        'cidade  ',
-        'complemento',
-        'bairro',
-        'cidade',
-        'estado',
-        'pais'
+        'zipCode',
+        'street',
+        'number',
+        'city',
+        'complement',
+        'neighborhood',
+        'city',
+        'state',
+        'country'
     ];
 
     /**
@@ -41,10 +41,10 @@ class Endereco extends Model
     }
 
     /**
-     * GET Pessoa
-     */
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
     public function pessoa()
     {
-        return $this->belongsToMany('App\Models\Pessoa');
+        return $this->belongsToMany(\App\Models\Pessoa::class);
     }
 }

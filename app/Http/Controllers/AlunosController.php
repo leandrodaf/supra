@@ -194,4 +194,27 @@ class AlunosController extends AppBaseController
         $flash::success('Alunos deleted successfully.');
         return redirect()->back();
     }
+
+
+    /**
+     * Display the specified Pessoa.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function getInfoUser($idAluno)
+    {
+        $aluno = $this->alunosRepository->findWithoutFail($idAluno);
+
+        $resposta = [];
+
+        $resposta['id'] = $aluno->id;
+        $resposta['nome'] = $aluno->nome_aluno;
+        $resposta['dataNascimento'] = $aluno->data_nascimento_aluno->format('d/m/Y');
+        $resposta['sexo'] = $aluno->gender->nome;
+        $resposta['rg'] = $aluno->rg_aluno;
+
+        return response()->json($resposta);
+    }
 }

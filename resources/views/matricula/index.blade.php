@@ -31,20 +31,20 @@
             {!! Form::open(['route' => 'matricula.store', 'files' => true, 'id' => 'matriculaAluno', 'data-toggle' => 'validator', 'autocomplete' => 'off']) !!}
 
             <!-- SmartWizard html -->
-                    <div>
-                        <h3>Aluno</h3>
-                        <section>
-                            @include('matricula.aluno')
-                        </section>
-                        <h3>Responsável</h3>
-                        <section>
-                            @include('matricula.responsaveis')
-                        </section>
-                        <h3>Dados médicos</h3>
-                        <section>
-                            @include('matricula.healthInformations')
-                        </section>
-                    </div>
+                <div>
+                    <h3>Aluno</h3>
+                    <section>
+                        @include('matricula.aluno')
+                    </section>
+                    <h3>Responsável</h3>
+                    <section>
+                        @include('matricula.responsaveis')
+                    </section>
+                    <h3>Dados médicos</h3>
+                    <section>
+                        @include('matricula.healthInformations')
+                    </section>
+                </div>
 
                 {!! Form::close() !!}
             </div>
@@ -75,10 +75,7 @@
                             {{ csrf_field() }}
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
-                        <button id="inputResponsavel" type="submit" class="btn btn-primary">Criar responsável</button>
-                    </div>
+
                 </form>
 
             </div>
