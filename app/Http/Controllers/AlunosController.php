@@ -91,15 +91,15 @@ class AlunosController extends AppBaseController
      */
     public function edit($idAluno)
     {
-        $tipoPessoas = \App\Models\TipoPessoa::where('status', '=', 1)->get()->pluck('nome', 'id');
-        $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
+        $tipoPessoas = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '=', 1]])->get()->pluck('nome', 'id');
+        $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
         $alunos = $this->alunosRepository->findWithoutFail($idAluno);
         if (empty($alunos)) {
             $flash = new Flash();
             $flash::error('Aluno não encontrado');
             return redirect(route('alunos.index'));
         }
-        return view('alunos.edit')->with('alunos', $alunos)->with(compact('tipoPessoas', 'generos'));
+        return view('alunos.edit')->with('alunos', $alunos)->with(compact('tipoPessoas', 'genders'));
     }
     /**
      * Update the specified Alunos in storage.

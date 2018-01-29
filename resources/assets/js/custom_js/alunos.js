@@ -2,6 +2,36 @@
 
 $(document).ready(function () {
 
+    let reduzirDiasData = function (dias) {
+        let hoje = new Date();
+        let dataVenc = new Date(hoje.getTime() - (dias * 24 * 60 * 60 * 1000));
+        return dataVenc.getDate() + "/" + (dataVenc.getMonth() + 1) + "/" + dataVenc.getFullYear();
+    };
+
+
+    $('input[name="flg_irmaos_aluno"]').on('click', function (event) {
+        if (this.value == 1) {
+            $('#qtdAlunos').removeAttr("hidden", "hidden");
+            $('input[name="qtd_irmaos_aluno"]').attr('required', 'required');
+        } else {
+            $('#qtdAlunos').attr("hidden", "hidden");
+            $('input[name="qtd_irmaos_aluno"]').removeAttr("required", "required");
+            $('input[name="qtd_irmaos_aluno"]').val("");
+        }
+    });
+
+
+    $("#data_nascimento_aluno").mask("99/99/9999", {placeholder: "__/__ /___"});
+
+    $('#data_nascimento_aluno').datepicker({
+        autoclose: true,
+        startDate: reduzirDiasData(2192),
+        locale: 'pt-BR',
+        format: 'dd/mm/yyyy',
+        orientation: 'bottom auto'
+    });
+
+
     $('.informacoesTitulo').tooltip();
 
 
@@ -33,21 +63,12 @@ $(document).ready(function () {
     //     return dataVenc.getDate() + "/" + (dataVenc.getMonth() + 1) + "/" + dataVenc.getFullYear();
     // };
 
-    let reduzirDiasData = function (dias) {
-        let hoje = new Date();
-        let dataVenc = new Date(hoje.getTime() - (dias * 24 * 60 * 60 * 1000));
-        return dataVenc.getDate() + "/" + (dataVenc.getMonth() + 1) + "/" + dataVenc.getFullYear();
-    };
-
 
     $('#tipo_pessoas_id').select2();
     $('#sexo_aluno').select2();
 
     $('#formularioAlunos').validator();
 
-    $('#data_nascimento_aluno').datepicker({
-        startDate: reduzirDiasData(2192)
-    });
 
     // $('input').iCheck({
     //     checkboxClass: 'icheckbox_square-blue',
