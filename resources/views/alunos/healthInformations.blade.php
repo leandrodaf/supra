@@ -70,7 +70,7 @@
                 <div class="modal-body">
 
                     {!! Form::open(['route' => ['healthInformations.update', $alunos->healthInformations_id], 'id' => 'formHealthInformations', 'data-toggle' => 'validator', 'method' => 'PUT']) !!}
-
+                        <div class="numeroResponsavel" id="{{$alunos->healthInformations_id}}"></div>
                     <dl class="dl-horizontal">
                         <dt>Sarampo</dt>
                         <dd id="sarampo">

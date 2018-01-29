@@ -136,7 +136,7 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::textarea('healthInformations[medicamentotomar]', false,['rows' => '3']) !!}</label>
+            <label class="checkbox-inline">{!! Form::textarea('healthInformations[medicamentotomar]', false,['rows' => '3', 'disabled' => 'disabled']) !!}</label>
         </label>
     </div>
 </div>
@@ -161,7 +161,7 @@
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::textarea('healthInformations[sintomasalergia]', false,['rows' => '3']) !!}</label>
+            <label class="checkbox-inline">{!! Form::textarea('healthInformations[sintomasalergia]', false,['rows' => '3','disabled' => 'disabled' ]) !!}</label>
         </label>
     </div>
 </div>

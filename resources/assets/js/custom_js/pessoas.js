@@ -114,7 +114,6 @@ $(document).ready(function () {
             $('#alergia').attr('required', 'required');
             $('#faltadear').attr('required', 'required');
             $('#convulsao').attr('required', 'required');
-            $('#sintomas').attr('required', 'required');
 
             $('#setorFuncionario').attr('required', 'required');
             $('#funcaoFuncionario').attr('required', 'required');

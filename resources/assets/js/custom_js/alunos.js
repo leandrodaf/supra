@@ -241,17 +241,12 @@ $(document).ready(function () {
     });
 
 
-    let checkStatusTypePerson = function (value) {
-        return
-    }
-
-
     $('#buttonAtualizarHealthInformations').on('click', function () {
-        // var id = $('.numeroResponsavel').get(0).id;
+        var id = $('.numeroResponsavel').get(0).id;
 
         $.ajax({
             async: true,
-            url: '/healthInformations/1',
+            url: '/healthInformations/' + id,
             type: 'POST',
             data: $('#formHealthInformations').serialize(),
             dataType: 'JSON',

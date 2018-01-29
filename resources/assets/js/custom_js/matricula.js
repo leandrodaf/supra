@@ -310,15 +310,15 @@ $(document).ready(function () {
         }
     });
 
-    $('input[name="healthInformations[convulsao]"]').on('click', function (event) {
+    $('input[name="flg_irmaos_aluno"]').on('click', function (event) {
         if (this.value == 1) {
             $('#qtdAlunos').removeAttr("hidden", "hidden");
-
+            $('input[name="qtd_irmaos_aluno"]').attr('required', 'required');
         } else {
             $('#qtdAlunos').attr("hidden", "hidden");
+            $('input[name="qtd_irmaos_aluno"]').removeAttr("required", "required");
             $('input[name="qtd_irmaos_aluno"]').val("");
         }
-
     });
 
 
@@ -336,10 +336,29 @@ $(document).ready(function () {
 
     $('input[name="healthInformations[convulsao]"]').on('click', function (event) {
         if (this.value == 1) {
-            $('.medicamentotomar').removeAttr("hidden", "hidden");
+
+            $('textarea[name="healthInformations[medicamentotomar]"]').removeAttr("disabled", "disabled");
+            $('textarea[name="healthInformations[medicamentotomar]"]').attr('required', 'required');
 
         } else {
-            $('.medicamentotomar').attr("hidden", "hidden");
+            $('textarea[name="healthInformations[medicamentotomar]"]').attr("disabled", "disabled");
+            $('textarea[name="healthInformations[medicamentotomar]"]').removeAttr("required", "required");
+            $('textarea[name="healthInformations[medicamentotomar]"]').val("");
+        }
+
+    });
+
+
+    $('input[name="healthInformations[alergia]"]').on('click', function (event) {
+        if (this.value == 1) {
+
+            $('textarea[name="healthInformations[sintomasalergia]"]').removeAttr("disabled", "disabled");
+            $('textarea[name="healthInformations[sintomasalergia]"]').attr('required', 'required');
+
+        } else {
+            $('textarea[name="healthInformations[sintomasalergia]"]').attr("disabled", "disabled");
+            $('textarea[name="healthInformations[sintomasalergia]"]').removeAttr("required", "required");
+            $('textarea[name="healthInformations[sintomasalergia]"]').val("");
         }
 
     });
