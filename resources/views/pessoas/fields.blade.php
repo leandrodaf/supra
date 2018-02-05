@@ -238,9 +238,9 @@
                 <div class="form-group {{$errors->has('convulsao') ? "has-error":""}} col-sm-6">
                     <dt>Convulsão</dt>
                     <dd id="bronquite">
-                        <label class="checkbox-inline">{!! Form::radio('healthInformations[convulsao]', '1', false, ['id' => 'convulsao']) !!}
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[convulsao]', '1', false, ['id' => 'convulsao', 'class' => 'convulsao']) !!}
                             Sim</label>
-                        <label class="checkbox-inline">{!! Form::radio('healthInformations[convulsao]', '0', true, ['id' => 'convulsao']) !!}
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[convulsao]', '0', true, ['id' => 'convulsao', 'class' => 'convulsao']) !!}
                             Não</label>
                     </dd>
                 </div>
@@ -249,9 +249,9 @@
                 <div class="form-group {{$errors->has('alergia') ? "has-error":""}} col-sm-6">
                     <dt>Alergia</dt>
                     <dd id="alergia">
-                        <label class="checkbox-inline">{!! Form::radio('healthInformations[alergia]', '1', false, ['id' => 'alergia']) !!}
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[alergia]', '1', false, ['id' => 'alergia', 'class' => 'alergia' ]) !!}
                             Sim</label>
-                        <label class="checkbox-inline">{!! Form::radio('healthInformations[alergia]', '0', true, ['id' => 'alergia']) !!}
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[alergia]', '0', true, ['id' => 'alergia', 'class' => 'alergia']) !!}
                             Não</label>
                     </dd>
                 </div>

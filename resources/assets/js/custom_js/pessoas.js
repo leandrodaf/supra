@@ -72,112 +72,123 @@ $(document).ready(function () {
     $('#tipo_pessoas_id').change(function () {
         let changeTipoPessoa = $("#tipo_pessoas_id option:selected").val();
 
-        if (changeTipoPessoa !== "4") {
-            $('#dadosProfessor').hide();
 
-            $('#setorFuncionario').val('').trigger('change');
-            $('#funcaoFuncionario').val('').trigger('change');
+        if (changeTipoPessoa === "1" || changeTipoPessoa == "2") {
+            $('.validatecpf').cpfcnpj({
+                mask: true,
+                validate: 'cpf',
+                event: 'blur',
+                handler: '.validatecpf',
+                ifValid: function (input) {
+                    input.removeClass("error");
+                },
+                ifInvalid: function (input) {
+                    input.addClass("error");
+                }
+            });
+            $(".validatecpf").mask("999.999.999-99", {placeholder: "___.___.___-__"});
 
-            $('#setorFuncionario').removeAttr('required');
-            $('#funcaoFuncionario').removeAttr('required');
-            $('#data_admissao').removeAttr('required');
+            $('#nome').attr('required', 'required').show();
+            $('#cpf_cnpj').attr('required', 'required').show();
+            $('.rg').attr('required', 'required').show();
+            $('.dataNascimento').attr('required', 'required').show();
+            $('#rg').attr('required', 'required').show();
+            $('#dataNascimento').attr('required', 'required').show();
+            $('#familySituation').attr('required', 'required').show();
+            $('.familySituation').attr('required', 'required').show();
+            $('#citizenship').attr('required', 'required').show();
+            $('.citizenship').attr('required', 'required').show();
+            $('#sexo').attr('required', 'required').show();
+            $('.sexo').attr('required', 'required').show();
+            $('#zipCode').attr('required', 'required').show();
+            $('#number').attr('required', 'required').show();
 
-            $('#data_admissao').val("");
 
-            $('#numero_ctps').val("");
-            $('#ctps_serie').val("");
-            $('#pis').val("");
-            $('#salario_base').val("");
-            $('#vale_refeicao').val("");
-            $('#vale_transporte').val("");
-            $('#contato_emergencial').val("");
+            //Funcionario
+            $('#setorFuncionario').removeAttr('required', 'required').val('').hide();
+            $('#funcaoFuncionario').removeAttr('required', 'required').val('').hide();
+            $('#data_admissao').removeAttr('required', 'required').val('').hide();
+            $('#numero_ctps').removeAttr('required', 'required').val('').hide();
+            $('#ctps_serie').removeAttr('required', 'required').val('').hide();
+            $('#pis').removeAttr('required', 'required').val('').hide();
+            $('#salario_base').removeAttr('required', 'required').val('').hide();
+            $('#vale_refeicao').removeAttr('required', 'required').val('').hide();
+            $('#vale_transporte').removeAttr('required', 'required').val('').hide();
+            $('#bronquite').removeAttr('required', 'required').val('').hide();
+            $('#faltadear').removeAttr('required', 'required').val('').hide();
+            $('#diabetes').removeAttr('required', 'required').val('').hide();
+            $('#convulsao').removeAttr('required', 'required').val('').hide();
+            $('#alergia').removeAttr('required', 'required').val('').hide();
+            $('#contato_emergencial').removeAttr('required', 'required').val('').hide();
 
+            //    Funcionario
+            $('#razaoSocial').removeAttr('required', 'required').val('').hide();
+            $('#inscricaoEstadual').removeAttr('required', 'required').val('').hide();
 
-
-            $('#bronquite').val("");
-            $('#diabetes').val("");
-            $('#alergia').val("");
-            $('#faltadear').val("");
-            $('#convulsao').val("");
-            $('#sintomas').val("");
-
-            $('#bronquite').hide();
-            $('#diabetes').hide();
-            $('#alergia').hide();
-            $('#faltadear').hide();
-            $('#convulsao').hide();
-            $('#sintomas').hide();
-
-        } else {
-            $('#bronquite').attr('required', 'required');
-            $('#diabetes').attr('required', 'required');
-            $('#alergia').attr('required', 'required');
-            $('#faltadear').attr('required', 'required');
-            $('#convulsao').attr('required', 'required');
-
-            $('#setorFuncionario').attr('required', 'required');
-            $('#funcaoFuncionario').attr('required', 'required');
-            $('#data_admissao').attr('required', 'required');
-
-            $('#dadosProfessor').show();
-
-            $('#bronquite').show();
-            $('#diabetes').show();
-            $('#alergia').show();
-            $('#faltadear').show();
-            $('#convulsao').show();
-            $('#sintomas').show();
-
+            //Variação de labels
+            $('.cpfCnpj').text("CPF");
+            $('#nomeLabel').text("Nome Completo");
         }
 
-        if (changeTipoPessoa !== "5") {
+
+        if (changeTipoPessoa === "4") {
+            $('.validatecpf').cpfcnpj({
+                mask: true,
+                validate: 'cpf',
+                event: 'blur',
+                handler: '.validatecpf',
+                ifValid: function (input) {
+                    input.removeClass("error");
+                },
+                ifInvalid: function (input) {
+                    input.addClass("error");
+                }
+            });
+            $(".validatecpf").mask("999.999.999-99", {placeholder: "___.___.___-__"});
+
+            $('#nome').attr('required', 'required').show();
+            $('#cpf_cnpj').attr('required', 'required').show();
+            $('.rg').attr('required', 'required').show();
+            $('.dataNascimento').attr('required', 'required').show();
+            $('#rg').attr('required', 'required').show();
+            $('#dataNascimento').attr('required', 'required').show();
+            $('#familySituation').attr('required', 'required').show();
+            $('.familySituation').attr('required', 'required').show();
+            $('#citizenship').attr('required', 'required').show();
+            $('.citizenship').attr('required', 'required').show();
+            $('#sexo').attr('required', 'required').show();
+            $('.sexo').attr('required', 'required').show();
+            $('#zipCode').attr('required', 'required').show();
+            $('#number').attr('required', 'required').show();
+
+            //Funcionario
+            $('#setorFuncionario').attr('required', 'required').show();
+            $('#funcaoFuncionario').attr('required', 'required').show();
+            $('#data_admissao').attr('required', 'required').show();
+            $('#numero_ctps').attr('required', 'required').show();
+            $('#ctps_serie').attr('required', 'required').show();
+            $('#pis').attr('required', 'required').show();
+            $('#salario_base').attr('required', 'required').show();
+            $('#vale_refeicao').attr('required', 'required').show();
+            $('#vale_transporte').attr('required', 'required').show();
+            $('#bronquite').attr('required', 'required').show();
+            $('#faltadear').attr('required', 'required').show();
+            $('#diabetes').attr('required', 'required').show();
+            $('#convulsao').attr('required', 'required').show();
+            $('#alergia').attr('required', 'required').show();
+            $('#contato_emergencial').attr('required', 'required').show();
+
+            //    Funcionario
+            $('#razaoSocial').removeAttr('required', 'required').val('').hide();
+            $('#inscricaoEstadual').removeAttr('required', 'required').val('').hide();
+
+            //Variação de labels
             $('.cpfCnpj').text("CPF");
-            $('#cpf_cnpj').mask("999.999.999-99", {placeholder: "___.___.___-__"});
-            $('#cpf_cnpj').val("");
-            $('#razaoSocial').val("");
-            $('#inscricaoEstadual').val("");
-
-            $('.rg').show();
-            $('#nomeLabel').text("Nome Completo:");
-
-            $('.sexo').show();
-            $('.dataNascimento').show();
-            $('.citizenship').show();
-            $('.familySituation').show();
-
-            $('#rg').attr('required', 'required');
-
-            $('#sexo').attr('required', 'required');
-            $('#dataNascimento').attr('required', 'required');
-            $('#citizenship').attr('required', 'required');
-            $('#familySituation').attr('required', 'required');
-
-            $('#tipoEmpresa').hide();
-        } else {
-            $('#rg').val("");
-            $('.rg').hide();
-
-            $('#sexo').val("");
-            $('.sexo').hide();
-            $('#dataNascimento').val("");
-            $('.dataNascimento').hide();
-            $('#citizenship').val("");
-            $('.citizenship').hide();
-            $('#familySituation').val("");
-            $('.familySituation').hide();
-
-            $('#rg').removeAttr('required');
-            $('#nomeLabel').text("Nome Fantasia:");
-            $('#sexo').removeAttr('required');
-            $('#dataNascimento').removeAttr('required');
-            $('#citizenship').removeAttr('required');
-            $('#familySituation').removeAttr('required');
+            $('#nomeLabel').text("Nome Completo");
+        }
 
 
-            $('.cpfCnpj').text("CNPJ");
-
-            $("#cpf_cnpj").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
-
+        if (changeTipoPessoa === "5") {
             $('.validatecpf').cpfcnpj({
                 mask: true,
                 validate: 'cnpj',
@@ -190,12 +201,51 @@ $(document).ready(function () {
                     input.addClass("error");
                 }
             });
+            $(".validatecpf").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
 
-            $('#tipoEmpresa').show();
+            $('#nome').attr('required', 'required').show();
+            $('#cpf_cnpj').attr('required', 'required').show();
+            $('.rg').removeAttr('required', 'required').val('').hide();
+            $('.dataNascimento').removeAttr('required', 'required').val('').hide();
+            $('#rg').removeAttr('required', 'required').val('').hide();
+            $('#dataNascimento').removeAttr('required', 'required').val('').hide();
+            $('#familySituation').removeAttr('required', 'required').val('').hide();
+            $('.familySituation').removeAttr('required', 'required').val('').hide();
+            $('#citizenship').removeAttr('required', 'required').val('').hide();
+            $('.citizenship').removeAttr('required', 'required').val('').hide();
+            $('#sexo').removeAttr('required', 'required').val('').hide();
+            $('.sexo').removeAttr('required', 'required').val('').hide();
+            $('#zipCode').attr('required', 'required').show();
+            $('#number').attr('required', 'required').show();
+
+            //Funcionario
+            $('#setorFuncionario').removeAttr('required', 'required').val('').hide();
+            $('#funcaoFuncionario').removeAttr('required', 'required').val('').hide();
+            $('#data_admissao').removeAttr('required', 'required').val('').hide();
+            $('#numero_ctps').removeAttr('required', 'required').val('').hide();
+            $('#ctps_serie').removeAttr('required', 'required').val('').hide();
+            $('#pis').removeAttr('required', 'required').val('').hide();
+            $('#salario_base').removeAttr('required', 'required').val('').hide();
+            $('#vale_refeicao').removeAttr('required', 'required').val('').hide();
+            $('#vale_transporte').removeAttr('required', 'required').val('').hide();
+            $('#bronquite').removeAttr('required', 'required').val('').hide();
+            $('#faltadear').removeAttr('required', 'required').val('').hide();
+            $('#diabetes').removeAttr('required', 'required').val('').hide();
+            $('#convulsao').removeAttr('required', 'required').val('').hide();
+            $('#alergia').removeAttr('required', 'required').val('').hide();
+            $('#contato_emergencial').removeAttr('required', 'required').val('').hide();
+
+            //    Funcionario
+            $('#razaoSocial').attr('required', 'required').show();
+            $('#inscricaoEstadual').attr('required', 'required').show();
+
+            //Variação de labels
+            $('.cpfCnpj').text("CNPJ");
+            $('#nomeLabel').text("Nome Fantasia");
         }
 
-
     });
+
 
     $("#contato_emergencial").mask("(99) 9 9999-9999", {placeholder: "(__) _ ____-______"});
     $('#salario_base').maskMoney({defaultZero: false});
@@ -326,56 +376,6 @@ $(document).ready(function () {
             limpa_formulário_cep();
         }
     });
-
-
-    var escolheTipoPessoa = () => {
-
-        if ($('meta[name="tipo-user"]').attr('content') == "4") {
-            $('#setorFuncionario').attr('required', 'required');
-            $('#funcaoFuncionario').attr('required', 'required');
-            $('#data_admissao').attr('required', 'required');
-            $('#dadosProfessor').show();
-        }
-
-        if ($('meta[name="tipo-user"]').attr('content') == "5") {
-            $('#rg').val("");
-            $('.rg').hide();
-            $('#sexo').val("");
-            $('.sexo').hide();
-            $('#dataNascimento').val("");
-            $('.dataNascimento').hide();
-            $('#citizenship').val("");
-            $('.citizenship').hide();
-            $('#familySituation').val("");
-            $('.familySituation').hide();
-
-            $('#rg').removeAttr('required');
-            $('#sexo').removeAttr('required');
-            $('#dataNascimento').removeAttr('required');
-            $('#citizenship').removeAttr('required');
-            $('#familySituation').removeAttr('required');
-
-
-            $('.cpfCnpj').text("CNPJ");
-            $("#cpf_cnpj").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
-            $('.validatecpf').cpfcnpj({
-                mask: true,
-                validate: 'cnpj',
-                event: 'blur',
-                handler: '.validatecpf',
-                ifValid: function (input) {
-                    input.removeClass("error");
-                },
-                ifInvalid: function (input) {
-                    input.addClass("error");
-                }
-            });
-
-            $('#tipoEmpresa').show();
-        }
-    }
-
-    escolheTipoPessoa();
 
 
     $('.listEmail').click(function () {
