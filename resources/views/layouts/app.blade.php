@@ -87,7 +87,7 @@
                                 <!-- Menu Toggle Button -->
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!-- The user image in the navbar-->
-                                    <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                    <img src="{{Gravatar::get(Auth::user()->email, 'default')}}"
                                          class="user-image" alt="User Image"/>
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs">{!! Auth::user()->name !!}</span>
@@ -95,7 +95,7 @@
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li class="user-header">
-                                        <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
+                                        <img src="{{Gravatar::get(Auth::user()->email, 'default')}}"
                                              class="img-circle" alt="User Image"/>
                                         <p>
                                             {!! Auth::user()->name !!}
@@ -110,7 +110,7 @@
                                         <div class="pull-right">
                                             <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                Deslogar
+                                                Sair
                                             </a>
                                             <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                                                   style="display: none;">
@@ -138,9 +138,9 @@
 
 
         <!-- Main Footer -->
-        <footer class="main-footer footer navbar-fixed-bottom" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2017 <a href="#">SUPRA</a>.</strong> Todos os direitos reservados.
-        </footer>
+        {{--<footer class="main-footer footer navbar-fixed-bottom" style="max-height: 100px;text-align: center">--}}
+            {{--<strong>Copyright © 2017 <a href="#">SUPRA</a>.</strong> Todos os direitos reservados.--}}
+        {{--</footer>--}}
 
     </div>
 @else

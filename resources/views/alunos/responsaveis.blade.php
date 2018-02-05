@@ -1,8 +1,8 @@
 @if(count($alunos->pessoa->toArray()) != 0)
     <ul class="nav nav-stacked">
-        @foreach($alunos->pessoa as $responsavel)
-            <table class="table table-condensed">
-                <tbody>
+        <table class="table table-condensed">
+            <tbody>
+            @foreach($alunos->pessoa as $responsavel)
 
                 <tr>
                     <td>
@@ -15,18 +15,18 @@
                               title="Clique para ver o perfil de {{$responsavel->nome}}">{{$responsavel->nome}}</span>
                     </td>
                     <td>
-                        @if($responsavel->pivot->flg_autorizado)
+                        @if($responsavel->tipoPessoa['id'] == 2)
                             <span class="pull-right badge bg-blue">Autorizado</span>
-                        @elseif($responsavel->pivot->flg_principal)
+                        @elseif($responsavel->tipoPessoa['id'] == 3)
                             <span class="pull-right badge bg-blue">Responsável</span>
                         @endif
                     </td>
 
                 </tr>
+            @endforeach
 
-                </tbody>
-            </table>
-        @endforeach
+            </tbody>
+        </table>
     </ul>
 
 @else
@@ -76,9 +76,6 @@
                     <dt>RG:</dt>
                     <dd id="rgdynamic"></dd>
 
-                    <dt>Nascimento</dt>
-                    <dd id="nascimentodynamic"></dd>
-
                     <dt>Status</dt>
                     <dd id="statusdynamic"></dd>
 
@@ -88,6 +85,10 @@
                     <dt>Estado civil</dt>
                     <dd id="familySituationdynamic"></dd>
                 </dl>
+
+                <div class="text-center">
+                    <a id="redirectdynamic"> Ver perfil completo</a>
+                </div>
             </div>
         </div>
 

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Helpers\Helpers;
+use Yajra\DataTables\DataTables;
 
 class PessoaController extends AppBaseController
 {
@@ -32,10 +33,40 @@ class PessoaController extends AppBaseController
     public function index(Request $request)
     {
         $this->pessoaRepository->pushCriteria(new RequestCriteria($request));
-        $pessoas = $this->pessoaRepository->all();
+        return view('pessoas.index');
+    }
 
-        return view('pessoas.index')
-            ->with('pessoas', $pessoas);
+    public function getBasicData()
+    {
+        $pessoas = Pessoa::select(['id', 'nome', 'cpf_cnpj', 'status', 'tipo_pessoas_id']);
+
+        return Datatables::of($pessoas)
+            ->editColumn('status', function ($pessoa) {
+                return $pessoa->status == 1 ? 'Ativo' : 'Inativo';
+            })
+            ->editColumn('tipo_pessoas_id', function ($pessoa) {
+
+                if ($pessoa->tipo_pessoas_id == 1) {
+                    return 'Aluno';
+                } else if ($pessoa->tipo_pessoas_id == 2) {
+                    return 'Responsável';
+                } else if ($pessoa->tipo_pessoas_id == 3) {
+                    return 'Autorizado';
+                } else if ($pessoa->tipo_pessoas_id == 4) {
+                    return 'Funcionário';
+                } else if ($pessoa->tipo_pessoas_id == 5) {
+                    return 'Empresa';
+                }
+
+            })
+            ->addColumn('link', function ($pessoa) {
+                return '
+                <a href="/pessoas/' . $pessoa->id .'' .'" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i></a>
+                <a href="/pessoas/' . $pessoa->id .'/edit' .'" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
+                ';
+            })
+            ->rawColumns(['link'])
+            ->make(true);
     }
 
     /**
@@ -65,60 +96,80 @@ class PessoaController extends AppBaseController
      */
     public function store(CreatePessoaRequest $request)
     {
-
-        $helper = new Helpers();
         $input = $request->all();
+        try {
+            $helper = new Helpers();
 
-        $input['dataNascimento'] = $helper->formataDataPtBr($input['dataNascimento']);
-        $input['data_admissao'] = $helper->formataDataPtBr($input['data_admissao']);
-        $input['salario_base'] = $helper->formataValoresMonetarios($input['salario_base']);
-        $input['vale_refeicao'] = $helper->formataValoresMonetarios($input['vale_refeicao']);
-        $input['vale_transporte'] = $helper->formataValoresMonetarios($input['vale_transporte']);
-
-        $enderecos['endereco'] = array_get($input, 'enderecos');
-        array_forget($input, 'enderecos');
-
-        $emails = array_get($input, 'email');
-        array_forget($input, 'email');
+            $input['dataNascimento'] = $helper->formataDataPtBr($input['dataNascimento']);
+            $input['data_admissao'] = $helper->formataDataPtBr($input['data_admissao']);
+            $input['salario_base'] = $helper->formataValoresMonetarios($input['salario_base']);
+            $input['vale_refeicao'] = $helper->formataValoresMonetarios($input['vale_refeicao']);
+            $input['vale_transporte'] = $helper->formataValoresMonetarios($input['vale_transporte']);
 
 
-        $departments = array_get($input, 'department');
-        array_forget($input, 'department');
+            $locations['location'] = array_get($input, 'locations');
+            $locations['location']['flg_principal'] = true;
+            $emails = array_get($input, 'email');
+            $departments = array_get($input, 'department');
+            $roles = array_get($input, 'role');
+            $healthInformations = array_get($input, 'healthInformations');
 
-        $roles = array_get($input, 'role');
-        array_forget($input, 'role');
+
+            array_forget($input, 'healthInformations');
+            array_forget($input, 'locations');
+            array_forget($input, 'email');
+            array_forget($input, 'department');
+            array_forget($input, 'role');
 
 
-        $pessoa = $this->pessoaRepository->create($input);
+            $pessoa = $this->pessoaRepository->create($input);
 
-        if (!empty($enderecos)) {
-            $pessoa->endereco()->createMany(
-                $enderecos
-            );
+            if (!empty($locations)) {
+                $pessoa->location()->createMany(
+                    $locations
+                );
+            }
+
+            if (!empty($emails)) {
+                $pessoa->email()->createMany(
+                    $emails
+                );
+            }
+
+            if (!empty($departments)) {
+                $pessoa->departments()->sync(
+                    $departments
+                );
+            }
+
+            if (!empty($roles)) {
+                $pessoa->roles()->sync(
+                    $roles
+                );
+            }
+
+
+            if (!empty($healthInformations)) {
+                $healthInformations = $pessoa->getHealthInformation()->create(
+                    $healthInformations
+                );
+                $pessoa->healthInformations_id = $healthInformations->id;
+                $pessoa->save();
+            }
+
+            $flash = new Flash();
+            $flash::success('Pessoa criada com sucesso.');
+
+            return redirect(route('pessoas.show', $pessoa->id));
+        } catch (\Exception $exception) {
+
+            $flash = new Flash();
+            $flash::success('Algo deu errado - Informe o administrador do sistema.');
+
+            return redirect(route('pessoas.index'));
         }
 
-        if (!empty($emails)) {
-            $pessoa->email()->createMany(
-                $emails
-            );
-        }
 
-        if (!empty($departments)) {
-            $pessoa->departments()->sync(
-                $departments
-            );
-        }
-
-        if (!empty($roles)) {
-            $pessoa->roles()->sync(
-                $roles
-            );
-        }
-
-        $flash = new Flash();
-        $flash::success('Pessoa criada com sucesso.');
-
-        return redirect(route('pessoas.show', $pessoa->id));
     }
 
     /**
@@ -132,10 +183,10 @@ class PessoaController extends AppBaseController
     {
         $input = $request->all();
 
-        $enderecos['endereco'] = array_get($input, 'enderecos');
-        array_forget($input, 'enderecos');
+        $locations['location'] = array_get($input, 'locations');
+        array_forget($input, 'locations');
         $pessoa = $this->pessoaRepository->create($input);
-        $pessoa->endereco()->createMany($enderecos);
+        $pessoa->location()->createMany($locations);
         return response()->json($pessoa);
     }
 
@@ -158,6 +209,7 @@ class PessoaController extends AppBaseController
 
         $resposta = [];
 
+        $resposta['id'] = $pessoa->id;
         $resposta['nome'] = $pessoa->nome;
         $resposta['cpf_cnpj'] = $pessoa->cpf_cnpj;
         $resposta['sexo'] = $pessoa->gender->nome;
@@ -252,11 +304,11 @@ class PessoaController extends AppBaseController
             return redirect(route('pessoas.index'));
         }
 
-        $enderecoModel = new \App\Models\Endereco();
+        $locationModel = new \App\Models\Location();
 
-        $enderecos = array_get($input, 'enderecos');
-        array_forget($input, 'enderecos');
-        array_forget($enderecos, 'id');
+        $locations = array_get($input, 'locations');
+        array_forget($input, 'locations');
+        array_forget($locations, 'id');
 
         $emails = array_get($input, 'email');
         array_forget($input, 'email');
@@ -267,10 +319,10 @@ class PessoaController extends AppBaseController
         $roles = array_get($input, 'role');
         array_forget($input, 'role');
 
-        $enderecos = $enderecoModel::updateOrCreate(['id' => $pessoa->endereco->first()->id], $enderecos);
+        $locations = $locationModel::updateOrCreate(['id' => $pessoa->location->first()->id], $locations);
 
 
-        $pessoa->endereco()->sync($enderecos->id);
+        $pessoa->location()->sync($locations->id);
         $pessoa = $this->pessoaRepository->update($input, $idPessoa);
 
 
@@ -340,11 +392,11 @@ class PessoaController extends AppBaseController
             $pessoa = new Pessoa();
 
             $data = $pessoa
-                ->select("id", "nome", 'cpf_cnpj')
+                ->select("id", "nome", 'cpf_cnpj', 'tipo_pessoas_id')
                 ->where([
                     ['nome', 'LIKE', "%$search%"],
-                    ['tipo_pessoas_id', '=', ['2','3']]
-                    ])
+                    ['tipo_pessoas_id', '=', ['2', '3']]
+                ])
                 ->limit(5)
                 ->get();
         }

@@ -1,21 +1,20 @@
-
 <!-- Tipo Pessoas Id Field -->
 <div class="form-group {{$errors->has('tipo_pessoas_id') ? "has-error":""}} col-sm-6">
     {!! Form::label('tipo_pessoas_id', 'Tipo Pessoa:') !!}
-    {!! Form::select('tipo_pessoas_id', $tipoPessoas, !empty($pessoa)? $pessoa->tipo_pessoa_id:2, ['class' => 'form-control','required'=>'required']) !!}
+    {!! Form::select('tipo_pessoas_id', $tipoPessoas, !empty($pessoa)? $pessoa->tipo_pessoa_id:2, ['class' => 'form-control']) !!}
 </div>
 
 
 <!-- Nome Field -->
 <div class="form-group nome {{$errors->has('nome') ? "has-error":""}} col-sm-6">
     {!! Form::label('nome', 'Nome Completo:', ['id' => 'nomeLabel']) !!}
-    {!! Form::text('nome', null, ['class' => 'form-control','required'=>'required']) !!}
+    {!! Form::text('nome', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Cpf Cnpj Field -->
 <div class="form-group {{$errors->has('cpf_cnpj') ? "has-error":""}} col-sm-6">
     {!! Form::label('cpf_cnpj', 'CPF:', ['class' =>'cpfCnpj']) !!}
-    {!! Form::text('cpf_cnpj', null, ['class' => 'form-control validatecpf','required'=>'required']) !!}
+    {!! Form::text('cpf_cnpj', null, ['class' => 'form-control validatecpf']) !!}
 </div>
 
 <!-- Rg Field -->
@@ -27,19 +26,19 @@
 <!-- Datanascimento Field -->
 <div class="form-group dataNascimento {{$errors->has('dataNascimento') ? "has-error":""}} col-sm-6">
     {!! Form::label('dataNascimento', 'Nascimento:') !!}
-    {!! Form::text('dataNascimento', !empty($pessoa->dataNascimento)? $pessoa->dataNascimento->format('d/m/Y') :null, ['class' => 'form-control','required'=>'required', 'format' => 'dd/MM/yyyy']) !!}
+    {!! Form::text('dataNascimento', !empty($pessoa->dataNascimento)? $pessoa->dataNascimento->format('d/m/Y') :null, ['class' => 'form-control', 'format' => 'dd/MM/yyyy']) !!}
 </div>
 
 <!-- familySituation Field -->
 <div class="form-group familySituation {{$errors->has('familySituation') ? "has-error":""}} col-sm-6">
     {!! Form::label('familySituation', 'Estado civil:') !!}
-    {!! Form::select('familySituation', $familySituation, !empty($pessoa)? $pessoa->familySituation:null, ['class' => 'form-control','required'=>'required']) !!}
+    {!! Form::select('familySituation', $familySituation, !empty($pessoa)? $pessoa->familySituation:null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Citizenship Field -->
 <div class="form-group citizenship {{$errors->has('citizenship') ? "has-error":""}} col-sm-6">
     {!! Form::label('citizenship', 'Nacionalidade:') !!}
-    {!! Form::select('citizenship', $citizenships, !empty($pessoa)? $pessoa->citizenship:7, ['class' => 'form-control','required'=>'required']) !!}
+    {!! Form::select('citizenship', $citizenships, !empty($pessoa)? $pessoa->citizenship:7, ['class' => 'form-control']) !!}
 </div>
 
 
@@ -47,7 +46,7 @@
 <div class="form-group sexo {{$errors->has('sexo') ? "has-error":""}} col-sm-6">
     {!! Form::label('sexo', 'Sexo:') !!}
     <label class="checkbox-inline">
-        {!! Form::select('sexo', $genders, !empty($pessoa)? $pessoa->sexo:null, ['class' => 'form-control','required'=>'required']) !!}
+        {!! Form::select('sexo', $genders, !empty($pessoa)? $pessoa->sexo:null, ['class' => 'form-control']) !!}
     </label>
 </div>
 <div class="form-group  col-sm-6">
@@ -81,14 +80,15 @@
 
                 </dt>
                 <dd>
-                    <a  class="listEmail" href="#mainEmail" {{count($pessoa->email->toArray()) >1 && $email['pivot']['flg_principal'] != 1 ?'':'data-toggle="tooltip"' }} id="{{$pessoa->id.'-'.$email['id']}}" title="{{$email['pivot']['flg_principal'] != 0 ? "E-mail principal": "Tornar o e-mail principal"}}">{{$email['email']}}</a>
+                    <a class="listEmail" href="#mainEmail"
+                       {{count($pessoa->email->toArray()) >1 && $email['pivot']['flg_principal'] != 1 ?'':'data-toggle="tooltip"' }} id="{{$pessoa->id.'-'.$email['id']}}"
+                       title="{{$email['pivot']['flg_principal'] != 0 ? "E-mail principal": "Tornar o e-mail principal"}}">{{$email['email']}}</a>
                     <span class="label label-info">{{$email['pivot']['flg_principal'] == 1 ? "Principal":""}}</span>
                 </dd>
             @endforeach
         </dl>
     @endif
 </div>
-
 
 
 <div id="tipoEmpresa" style="display: none;">
@@ -113,7 +113,7 @@
     </div>
 </div>
 
-<div id="dadosProfessor" style="display: none;">
+<div id="dadosFuncionario" style="display: none;">
 
     <div class="form-group {{$errors->has('Dados Financeiros') ? "has-error":""}} col-sm-12">
         {!! Form::label('Dados Financeiros', 'Financeiro:') !!}
@@ -121,7 +121,6 @@
 
 
     <div class="form-group col-sm-12">
-
 
 
         <div class="form-group {{$errors->has('funcao') ? "has-error":""}} col-sm-6">
@@ -139,12 +138,11 @@
             {!! Form::label('funcao', 'Função do funcionário:') !!}
             <select class="form-control" id="funcaoFuncionario" name="role[]" multiple="multiple">
 
-            @foreach($roles as $role)
-                <option value="{{ $role->id }}">{{$role->nome}}</option>
-            @endforeach
+                @foreach($roles as $role)
+                    <option value="{{ $role->id }}">{{$role->nome}}</option>
+                @endforeach
             </select>
         </div>
-
 
 
         <!-- Datanascimento Field -->
@@ -195,52 +193,131 @@
         </div>
     </div>
 
+    <div>
+
+        <div class="form-group {{$errors->has('dadossaude') ? "has-error":""}} col-sm-12">
+            {!! Form::label('Dados de saúde', 'Dados de saúde:') !!}
+        </div>
+
+
+        <div class="form-group col-sm-12">
+            <dl class="dl-horizontal">
+                <!-- Bronquite Field -->
+                <div class="form-group {{$errors->has('bronquite') ? "has-error":""}} col-sm-6">
+                    <dt>Bronquite</dt>
+                    <dd id="bronquite">
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[bronquite]', '1', false, ['id' => 'bronquite']) !!}
+                            Sim</label>
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[bronquite]', '0', true, ['id' => 'bronquite']) !!}
+                            Não</label>
+                    </dd>
+                </div>
+
+
+                <div class="form-group {{$errors->has('faltaDeAr') ? "has-error":""}} col-sm-6">
+                    <dt>Falta de ar</dt>
+                    <dd id="bronquite">
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[faltadear]', '1', false, ['id' => 'faltadear']) !!}
+                            Sim</label>
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[faltadear]', '0', true, ['id' => 'faltadear']) !!}
+                            Não</label>
+                    </dd>
+                </div>
+
+
+                <div class="form-group {{$errors->has('diabetes') ? "has-error":""}} col-sm-6">
+                    <dt>Diabetes</dt>
+                    <dd id="bronquite">
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[diabete]', '1', false, ['id' => 'diabetes']) !!}
+                            Sim</label>
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[diabete]', '0', true, ['id' => 'diabetes']) !!}
+                            Não</label>
+                    </dd>
+                </div>
+
+                <div class="form-group {{$errors->has('convulsao') ? "has-error":""}} col-sm-6">
+                    <dt>Convulsão</dt>
+                    <dd id="bronquite">
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[convulsao]', '1', false, ['id' => 'convulsao', 'class' => 'convulsao']) !!}
+                            Sim</label>
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[convulsao]', '0', true, ['id' => 'convulsao', 'class' => 'convulsao']) !!}
+                            Não</label>
+                    </dd>
+                </div>
+
+
+                <div class="form-group {{$errors->has('alergia') ? "has-error":""}} col-sm-6">
+                    <dt>Alergia</dt>
+                    <dd id="alergia">
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[alergia]', '1', false, ['id' => 'alergia', 'class' => 'alergia' ]) !!}
+                            Sim</label>
+                        <label class="checkbox-inline">{!! Form::radio('healthInformations[alergia]', '0', true, ['id' => 'alergia', 'class' => 'alergia']) !!}
+                            Não</label>
+                    </dd>
+                </div>
+
+
+                <div class="form-group sintomasalergia {{$errors->has('sintomas') ? "has-error":""}} col-sm-6">
+                    <dt>Sintomas</dt>
+                    <dd id="sintomasalergia">
+                        <label class="checkbox-inline">{!! Form::textarea('healthInformations[sintomasalergia]', null,['rows' => '3','cols' => '35' ,'id' => 'sintomas']) !!}</label>
+                    </dd>
+                </div>
+
+            </dl>
+
+
+        </div>
+
+    </div>
 </div>
 
 
-<div class="form-group {{$errors->has('endereco') ? "has-error":""}} col-sm-12">
-    {!! Form::label('endereco', 'Endereço:') !!}
+
+
+
+<div class="form-group {{$errors->has('location') ? "has-error":""}} col-sm-12">
+    {!! Form::label('location', 'Endereço:') !!}
 </div>
 <!-- Endereço -->
 <div class="form-group col-sm-12">
 
+    {{ Form::hidden('locations[id]', !empty($pessoa)? count($pessoa->location) != 0 ? $pessoa->location[0]->id:null:null) }}
 
-    {{ Form::hidden('enderecos[id]', !empty($pessoa)? count($pessoa->endereco) != 0 ? $pessoa->endereco[0]->id:null:null) }}
-
-    <div class="form-group {{$errors->has('enderecos.cep') ? "has-error":""}} col-sm-6">
-        {!! Form::text('enderecos[cep]', !empty($pessoa)? count($pessoa->endereco) != 0 ? $pessoa->endereco[0]->cep:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'CEP', 'id' => 'cep', 'required'=>'required']) !!}
+    <div class="form-group {{$errors->has('locations.zipCode') ? "has-error":""}} col-sm-6">
+        {!! Form::text('locations[zipCode]', !empty($pessoa)? count($pessoa->location) != 0 ? $pessoa->location[0]->zipCode:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'CEP', 'id' => 'zipCode']) !!}
     </div>
 
-    <div class="form-group {{$errors->has('enderecos.rua') ? "has-error":""}} col-sm-6">
-        {!! Form::text('enderecos[rua]',!empty($pessoa)?  count($pessoa->endereco) != 0 ? $pessoa->endereco[0]->rua:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Rua', 'id' => 'rua']) !!}
+    <div class="form-group {{$errors->has('locations.street') ? "has-error":""}} col-sm-6">
+        {!! Form::text('locations[street]',!empty($pessoa)?  count($pessoa->location) != 0 ? $pessoa->location[0]->street:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Rua', 'id' => 'street']) !!}
     </div>
 
-    <div class="form-group {{$errors->has('enderecos.numero') ? "has-error":""}} col-sm-6">
-        {!! Form::text('enderecos[numero]', !empty($pessoa)? count($pessoa->endereco) != 0 ?  $pessoa->endereco[0]->numero:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Numero', 'id' => 'numero', 'required'=>'required']) !!}
+    <div class="form-group {{$errors->has('locations.number') ? "has-error":""}} col-sm-6">
+        {!! Form::text('locations[number]', !empty($pessoa)? count($pessoa->location) != 0 ?  $pessoa->location[0]->number:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Número', 'id' => 'number']) !!}
     </div>
 
-    <div class="form-group {{$errors->has('enderecos.cidade') ? "has-error":""}} col-sm-6">
-        {!! Form::text('enderecos[cidade]', !empty($pessoa)? count($pessoa->endereco) != 0 ? $pessoa->endereco[0]->cidade:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Cidade', 'id' => 'cidade']) !!}
+    <div class="form-group {{$errors->has('locations.city') ? "has-error":""}} col-sm-6">
+        {!! Form::text('locations[city]', !empty($pessoa)? count($pessoa->location) != 0 ? $pessoa->location[0]->city:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Cidade', 'id' => 'city']) !!}
     </div>
 
-    <div class="form-group {{$errors->has('enderecos.complemento') ? "has-error":""}} col-sm-6">
-        {!! Form::text('enderecos[complemento]', !empty($pessoa)? count($pessoa->endereco) != 0 ? $pessoa->endereco[0]->complemento:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Complemento', 'id' => 'complemento']) !!}
+    <div class="form-group {{$errors->has('locations.complement') ? "has-error":""}} col-sm-6">
+        {!! Form::text('locations[complement]', !empty($pessoa)? count($pessoa->location) != 0 ? $pessoa->location[0]->complement:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Complemento', 'id' => 'complement']) !!}
     </div>
 
-    <div class="form-group {{$errors->has('enderecos.bairro') ? "has-error":""}} col-sm-6">
-        {!! Form::text('enderecos[bairro]',!empty($pessoa)?  count($pessoa->endereco) != 0 ? $pessoa->endereco[0]->bairro:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Bairro', 'id' => 'bairro']) !!}
+    <div class="form-group {{$errors->has('locations.neighborhood') ? "has-error":""}} col-sm-6">
+        {!! Form::text('locations[neighborhood]',!empty($pessoa)?  count($pessoa->location) != 0 ? $pessoa->location[0]->neighborhood:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Bairro', 'id' => 'neighborhood']) !!}
     </div>
 
-    <div class="form-group {{$errors->has('enderecos.estado') ? "has-error":""}} col-sm-6">
-        {{--        {!! Form::text('enderecos[estado]', !empty($pessoa)? count($pessoa->endereco) != 0? $pessoa->endereco[0]->estado:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Estado', 'id' => 'estado']) !!}--}}
+    <div class="form-group {{$errors->has('locations.state') ? "has-error":""}} col-sm-6">
+        {{--        {!! Form::text('locations[estado]', !empty($pessoa)? count($pessoa->location) != 0? $pessoa->location[0]->estado:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'state', 'id' => 'state']) !!}--}}
 
-        {!! Form::select('enderecos[estado]', array('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO',), null, ['class' => 'form-control','required'=>'required', 'id'=> 'estado']) !!}
+        {!! Form::select('locations[state]', array('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO',), !empty($pessoa)?  count($pessoa->location) != 0 ? $pessoa->location[0]->state:null:null, ['class' => 'form-control', 'id'=> 'state']) !!}
 
 
     </div>
 
-    <div class="form-group {{$errors->has('enderecos.pais') ? "has-error":""}} col-sm-6">
-        {!! Form::text('enderecos[pais]',!empty($pessoa)?  count($pessoa->endereco) != 0? $pessoa->endereco[0]->pais:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Pais', 'id' => 'pais']) !!}
+    <div class="form-group {{$errors->has('locations.country') ? "has-error":""}} col-sm-6">
+        {!! Form::text('locations[country]',!empty($pessoa)?  count($pessoa->location) != 0? $pessoa->location[0]->country:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'País', 'id' => 'country']) !!}
     </div>
 
 </div>

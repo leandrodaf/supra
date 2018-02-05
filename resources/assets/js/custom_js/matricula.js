@@ -3,8 +3,11 @@
 $(document).ready(function () {
 
     var form = $("#matriculaAluno");
+
     form.validate({
-        errorPlacement: function errorPlacement(error, element) { element.before(error); },
+        errorPlacement: function errorPlacement(error, element) {
+            element.before(error);
+        }
     });
 
     var settings = {
@@ -20,21 +23,25 @@ $(document).ready(function () {
         bodyTag: "section",
         transitionEffect: "slideLeft",
         saveState: true,
-        onStepChanging: function (event, currentIndex, newIndex)
-        {
+        onStepChanging: function (event, currentIndex, newIndex) {
             form.validate().settings.ignore = ":disabled,:hidden";
+
             return form.valid();
         },
-        onFinishing: function (event, currentIndex)
-        {
+        onFinishing: function (event, currentIndex) {
             form.validate().settings.ignore = ":disabled";
+
             return form.valid();
         },
-        onFinished: function (event, currentIndex)
-        {
-            form.submit();
+        onFinished: function (event, currentIndex) {
+            form.submit()
+        },
+        onFinish: function () {
+            alert('FOIIIIIIIIIIIIIII');
         }
+
     };
+
 
     form.children("div").steps(settings);
 
@@ -54,16 +61,16 @@ $(document).ready(function () {
     //Busca CEP Async
 
     function limpa_formulário_cep() {
-        $("#rua").val("");
-        $("#bairro").val("");
-        $("#cidade").val("");
-        $("#complemento").val("");
-        $("#pais").val("");
+        $("#street").val("");
+        $("#neighborhood").val("");
+        $("#city").val("");
+        $("#complement").val("");
+        $("#country").val("");
         $("#ibge").val("");
 
     }
 
-    $("#cep").blur(function () {
+    $("#zipCode").blur(function () {
 
         //Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
@@ -78,11 +85,11 @@ $(document).ready(function () {
             if (validacep.test(cep)) {
 
                 //Preenche os campos com "..." enquanto consulta webservice.
-                $("#rua").val("...");
-                $("#bairro").val("...");
-                $("#cidade").val("...");
-                $("#complemento").val("...");
-                $("#pais").val("...");
+                $("#street").val("...");
+                $("#neighborhood").val("...");
+                $("#city").val("...");
+                $("#complement").val("...");
+                $("#country").val("...");
                 $("#ibge").val("...");
 
                 //Consulta o webservice viacep.com.br/
@@ -90,12 +97,12 @@ $(document).ready(function () {
 
                     if (!("erro" in dados)) {
                         //Atualiza os campos com os valores da consulta.
-                        $("#rua").val(dados.logradouro);
-                        $("#bairro").val(dados.bairro);
-                        $("#cidade").val(dados.localidade);
-                        $("#complemento").val(dados.complemento);
+                        $("#street").val(dados.logradouro);
+                        $("#neighborhood").val(dados.bairro);
+                        $("#city").val(dados.localidade);
+                        $("#complement").val(dados.complemento);
                         // $("#estado").val(dados.uf);
-                        $("#pais").val("Brasil");
+                        $("#country").val("Brasil");
                         $("#ibge").val(dados.ibge);
 
                         $('#estado option').filter(function () {
@@ -178,7 +185,7 @@ $(document).ready(function () {
     });
 
     $("#rg_aluno").mask("99.999.999-9", {placeholder: "__.___.___-_"});
-    $("#cep").mask("99999-999", {placeholder: "_____-___"});
+    $("#zipCode").mask("99999-999", {placeholder: "_____-___"});
     $("#rg").mask("99.999.999-99", {placeholder: "__.___.___-_"});
     $("#cpf_cnpj").mask("999.999.999-99", {placeholder: "___.___.___-__"});
 
@@ -219,6 +226,7 @@ $(document).ready(function () {
                 return {
                     results: $.map(data, function (item) {
                         return {
+                            text: item.nome + ' - ' + item.cpf_cnpj + ' (' + checkStatusTypePerson(item.tipo_pessoas_id) + ')',
                             text: item.nome + ' - ' + item.cpf_cnpj,
                             id: item.id
                         }
@@ -229,6 +237,10 @@ $(document).ready(function () {
         }
     });
 
+
+    let checkStatusTypePerson = function (value) {
+        return value != 2 ? "Autorizado" : "Responsável";
+    }
 
     let reduzirDiasData = function (dias) {
         let hoje = new Date();
@@ -249,7 +261,7 @@ $(document).ready(function () {
 
     $('#data_nascimento_aluno').datepicker({
         autoclose: true,
-        // startDate: reduzirDiasData(2192),
+        startDate: reduzirDiasData(2192),
         locale: 'pt-BR',
         format: 'dd/mm/yyyy',
         orientation: 'bottom auto'
@@ -301,14 +313,13 @@ $(document).ready(function () {
     $('input[name="flg_irmaos_aluno"]').on('click', function (event) {
         if (this.value == 1) {
             $('#qtdAlunos').removeAttr("hidden", "hidden");
-
+            $('input[name="qtd_irmaos_aluno"]').attr('required', 'required');
         } else {
             $('#qtdAlunos').attr("hidden", "hidden");
+            $('input[name="qtd_irmaos_aluno"]').removeAttr("required", "required");
             $('input[name="qtd_irmaos_aluno"]').val("");
         }
-
     });
-
 
 
     $('.sw-btn-next').val("Próximo");
@@ -320,6 +331,36 @@ $(document).ready(function () {
 
     $('#estado').select2({
         width: '100%'
+    });
+
+
+    $('input[name="healthInformations[convulsao]"]').on('click', function (event) {
+        if (this.value == 1) {
+
+            $('textarea[name="healthInformations[medicamentotomar]"]').removeAttr("disabled", "disabled");
+            $('textarea[name="healthInformations[medicamentotomar]"]').attr('required', 'required');
+
+        } else {
+            $('textarea[name="healthInformations[medicamentotomar]"]').attr("disabled", "disabled");
+            $('textarea[name="healthInformations[medicamentotomar]"]').removeAttr("required", "required");
+            $('textarea[name="healthInformations[medicamentotomar]"]').val("");
+        }
+
+    });
+
+
+    $('input[name="healthInformations[alergia]"]').on('click', function (event) {
+        if (this.value == 1) {
+
+            $('textarea[name="healthInformations[sintomasalergia]"]').removeAttr("disabled", "disabled");
+            $('textarea[name="healthInformations[sintomasalergia]"]').attr('required', 'required');
+
+        } else {
+            $('textarea[name="healthInformations[sintomasalergia]"]').attr("disabled", "disabled");
+            $('textarea[name="healthInformations[sintomasalergia]"]').removeAttr("required", "required");
+            $('textarea[name="healthInformations[sintomasalergia]"]').val("");
+        }
+
     });
 
 

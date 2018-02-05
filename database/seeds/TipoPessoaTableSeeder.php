@@ -25,7 +25,7 @@ class TipoPessoaTableSeeder extends Seeder
                 'status' => "1",
             ],
             [
-                'nome' => "Professor",
+                'nome' => "Funcionário",
                 'status' => "1",
             ],
             [

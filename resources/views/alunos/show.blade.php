@@ -14,7 +14,7 @@
                             <div class="btn-group">
                                 <button type="button" class="btn btn-info btn-sm btn-flat dropdown-toggle"
                                         data-toggle="dropdown">
-                                    <span class="caret"></span>
+                                    Ações &nbsp; <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
@@ -25,11 +25,10 @@
                                            onclick="document.getElementById('#deletetarUsuario').submit();">Excluir</a>
                                     </li>
                                 </ul>
-                                <a href="{!! route('alunos.index') !!}" class="btn btn-info btn-sm btn-flat">Voltar</a>
                                 <!-- Collapse Button -->
-                                <button type="button" class="btn btn-info btn-sm btn-flat" data-widget="collapse">
-                                    <i class="fa fa-minus"></i>
-                                </button>
+                                {{--<button type="button" class="btn btn-info btn-sm btn-flat" data-widget="collapse">--}}
+                                {{--<i class="fa fa-minus"></i>--}}
+                                {{--</button>--}}
                                 {!! Form::open(['route' => ['alunos.destroy', $alunos->id], 'method' => 'delete', 'id' => 'deletetarUsuario']) !!}
 
                                 {!! Form::close() !!}
@@ -43,10 +42,9 @@
                                  style="margin-right: 25px; width: 100px; border-radius: 4px">
                             <div style="overflow: hidden">
                                 <h3 class="profile-name justificado">{!! $alunos->nome_aluno !!}</h3>
-                                <small>
-                                    ID {!! $alunos->tipoPessoa['nome'] !!}: {!! $alunos->id !!}
-                                </small>
                             </div>
+                            <span class="label label-info">ID {!! $alunos->tipoPessoa['nome'] !!}
+                                : {!! $alunos->id !!}</span>
                         </div>
                         <!-- /.box-tools -->
                     </div>
@@ -66,7 +64,7 @@
                             <i class="fa fa-heartbeat"></i> Dados médicos
                         </div>
                         <div class="box-tools pull-right">
-                            <a class="btn btn-box-tool" data-toggle="modal" data-target="#editarHealthInformations" >
+                            <a class="btn btn-box-tool" data-toggle="modal" data-target="#editarHealthInformations">
                                 <i class="glyphicon glyphicon-edit"></i>
                                 Editar
                             </a>
@@ -76,24 +74,25 @@
                     <div class="box-body">
                         @include('alunos.healthInformations')
                     </div>
-                    <div class="overlay"  style="display:none;" id="loadingHealthInformations">
+                    <div class="overlay" style="display:none;" id="loadingHealthInformations">
                         <i class="fa fa-refresh fa-spin"></i>
                     </div>
                 </div>
-                <div class="box">
-                </div>
-                <div class="box">
-                </div>
+
             </div>
             <div class="col-lg-4">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Responsáveis</h3>
+                        <h3 class="box-title">Responsáveis e Autorizados</h3>
                         <div class="box-tools pull-right">
                             <!-- Collapse Button -->
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                            {{--<button type="button" class="btn btn-box-tool" data-widget="collapse">--}}
+                                {{--<i class="fa fa-minus"></i>--}}
+                            {{--</button>--}}
+
+                            <a href="#formIncluirParticipante" class="module-control pull-right" data-toggle="modal">
+                                <i class="icon-plus"></i>
+                            </a>
 
                             @if(count($alunos->pessoa) <= 2 && count($alunos->pessoa) != 0)
                                 <a class="btn btn-box-tool">
@@ -101,7 +100,6 @@
                                        data-target="#modal-default" class="fa fa-users"></i>
                                 </a>
                             @endif
-
                         </div>
                         <!-- /.box-tools -->
                     </div>
@@ -120,7 +118,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span></button>
-                        <h4 class="modal-title">Adicionar responsáveis</h4>
+                        <h4 class="modal-title">Adicionar responsáveis e Autorizados</h4>
                     </div>
                     {!! Form::open(['route' => ['alunos.updateResponsaveis', $alunos->id], 'id' => 'formularioResponsaveis', 'data-toggle' => 'validator']) !!}
 

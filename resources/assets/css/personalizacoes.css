@@ -10,3 +10,42 @@
     /* height: 95%; */
     padding: 2.5% !important;;
 }
+
+.mapas{
+    height: 200px;
+    width: 740px;
+    margin: auto;
+    background-image: #333333;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+
+
+.addressInfo {
+    margin-left: 15px;
+}
+
+
+.label-xsmall {
+    vertical-align: super;
+    font-size: x-small;
+}
+
+.label-small {
+    vertical-align: super;
+    font-size: small;
+}
+
+.label-medium {
+    vertical-align: super;
+    font-size: medium;
+}
+
+.label-large {
+    vertical-align: super;
+    font-size: large;
+}
+
+.label-bs {
+    vertical-align: super;
+}

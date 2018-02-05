@@ -1,6 +1,33 @@
 "use strict";
 
 $(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('.verInfo').click(function (data) {
+        var id = this;
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            url: "/alunos/getInfoUser/" + id.id,
+            cache: true,
+            success: function success(data) {
+                $('#nomedynamic').text(data.nome);
+                $('#sexodynamic').text(data.sexo);
+                $('#dataNascimentodynamic').text(data.dataNascimento);
+                $('#rgdynamic').text(data.rg);
+                $('#redirectdynamic').attr('href', '/alunos/' + data.id);
+
+            },
+            beforeSend: function beforeSend() {
+                $('#loadingResponsavel').show();
+            },
+            complete: function complete() {
+                $('#loadingResponsavel').hide();
+            }
+        });
+    });
+
 
     let validateEmail = function (email) {
         let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -25,97 +52,140 @@ $(document).ready(function () {
     });
 
 
-    $('#cpf_cnpj').mask("999.999.999-99", {placeholder: "___.___.___-__"});
-
-    if ($(".validatecpf").length) {
-        $('.validatecpf').cpfcnpj({
-            mask: true,
-            validate: 'cpf',
-            event: 'blur',
-            handler: '.validatecpf',
-            ifValid: function (input) {
-                input.removeClass("error");
-            },
-            ifInvalid: function (input) {
-                input.addClass("error");
-            }
-        });
-    }
-
-    $('#tipo_pessoas_id').change(function () {
+    let validaInfoPessoaId = (condition) => {
         let changeTipoPessoa = $("#tipo_pessoas_id option:selected").val();
 
-        if (changeTipoPessoa !== "4") {
-            $('#dadosProfessor').hide();
+        if (condition) {
+            $('#cpf_cnpj').val('');
 
-            $('#setorFuncionario').val('').trigger('change');
-            $('#funcaoFuncionario').val('').trigger('change');
-
-            $('#setorFuncionario').removeAttr('required');
-            $('#funcaoFuncionario').removeAttr('required');
-            $('#data_admissao').removeAttr('required');
-
-            $('#data_admissao').val("");
-            $('#numero_ctps').val("");
-            $('#ctps_serie').val("");
-            $('#pis').val("");
-            $('#salario_base').val("");
-            $('#vale_refeicao').val("");
-            $('#vale_transporte').val("");
-            $('#contato_emergencial').val("");
-        } else {
-            $('#setorFuncionario').attr('required', 'required');
-            $('#funcaoFuncionario').attr('required', 'required');
-            $('#data_admissao').attr('required', 'required');
-            $('#dadosProfessor').show();
         }
 
-        if (changeTipoPessoa !== "5") {
+        if (changeTipoPessoa === "1" || changeTipoPessoa == "2") {
+            $('.validatecpf').cpfcnpj({
+                mask: true,
+                validate: 'cpf',
+                event: 'blur',
+                handler: '.validatecpf',
+                ifValid: function (input) {
+                    input.removeClass("error");
+                },
+                ifInvalid: function (input) {
+                    input.addClass("error");
+                }
+            });
+            $(".validatecpf").mask("999.999.999-99", {placeholder: "___.___.___-__"});
+
+            $('#nome').attr('required', 'required').show();
+
+
+            $('#cpf_cnpj').attr('required', 'required').show();
+            $('.rg').attr('required', 'required').show();
+            $('.dataNascimento').attr('required', 'required').show();
+            $('#rg').attr('required', 'required').show();
+            $('#dataNascimento').attr('required', 'required').show();
+            $('#familySituation').attr('required', 'required').show();
+            $('.familySituation').attr('required', 'required').show();
+            $('#citizenship').attr('required', 'required').show();
+            $('.citizenship').attr('required', 'required').show();
+            $('#sexo').attr('required', 'required').show();
+            $('.sexo').attr('required', 'required').show();
+            $('#zipCode').attr('required', 'required').show();
+            $('#number').attr('required', 'required').show();
+
+            //Funcionario
+            $('#setorFuncionario').removeAttr('required', 'required').val('').hide();
+            $('#funcaoFuncionario').removeAttr('required', 'required').val('').hide();
+            $('#data_admissao').removeAttr('required', 'required').val('').hide();
+            $('#numero_ctps').removeAttr('required', 'required').val('').hide();
+            $('#ctps_serie').removeAttr('required', 'required').val('').hide();
+            $('#pis').removeAttr('required', 'required').val('').hide();
+            $('#salario_base').removeAttr('required', 'required').val('').hide();
+            $('#vale_refeicao').removeAttr('required', 'required').val('').hide();
+            $('#vale_transporte').removeAttr('required', 'required').val('').hide();
+            $('#bronquite').removeAttr('required', 'required').val('').hide();
+            $('#faltadear').removeAttr('required', 'required').val('').hide();
+            $('#diabetes').removeAttr('required', 'required').val('').hide();
+            $('#convulsao').removeAttr('required', 'required').val('').hide();
+            $('#alergia').removeAttr('required', 'required').val('').hide();
+            $('#contato_emergencial').removeAttr('required', 'required').val('').hide();
+
+            //    Funcionario
+            $('#razaoSocial').removeAttr('required', 'required').val('').hide();
+            $('#inscricaoEstadual').removeAttr('required', 'required').val('').hide();
+
+            //Variação de labels
             $('.cpfCnpj').text("CPF");
-            $('#cpf_cnpj').mask("999.999.999-99", {placeholder: "___.___.___-__"});
-            $('#cpf_cnpj').val("");
-            $('#razaoSocial').val("");
-            $('#inscricaoEstadual').val("");
-
-            $('.rg').show();
-            $('#nomeLabel').text("Nome Completo:");
-
-            $('.sexo').show();
-            $('.dataNascimento').show();
-            $('.citizenship').show();
-            $('.familySituation').show();
-
-            $('#rg').attr('required', 'required');
-
-            $('#sexo').attr('required', 'required');
-            $('#dataNascimento').attr('required', 'required');
-            $('#citizenship').attr('required', 'required');
-            $('#familySituation').attr('required', 'required');
+            $('#nomeLabel').text("Nome Completo");
 
             $('#tipoEmpresa').hide();
-        } else {
-            $('#rg').val("");
-            $('.rg').hide();
+            $('#dadosFuncionario').hide();
+        }
 
-            $('#sexo').val("");
-            $('.sexo').hide();
-            $('#dataNascimento').val("");
-            $('.dataNascimento').hide();
-            $('#citizenship').val("");
-            $('.citizenship').hide();
-            $('#familySituation').val("");
-            $('.familySituation').hide();
+        if (changeTipoPessoa === "4") {
+            $('.validatecpf').cpfcnpj({
+                mask: true,
+                validate: 'cpf',
+                event: 'blur',
+                handler: '.validatecpf',
+                ifValid: function (input) {
+                    input.removeClass("error");
+                },
+                ifInvalid: function (input) {
+                    input.addClass("error");
+                }
+            });
+            $(".validatecpf").mask("999.999.999-99", {placeholder: "___.___.___-__"});
 
-            $('#rg').removeAttr('required');
-            $('#nomeLabel').text("Nome Fantasia:");
-            $('#sexo').removeAttr('required');
-            $('#dataNascimento').removeAttr('required');
-            $('#citizenship').removeAttr('required');
-            $('#familySituation').removeAttr('required');
+            $('#nome').attr('required', 'required').show();
+            $('#cpf_cnpj').attr('required', 'required').show();
+            $('.rg').attr('required', 'required').show();
+            $('.dataNascimento').attr('required', 'required').show();
+            $('#rg').attr('required', 'required').show();
+            $('#dataNascimento').attr('required', 'required').show();
+            $('#familySituation').attr('required', 'required').show();
+            $('.familySituation').attr('required', 'required').show();
+            $('#citizenship').attr('required', 'required').show();
+            $('.citizenship').attr('required', 'required').show();
+            $('#sexo').attr('required', 'required').show();
+            $('.sexo').attr('required', 'required').show();
+            $('#zipCode').attr('required', 'required').show();
+            $('#number').attr('required', 'required').show();
+            $('#salario_base').maskMoney({defaultZero: false});
+            $('#vale_refeicao').maskMoney({defaultZero: false});
+            $('#vale_transporte').maskMoney({defaultZero: false});
+            $('#contato_emergencial').mask("(99) 9 9999-9999", {placeholder: "(__) _ ____-______"});
+            $("#data_admissao").mask("99/99/9999", {placeholder: "__/__ /___"});
 
+            //Funcionario
+            $('#setorFuncionario').attr('required', 'required').show();
+            $('#funcaoFuncionario').attr('required', 'required').show();
+            $('#data_admissao').attr('required', 'required').show();
+            $('#numero_ctps').attr('required', 'required').show();
+            $('#ctps_serie').attr('required', 'required').show();
+            $('#pis').attr('required', 'required').show();
+            $('#salario_base').attr('required', 'required').show();
+            $('#vale_refeicao').attr('required', 'required').show();
+            $('#vale_transporte').attr('required', 'required').show();
+            $('#bronquite').attr('required', 'required').show();
+            $('#faltadear').attr('required', 'required').show();
+            $('#diabetes').attr('required', 'required').show();
+            $('#convulsao').attr('required', 'required').show();
+            $('#alergia').attr('required', 'required').show();
+            $('#contato_emergencial').attr('required', 'required').show();
 
-            $('.cpfCnpj').text("CNPJ");
-            $("#cpf_cnpj").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
+            //    Funcionario
+            $('#razaoSocial').removeAttr('required', 'required').val('').hide();
+            $('#inscricaoEstadual').removeAttr('required', 'required').val('').hide();
+
+            //Variação de labels
+            $('.cpfCnpj').text("CPF");
+            $('#nomeLabel').text("Nome Completo");
+
+            $('#tipoEmpresa').hide();
+            $('#dadosFuncionario').show();
+        }
+
+        if (changeTipoPessoa === "5") {
             $('.validatecpf').cpfcnpj({
                 mask: true,
                 validate: 'cnpj',
@@ -129,19 +199,61 @@ $(document).ready(function () {
                 }
             });
 
+            $(".validatecpf").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
+
+            $('#nome').attr('required', 'required').show();
+            $('#cpf_cnpj').attr('required', 'required').show();
+            $('.rg').removeAttr('required', 'required').val('').hide();
+            $('.dataNascimento').removeAttr('required', 'required').val('').hide();
+            $('#rg').removeAttr('required', 'required').val('').hide();
+            $('#dataNascimento').removeAttr('required', 'required').val('').hide();
+            $('#familySituation').removeAttr('required', 'required').val('').hide();
+            $('.familySituation').removeAttr('required', 'required').val('').hide();
+            $('#citizenship').removeAttr('required', 'required').val('').hide();
+            $('.citizenship').removeAttr('required', 'required').val('').hide();
+            $('#sexo').removeAttr('required', 'required').val('').hide();
+            $('.sexo').removeAttr('required', 'required').val('').hide();
+            $('#zipCode').attr('required', 'required').show();
+            $('#number').attr('required', 'required').show();
+
+            //Funcionario
+            $('#setorFuncionario').removeAttr('required', 'required').val('').hide();
+            $('#funcaoFuncionario').removeAttr('required', 'required').val('').hide();
+            $('#data_admissao').removeAttr('required', 'required').val('').hide();
+            $('#numero_ctps').removeAttr('required', 'required').val('').hide();
+            $('#ctps_serie').removeAttr('required', 'required').val('').hide();
+            $('#pis').removeAttr('required', 'required').val('').hide();
+            $('#salario_base').removeAttr('required', 'required').val('').hide();
+            $('#vale_refeicao').removeAttr('required', 'required').val('').hide();
+            $('#vale_transporte').removeAttr('required', 'required').val('').hide();
+            $('#bronquite').removeAttr('required', 'required').val('').hide();
+            $('#faltadear').removeAttr('required', 'required').val('').hide();
+            $('#diabetes').removeAttr('required', 'required').val('').hide();
+            $('#convulsao').removeAttr('required', 'required').val('').hide();
+            $('#alergia').removeAttr('required', 'required').val('').hide();
+            $('#contato_emergencial').removeAttr('required', 'required').val('').hide();
+
+            //    Funcionario
+            $('#razaoSocial').attr('required', 'required').show();
+            $('#inscricaoEstadual').attr('required', 'required').show();
+
+            //Variação de labels
+            $('.cpfCnpj').text("CNPJ");
+            $('#nomeLabel').text("Nome Fantasia");
+
             $('#tipoEmpresa').show();
+            $('#dadosFuncionario').hide();
         }
+    }
+
+    validaInfoPessoaId();
 
 
+    $('#tipo_pessoas_id').change(function (action) {
+        validaInfoPessoaId(true);
     });
 
-    $("#contato_emergencial").mask("(99) 9 9999-9999", {placeholder: "(__) _ ____-______"});
-    $('#salario_base').maskMoney({defaultZero: false});
-    $('#vale_refeicao').maskMoney({defaultZero: false});
-    $('#vale_transporte').maskMoney({defaultZero: false});
-
     $("#dataNascimento").mask("99/99/9999", {placeholder: "__/__ /___"});
-    $("#data_admissao").mask("99/99/9999", {placeholder: "__/__ /___"});
 
     $('#dataNascimento').datepicker({
         autoclose: true,
@@ -181,6 +293,31 @@ $(document).ready(function () {
     });
 
     $('#pessoas-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: 'pessoas/getBasicData',
+        columns: [
+            {data: 'id', name: 'id'},
+            {data: 'nome', name: 'nome'},
+            {data: 'cpf_cnpj', name: 'cpf_cnpj'},
+            {data: 'status', name: 'status'},
+            {data: 'tipo_pessoas_id', name: 'tipo_pessoas_id'},
+            {data: 'link', name: 'link', orderable: false, searchable: false}
+
+        ],
+
+        initComplete: function () {
+        this.api().columns().every(function () {
+            var column = this;
+            var input = document.createElement("input");
+            $(input).appendTo($(column.footer()).empty())
+                .on('change', function () {
+                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                    column.search(val ? val : '', true, false).draw();
+                });
+        });
+    },
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
         }
@@ -194,21 +331,21 @@ $(document).ready(function () {
 
     $('#criarPessoa').validator();
 
-    $("#cep").mask("99999-999", {placeholder: "_____-___"});
+    $("#zipCode").mask("99999-999", {placeholder: "_____-___"});
     $("#rg").mask("99.999.999-99", {placeholder: "__.___.___-_"});
 
 //Busca CEP Async
 
     function limpa_formulário_cep() {
-        $("#rua").val("");
-        $("#bairro").val("");
-        $("#cidade").val("");
-        $("#complemento").val("");
-        $("#pais").val("");
+        $("#street").val("");
+        $("#neighborhood").val("");
+        $("#city").val("");
+        $("#complement").val("");
+        $("#country").val("");
         $("#ibge").val("");
     }
 
-    $("#cep").blur(function () {
+    $("#zipCode").blur(function () {
 
         //Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
@@ -223,11 +360,11 @@ $(document).ready(function () {
             if (validacep.test(cep)) {
 
                 //Preenche os campos com "..." enquanto consulta webservice.
-                $("#rua").val("...");
-                $("#bairro").val("...");
-                $("#cidade").val("...");
-                $("#complemento").val("...");
-                $("#pais").val("...");
+                $("#street").val("...");
+                $("#neighborhood").val("...");
+                $("#city").val("...");
+                $("#complement").val("...");
+                $("#country").val("...");
                 $("#ibge").val("...");
 
                 //Consulta o webservice viacep.com.br/
@@ -235,12 +372,12 @@ $(document).ready(function () {
 
                     if (!("erro" in dados)) {
                         //Atualiza os campos com os valores da consulta.
-                        $("#rua").val(dados.logradouro);
-                        $("#bairro").val(dados.bairro);
-                        $("#cidade").val(dados.localidade);
-                        $("#complemento").val(dados.complemento);
+                        $("#street").val(dados.logradouro);
+                        $("#neighborhood").val(dados.bairro);
+                        $("#city").val(dados.localidade);
+                        $("#complement").val(dados.complemento);
                         // $("#estado").val(dados.uf);
-                        $("#pais").val("Brasil");
+                        $("#country").val("Brasil");
                         $("#ibge").val(dados.ibge);
 
                         $('#estado option').filter(function () {
@@ -265,57 +402,6 @@ $(document).ready(function () {
         }
     });
 
-
-    var escolheTipoPessoa = () => {
-
-        if ($('meta[name="tipo-user"]').attr('content') == "4") {
-            $('#setorFuncionario').attr('required', 'required');
-            $('#funcaoFuncionario').attr('required', 'required');
-            $('#data_admissao').attr('required', 'required');
-            $('#dadosProfessor').show();
-        }
-
-        if ($('meta[name="tipo-user"]').attr('content') == "5") {
-            $('#rg').val("");
-            $('.rg').hide();
-            $('#sexo').val("");
-            $('.sexo').hide();
-            $('#dataNascimento').val("");
-            $('.dataNascimento').hide();
-            $('#citizenship').val("");
-            $('.citizenship').hide();
-            $('#familySituation').val("");
-            $('.familySituation').hide();
-
-            $('#rg').removeAttr('required');
-            $('#sexo').removeAttr('required');
-            $('#dataNascimento').removeAttr('required');
-            $('#citizenship').removeAttr('required');
-            $('#familySituation').removeAttr('required');
-
-
-            $('.cpfCnpj').text("CNPJ");
-            $("#cpf_cnpj").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
-            $('.validatecpf').cpfcnpj({
-                mask: true,
-                validate: 'cnpj',
-                event: 'blur',
-                handler: '.validatecpf',
-                ifValid: function (input) {
-                    input.removeClass("error");
-                },
-                ifInvalid: function (input) {
-                    input.addClass("error");
-                }
-            });
-
-            $('#tipoEmpresa').show();
-        }
-    }
-
-    escolheTipoPessoa();
-
-    $('[data-toggle="tooltip"]').tooltip();
 
     $('.listEmail').click(function () {
 

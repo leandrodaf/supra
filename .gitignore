@@ -18,8 +18,9 @@ public/css/
 public/fonts/
 public/img/
 public/js/
+
 public/vendors
-public/uploads/avatars/
+public/uploads/avatars/*.jpg
 resources/assets/vendors
 vendor/
 public/mix-manifest\.json

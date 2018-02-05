@@ -11,14 +11,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @version November 7, 2017, 12:02 pm -02
  *
  * @property \Illuminate\Database\Eloquent\Collection AlunoEmail
- * @property \Illuminate\Database\Eloquent\Collection alunoEndereco
+ * @property \Illuminate\Database\Eloquent\Collection alunolocation
  * @property \Illuminate\Database\Eloquent\Collection alunoEscola
  * @property \Illuminate\Database\Eloquent\Collection alunoPessoa
- * @property \Illuminate\Database\Eloquent\Collection alunoTelefone
+ * @property \Illuminate\Database\Eloquent\Collection alunophone
  * @property \Illuminate\Database\Eloquent\Collection alunos
  * @property \Illuminate\Database\Eloquent\Collection PessoaEmail
- * @property \Illuminate\Database\Eloquent\Collection pessoaEndereco
- * @property \Illuminate\Database\Eloquent\Collection pessoaTelefone
+ * @property \Illuminate\Database\Eloquent\Collection pessoalocation
+ * @property \Illuminate\Database\Eloquent\Collection pessoaphone
  * @property \Illuminate\Database\Eloquent\Collection usuarioPessoas
  * @property string email
  */

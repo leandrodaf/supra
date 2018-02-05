@@ -20,4 +20,19 @@ class Gender extends Model
      * @var array
      */
     protected $fillable = ['nome', 'status'];
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function aluno()
+    {
+        return $this->hasOne(
+            \App\Models\Alunos::class,
+            'id',
+            'sexo_aluno'
+        )->select('id', 'nome');
+    }
+
+
 }

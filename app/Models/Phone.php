@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Telefone extends Model
+class Phone extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'telefones';
+    protected $table = 'phones';
 
 
     /**
@@ -19,7 +19,7 @@ class Telefone extends Model
      *
      * @var array
      */
-    protected $fillable = ['numero'];
+    protected $fillable = ['number'];
 
     /**
      * GET Aluno
