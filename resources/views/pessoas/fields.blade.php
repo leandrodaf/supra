@@ -1,20 +1,20 @@
 <!-- Tipo Pessoas Id Field -->
 <div class="form-group {{$errors->has('tipo_pessoas_id') ? "has-error":""}} col-sm-6">
     {!! Form::label('tipo_pessoas_id', 'Tipo Pessoa:') !!}
-    {!! Form::select('tipo_pessoas_id', $tipoPessoas, !empty($pessoa)? $pessoa->tipo_pessoa_id:2, ['class' => 'form-control','required'=>'required']) !!}
+    {!! Form::select('tipo_pessoas_id', $tipoPessoas, !empty($pessoa)? $pessoa->tipo_pessoa_id:2, ['class' => 'form-control']) !!}
 </div>
 
 
 <!-- Nome Field -->
 <div class="form-group nome {{$errors->has('nome') ? "has-error":""}} col-sm-6">
     {!! Form::label('nome', 'Nome Completo:', ['id' => 'nomeLabel']) !!}
-    {!! Form::text('nome', null, ['class' => 'form-control','required'=>'required']) !!}
+    {!! Form::text('nome', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Cpf Cnpj Field -->
 <div class="form-group {{$errors->has('cpf_cnpj') ? "has-error":""}} col-sm-6">
     {!! Form::label('cpf_cnpj', 'CPF:', ['class' =>'cpfCnpj']) !!}
-    {!! Form::text('cpf_cnpj', null, ['class' => 'form-control validatecpf','required'=>'required']) !!}
+    {!! Form::text('cpf_cnpj', null, ['class' => 'form-control validatecpf']) !!}
 </div>
 
 <!-- Rg Field -->
@@ -26,19 +26,19 @@
 <!-- Datanascimento Field -->
 <div class="form-group dataNascimento {{$errors->has('dataNascimento') ? "has-error":""}} col-sm-6">
     {!! Form::label('dataNascimento', 'Nascimento:') !!}
-    {!! Form::text('dataNascimento', !empty($pessoa->dataNascimento)? $pessoa->dataNascimento->format('d/m/Y') :null, ['class' => 'form-control','required'=>'required', 'format' => 'dd/MM/yyyy']) !!}
+    {!! Form::text('dataNascimento', !empty($pessoa->dataNascimento)? $pessoa->dataNascimento->format('d/m/Y') :null, ['class' => 'form-control', 'format' => 'dd/MM/yyyy']) !!}
 </div>
 
 <!-- familySituation Field -->
 <div class="form-group familySituation {{$errors->has('familySituation') ? "has-error":""}} col-sm-6">
     {!! Form::label('familySituation', 'Estado civil:') !!}
-    {!! Form::select('familySituation', $familySituation, !empty($pessoa)? $pessoa->familySituation:null, ['class' => 'form-control','required'=>'required']) !!}
+    {!! Form::select('familySituation', $familySituation, !empty($pessoa)? $pessoa->familySituation:null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Citizenship Field -->
 <div class="form-group citizenship {{$errors->has('citizenship') ? "has-error":""}} col-sm-6">
     {!! Form::label('citizenship', 'Nacionalidade:') !!}
-    {!! Form::select('citizenship', $citizenships, !empty($pessoa)? $pessoa->citizenship:7, ['class' => 'form-control','required'=>'required']) !!}
+    {!! Form::select('citizenship', $citizenships, !empty($pessoa)? $pessoa->citizenship:7, ['class' => 'form-control']) !!}
 </div>
 
 
@@ -46,7 +46,7 @@
 <div class="form-group sexo {{$errors->has('sexo') ? "has-error":""}} col-sm-6">
     {!! Form::label('sexo', 'Sexo:') !!}
     <label class="checkbox-inline">
-        {!! Form::select('sexo', $genders, !empty($pessoa)? $pessoa->sexo:null, ['class' => 'form-control','required'=>'required']) !!}
+        {!! Form::select('sexo', $genders, !empty($pessoa)? $pessoa->sexo:null, ['class' => 'form-control']) !!}
     </label>
 </div>
 <div class="form-group  col-sm-6">
@@ -113,7 +113,7 @@
     </div>
 </div>
 
-<div id="dadosProfessor" style="display: none;">
+<div id="dadosFuncionario" style="display: none;">
 
     <div class="form-group {{$errors->has('Dados Financeiros') ? "has-error":""}} col-sm-12">
         {!! Form::label('Dados Financeiros', 'Financeiro:') !!}
@@ -260,7 +260,7 @@
                 <div class="form-group sintomasalergia {{$errors->has('sintomas') ? "has-error":""}} col-sm-6">
                     <dt>Sintomas</dt>
                     <dd id="sintomasalergia">
-                            <label class="checkbox-inline">{!! Form::textarea('healthInformations[sintomasalergia]', null,['rows' => '3','cols' => '35' ,'id' => 'sintomas']) !!}</label>
+                        <label class="checkbox-inline">{!! Form::textarea('healthInformations[sintomasalergia]', null,['rows' => '3','cols' => '35' ,'id' => 'sintomas']) !!}</label>
                     </dd>
                 </div>
 
@@ -285,7 +285,7 @@
     {{ Form::hidden('locations[id]', !empty($pessoa)? count($pessoa->location) != 0 ? $pessoa->location[0]->id:null:null) }}
 
     <div class="form-group {{$errors->has('locations.zipCode') ? "has-error":""}} col-sm-6">
-        {!! Form::text('locations[zipCode]', !empty($pessoa)? count($pessoa->location) != 0 ? $pessoa->location[0]->zipCode:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'CEP', 'id' => 'zipCode', 'required'=>'required']) !!}
+        {!! Form::text('locations[zipCode]', !empty($pessoa)? count($pessoa->location) != 0 ? $pessoa->location[0]->zipCode:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'CEP', 'id' => 'zipCode']) !!}
     </div>
 
     <div class="form-group {{$errors->has('locations.street') ? "has-error":""}} col-sm-6">
@@ -293,7 +293,7 @@
     </div>
 
     <div class="form-group {{$errors->has('locations.number') ? "has-error":""}} col-sm-6">
-        {!! Form::text('locations[number]', !empty($pessoa)? count($pessoa->location) != 0 ?  $pessoa->location[0]->number:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Número', 'id' => 'number', 'required'=>'required']) !!}
+        {!! Form::text('locations[number]', !empty($pessoa)? count($pessoa->location) != 0 ?  $pessoa->location[0]->number:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Número', 'id' => 'number']) !!}
     </div>
 
     <div class="form-group {{$errors->has('locations.city') ? "has-error":""}} col-sm-6">
@@ -311,7 +311,7 @@
     <div class="form-group {{$errors->has('locations.state') ? "has-error":""}} col-sm-6">
         {{--        {!! Form::text('locations[estado]', !empty($pessoa)? count($pessoa->location) != 0? $pessoa->location[0]->estado:null:null, ['class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'state', 'id' => 'state']) !!}--}}
 
-        {!! Form::select('locations[state]', array('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO',), !empty($pessoa)?  count($pessoa->location) != 0 ? $pessoa->location[0]->state:null:null, ['class' => 'form-control','required'=>'required', 'id'=> 'state']) !!}
+        {!! Form::select('locations[state]', array('AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO',), !empty($pessoa)?  count($pessoa->location) != 0 ? $pessoa->location[0]->state:null:null, ['class' => 'form-control', 'id'=> 'state']) !!}
 
 
     </div>

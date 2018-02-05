@@ -52,25 +52,15 @@ $(document).ready(function () {
     });
 
 
-    $('#cpf_cnpj').mask("999.999.999-99", {placeholder: "___.___.___-__"});
-
-    if ($(".validatecpf").length) {
-        $('.validatecpf').cpfcnpj({
-            mask: true,
-            validate: 'cpf',
-            event: 'blur',
-            handler: '.validatecpf',
-            ifValid: function (input) {
-                input.removeClass("error");
-            },
-            ifInvalid: function (input) {
-                input.addClass("error");
-            }
-        });
-    }
-
-    $('#tipo_pessoas_id').change(function () {
+    let validaInfoPessoaId = (condition) => {
         let changeTipoPessoa = $("#tipo_pessoas_id option:selected").val();
+
+        if(condition){
+            $('#cpf_cnpj').val('');
+
+        }
+
+
 
 
         if (changeTipoPessoa === "1" || changeTipoPessoa == "2") {
@@ -89,6 +79,8 @@ $(document).ready(function () {
             $(".validatecpf").mask("999.999.999-99", {placeholder: "___.___.___-__"});
 
             $('#nome').attr('required', 'required').show();
+
+
             $('#cpf_cnpj').attr('required', 'required').show();
             $('.rg').attr('required', 'required').show();
             $('.dataNascimento').attr('required', 'required').show();
@@ -128,6 +120,9 @@ $(document).ready(function () {
             //Variação de labels
             $('.cpfCnpj').text("CPF");
             $('#nomeLabel').text("Nome Completo");
+
+            $('#tipoEmpresa').hide();
+            $('#dadosFuncionario').hide();
         }
 
 
@@ -160,6 +155,11 @@ $(document).ready(function () {
             $('.sexo').attr('required', 'required').show();
             $('#zipCode').attr('required', 'required').show();
             $('#number').attr('required', 'required').show();
+            $('#salario_base').maskMoney({defaultZero: false});
+            $('#vale_refeicao').maskMoney({defaultZero: false});
+            $('#vale_transporte').maskMoney({defaultZero: false});
+            $('#contato_emergencial').mask("(99) 9 9999-9999", {placeholder: "(__) _ ____-______"});
+            $("#data_admissao").mask("99/99/9999", {placeholder: "__/__ /___"});
 
             //Funcionario
             $('#setorFuncionario').attr('required', 'required').show();
@@ -185,6 +185,9 @@ $(document).ready(function () {
             //Variação de labels
             $('.cpfCnpj').text("CPF");
             $('#nomeLabel').text("Nome Completo");
+
+            $('#tipoEmpresa').hide();
+            $('#dadosFuncionario').show();
         }
 
 
@@ -201,6 +204,8 @@ $(document).ready(function () {
                     input.addClass("error");
                 }
             });
+
+
             $(".validatecpf").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
 
             $('#nome').attr('required', 'required').show();
@@ -242,18 +247,24 @@ $(document).ready(function () {
             //Variação de labels
             $('.cpfCnpj').text("CNPJ");
             $('#nomeLabel').text("Nome Fantasia");
+
+            $('#tipoEmpresa').show();
+            $('#dadosFuncionario').hide();
         }
+    }
+
+    validaInfoPessoaId();
+
+
+    $('#tipo_pessoas_id').change(function (action) {
+        validaInfoPessoaId(true);
 
     });
 
 
-    $("#contato_emergencial").mask("(99) 9 9999-9999", {placeholder: "(__) _ ____-______"});
-    $('#salario_base').maskMoney({defaultZero: false});
-    $('#vale_refeicao').maskMoney({defaultZero: false});
-    $('#vale_transporte').maskMoney({defaultZero: false});
+
 
     $("#dataNascimento").mask("99/99/9999", {placeholder: "__/__ /___"});
-    $("#data_admissao").mask("99/99/9999", {placeholder: "__/__ /___"});
 
     $('#dataNascimento').datepicker({
         autoclose: true,

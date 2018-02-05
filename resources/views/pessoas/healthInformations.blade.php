@@ -11,7 +11,6 @@
         </div>
         <div class="box-tools pull-right">
         </div>
-
     </div>
     <div class="box-body">
 

@@ -14,7 +14,7 @@
                             <div class="btn-group">
                                 <button type="button" class="btn btn-info btn-sm btn-flat dropdown-toggle"
                                         data-toggle="dropdown">
-                                    <span class="caret"></span>
+                                    Ações &nbsp; <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
@@ -25,11 +25,8 @@
                                            onclick="document.getElementById('#deletetarUsuario').submit();">Excluir</a>
                                     </li>
                                 </ul>
-                                <a href="{!! route('pessoas.index') !!}" class="btn btn-info btn-sm btn-flat">Voltar</a>
-                                <!-- Collapse Button -->
-                                <button type="button" class="btn btn-info btn-sm btn-flat" data-widget="collapse">
-                                    <i class="fa fa-minus"></i>
-                                </button>
+
+
                                 {!! Form::open(['route' => ['pessoas.destroy', $pessoa->id], 'method' => 'delete', 'id' => 'deletetarUsuario']) !!}
 
                                 {!! Form::close() !!}
