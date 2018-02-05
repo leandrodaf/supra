@@ -181,8 +181,13 @@ class Alunos extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-//    public function phone()
-//    {
-//        return $this->belongsToMany(\App\Models\Alunophone::class)->withPivot('phone_id', 'aluno_id');
-//    }
+    public function phone()
+    {
+        return $this->belongsToMany(
+            \App\Models\Phone::class,
+            'aluno_phone',
+            'aluno_id',
+            'phone_id'
+        )->withPivot('flg_principal');
+    }
 }

@@ -5,14 +5,14 @@
     <!-- Nome Field -->
 
         @if($pessoa->tipoPessoa->id == 5)
-                <dt>{!! Form::label('nomeFantasia', 'Nome fantasia:') !!}</dt>
-            @else
-                <dt>{!! Form::label('nome', 'Nome:') !!}</dt>
-            @endif
+            <dt>{!! Form::label('nomeFantasia', 'Nome fantasia:') !!}</dt>
+        @else
+            <dt>{!! Form::label('nome', 'Nome:') !!}</dt>
+        @endif
 
         <dd>{!! $pessoa->nome !!}</dd>
 
-        @endif
+    @endif
 
     @if(!empty($pessoa->cpf_cnpj))
     <!-- Cpf Cnpj Field -->
@@ -39,11 +39,20 @@
     @endif
 
     @if(count($pessoa->email) != 0)
-        <dt>{!! Form::label('email', 'Emails:') !!}</dt>
+        <dt> {!! Form::label('email', count($pessoa->email) > 1 ?'E-mails:':'E-mail:') !!}</dt>
         @foreach($pessoa->email as $email)
             <dd>{!! $email->email !!}</dd>
         @endforeach
     @endif
+
+    @if(count($pessoa->phone) != 0)
+        <dt> {!! Form::label('phone', count($pessoa->phone) > 1 ?'Telefones:':'Telefone:') !!}</dt>
+
+        @foreach($pessoa->phone as $phone)
+            <dd>{!! $phone->number !!}</dd>
+        @endforeach
+    @endif
+
 
     @if(!empty($pessoa->getFamilySituation->nome))
     <!-- familySituation Field -->
