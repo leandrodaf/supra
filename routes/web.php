@@ -10,6 +10,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::post(
+    'alunos/phoneMain',
+    'AlunosController@mainPhonePessoaAjax'
+)->name('alunos.phoneMain');
+
 Route::get(
     'alunos/getBasicData',
     'AlunosController@getBasicData'
@@ -39,6 +44,11 @@ Route::post(
 )->name('pessoa.emailMain');
 
 Route::post(
+    'pessoas/phoneMain',
+    'PessoaController@mainPhonePessoaAjax'
+)->name('pessoa.phoneMain');
+
+Route::post(
     'pessoas/storeAjax',
     'PessoaController@storeAjax'
 )->name('pessoa.storeAjax');
@@ -63,6 +73,7 @@ Route::post(
 Route::resource('alunos', 'AlunosController');
 
 Route::resource('emails', 'EmailController');
+Route::resource('phones', 'PhoneController');
 
 Route::resource('healthInformations', 'HealthInformationsController');
 

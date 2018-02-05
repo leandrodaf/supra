@@ -72,6 +72,32 @@
     @endif
 </div>
 
+
+<div class="form-group {{$errors->has('phone') ? "has-error":""}} col-sm-5">
+    {!! Form::label('phone', 'Telefone:') !!}
+    <select id="phone" name="phone[][number]" multiple="multiple"></select>
+
+    @if(!empty($alunos) )
+        <p></p>
+        {!! Form::label('phone', 'Telefones cadastrados:') !!}
+        <dl class="dl-horizontal">
+            <p></p>
+            <!-- lista de phones -->
+            @foreach($alunos->phone->toArray() as $phone)
+                <dt>
+
+
+                    <a href="#deletar-{{$phone['id']}}" class="btn btn-default btn-flat {{count($alunos->phone->toArray()) >1 ?"":"disabled" }}"
+                       onclick="document.getElementById({!! "'#deletar-phone-".$phone['id']."'" !!}).submit();" {{count($alunos->phone->toArray()) >1 ?"":"disabled" }}>
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </dt>
+                <dd>{{$phone['number']}}</dd>
+            @endforeach
+        </dl>
+    @endif
+</div>
+
 <!-- Flg Certidao Nascimento Aluno Field -->
 <div class="form-group {{$errors->has('flg_certidao_nascimento_aluno') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">

@@ -31,13 +31,21 @@
                    @if(!empty($pessoa->email))
                        <!-- lista de emails -->
                            @foreach($pessoa->email->toArray() as $email)
-                               {!! Form::open(['route' => ['emails.destroy', $email['id']], 'method' => 'delete', 'id' => "#deletar-".$email['id']]) !!}
+                               {!! Form::open(['route' => ['emails.destroy', $email['id']], 'method' => 'delete', 'id' => "#deletar-email-".$email['id']]) !!}
                                {!! Form::close() !!}
 
                                {!! Form::open(['route' => ['pessoa.emailMain', 'idPessoa' => $pessoa->id, 'idEmail'=> $email['id']], 'method' => 'post', 'id' => "#emailMain-".$email['id']]) !!}
                                {!! Form::close() !!}
                            @endforeach
                        @endif
+
+                   @if(!empty($pessoa->phone))
+                   <!-- Formularios remover Phones -->
+                       @foreach($pessoa->phone->toArray() as $phone)
+                           {!! Form::open(['route' => ['phones.destroy', $phone['id']], 'method' => 'delete', 'id' => "#deletar-phone-".$phone['id']]) !!}
+                           {!! Form::close() !!}
+                       @endforeach
+                   @endif
                </div>
            </div>
        </div>

@@ -79,4 +79,30 @@ class AlunosRepository extends BaseRepository
             return $filename;
         }
     }
+
+    public function setPhoneMain($aluno, $idPhone)
+    {
+
+        $aluno = $this->findWithoutFail($aluno);
+        if (count($aluno->phone) == 1) {
+            $phoneUnico = $aluno->phone->get(0);
+            $phoneUnico->pivot->flg_principal = 1;
+            $phoneUnico->pivot->save();
+        } else {
+
+
+            foreach ($aluno->phone as $phone) {
+                if ($phone->id == $idPhone) {
+                    $phone->pivot->flg_principal = 1;
+                } else {
+                    $phone->pivot->flg_principal = 0;
+
+                }
+                $phone->pivot->save();
+            }
+        }
+
+        return response()->json($aluno->phone);
+
+    }
 }
