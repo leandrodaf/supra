@@ -15,10 +15,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection Alunolocation
  * @property \Illuminate\Database\Eloquent\Collection AlunoEscola
  * @property \Illuminate\Database\Eloquent\Collection AlunoPessoa
- * @property \Illuminate\Database\Eloquent\Collection AlunoTelefone
+ * @property \Illuminate\Database\Eloquent\Collection Alunophone
  * @property \Illuminate\Database\Eloquent\Collection pessoaEmail
  * @property \Illuminate\Database\Eloquent\Collection pessoalocation
- * @property \Illuminate\Database\Eloquent\Collection pessoaTelefone
+ * @property \Illuminate\Database\Eloquent\Collection pessoaphone
  * @property \Illuminate\Database\Eloquent\Collection usuarioPessoas
  * @property string nome_aluno
  * @property string foto_aluno
@@ -181,8 +181,8 @@ class Alunos extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-//    public function telefone()
+//    public function phone()
 //    {
-//        return $this->belongsToMany(\App\Models\AlunoTelefone::class)->withPivot('telefone_id', 'aluno_id');
+//        return $this->belongsToMany(\App\Models\Alunophone::class)->withPivot('phone_id', 'aluno_id');
 //    }
 }

@@ -15,10 +15,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection alunolocation
  * @property \Illuminate\Database\Eloquent\Collection alunoEscola
  * @property \Illuminate\Database\Eloquent\Collection AlunoPessoa
- * @property \Illuminate\Database\Eloquent\Collection alunoTelefone
+ * @property \Illuminate\Database\Eloquent\Collection alunophone
  * @property \Illuminate\Database\Eloquent\Collection PessoaEmail
  * @property \Illuminate\Database\Eloquent\Collection Pessoalocation
- * @property \Illuminate\Database\Eloquent\Collection PessoaTelefone
+ * @property \Illuminate\Database\Eloquent\Collection Pessoaphone
  * @property \Illuminate\Database\Eloquent\Collection UsuarioPessoa
  * @property string nome
  * @property string cpf_cnpj
@@ -232,9 +232,9 @@ class Pessoa extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function telefones()
+    public function phones()
     {
-        return $this->belongsToMany('App\Models\Telefone');
+        return $this->belongsToMany('App\Models\Phone');
     }
 
     /**

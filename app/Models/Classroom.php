@@ -14,10 +14,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Database\Eloquent\Collection alunolocation
  * @property \Illuminate\Database\Eloquent\Collection alunoEscola
  * @property \Illuminate\Database\Eloquent\Collection alunoPessoa
- * @property \Illuminate\Database\Eloquent\Collection alunoTelefone
+ * @property \Illuminate\Database\Eloquent\Collection alunophone
  * @property \Illuminate\Database\Eloquent\Collection pessoaEmail
  * @property \Illuminate\Database\Eloquent\Collection pessoalocation
- * @property \Illuminate\Database\Eloquent\Collection pessoaTelefone
+ * @property \Illuminate\Database\Eloquent\Collection pessoaphone
  * @property \Illuminate\Database\Eloquent\Collection usuarioPessoas
  * @property string nome_sala
  * @property boolean status
