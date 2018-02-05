@@ -9,6 +9,19 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::get(
+    'alunos/getBasicData',
+    'AlunosController@getBasicData'
+)->name('alunos.getBasicData');
+
+Route::get(
+    'pessoas/getBasicData',
+    'PessoaController@getBasicData'
+)->name('pessoas.getBasicData');
+
+
+
 Route::get(
     'pessoas/getInfoUser/{idPessoa}',
     'PessoaController@getInfoUser'

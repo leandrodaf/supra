@@ -55,13 +55,10 @@ $(document).ready(function () {
     let validaInfoPessoaId = (condition) => {
         let changeTipoPessoa = $("#tipo_pessoas_id option:selected").val();
 
-        if(condition){
+        if (condition) {
             $('#cpf_cnpj').val('');
 
         }
-
-
-
 
         if (changeTipoPessoa === "1" || changeTipoPessoa == "2") {
             $('.validatecpf').cpfcnpj({
@@ -95,7 +92,6 @@ $(document).ready(function () {
             $('#zipCode').attr('required', 'required').show();
             $('#number').attr('required', 'required').show();
 
-
             //Funcionario
             $('#setorFuncionario').removeAttr('required', 'required').val('').hide();
             $('#funcaoFuncionario').removeAttr('required', 'required').val('').hide();
@@ -124,7 +120,6 @@ $(document).ready(function () {
             $('#tipoEmpresa').hide();
             $('#dadosFuncionario').hide();
         }
-
 
         if (changeTipoPessoa === "4") {
             $('.validatecpf').cpfcnpj({
@@ -190,7 +185,6 @@ $(document).ready(function () {
             $('#dadosFuncionario').show();
         }
 
-
         if (changeTipoPessoa === "5") {
             $('.validatecpf').cpfcnpj({
                 mask: true,
@@ -204,7 +198,6 @@ $(document).ready(function () {
                     input.addClass("error");
                 }
             });
-
 
             $(".validatecpf").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
 
@@ -258,11 +251,7 @@ $(document).ready(function () {
 
     $('#tipo_pessoas_id').change(function (action) {
         validaInfoPessoaId(true);
-
     });
-
-
-
 
     $("#dataNascimento").mask("99/99/9999", {placeholder: "__/__ /___"});
 
@@ -304,6 +293,31 @@ $(document).ready(function () {
     });
 
     $('#pessoas-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: 'pessoas/getBasicData',
+        columns: [
+            {data: 'id', name: 'id'},
+            {data: 'nome', name: 'nome'},
+            {data: 'cpf_cnpj', name: 'cpf_cnpj'},
+            {data: 'status', name: 'status'},
+            {data: 'tipo_pessoas_id', name: 'tipo_pessoas_id'},
+            {data: 'link', name: 'link', orderable: false, searchable: false}
+
+        ],
+
+        initComplete: function () {
+        this.api().columns().every(function () {
+            var column = this;
+            var input = document.createElement("input");
+            $(input).appendTo($(column.footer()).empty())
+                .on('change', function () {
+                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                    column.search(val ? val : '', true, false).draw();
+                });
+        });
+    },
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
         }

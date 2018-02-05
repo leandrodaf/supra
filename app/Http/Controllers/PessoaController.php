@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Helpers\Helpers;
+use Yajra\DataTables\DataTables;
 
 class PessoaController extends AppBaseController
 {
@@ -32,10 +33,40 @@ class PessoaController extends AppBaseController
     public function index(Request $request)
     {
         $this->pessoaRepository->pushCriteria(new RequestCriteria($request));
-        $pessoas = $this->pessoaRepository->all();
+        return view('pessoas.index');
+    }
 
-        return view('pessoas.index')
-            ->with('pessoas', $pessoas);
+    public function getBasicData()
+    {
+        $pessoas = Pessoa::select(['id', 'nome', 'cpf_cnpj', 'status', 'tipo_pessoas_id']);
+
+        return Datatables::of($pessoas)
+            ->editColumn('status', function ($pessoa) {
+                return $pessoa->status == 1 ? 'Ativo' : 'Inativo';
+            })
+            ->editColumn('tipo_pessoas_id', function ($pessoa) {
+
+                if ($pessoa->tipo_pessoas_id == 1) {
+                    return 'Aluno';
+                } else if ($pessoa->tipo_pessoas_id == 2) {
+                    return 'Responsável';
+                } else if ($pessoa->tipo_pessoas_id == 3) {
+                    return 'Autorizado';
+                } else if ($pessoa->tipo_pessoas_id == 4) {
+                    return 'Funcionário';
+                } else if ($pessoa->tipo_pessoas_id == 5) {
+                    return 'Empresa';
+                }
+
+            })
+            ->addColumn('link', function ($pessoa) {
+                return '
+                <a href="/pessoas/' . $pessoa->id .'' .'" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i></a>
+                <a href="/pessoas/' . $pessoa->id .'/edit' .'" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
+                ';
+            })
+            ->rawColumns(['link'])
+            ->make(true);
     }
 
     /**

@@ -1,20 +1,28 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Http\Requests\CreateAlunosRequest;
 use App\Http\Requests\UpdateAlunosRequest;
+use App\Models\Alunos;
 use App\Repositories\AlunosRepository;
 use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Yajra\DataTables\DataTables;
+use Carbon\Carbon;
+
 class AlunosController extends AppBaseController
 {
     /** @var  AlunosRepository */
     private $alunosRepository;
+
     public function __construct(AlunosRepository $alunosRepo)
     {
         $this->alunosRepository = $alunosRepo;
     }
+
     /**
      * Display a listing of the Alunos.
      *
@@ -24,10 +32,60 @@ class AlunosController extends AppBaseController
     public function index(Request $request)
     {
         $this->alunosRepository->pushCriteria(new RequestCriteria($request));
-        $alunos = $this->alunosRepository->all();
-        return view('alunos.index')
-            ->with('alunos', $alunos);
+        return view('alunos.index');
     }
+
+    public function getBasicData()
+    {
+        $alunos = Alunos::select(['id', 'foto_aluno', 'nome_aluno', 'rg_aluno', 'sexo_aluno', 'data_nascimento_aluno', 'tipo_pessoas_id']);
+
+        return Datatables::of($alunos)
+            ->addColumn('foto_modificada', function ($alunos) {
+                return '<img src="' . asset('uploads/avatars/' . $alunos->foto_aluno) . '" class="user-image"
+                     alt="' . $alunos->nome_aluno . '" style="height: 50px; width: 50px;">';
+            })
+            ->editColumn('data_nascimento_aluno', function ($alunos) {
+                return $alunos->data_nascimento_aluno ? with(new Carbon($alunos->data_nascimento_aluno))->format('d/m/Y') : '';
+            })
+            ->editColumn('status', function ($alunos) {
+                if ($alunos->status == 1) {
+                    return 'Feminino';
+                } elseif ($alunos->status == 2) {
+                    return 'Masculino';
+                } elseif ($alunos->status == 3) {
+                    return 'Outro';
+                }
+            })
+            ->editColumn('tipo_pessoas_id', function ($alunos) {
+
+                if ($alunos->tipo_pessoas_id == 1) {
+                    return 'Aluno';
+                } elseif ($alunos->tipo_pessoas_id == 2) {
+                    return 'Responsável';
+                } elseif ($alunos->tipo_pessoas_id == 3) {
+                    return 'Autorizado';
+                } elseif ($alunos->tipo_pessoas_id == 4) {
+                    return 'Funcionário';
+                } elseif ($alunos->tipo_pessoas_id == 5) {
+                    return 'Empresa';
+                }
+
+            })
+            ->editColumn('sexo_aluno', function ($alunos) {
+
+                return $alunos->sexo_aluno != 1 ? 'Masculino' : 'Feminino';
+
+            })
+            ->addColumn('link', function ($alunos) {
+                return '
+                <a href="/alunos/' . $alunos->id . '' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i></a>
+                <a href="/alunos/' . $alunos->id . '/edit' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
+                ';
+            })
+            ->rawColumns(['link', 'foto_modificada'])
+            ->make(true);
+    }
+
     /**
      * Show the form for creating a new Alunos.
      *
@@ -39,6 +97,7 @@ class AlunosController extends AppBaseController
         $generos = \App\Models\Genero::where('status', '=', 1)->get()->pluck('nome', 'id');
         return view('alunos.create')->with(compact('tipoPessoas', 'generos'));
     }
+
     /**
      * Store a newly created Alunos in storage.
      *
@@ -65,6 +124,7 @@ class AlunosController extends AppBaseController
         $flash::success('Aluno criado com sucesso.');
         return redirect(route('alunos.show', $alunos->id));
     }
+
     /**
      * Display the specified Alunos.
      *
@@ -82,6 +142,7 @@ class AlunosController extends AppBaseController
         }
         return view('alunos.show')->with('alunos', $alunos);
     }
+
     /**
      * Show the form for editing the specified Alunos.
      *
@@ -101,6 +162,7 @@ class AlunosController extends AppBaseController
         }
         return view('alunos.edit')->with('alunos', $alunos)->with(compact('tipoPessoas', 'genders'));
     }
+
     /**
      * Update the specified Alunos in storage.
      *
@@ -132,6 +194,7 @@ class AlunosController extends AppBaseController
         $flash::success('Aluno Atualizado com sucesso.');
         return redirect(route('alunos.show', $idAluno));
     }
+
     /**
      * Update the specified Alunos in storage.
      *
@@ -154,6 +217,7 @@ class AlunosController extends AppBaseController
         $flash::success('Aluno Atualizado com sucesso.');
         return redirect(route('alunos.show', $idAluno));
     }
+
     /**
      * Remove the specified Alunos from storage.
      *
@@ -174,6 +238,7 @@ class AlunosController extends AppBaseController
         $flash::success('Alunos deleted successfully.');
         return redirect(route('alunos.index'));
     }
+
     /**
      * Remove the specified Alunos from storage.
      *
