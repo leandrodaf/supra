@@ -27,7 +27,7 @@ class AddHealthInformationsToPessoasTable extends Migration
     public function down()
     {
         Schema::table('pessoas', function (Blueprint $table) {
-            $table->dropForeign('alunos_healthInformations_id_foreign');
+            $table->dropForeign('pessoas_healthinformations_id_foreign');
             $table->dropColumn(['healthInformations_id']);
         });
     }
