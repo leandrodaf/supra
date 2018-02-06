@@ -14,18 +14,33 @@
             <dt> {!! Form::label('data_nascimento_aluno', 'Data nascimento:') !!}</dt>
             <dd> {!! $alunos->data_nascimento_aluno->format('d/m/Y') !!}</dd>
 
-            <!-- Tipo Pessoas Id Field -->
+            <!-- Tipo Pessoas tipo pessoa Field -->
             <dt> {!! Form::label('tipo_pessoas_id', 'Tipo:') !!}</dt>
             <dd> {!! $alunos->tipoPessoa->nome !!}</dd>
 
-            <!-- Tipo Pessoas Id Field -->
-            <dt> {!! Form::label('email', count($alunos->email) > 1 ?'E-mails:':'E-mail') !!}</dt>
+        <!--  email Field -->
+            @if(count($alunos->email) != 0)
+            <dt> {!! Form::label('email', count($alunos->email) > 1 ?'E-mails:':'E-mail:') !!}</dt>
 
             @foreach($alunos->email as $email)
                 <dd> {{$email->email}} <span class="label label-info">{{$email['pivot']->flg_principal ? "P":""}}</span></dd>
             @endforeach
+            @endif
 
-            <!-- Created At Field -->
+
+            @if(count($alunos->phone) != 0)
+            <!--  phone Field -->
+
+                <dt> {!! Form::label('phone', count($alunos->phone) > 1 ?'Telefones:':'Telefone:') !!}</dt>
+
+            @foreach($alunos->phone as $phone)
+                    <dd> {{$phone->number}} <span class="label label-info">{{$phone['pivot']->flg_principal ? "P":""}}</span></dd>
+                @endforeach
+            @endif
+
+
+
+        <!-- Created At Field -->
             <dt> {!! Form::label('created_at', 'Criado em:') !!} </dt>
             <dd> {!! $alunos->created_at->format('d/m/Y') !!}</dd>
 

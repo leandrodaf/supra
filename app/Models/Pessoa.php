@@ -232,9 +232,14 @@ class Pessoa extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function phones()
+    public function phone()
     {
-        return $this->belongsToMany('App\Models\Phone');
+        return $this->belongsToMany(
+            \App\Models\Phone::class,
+            'pessoa_phone',
+            'pessoa_id',
+            'phone_id'
+        )->withPivot('flg_principal');
     }
 
     /**

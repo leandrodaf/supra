@@ -61,8 +61,8 @@ class PessoaController extends AppBaseController
             })
             ->addColumn('link', function ($pessoa) {
                 return '
-                <a href="/pessoas/' . $pessoa->id .'' .'" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i></a>
-                <a href="/pessoas/' . $pessoa->id .'/edit' .'" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
+                <a href="/pessoas/' . $pessoa->id . '' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i></a>
+                <a href="/pessoas/' . $pessoa->id . '/edit' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
                 ';
             })
             ->rawColumns(['link'])
@@ -97,6 +97,9 @@ class PessoaController extends AppBaseController
     public function store(CreatePessoaRequest $request)
     {
         $input = $request->all();
+
+        return dd($input);
+
         try {
             $helper = new Helpers();
 
@@ -113,6 +116,7 @@ class PessoaController extends AppBaseController
             $departments = array_get($input, 'department');
             $roles = array_get($input, 'role');
             $healthInformations = array_get($input, 'healthInformations');
+            $phones = array_get($input, 'phone');
 
 
             array_forget($input, 'healthInformations');
@@ -120,7 +124,7 @@ class PessoaController extends AppBaseController
             array_forget($input, 'email');
             array_forget($input, 'department');
             array_forget($input, 'role');
-
+            array_forget($input, 'phone');
 
             $pessoa = $this->pessoaRepository->create($input);
 
@@ -133,6 +137,12 @@ class PessoaController extends AppBaseController
             if (!empty($emails)) {
                 $pessoa->email()->createMany(
                     $emails
+                );
+            }
+
+            if (!empty($phones)) {
+                $pessoa->phone()->createMany(
+                    $phones
                 );
             }
 
@@ -194,6 +204,12 @@ class PessoaController extends AppBaseController
     {
         $parameters = $request->all();
         return $this->pessoaRepository->setEmailMain($parameters['idPessoa'], $parameters['idEmail']);
+    }
+
+    public function mainPhonePessoaAjax(Request $request)
+    {
+        $parameters = $request->all();
+        return $this->pessoaRepository->setPhoneMain($parameters['idPessoa'], $parameters['idPhone']);
     }
 
     /**
@@ -313,6 +329,9 @@ class PessoaController extends AppBaseController
         $emails = array_get($input, 'email');
         array_forget($input, 'email');
 
+        $phones = array_get($input, 'phone');
+        array_forget($input, 'phone');
+
         $departments = array_get($input, 'department');
         array_forget($input, 'department');
 
@@ -329,6 +348,12 @@ class PessoaController extends AppBaseController
         if (!empty($emails)) {
             $pessoa->email()->createMany(
                 $emails
+            );
+        }
+
+        if (!empty($phones)) {
+            $pessoa->phone()->createMany(
+                $phones
             );
         }
 

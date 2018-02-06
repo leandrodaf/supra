@@ -40,10 +40,13 @@ class MatriculaController extends AppBaseController
         $emails = array_get($input, 'email');
         $responsaveis = array_get($input, 'responsaveis');
         $healthInformations = array_get($input, 'healthInformations');
+        $phones = array_get($input, 'phone');
 
         array_forget($input, 'responsaveis');
         array_forget($input, 'healthInformations');
         array_forget($input, 'email');
+        array_forget($input, 'phone');
+
 
         $input['data_nascimento_aluno'] = $helper->formataDataPtBr($input['data_nascimento_aluno']);
 
@@ -54,6 +57,12 @@ class MatriculaController extends AppBaseController
         if (!empty($emails)) {
             $aluno->email()->createMany(
                 $emails
+            );
+        }
+
+        if (!empty($phones)) {
+            $aluno->phone()->createMany(
+                $phones
             );
         }
 

@@ -364,6 +364,21 @@ $(document).ready(function () {
     });
 
 
+    $('#phone').select2({
+        width: '100%',
+        tags: true,
+        tokenSeparators: [',', ';', ' '],
+        placeholder: "Digite os emails",
+        createTag: function (term, data) {
+            let value = term.term;
+            return {
+                id: value,
+                text: value
+            };
+        }
+    });
+
+
     // $.uploadPreview({
     //     input_field: "#foto_aluno",   // Default: .image-upload
     //     preview_box: "#image-preview",  // Default: .image-preview

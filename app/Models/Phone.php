@@ -13,6 +13,10 @@ class Phone extends Model
      */
     protected $table = 'phones';
 
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -22,18 +26,18 @@ class Phone extends Model
     protected $fillable = ['number'];
 
     /**
-     * GET Aluno
-     */
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     **/
     public function aluno()
     {
-        return $this->belongsToMany('App\Models\Aluno');
+        return $this->belongsToMany(\App\Models\Alunos::class);
     }
 
     /**
-     * GET Pessoa
-     */
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     **/
     public function pessoa()
     {
-        return $this->belongsToMany('App\Models\Pessoa');
+        return $this->belongsToMany(\App\Models\Pessoa::class);
     }
 }

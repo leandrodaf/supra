@@ -69,4 +69,30 @@ class PessoaRepository extends BaseRepository
 
     }
 
+    public function setPhoneMain($pessoa, $idPhone)
+    {
+
+        $pessoa = $this->findWithoutFail($pessoa);
+        if (count($pessoa->phone) == 1) {
+            $phoneUnico = $pessoa->phone->get(0);
+            $phoneUnico->pivot->flg_principal = 1;
+            $phoneUnico->pivot->save();
+        } else {
+
+
+            foreach ($pessoa->phone as $phone) {
+                if ($phone->id == $idPhone) {
+                    $phone->pivot->flg_principal = 1;
+                } else {
+                    $phone->pivot->flg_principal = 0;
+
+                }
+                $phone->pivot->save();
+            }
+        }
+
+        return response()->json($pessoa->phone);
+
+    }
+
 }

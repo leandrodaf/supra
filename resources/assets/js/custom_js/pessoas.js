@@ -51,6 +51,20 @@ $(document).ready(function () {
         }
     });
 
+    $('#telefoneResponsavel').select2({
+        width: '100%',
+        tags: true,
+        tokenSeparators: [',', ';', ' '],
+        placeholder: "Digite os telefones",
+        createTag: function (term, data) {
+            let value = term.term;
+            return {
+                id: value.replace(/^(\d{3})(\d{4})(\d{5}).*/, '($1) $2-$3'),
+                text: value
+            };
+        }
+    });
+
 
     let validaInfoPessoaId = (condition) => {
         let changeTipoPessoa = $("#tipo_pessoas_id option:selected").val();
@@ -307,17 +321,17 @@ $(document).ready(function () {
         ],
 
         initComplete: function () {
-        this.api().columns().every(function () {
-            var column = this;
-            var input = document.createElement("input");
-            $(input).appendTo($(column.footer()).empty())
-                .on('change', function () {
-                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+            this.api().columns().every(function () {
+                var column = this;
+                var input = document.createElement("input");
+                $(input).appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
 
-                    column.search(val ? val : '', true, false).draw();
-                });
-        });
-    },
+                        column.search(val ? val : '', true, false).draw();
+                    });
+            });
+        },
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
         }
@@ -407,7 +421,6 @@ $(document).ready(function () {
 
         let ids = $(this).get(0).id.split('-');
 
-
         $.ajax({
             async: true,
             url: '/pessoas/emailMain?idPessoa=' + ids[0] + '&idEmail=' + ids[1],
@@ -428,7 +441,33 @@ $(document).ready(function () {
                 console.log(error);
             }
         });
-    })
+    });
 
+
+    $('.listphone').click(function () {
+
+        let ids = $(this).get(0).id.split('-');
+
+        $.ajax({
+            async: true,
+            url: '/pessoas/phoneMain?idPessoa=' + ids[0] + '&idPhone=' + ids[1],
+            type: 'POST',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            data: function (data) {
+            },
+            success: function (data) {
+                window.location.reload();
+            },
+            beforeSend: function (before) {
+            },
+            complete: function (complete) {
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    })
 
 });

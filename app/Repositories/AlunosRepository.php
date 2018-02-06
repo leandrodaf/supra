@@ -79,4 +79,54 @@ class AlunosRepository extends BaseRepository
             return $filename;
         }
     }
+
+    public function setPhoneMain($aluno, $idPhone)
+    {
+
+        $aluno = $this->findWithoutFail($aluno);
+        if (count($aluno->phone) == 1) {
+            $phoneUnico = $aluno->phone->get(0);
+            $phoneUnico->pivot->flg_principal = 1;
+            $phoneUnico->pivot->save();
+        } else {
+
+
+            foreach ($aluno->phone as $phone) {
+                if ($phone->id == $idPhone) {
+                    $phone->pivot->flg_principal = 1;
+                } else {
+                    $phone->pivot->flg_principal = 0;
+
+                }
+                $phone->pivot->save();
+            }
+        }
+
+        return response()->json($aluno->phone);
+    }
+
+    public function setEmailMain($alunos, $idEmail)
+    {
+        $alunos = $this->findWithoutFail($alunos);
+
+        if (count($alunos->email) == 1) {
+            $emailUnico = $alunos->email->get(0);
+            $emailUnico->pivot->flg_principal = 1;
+            $emailUnico->pivot->save();
+        } else {
+
+            foreach ($alunos->email as $email) {
+                if ($email->id == $idEmail) {
+                    $email->pivot->flg_principal = 1;
+                } else {
+                    $email->pivot->flg_principal = 0;
+
+                }
+                $email->pivot->save();
+            }
+        }
+
+        return response()->json($alunos->email);
+
+    }
 }
