@@ -96,28 +96,27 @@
     {!! Form::label('phone', 'Telefone:') !!}
     <select id="telefoneResponsavel" name="phone[][number]" multiple="multiple"></select>
 
-    @if(!empty($alunos) )
+    @if(!empty($pessoa) )
         <p></p>
         {!! Form::label('phone', 'Telefones cadastrados:') !!}
         <dl class="dl-horizontal">
             <p></p>
             <!-- lista de phones -->
 
-            @foreach($alunos->phone->toArray() as $phone)
+            @foreach($pessoa->phone->toArray() as $phone)
                 <dt>
 
-                    <a href="#deletar-phone-{{$alunos['id']}}"
-                       class="btn btn-default btn-flat {{count($alunos->phone->toArray()) >1 && $phone['pivot']['flg_principal'] != 1 ?"":"disabled" }}"
-                       onclick="document.getElementById({!! "'#deletar-phone-".$phone['id']."'" !!}).submit();" {{count($alunos->phone->toArray()) >1 ?"":"disabled" }}>
+                    <a href="#deletar-phone-{{$pessoa['id']}}"
+                       class="btn btn-default btn-flat {{count($pessoa->phone->toArray()) >1 && $phone['pivot']['flg_principal'] != 1 ?"":"disabled" }}"
+                       onclick="document.getElementById({!! "'#deletar-phone-".$phone['id']."'" !!}).submit();" {{count($pessoa->phone->toArray()) >1 ?"":"disabled" }}>
 
                         <i class="glyphicon glyphicon-trash"></i>
-
                     </a>
 
                 </dt>
                 <dd>
                     <a class="listphone" href="#mainphone"
-                       {{count($alunos->phone->toArray()) >1 && $phone['pivot']['flg_principal'] != 1 ?'':'data-toggle="tooltip"' }} id="{{$alunos->id.'-'.$phone['id']}}"
+                       {{count($pessoa->phone->toArray()) >1 && $phone['pivot']['flg_principal'] != 1 ?'':'data-toggle="tooltip"' }} id="{{$pessoa->id.'-'.$phone['id']}}"
                        title="{{$phone['pivot']['flg_principal'] != 0 ? "Telefone principal": "Tornar o Telefone principal"}}">{{$phone['number']}}</a>
                     <span class="label label-info">{{$phone['pivot']['flg_principal'] == 1 ? "Principal":""}}</span>
                 </dd>
