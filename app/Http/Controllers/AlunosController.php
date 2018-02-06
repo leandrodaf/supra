@@ -99,11 +99,6 @@ class AlunosController extends AppBaseController
         return view('alunos.create')->with(compact('tipoPessoas', 'generos'));
     }
 
-    public function mainPhonePessoaAjax(Request $request)
-    {
-        $parameters = $request->all();
-        return $this->alunosRepository->setPhoneMain($parameters['idAluno'], $parameters['idPhone']);
-    }
 
     /**
      * Store a newly created Alunos in storage.
@@ -315,4 +310,20 @@ class AlunosController extends AppBaseController
 
         return response()->json($resposta);
     }
+
+    public function mainEmailAlunoAjax(Request $request)
+    {
+        $parameters = $request->all();
+        return $this->alunosRepository->setEmailMain($parameters['idAluno'], $parameters['idEmail']);
+    }
+
+    public function mainPhoneAlunosAjax(Request $request)
+    {
+        $parameters = $request->all();
+
+        return $this->alunosRepository->setPhoneMain($parameters['idAluno'], $parameters['idPhone']);
+    }
+
+
+
 }

@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+
+@section('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+@endsection
+
+
 @section('content')
     <section class="content-header">
         <h1>
@@ -21,6 +28,9 @@
                     @if(!empty($alunos->email))
                     <!-- lFormulário remover Emails -->
                         @foreach($alunos->email->toArray() as $email)
+                            {!! Form::open(['route' => ['emails.destroy', $email['id']], 'method' => 'delete', 'id' => "#deletar-email-".$email['id']]) !!}
+                            {!! Form::close() !!}
+
                             {!! Form::open(['route' => ['emails.destroy', $email['id']], 'method' => 'delete', 'id' => "#deletar-email-".$email['id']]) !!}
                             {!! Form::close() !!}
                         @endforeach

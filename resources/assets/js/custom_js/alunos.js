@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
 
+
     let reduzirDiasData = function (dias) {
         let hoje = new Date();
         let dataVenc = new Date(hoje.getTime() - (dias * 24 * 60 * 60 * 1000));
@@ -64,10 +65,10 @@ $(document).ready(function () {
         placeholder: "Digite os emails",
         createTag: function (term, data) {
             let value = term.term;
-                return {
-                    id: value,
-                    text: value
-                };
+            return {
+                id: value,
+                text: value
+            };
         }
     });
 
@@ -328,13 +329,56 @@ $(document).ready(function () {
         });
     });
 
+
+    $('#telefoneAluno').select2({
+        width: '100%',
+        tags: true,
+        tokenSeparators: [',', ';', ' '],
+        placeholder: "Digite os telefones",
+        createTag: function (term, data) {
+            let value = term.term;
+            return {
+                id: value.replace(/^(\d{3})(\d{4})(\d{5}).*/, '($1) $2-$3'),
+                text: value
+            };
+        }
+    });
+
+
+    $('.listEmail').click(function () {
+
+        let ids = $(this).get(0).id.split('-');
+
+        $.ajax({
+            async: true,
+            url: '/alunos/emailMain?idAluno=' + ids[0] + '&idEmail=' + ids[1],
+            type: 'POST',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            data: function (data) {
+            },
+            success: function (data) {
+                window.location.reload();
+            },
+            beforeSend: function (before) {
+            },
+            complete: function (complete) {
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+
     $('.listphone').click(function () {
 
         let ids = $(this).get(0).id.split('-');
 
         $.ajax({
             async: true,
-            url: '/alunos/phoneMain?idPessoa=' + ids[0] + '&idPhone=' + ids[1],
+            url: '/alunos/phoneMain?idAluno=' + ids[0] + '&idPhone=' + ids[1],
             type: 'POST',
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             dataType: "json",
@@ -353,5 +397,8 @@ $(document).ready(function () {
             }
         });
     })
+
+
+    $('[data-toggle="tooltip"]').tooltip();
 
 });

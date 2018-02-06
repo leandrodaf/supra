@@ -103,6 +103,30 @@ class AlunosRepository extends BaseRepository
         }
 
         return response()->json($aluno->phone);
+    }
+
+    public function setEmailMain($alunos, $idEmail)
+    {
+        $alunos = $this->findWithoutFail($alunos);
+
+        if (count($alunos->email) == 1) {
+            $emailUnico = $alunos->email->get(0);
+            $emailUnico->pivot->flg_principal = 1;
+            $emailUnico->pivot->save();
+        } else {
+
+            foreach ($alunos->email as $email) {
+                if ($email->id == $idEmail) {
+                    $email->pivot->flg_principal = 1;
+                } else {
+                    $email->pivot->flg_principal = 0;
+
+                }
+                $email->pivot->save();
+            }
+        }
+
+        return response()->json($alunos->email);
 
     }
 }

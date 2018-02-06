@@ -441,7 +441,7 @@ $(document).ready(function () {
                 console.log(error);
             }
         });
-    })
+    });
 
 
     $('.listphone').click(function () {

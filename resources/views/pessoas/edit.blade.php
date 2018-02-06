@@ -33,7 +33,6 @@
                            @foreach($pessoa->email->toArray() as $email)
                                {!! Form::open(['route' => ['emails.destroy', $email['id']], 'method' => 'delete', 'id' => "#deletar-email-".$email['id']]) !!}
                                {!! Form::close() !!}
-
                                {!! Form::open(['route' => ['pessoa.emailMain', 'idPessoa' => $pessoa->id, 'idEmail'=> $email['id']], 'method' => 'post', 'id' => "#emailMain-".$email['id']]) !!}
                                {!! Form::close() !!}
                            @endforeach

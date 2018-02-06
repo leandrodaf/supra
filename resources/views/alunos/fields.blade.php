@@ -47,7 +47,7 @@
 </div>
 
 
-<div class="form-group {{$errors->has('email') ? "has-error":""}} col-sm-5">
+<div class="form-group {{$errors->has('email') ? "has-error":""}} col-sm-6">
     {!! Form::label('email', 'Email:') !!}
     <select id="email" name="email[][email]" multiple="multiple"></select>
 
@@ -61,21 +61,32 @@
                 <dt>
 
 
-                    <a href="#deletar-{{$email['id']}}" class="btn btn-default btn-flat {{count($alunos->email->toArray()) >1 ?"":"disabled" }}"
-                       onclick="document.getElementById({!! "'#deletar-".$email['id']."'" !!}).submit();" {{count($alunos->email->toArray()) >1 ?"":"disabled" }}>
+                    <a href="#deletar-email-{{$alunos['id']}}"
+                       class="btn btn-default btn-flat {{count($alunos->email->toArray()) >1 && $email['pivot']['flg_principal'] != 1 ?"":"disabled" }}"
+                       onclick="document.getElementById({!! "'#deletar-email-".$email['id']."'" !!}).submit();" {{count($alunos->email->toArray()) >1 ?"":"disabled" }}>
+
                         <i class="glyphicon glyphicon-trash"></i>
+
                     </a>
+                    {{--onclick="document.getElementById({!! "'#emailMain-".$email['id']."'" !!}).submit();--}}
+
                 </dt>
-                <dd>{{$email['email']}}</dd>
+                <dd>
+                    <a class="listEmail" href="#mainEmail"
+                       {{count($alunos->email->toArray()) >1 && $email['pivot']['flg_principal'] != 1 ?'':'data-toggle="tooltip"' }} id="{{$alunos->id.'-'.$email['id']}}"
+                       title="{{$email['pivot']['flg_principal'] != 0 ? "E-mail principal": "Tornar o e-mail principal"}}">{{$email['email']}}</a>
+                    <span class="label label-info">{{$email['pivot']['flg_principal'] == 1 ? "Principal":""}}</span>
+                </dd>
             @endforeach
         </dl>
     @endif
 </div>
 
 
-<div class="form-group {{$errors->has('phone') ? "has-error":""}} col-sm-5">
+
+<div class="form-group {{$errors->has('phone') ? "has-error":""}} col-sm-6">
     {!! Form::label('phone', 'Telefone:') !!}
-    <select id="phone" name="phone[][number]" multiple="multiple"></select>
+    <select id="telefoneAluno" name="phone[][number]" multiple="multiple"></select>
 
     @if(!empty($alunos) )
         <p></p>
@@ -83,16 +94,25 @@
         <dl class="dl-horizontal">
             <p></p>
             <!-- lista de phones -->
+
             @foreach($alunos->phone->toArray() as $phone)
                 <dt>
 
-
-                    <a href="#deletar-{{$phone['id']}}" class="btn btn-default btn-flat {{count($alunos->phone->toArray()) >1 ?"":"disabled" }}"
+                    <a href="#deletar-phone-{{$alunos['id']}}"
+                       class="btn btn-default btn-flat {{count($alunos->phone->toArray()) >1 && $phone['pivot']['flg_principal'] != 1 ?"":"disabled" }}"
                        onclick="document.getElementById({!! "'#deletar-phone-".$phone['id']."'" !!}).submit();" {{count($alunos->phone->toArray()) >1 ?"":"disabled" }}>
+
                         <i class="glyphicon glyphicon-trash"></i>
+
                     </a>
+
                 </dt>
-                <dd>{{$phone['number']}}</dd>
+                <dd>
+                    <a class="listphone" href="#mainphone"
+                       {{count($alunos->phone->toArray()) >1 && $phone['pivot']['flg_principal'] != 1 ?'':'data-toggle="tooltip"' }} id="{{$alunos->id.'-'.$phone['id']}}"
+                       title="{{$phone['pivot']['flg_principal'] != 0 ? "Telefone principal": "Tornar o Telefone principal"}}">{{$phone['number']}}</a>
+                    <span class="label label-info">{{$phone['pivot']['flg_principal'] == 1 ? "Principal":""}}</span>
+                </dd>
             @endforeach
         </dl>
     @endif
