@@ -1,0 +1,52 @@
+{
+  "name": "supra",
+  "scripts": {
+    "postdeploy": "npm run prod"
+  },
+  "env": {
+    "APP_KEY": {
+      "required": true
+    },
+    "APP_LOG": {
+      "required": true
+    },
+    "APP_URL": {
+      "required": true
+    },
+    "BUILDPACK_URL": {
+      "required": true
+    },
+    "CLEARDB_DATABASE_URL": {
+      "required": true
+    },
+    "DB_CONNECTION": {
+      "required": true
+    },
+    "DEPLOY_ARTISAN_TASKS": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true
+    },
+    "YARN_PRODUCTION": "false"
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1
+    },
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "cleardb"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
