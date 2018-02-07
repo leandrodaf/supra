@@ -27,7 +27,6 @@
   "require-dev": {
     "filp/whoops": "~2.0",
     "fzaninotto/faker": "~1.4",
-    "laravel/dusk": "^2.0",
     "mockery/mockery": "0.9.*"
   },
   "autoload": {
@@ -55,19 +54,11 @@
     }
   },
   "scripts": {
-    "production": [
-      "php artisan optimize",
-      "chmod -R 777 public/",
-      "chmod -R ug+rwx storage bootstrap/cache"
-    ],
     "post-root-package-install": [
-      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-      "php artisan migrate --force"
-
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
     ],
     "post-create-project-cmd": [
-      "@php artisan key:generate",
-      "chmod -R 777 public/"
+      "@php artisan key:generate"
     ],
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

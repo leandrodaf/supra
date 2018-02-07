@@ -418,8 +418,8 @@ class PessoaController extends AppBaseController
                 ->select("id", "nome", 'cpf_cnpj', 'tipo_pessoas_id')
                 ->where([
                     ['nome', 'LIKE', "%$search%"],
-                    ['tipo_pessoas_id', '=', ['2', '3']]
-                ])
+                    ['tipo_pessoas_id', '=', '2']])
+                ->orWhere('tipo_pessoas_id', '3')
                 ->limit(5)
                 ->get();
         }
