@@ -20,13 +20,17 @@ class MatriculaController extends AppBaseController
     public function index()
     {
         $tipoPessoas = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '=', 1]])->get()->pluck('nome', 'id');
+        $tipoPessoasResponsavel = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '=', 2]])
+            ->orWhere('id', '3')
+            ->get()->pluck('nome', 'id');
+
         $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
         $familySituation = \App\Models\FamilySituation::where('status', '=', 1)->get()->pluck('nome', 'id');
         $citizenships = \App\Models\Citizenship::where('status', '=', 1)->get()->pluck('nome', 'id');
         $departments = \App\Models\Department::where('status', '=', 1)->get();
         $roles = \App\Models\Role::where('status', '=', 1)->get();
 
-        return view('matricula.index')->with(compact('tipoPessoas', 'genders', 'familySituation', 'citizenships','departments','roles'));
+        return view('matricula.index')->with(compact('tipoPessoas', 'genders', 'familySituation', 'citizenships','departments','roles', 'tipoPessoasResponsavel'));
     }
 
 

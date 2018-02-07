@@ -177,7 +177,6 @@ class PessoaController extends AppBaseController
             return redirect(route('pessoas.index'));
         }
 
-
     }
 
     /**
@@ -191,11 +190,42 @@ class PessoaController extends AppBaseController
     {
         $input = $request->all();
 
+        $helper = new Helpers();
+
+        $input['dataNascimento'] = $helper->formataDataPtBr($input['dataNascimento']);
+
         $locations['location'] = array_get($input, 'locations');
+        $locations['location']['flg_principal'] = true;
+
+        $emails = array_get($input, 'email');
+        $phones = array_get($input, 'phone');
+
         array_forget($input, 'locations');
+        array_forget($input, 'email');
+        array_forget($input, 'phone');
+
         $pessoa = $this->pessoaRepository->create($input);
-        $pessoa->location()->createMany($locations);
+
+        if (!empty($locations)) {
+            $pessoa->location()->createMany(
+                $locations
+            );
+        }
+
+        if (!empty($emails)) {
+            $pessoa->email()->createMany(
+                $emails
+            );
+        }
+
+        if (!empty($phones)) {
+            $pessoa->phone()->createMany(
+                $phones
+            );
+        }
+
         return response()->json($pessoa);
+
     }
 
     public function mainEmailPessoaAjax(Request $request)
@@ -415,7 +445,7 @@ class PessoaController extends AppBaseController
             $pessoa = new Pessoa();
 
             $data = $pessoa
-                ->select("id", "nome", 'cpf_cnpj', 'tipo_pessoas_id')
+                ->select("id", "nome", 'cpf_cnpj')
                 ->where([
                     ['nome', 'LIKE', "%$search%"],
                     ['tipo_pessoas_id', '=', '2']])
