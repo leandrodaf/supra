@@ -20,7 +20,7 @@ public/img/
 public/js/
 
 public/vendors
-public/uploads/avatars/*.jpg
+public/uploads/avatars/*
 resources/assets/vendors
 vendor/
 public/mix-manifest\.json

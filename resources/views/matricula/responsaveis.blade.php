@@ -17,7 +17,7 @@
         <div class="text-left">
             {!! Form::label('responsaveis', 'Responsável 2:') !!}
         </div>
-        <select name="responsaveis[]" id="responsavel2" class="form-control" required="required"></select>
+        <select name="responsaveis[]" id="responsavel2" class="form-control"></select>
         <p></p>
         <a href="#responsavel2" id="2" class="responsavel" data-toggle="modal" data-target="#modal-default-responsavel">
             <i class="fa fa-user"></i> Novo responsável

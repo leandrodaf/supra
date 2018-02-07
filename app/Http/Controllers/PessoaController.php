@@ -13,6 +13,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Helpers\Helpers;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Redirect;
 
 class PessoaController extends AppBaseController
 {
@@ -326,9 +327,17 @@ class PessoaController extends AppBaseController
      *
      * @return Response
      */
-    public function update($idPessoa, UpdatePessoaRequest $request)
+    public function update($idPessoa, Request $request)
     {
         $helper = new Helpers();
+
+        $validator = validator($data = $request->all(), [
+            'cpf_cnpj' => 'required|string|unique:pessoas,cpf_cnpj,' . $idPessoa,
+        ]);
+
+        if($validator->fails()) {
+            return Redirect::back()->withErrors($validator);
+        }
 
         $input = $request->all();
 

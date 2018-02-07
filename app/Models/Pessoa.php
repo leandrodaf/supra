@@ -104,7 +104,7 @@ class Pessoa extends Model
      */
     public static $rules = [
         'nome' => '',
-        'cpf_cnpj' => 'unique:pessoas,id',
+        'cpf_cnpj' => 'unique:pessoas',
         'sexo' => '',
         'rg' => '',
         'dataNascimento' => '',
