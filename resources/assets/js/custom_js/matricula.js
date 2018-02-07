@@ -105,7 +105,7 @@ $(document).ready(function () {
                         $("#country").val("Brasil");
                         $("#ibge").val(dados.ibge);
 
-                        $('#estado option').filter(function () {
+                        $('#state option').filter(function () {
                             return ($(this).text() == dados.uf);
                         }).prop('selected', true).trigger('change');
 
@@ -154,6 +154,9 @@ $(document).ready(function () {
                 url: 'pessoas/storeAjax',
                 type: 'POST',
                 data: $('#form-responsavel').serialize(),
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 dataType: 'JSON',
                 success: function (data) {
                     var newOption = new Option(data.nome, data.id, false, false);
@@ -161,9 +164,11 @@ $(document).ready(function () {
                     $("#responsavel" + id + " option").remove().trigger('change');
                     $('#responsavel' + id).append(newOption).trigger('change');
 
+                    $("emailResponsavel").select2().val("").trigger("change");
+                    $("telefoneResponsavel").select2().val("").trigger("change");
 
                     $("#form-responsavel").get(0).reset();
-                    $('#modal-default-responsavel').modal('hide');
+                    $("#modal-default-responsavel").modal('hide');
                 },
                 beforeSend: function (before) {
                     $('#fieldsResponsaveis').hide();
@@ -173,7 +178,9 @@ $(document).ready(function () {
                     $('#loadingCadastroResponsavel').hide();
                     $('#fieldsResponsaveis').show();
                 },
-                error: function (data) {
+                error: function (error) {
+                    console.log("!!Erro!!")
+                    console.log(error)
                     $('#fieldsResponsaveis').show();
                 }
             });
@@ -196,7 +203,7 @@ $(document).ready(function () {
         placeholder: 'Selecione o responsável 1',
         language: 'pt-BR',
         ajax: {
-            url: '/alunos/getAjax',
+            url: '/pessoas/getAjax',
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
@@ -321,15 +328,26 @@ $(document).ready(function () {
         }
     });
 
+    $('#telefoneResponsavel').select2({
+        width: '100%',
+        tags: true,
+        tokenSeparators: [',', ';', ' '],
+        placeholder: "Digite os telefones",
+        createTag: function (term, data) {
+            let value = term.term;
+            return {
+                id: value.replace(/^(\d{3})(\d{4})(\d{5}).*/, '($1) $2-$3'),
+                text: value
+            };
+        }
+    });
 
-    $('.sw-btn-next').val("Próximo");
-    $('.sw-btn-prev').val("Voltar");
 
     $('#form-responsavel').validator();
     // $('#matriculaAluno').validator();
     // Toolbar extra buttons
 
-    $('#estado').select2({
+    $('#state').select2({
         width: '100%'
     });
 
