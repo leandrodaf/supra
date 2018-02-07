@@ -98,8 +98,6 @@ class PessoaController extends AppBaseController
     {
         $input = $request->all();
 
-        return dd($input);
-
         try {
             $helper = new Helpers();
 
