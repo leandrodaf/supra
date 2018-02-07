@@ -364,11 +364,11 @@ $(document).ready(function () {
     });
 
 
-    $('#phone').select2({
+    $('#telefoneAluno').select2({
         width: '100%',
         tags: true,
         tokenSeparators: [',', ';', ' '],
-        placeholder: "Digite os emails",
+        placeholder: "Digite os telefones",
         createTag: function (term, data) {
             let value = term.term;
             return {
