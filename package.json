@@ -10,17 +10,7 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "bower": "node_modules/.bin/bower install --verbose --force"
   },
-  "devDependencies": {
-    "axios": "^0.15.3",
-    "bower": "^1.8.2",
-    "cross-env": "^3.2.3",
-    "jquery-steps": "^1.1.0",
-    "jquery-validation": "^1.17.0",
-    "laravel-mix": "^1.0",
-    "less": "^2.7.3",
-    "less-loader": "^4.0.5",
-    "lodash": "^4.17.4"
-  },
+  "devDependencies": {},
   "dependencies": {
     "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "^1.7.1",
@@ -40,6 +30,15 @@
     "smartwizard": "^4.2.2",
     "spinkit": "^1.2.5",
     "twitter-bootstrap-wizard": "^1.2.0",
-    "vue": "^2.1.10"
+    "vue": "^2.1.10",
+    "axios": "^0.15.3",
+    "bower": "^1.8.2",
+    "cross-env": "^3.2.3",
+    "jquery-steps": "^1.1.0",
+    "jquery-validation": "^1.17.0",
+    "laravel-mix": "^1.0",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "lodash": "^4.17.4"
   }
 }
