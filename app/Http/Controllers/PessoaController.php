@@ -454,7 +454,7 @@ class PessoaController extends AppBaseController
             $pessoa = new Pessoa();
 
             $data = $pessoa
-                ->select("id", "nome", 'cpf_cnpj')
+                ->select("id", "nome", 'cpf_cnpj', 'tipo_pessoas_id' )
                 ->where([
                     ['nome', 'LIKE', "%$search%"],
                     ['tipo_pessoas_id', '=', '2']])

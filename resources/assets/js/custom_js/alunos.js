@@ -278,6 +278,14 @@ $(document).ready(function () {
     });
 
 
+    let validatipoUser = function (data) {
+        if (data === 2) {
+            return " (Responsável)";
+        } else {
+            return " (Autorizado)";
+        }
+    };
+
     $('#responsavel').select2({
         width: '100%',
         allowClear: true,
@@ -292,7 +300,7 @@ $(document).ready(function () {
                 return {
                     results: $.map(data, function (item) {
                         return {
-                            text: item.nome + ' - ' + item.cpf_cnpj + ' (' + item.tipo_pessoas_id != 2 ? "Autorizado" : "Responsável" + ')',
+                            text: item.nome + ' - ' + item.cpf_cnpj + validatipoUser(item.tipo_pessoas_id),
                             id: item.id
                         }
                     })
