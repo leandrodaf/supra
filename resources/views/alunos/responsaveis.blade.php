@@ -16,9 +16,9 @@
                     </td>
                     <td>
                         @if($responsavel->tipoPessoa['id'] == 2)
-                            <span class="pull-right badge bg-blue">Autorizado</span>
-                        @elseif($responsavel->tipoPessoa['id'] == 3)
                             <span class="pull-right badge bg-blue">Responsável</span>
+                        @elseif($responsavel->tipoPessoa['id'] == 3)
+                            <span class="pull-right badge bg-blue">Autorizado</span>
                         @endif
                     </td>
 

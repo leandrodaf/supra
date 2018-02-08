@@ -220,6 +220,29 @@ $(document).ready(function () {
         }
     });
 
+    $('#responsavel2Matricula').select2({
+        width: '100%',
+        allowClear: true,
+        placeholder: 'Selecione o responsável 1',
+        language: 'pt-BR',
+        ajax: {
+            url: '/pessoas/getAjax',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.nome + ' - ' + item.cpf_cnpj,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+
     $('#responsavel2').select2({
         width: '100%',
         allowClear: true,
