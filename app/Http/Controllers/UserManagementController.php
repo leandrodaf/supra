@@ -24,6 +24,17 @@ class UserManagementController extends Controller
 
 
     /**
+     * Show the form for creating a new Pessoa.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+
+        return view('userManagement.create');
+    }
+
+    /**
      * Display the specified Pessoa.
      *
      * @param  int $id
