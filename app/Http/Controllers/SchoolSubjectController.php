@@ -18,6 +18,8 @@ class SchoolSubjectController extends AppBaseController
 
     public function __construct(SchoolSubjectRepository $schoolSubjectRepo)
     {
+        $this->middleware(['role:admin']);
+
         $this->schoolSubjectRepository = $schoolSubjectRepo;
     }
 

@@ -19,6 +19,8 @@ class DepartmentController extends AppBaseController
 
     public function __construct(DepartmentRepository $departmentRepo)
     {
+        $this->middleware(['role:admin']);
+
         $this->departmentRepository = $departmentRepo;
     }
 
