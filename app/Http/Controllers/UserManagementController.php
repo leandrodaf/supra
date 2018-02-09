@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Flash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class UserManagementController extends Controller
 {
@@ -31,7 +33,52 @@ class UserManagementController extends Controller
     public function create()
     {
 
-        return view('userManagement.create');
+        $roles = DB::table('roles')->get();
+
+        return view('userManagement.create')->with(compact('roles'));
+    }
+
+
+    public function store(Request $request)
+    {
+
+        $validator = validator($data = $request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'pessoa_id' => 'required|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator);
+        }
+
+        $data = $request->all();
+
+        try {
+
+            $user = new User();
+
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            $user->pessoa_id = $data['pessoa_id'];
+            $user->password = bcrypt($data['password']);
+
+            $user->save();
+
+            $user->assignRole($data['roles']);
+
+
+            $flash = new Flash();
+            $flash::success('Usuário criado com sucesso.');
+
+            return redirect(route('management.show', $user->id));
+
+        } catch (\Exception $e) {
+
+        }
+
+        return dd($request);
     }
 
     /**

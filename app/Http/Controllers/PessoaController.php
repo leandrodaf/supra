@@ -444,6 +444,33 @@ class PessoaController extends AppBaseController
      *
      * @return \Illuminate\Http\Response
      */
+    public function dataAjaxPessoa(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+
+            $pessoa = new Pessoa();
+
+            $data = $pessoa
+                ->select("id", "nome", 'cpf_cnpj', 'tipo_pessoas_id' )
+                ->where([
+                    ['nome', 'LIKE', "%$search%"],
+                    ['tipo_pessoas_id', '=', '4']])
+                ->limit(5)
+                ->get();
+        }
+
+        return response()->json($data);
+    }
+
+
+    /**
+     * Show the application dataAjax.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function dataAjax(Request $request)
     {
         $data = [];

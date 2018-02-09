@@ -30,31 +30,23 @@ class PermissionsSeeder extends Seeder
         $role->givePermissionTo('update');
         $role->givePermissionTo('delete');
 
-//        DB::table('permissions')->insert([
-//            [
-//                'name' => 'Administrador',
-//                'guard_name' => 'web',
-//                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-//                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-//            ],
-//            [
-//                'name' => 'Sercretária',
-//                'guard_name' => 'web',
-//                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-//                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-//            ],
-//            [
-//                'name' => 'Professor',
-//                'guard_name' => 'web',
-//                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-//                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-//            ],
-//            [
-//                'name' => 'Aluno Responsável',
-//                'guard_name' => 'web',
-//                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-//                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-//            ]
-//        ]);
+
+        $role = Role::create(['name' => 'secretaria']);
+        $role->givePermissionTo('view');
+        $role->givePermissionTo('creation');
+        $role->givePermissionTo('update');
+
+
+        $role = Role::create(['name' => 'Professor']);
+        $role->givePermissionTo('view');
+        $role->givePermissionTo('creation');
+        $role->givePermissionTo('update');
+
+
+        $role = Role::create(['name' => 'Aluno']);
+        $role->givePermissionTo('view');
+        $role->givePermissionTo('creation');
+        $role->givePermissionTo('update');
+
     }
 }

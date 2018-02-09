@@ -18,7 +18,6 @@ class ClassroomController extends AppBaseController
 
     public function __construct(ClassroomRepository $classroomRepo)
     {
-        $this->middleware(['role:admin']);
 
         $this->classroomRepository = $classroomRepo;
     }
