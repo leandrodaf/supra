@@ -40,6 +40,7 @@ mix.styles([
     'node_modules/ionicons/dist/css/ionicons.css',
     'node_modules/datatables.net-bs/css/dataTables.bootstrap.css',
     'node_modules/jquery-steps/demo/css/jquery.steps.css',
+    'node_modules/password-strength-meter/dist/password.min.css',
     'resources/assets/css/personalizacoes.css'
 ], 'public/css/all.css');
 
@@ -66,6 +67,6 @@ mix.scripts([
     'node_modules/datatables.net-bs/js/dataTables.bootstrap.js',
     'node_modules/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js',
     'node_modules/jquery-steps/build/jquery.steps.js',
-    'node_modules/jquery-validation/dist/jquery.validate.js'
-    // 'resources/assets/js/plugins/jquery.uploadPreview.min.js'
+    'node_modules/jquery-validation/dist/jquery.validate.js',
+    'node_modules/password-strength-meter/dist/password.min.js'
 ], 'public/js/all.js');

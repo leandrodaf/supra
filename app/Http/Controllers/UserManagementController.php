@@ -92,9 +92,6 @@ class UserManagementController extends Controller
     {
         $user = User::find($idUser);
 
-        $user->givePermissionTo('Administrador geral');
-
-
 //        return dd($user->permissions);
 
         if (empty($user)) {
