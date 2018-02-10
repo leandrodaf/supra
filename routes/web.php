@@ -17,16 +17,21 @@ Route::post('alunos/phoneMain', 'AlunosController@mainPhoneAlunosAjax')->name('a
 
 Route::get('pessoas/getBasicData', 'PessoaController@getBasicData')->name('pessoas.getBasicData');
 Route::get('pessoas/getInfoUser/{idPessoa}', 'PessoaController@getInfoUser')->name('pessoas.getInfoUser');
+Route::get('pessoas/getAjax', 'PessoaController@dataAjax')->name('pessoas.getAjaxSelect2');
+Route::get('pessoas/funcionario', 'PessoaController@dataAjaxPessoa')->name('pessoas.getFuncionarioAjaxSelect2');
 Route::post('pessoas/emailMain', 'PessoaController@mainEmailPessoaAjax')->name('pessoa.emailMain');
 Route::post('pessoas/phoneMain', 'PessoaController@mainPhonePessoaAjax')->name('pessoa.phoneMain');
 Route::post('pessoas/storeAjax', 'PessoaController@storeAjax')->name('pessoa.storeAjax');
-Route::get('pessoas/getAjax', 'PessoaController@dataAjax')->name('pessoas.getAjaxSelect2');
 
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::get('roles/getAjax', 'RoleController@dataAjax')->name('roles.getAjaxSelect2');
 Route::post('matricula', 'MatriculaController@store')->name('matricula.store');
 
 Route::get('departments/getAjax', 'DepartmentController@dataAjax')->name('departments.getAjaxSelect2');
+
+Route::get('management/getBasicData', 'UserManagementController@getBasicData')->name('management.getBasicData');
+Route::post('management/resetSenha/{id}', 'UserManagementController@resetSenha')->name('management.resetSenha');
+
 
 Route::resource('alunos', 'AlunosController');
 Route::resource('pessoas', 'PessoaController');
@@ -35,6 +40,6 @@ Route::resource('phones', 'PhoneController');
 Route::resource('healthInformations', 'HealthInformationsController');
 Route::resource('roles', 'RoleController');
 Route::resource('departments', 'DepartmentController');
-Route::resource('user/management', 'UserManagementController');
+Route::resource('management', 'UserManagementController');
 Route::resource('classrooms', 'ClassroomController');
 Route::resource('schoolsubject', 'SchoolSubjectController');

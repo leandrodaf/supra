@@ -18,6 +18,7 @@ class ClassroomController extends AppBaseController
 
     public function __construct(ClassroomRepository $classroomRepo)
     {
+
         $this->classroomRepository = $classroomRepo;
     }
 

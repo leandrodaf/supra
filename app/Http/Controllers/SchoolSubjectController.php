@@ -18,6 +18,7 @@ class SchoolSubjectController extends AppBaseController
 
     public function __construct(SchoolSubjectRepository $schoolSubjectRepo)
     {
+
         $this->schoolSubjectRepository = $schoolSubjectRepo;
     }
 
@@ -107,7 +108,7 @@ class SchoolSubjectController extends AppBaseController
     /**
      * Update the specified Materia in storage.
      *
-     * @param  int              $id
+     * @param  int $id
      * @param UpdateSchoolSubjectRequest $request
      *
      * @return Response

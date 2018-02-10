@@ -19,6 +19,7 @@ class DepartmentController extends AppBaseController
 
     public function __construct(DepartmentRepository $departmentRepo)
     {
+
         $this->departmentRepository = $departmentRepo;
     }
 

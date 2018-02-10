@@ -18,9 +18,11 @@ mix.sass('resources/assets/sass/app.scss', 'public/css');
 mix.js('resources/assets/js/custom_js/alunos.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/pessoas.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/matricula.js', 'public/js/features/');
+mix.js('resources/assets/js/custom_js/management.js', 'public/js/features/');
 
 mix.js('resources/assets/js/plugins/jquery.cpfcnpj.min.js', 'public/js/plugins/jquery.cpfcnpj.min.js');
 mix.copy('resources/assets/images/avatarPadrao.jpg', 'public/uploads/');
+mix.copy('node_modules/password-strength-meter/dist/passwordstrength.jpg', 'public/css/passwordstrength.jpg');
 
 //Copia arquivos css
 mix.copy('resources/assets/css/_all.css','public/css/');
@@ -39,6 +41,7 @@ mix.styles([
     'node_modules/ionicons/dist/css/ionicons.css',
     'node_modules/datatables.net-bs/css/dataTables.bootstrap.css',
     'node_modules/jquery-steps/demo/css/jquery.steps.css',
+    'node_modules/password-strength-meter/dist/password.min.css',
     'resources/assets/css/personalizacoes.css'
 ], 'public/css/all.css');
 
@@ -65,6 +68,6 @@ mix.scripts([
     'node_modules/datatables.net-bs/js/dataTables.bootstrap.js',
     'node_modules/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js',
     'node_modules/jquery-steps/build/jquery.steps.js',
-    'node_modules/jquery-validation/dist/jquery.validate.js'
-    // 'resources/assets/js/plugins/jquery.uploadPreview.min.js'
+    'node_modules/jquery-validation/dist/jquery.validate.js',
+    'node_modules/password-strength-meter/dist/password.min.js'
 ], 'public/js/all.js');

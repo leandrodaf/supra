@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'pessoa_id',
     ];
 
     /**
@@ -28,4 +28,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the phone record associated with the user.
+     */
+    public function pessoa()
+    {
+        return $this->hasOne(\App\Models\Pessoa::class,
+            'id',
+            'pessoa_id');
+    }
+
 }

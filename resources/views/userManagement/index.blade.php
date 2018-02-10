@@ -4,7 +4,7 @@
     <section class="content-header">
         <h1 class="pull-left">Gerenciamento de Usuários</h1>
         <h1 class="pull-right">
-            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('roles.create') !!}">Criar usuário</a>
+            <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('management.create') !!}">Criar usuário</a>
         </h1>
     </section>
     <div class="content">
@@ -24,3 +24,6 @@
     </div>
 @endsection
 
+@section('scripts')
+    <script src="{{asset('/js/features/management.js')}}"></script>
+@endsection
