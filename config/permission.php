@@ -77,4 +77,7 @@ return [
      */
 
     'cache_expiration_time' => 60 * 24,
+
+    'display_permission_in_exception' => false,
+
 ];
