@@ -29,6 +29,8 @@ Route::post('matricula', 'MatriculaController@store')->name('matricula.store');
 
 Route::get('departments/getAjax', 'DepartmentController@dataAjax')->name('departments.getAjaxSelect2');
 
+Route::post('management/resetSenha/{id}', 'UserManagementController@resetSenha')->name('management.resetSenha');
+
 
 Route::resource('alunos', 'AlunosController');
 Route::resource('pessoas', 'PessoaController');

@@ -7,9 +7,11 @@ use App\User;
 use Flash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class UserManagementController extends Controller
 {
+    use ResetsPasswords;
 
     public function __construct()
     {
@@ -36,6 +38,26 @@ class UserManagementController extends Controller
         $roles = DB::table('roles')->get();
 
         return view('userManagement.create')->with(compact('roles'));
+    }
+
+
+    public function resetSenha(Request $request, $id)
+    {
+        $data = $request->all();
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'Usuário não encontrado',
+            ], 404);
+        }
+
+        $this->resetPassword($user, $data['password_again']);
+
+        return response()->json([
+            'satus' => 'Sucesso',
+        ], 200);
+
     }
 
 

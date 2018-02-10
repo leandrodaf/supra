@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
+@section('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="id-user" content="{{$user->id}}">
+@endsection
+
 @section('content')
     <section class="content-header">
 
     </section>
     <div class="contnt">
         <div class="row">
-
             <div class="col-lg-4">
-                <!-- Widget: user widget style 1 -->
                 <div class="box box-widget widget-user">
-                    <!-- Add the bg color to the header using any of the bg-* classes -->
                     <div class="widget-user-header bg-black"
                          style="background: url('https://picsum.photos/g/360/218/?random') center center;">
                         <h3 class="widget-user-username">{{$user->name}}</h3>
@@ -26,28 +28,20 @@
                             <div class="col-sm-6 border-right">
                                 <div class="description-block">
                                     <span class="btn btn-block btn-success btn-sm" data-toggle="modal"
-                                          data-target="#modal-senha"><span
-                                                class="fa fa-key"></span> Alterar senha</span>
+                                          data-target="#modal-senha">
+                                        <span class="fa fa-key"></span> Alterar senha</span>
                                 </div>
-                                <!-- /.description-block -->
                             </div>
-                            <!-- /.col -->
                             <div class="col-sm-6 border-right">
                                 <div class="description-block">
-                                    <span class="btn btn-block btn-default btn-sm"><span class="fa fa-edit"></span> Editar</span>
+                                    <span class="btn btn-block btn-default btn-sm">
+                                        <span class="fa fa-edit"></span> Editar
+                                    </span>
                                 </div>
-                                <!-- /.description-block -->
                             </div>
-                            <!-- /.col -->
-
-                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
                     </div>
                 </div>
-                <!-- /.widget-user -->
-
-
             </div>
 
 
@@ -87,13 +81,21 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="passwordchose">
-                            Password
-                        </label>
-                        <input id="passwordchose" type="password" class="form-control" />
-                    </div>
+                    <form id="resetSenha" role="form" data-toggle="validator">
+                        <div class="form-group">
+                            <label for="passwordchose">Senha</label>
+                            <input id="passwordchose" type="password" class="form-control" placeholder="Senha" required="required"/>
 
+                            <label for="password_again">Repetir Senha</label>
+                            <input class="form-control" id="password_again" name="password_again"
+                                   placeholder="Repetir senha" type="password" required="required"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input id="btnReset" type="button" value="Salvar" class="btn btn-block btn-success btn-sm btnReset">
+                        </div>
+
+                    </form>
                 </div>
 
             </div>

@@ -35,19 +35,75 @@ $(document).ready(function () {
     });
 
     $('#passwordchose').password({
-        shortPass: 'The password is too short',
-        badPass: 'Weak; try combining letters & numbers',
-        goodPass: 'Medium; try using special charecters',
-        strongPass: 'Strong password',
-        containsUsername: 'The password contains the username',
-        enterPass: 'Type your password',
+        shortPass: 'A senha é muito curta',
+        badPass: 'Fraca! Tente combinar letras e números',
+        goodPass: 'Médio! tente usar caracteres especiais',
+        strongPass: 'Senha forte',
+        containsUsername: 'A senha contém o nome de usuário',
+        enterPass: 'Digite sua senha',
         showPercent: false,
-        showText: true, // shows the text tips
-        animate: true, // whether or not to animate the progress bar on input blur/focus
-        animateSpeed: 'fast', // the above animation speed
-        username: false, // select the username field (selector or jQuery instance) for better password checks
-        usernamePartialMatch: true, // whether to check for username partials
-        minimumLength: 4 // minimum password length (below this threshold, the score is 0)
+        showText: true,
+        animate: true,
+        animateSpeed: 'fast',
+        username: false,
+        usernamePartialMatch: true,
+        minimumLength: 4
     });
+
+
+    var form = $("#resetSenha").validate({
+        rules: {
+            passwordchose: "required",
+            minlength: 4,
+            password_again: {
+                equalTo: "#passwordchose"
+            }
+        },
+        messages: {
+            password_again: {
+                required: "Campo obrigatório",
+                equalTo: "As senhas não coincidem"
+            }
+        }
+    });
+
+    $('#resetSenha').validator();
+
+
+    $('#btnReset').click(function () {
+
+        let senha = $('#passwordchose').val();
+
+        if (form.valid() && senha.length > 0) {
+
+
+            $.ajax({
+                async: true,
+                url: '/management/resetSenha/' + $('meta[name="id-user"]').attr('content'),
+                type: 'POST',
+                data: $('#resetSenha').serialize(),
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                dataType: 'JSON',
+                success: function (data) {
+
+                    $('#modal-senha').modal('hide');
+                    $('#resetSenha')[0].reset();
+                },
+                beforeSend: function (before) {
+                },
+                complete: function (complete) {
+                },
+                error: function (error) {
+                }
+            });
+
+
+        } else {
+            return false;
+        }
+    });
+
 
 });

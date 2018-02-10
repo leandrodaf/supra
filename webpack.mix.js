@@ -22,6 +22,7 @@ mix.js('resources/assets/js/custom_js/management.js', 'public/js/features/');
 
 mix.js('resources/assets/js/plugins/jquery.cpfcnpj.min.js', 'public/js/plugins/jquery.cpfcnpj.min.js');
 mix.copy('resources/assets/images/avatarPadrao.jpg', 'public/uploads/');
+mix.copy('node_modules/password-strength-meter/dist/passwordstrength.jpg', 'public/css/passwordstrength.jpg');
 
 //Copia arquivos css
 mix.copy('resources/assets/css/_all.css','public/css/');
