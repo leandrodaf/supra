@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\UsersRepository;
 use Illuminate\Http\Request;
 use App\User;
 use Flash;
@@ -14,9 +15,14 @@ class UserManagementController extends Controller
 {
     use ResetsPasswords;
 
-    public function __construct()
+    /** @var  PessoaRepository */
+    private $userRepository;
+
+
+    public function __construct(UsersRepository $userRepo)
     {
         $this->middleware(['role:admin']);
+        $this->userRepository = $userRepo;
     }
 
     public function index()
@@ -24,6 +30,33 @@ class UserManagementController extends Controller
         return view('userManagement.index');
     }
 
+
+    public function edit($id)
+    {
+
+        $user = User::find($id);
+        $roles = DB::table('roles')->get();
+        $atualRole = null;
+
+        foreach ($user->getRoleNames() as $role){
+            $atualRole = $role;
+        }
+
+
+        return view('userManagement.edit')->with(compact('user', 'roles','atualRole', 'id'));
+    }
+
+
+    public function update(Request $request, $idUser)
+    {
+        $input = $request->all();
+
+        $user = $this->userRepository->update($input, $idUser);
+
+        $user->syncRoles($input['roles']);
+
+        return \redirect(route('management.show', $user->id));
+    }
 
     public function getBasicData()
     {

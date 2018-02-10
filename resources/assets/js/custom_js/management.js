@@ -27,6 +27,10 @@ $(document).ready(function () {
     });
 
 
+    $('.editarUser').click(function () {
+        return window.location = this.id;
+    });
+
     $('#management-user-table').DataTable({
         processing: true,
         serverSide: true,

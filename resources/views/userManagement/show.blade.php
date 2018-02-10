@@ -34,7 +34,7 @@
                             </div>
                             <div class="col-sm-6 border-right">
                                 <div class="description-block">
-                                    <span class="btn btn-block btn-default btn-sm">
+                                    <span class="editarUser btn btn-block btn-default btn-sm" id="{{route('management.edit', $user->id)}}">
                                         <span class="fa fa-edit"></span> Editar
                                     </span>
                                 </div>

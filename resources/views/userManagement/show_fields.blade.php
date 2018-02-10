@@ -15,7 +15,7 @@
     @if(!empty($user->pessoa))
         <!-- Pessoa Field -->
         <dt>{!! Form::label('pessoa', 'Pessoa Atribuida:') !!}</dt>
-        <dd>{!! $user->pessoa->nome !!}</dd>
+        <dd><a href="{{route('pessoas.show', $user->pessoa)}}">{!! $user->pessoa->nome !!}</a></dd>
     @endif
 
     @if(!empty($user->getRoleNames()))
