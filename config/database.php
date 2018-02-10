@@ -1,10 +1,4 @@
 <?php
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-
-$url["host"] = '';
-$url["path"] = '';
-$url["user"] = '';
-$url["pass"] = '';
 
 return [
 
@@ -47,11 +41,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', $url["host"]),
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', substr($url["path"], 1)),
-            'username' => env('DB_USERNAME', $url["user"]),
-            'password' => env('DB_PASSWORD', $url["pass"]),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -74,15 +68,15 @@ return [
         ],
 
         'testing' => [
-            'driver'    => 'mysql',
-            'host'      => env('DB_TEST_HOST', 'localhost'),
-            'database'  => env('DB_TEST_DATABASE', 'travis'),
-            'username'  => env('DB_TEST_USERNAME', 'root'),
-            'password'  => env('DB_TEST_PASSWORD', ''),
-            'charset'   => 'utf8',
+            'driver' => 'mysql',
+            'host' => env('DB_TEST_HOST', 'localhost'),
+            'database' => env('DB_TEST_DATABASE', 'travis'),
+            'username' => env('DB_TEST_USERNAME', 'root'),
+            'password' => env('DB_TEST_PASSWORD', ''),
+            'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-            'strict'    => false,
+            'prefix' => '',
+            'strict' => false,
         ],
 
         'sqlsrv' => [
