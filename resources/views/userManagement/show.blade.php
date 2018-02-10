@@ -47,17 +47,18 @@
 
             <div class="col-lg-8">
                 <div class="box box-primary direct-chat direct-chat-primary">
-                {{--<div class="box-header with-border">--}}
-                {{--<h3 class="box-title">Removable</h3>--}}
+                <div class="box-header with-border">
+                <h3 class="box-title">Informações de Usuário</h3>
 
-                {{--<div class="box-tools pull-right">--}}
-                {{--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>--}}
-                {{--</div>--}}
-                {{--<!-- /.box-tools -->--}}
-                {{--</div>--}}
+                <div class="box-tools pull-right">
+                </div>
+                <!-- /.box-tools -->
+                </div>
                 <!-- /.box-header -->
-                    <div class="box-body">
-                        The body of the boxlalala
+                    <div class="box-body" style="padding: 30px 0px 0px 0px;">
+                        <div class="form-group col-sm-12">
+                            @include('userManagement.show_fields')
+                        </div>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -84,7 +85,8 @@
                     <form id="resetSenha" role="form" data-toggle="validator">
                         <div class="form-group">
                             <label for="passwordchose">Senha</label>
-                            <input id="passwordchose" type="password" class="form-control" placeholder="Senha" required="required"/>
+                            <input id="passwordchose" type="password" class="form-control" placeholder="Senha"
+                                   required="required"/>
 
                             <label for="password_again">Repetir Senha</label>
                             <input class="form-control" id="password_again" name="password_again"
@@ -92,7 +94,8 @@
                         </div>
 
                         <div class="form-group">
-                            <input id="btnReset" type="button" value="Salvar" class="btn btn-block btn-success btn-sm btnReset">
+                            <input id="btnReset" type="button" value="Salvar"
+                                   class="btn btn-block btn-success btn-sm btnReset">
                         </div>
 
                     </form>

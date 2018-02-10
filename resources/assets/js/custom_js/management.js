@@ -27,6 +27,37 @@ $(document).ready(function () {
     });
 
 
+    $('#management-user-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '/management/getBasicData',
+        columns: [
+            {data: 'id', name: 'id'},
+            {data: 'name', name: 'name'},
+            {data: 'email', name: 'email'},
+            {data: 'roles', name: 'roles'},
+            {data: 'link', name: 'link', orderable: false, searchable: false}
+
+        ],
+
+        initComplete: function () {
+            this.api().columns().every(function () {
+                var column = this;
+                var input = document.createElement("input");
+                $(input).appendTo($(column.footer()).empty())
+                    .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+
+                        column.search(val ? val : '', true, false).draw();
+                    });
+            });
+        },
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
+        }
+    });
+
+
     $('#roles').select2({
         width: '100%',
         allowClear: true,

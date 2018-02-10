@@ -8,6 +8,7 @@ use Flash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Yajra\DataTables\DataTables;
 
 class UserManagementController extends Controller
 {
@@ -20,10 +21,36 @@ class UserManagementController extends Controller
 
     public function index()
     {
+        return view('userManagement.index');
+    }
 
-        $users = User::all();
 
-        return view('userManagement.index')->with(compact('users'));
+    public function getBasicData()
+    {
+        $users = User::select(['id', 'name', 'email']);
+
+        return Datatables::of($users)
+//            ->addColumn('pessoa_id', function ($user) {
+//                return $user->pessoa->nome;
+//            })
+            ->addColumn('roles', function ($user) {
+                $roles = '';
+
+                foreach ($user->getRoleNames() as $role) {
+                    $roles .= $role . ', ';
+                }
+
+                return $roles;
+
+            })
+            ->addColumn('link', function ($user) {
+                return '
+                <a href="/management/' . $user->id . '' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i></a>
+                <a href="/management/' . $user->id . '/edit' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
+                ';
+            })
+            ->rawColumns(['link', 'roles'])
+            ->make(true);
     }
 
 
