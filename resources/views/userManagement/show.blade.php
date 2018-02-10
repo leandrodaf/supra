@@ -32,13 +32,17 @@
                                         <span class="fa fa-key"></span> Alterar senha</span>
                                 </div>
                             </div>
-                            <div class="col-sm-6 border-right">
-                                <div class="description-block">
-                                    <span class="editarUser btn btn-block btn-default btn-sm" id="{{route('management.edit', $user->id)}}">
+
+                            @if(Auth::user()->hasRole('admin','secretaria') || Auth::user()->name == $user->name)
+                                <div class="col-sm-6 border-right">
+                                    <div class="description-block">
+                                    <span class="editarUser btn btn-block btn-default btn-sm"
+                                          id="{{route('management.edit', $user->id)}}">
                                         <span class="fa fa-edit"></span> Editar
                                     </span>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -47,14 +51,14 @@
 
             <div class="col-lg-8">
                 <div class="box box-primary direct-chat direct-chat-primary">
-                <div class="box-header with-border">
-                <h3 class="box-title">Informações de Usuário</h3>
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informações de Usuário</h3>
 
-                <div class="box-tools pull-right">
-                </div>
-                <!-- /.box-tools -->
-                </div>
-                <!-- /.box-header -->
+                        <div class="box-tools pull-right">
+                        </div>
+                        <!-- /.box-tools -->
+                    </div>
+                    <!-- /.box-header -->
                     <div class="box-body" style="padding: 30px 0px 0px 0px;">
                         <div class="form-group col-sm-12">
                             @include('userManagement.show_fields')

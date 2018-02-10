@@ -38,12 +38,13 @@ class UserManagementController extends Controller
         $roles = DB::table('roles')->get();
         $atualRole = null;
 
-        foreach ($user->getRoleNames() as $role){
+        foreach ($user->getRoleNames() as $role) {
             $atualRole = $role;
         }
 
 
-        return view('userManagement.edit')->with(compact('user', 'roles','atualRole', 'id'));
+        return view('userManagement.edit')->with(compact('user', 'roles', 'atualRole', 'id'));
+
     }
 
 
