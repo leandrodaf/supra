@@ -15,7 +15,6 @@
     <div class="box-body">
 
         <dl class="dl-horizontal">
-
             <dt>{!! Form::label('bronquite', 'Bronquite:') !!}</dt>
             <dd>{!! $pessoa->getHealthInformation->bronquite ? "Sim":"Não"!!}</dd>
 

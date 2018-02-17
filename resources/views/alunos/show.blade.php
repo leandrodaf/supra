@@ -87,7 +87,7 @@
                         <div class="box-tools pull-right">
                             <!-- Collapse Button -->
                             {{--<button type="button" class="btn btn-box-tool" data-widget="collapse">--}}
-                                {{--<i class="fa fa-minus"></i>--}}
+                            {{--<i class="fa fa-minus"></i>--}}
                             {{--</button>--}}
 
                             <a href="#formIncluirParticipante" class="module-control pull-right" data-toggle="modal">
@@ -132,13 +132,12 @@
                     {!! Form::close() !!}
 
                 </div>
-                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
+    </div>
 
-        @endsection
+@endsection
 
-        @section('scripts')
-            <script src="{{asset('/js/features/alunos.js')}}"></script>
+@section('scripts')
+    <script src="{{asset('/js/features/alunos.js')}}"></script>
 @endsection

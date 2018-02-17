@@ -99,11 +99,11 @@ $(document).ready(function () {
         }
 
         if (changeTipoPessoa === "1" || changeTipoPessoa == "2") {
-            $('.validatecpf').cpfcnpj({
+            $('#cpf_cnpj').cpfcnpj({
                 mask: true,
                 validate: 'cpf',
                 event: 'blur',
-                handler: '.validatecpf',
+                handler: '#cpf_cnpj',
                 ifValid: function (input) {
                     input.removeClass("error");
                 },
@@ -111,7 +111,7 @@ $(document).ready(function () {
                     input.addClass("error");
                 }
             });
-            $(".validatecpf").mask("999.999.999-99", {placeholder: "___.___.___-__"});
+            $("#cpf_cnpj").mask("999.999.999-99", {placeholder: "___.___.___-__"});
 
             $('#nome').attr('required', 'required').show();
 
@@ -160,11 +160,11 @@ $(document).ready(function () {
         }
 
         if (changeTipoPessoa === "4") {
-            $('.validatecpf').cpfcnpj({
+            $('#cpf_cnpj').cpfcnpj({
                 mask: true,
                 validate: 'cpf',
                 event: 'blur',
-                handler: '.validatecpf',
+                handler: '#cpf_cnpj',
                 ifValid: function (input) {
                     input.removeClass("error");
                 },
@@ -172,7 +172,7 @@ $(document).ready(function () {
                     input.addClass("error");
                 }
             });
-            $(".validatecpf").mask("999.999.999-99", {placeholder: "___.___.___-__"});
+            $("#cpf_cnpj").mask("999.999.999-99", {placeholder: "___.___.___-__"});
 
             $('#nome').attr('required', 'required').show();
             $('#cpf_cnpj').attr('required', 'required').show();
@@ -224,11 +224,11 @@ $(document).ready(function () {
         }
 
         if (changeTipoPessoa === "5") {
-            $('.validatecpf').cpfcnpj({
+            $('#cpf_cnpj').cpfcnpj({
                 mask: true,
                 validate: 'cnpj',
                 event: 'blur',
-                handler: '.validatecpf',
+                handler: '#cpf_cnpj',
                 ifValid: function (input) {
                     input.removeClass("error");
                 },
@@ -237,7 +237,7 @@ $(document).ready(function () {
                 }
             });
 
-            $(".validatecpf").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
+            $("#cpf_cnpj").mask("99.999.999/9999-99", {placeholder: "__.___.___/____-__"});
 
             $('#nome').attr('required', 'required').show();
             $('#cpf_cnpj').attr('required', 'required').show();
@@ -313,7 +313,7 @@ $(document).ready(function () {
         format: 'dd/mm/yyyy'
     });
 
-    $('#estado').select2({
+    $('#state').select2({
         width: '100%'
     });
 
@@ -418,7 +418,7 @@ $(document).ready(function () {
                         $("#country").val("Brasil");
                         $("#ibge").val(dados.ibge);
 
-                        $('#estado option').filter(function () {
+                        $('#state option').filter(function () {
                             return ($(this).text() == dados.uf);
                         }).prop('selected', true).trigger('change');
 

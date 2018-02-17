@@ -13,7 +13,6 @@
     </div>
     <div class="box-body">
 
-
     </div>
 </div>
 
@@ -34,22 +33,19 @@
 
                 <div class="row">
                     <div class="col-sm-8">
-
                         <select name="schoolsubjects" id="schoolsubjects" class="form-control" required="required">
-
                             @foreach($schoolsubjects as $subjects)
                                 <option value="{{$subjects->id}}">{{$subjects->nome}}</option>
                             @endforeach
-
                         </select>
                     </div>
                     <div class="col-sm-4">
-
                         <button class="btn btn-primary add-new">Adicionar</button>
                     </div>
-
                 </div>
+
                 <p></p>
+
                 <div class="row">
                     <div class="col-sm-12">
                         <ul id="listSchoolSubjects" class="list-group">
@@ -62,10 +58,7 @@
                         </ul>
                     </div>
                 </div>
-
-
             </div>
         </div>
-
     </div>
 </div>

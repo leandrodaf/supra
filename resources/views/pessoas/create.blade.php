@@ -7,7 +7,10 @@
             -ms-flex-pack: center !important;
             justify-content: center !important;
         }
-        .error { border-color: #F70202 }
+
+        .error {
+            border-color: #F70202
+        }
 
     </style>
 @endsection
@@ -24,14 +27,14 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'pessoas.store', 'id' => 'criarPessoa', 'autocomplete' => 'off']) !!}
+                {!! Form::open(['route' => 'pessoas.store', 'id' => 'criarPessoa', 'autocomplete' => 'off']) !!}
 
-                    @include('pessoas.fields')
-                    <!-- Submit Field -->
-                        <div class="form-group col-sm-12">
-                            {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                            <a href="{!! route('pessoas.index') !!}" class="btn btn-default">Cancel</a>
-                        </div>
+                @include('pessoas.fields')
+                <!-- Submit Field -->
+                    <div class="form-group col-sm-12">
+                        {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                        <a href="{!! route('pessoas.index') !!}" class="btn btn-default">Cancel</a>
+                    </div>
                     {!! Form::close() !!}
                 </div>
             </div>

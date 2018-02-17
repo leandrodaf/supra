@@ -44,18 +44,14 @@
 
                             </div>
                         </div>
-                        <!-- /.box-tools -->
                     </div>
-                    <!-- /.box-header -->
                     <div class="box-body">
                         @include('pessoas.show_fields')
                     </div>
-                    <!-- /.box-body -->
                 </div>
                 @if($pessoa->tipoPessoa['id'] == 4 )
                     @include('pessoas.healthInformations')
                 @endif
-
 
                 <div class="box collapsed-box">
                     <div class="box-header with-border">
@@ -70,7 +66,7 @@
                         </div>
 
                     </div>
-                    <div class="box-body" >
+                    <div class="box-body">
                         @include('pessoas.address')
                     </div>
                     <div class="overlay" style="display:none;" id="loadingHealthInformations">
@@ -85,9 +81,9 @@
                     @include('pessoas.student')
                 @endif
 
-                    @if($pessoa->tipoPessoa['id'] == 4)
-                        @include('pessoas.teatcher')
-                    @endif
+                @if($pessoa->tipoPessoa['id'] == 4)
+                    @include('pessoas.teatcher')
+                @endif
 
             </div>
         </div>

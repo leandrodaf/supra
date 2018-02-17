@@ -3,12 +3,22 @@ let mix = require('laravel-mix');
 const node = "node_modules/";
 
 
-mix.js('resources/assets/js/app.js', 'public/js');
 
-if (mix.inProduction()) {
-    mix.version();
-}
+mix.js('resources/assets/js/app.js', 'public/js')
+    .extract([
+        'vue',
+        'jquery',
+        'axios',
+        'bootstrap-sass',
+        'select2'
+    ]).version();
 
+mix.autoload({
+    'jquery': ['$', 'jQuery'],
+    'bootstrap': ['bootstrap'],
+    'select2': ['select2'],
+    'dt': ['datatables.net']
+});
 
 mix.sass('resources/assets/sass/app.scss', 'public/css');
 
@@ -58,24 +68,22 @@ mix.copyDirectory('node_modules/bootstrap3/fonts', 'public/fonts');
 
 //Mix Plugins js
 mix.scripts([
-    'node_modules/jquery/dist/jquery.js',
-    'node_modules/jquery-sortable/source/js/jquery-sortable-min.js',
-    'node_modules/bootstrap3/dist/js/bootstrap.js',
-    'node_modules/jquery-loading/dist/jquery.loading.min.js',
-    'node_modules/select2/dist/js/select2.full.js',
     'node_modules/select2/dist/js/i18n/pt-BR.js',
-    'node_modules/bootstrap-validator/dist/validator.min.js',
+    'node_modules/jquery-steps/build/jquery.steps.js',
+    'node_modules/jquery-validation/dist/jquery.validate.js',
+    'node_modules/jquery-sortable/source/js/jquery-sortable-min.js',
+    'node_modules/jquery-loading/dist/jquery.loading.min.js',
     'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
     'node_modules/jquery-maskmoney/dist/jquery.maskMoney.min.js',
     'node_modules/datatables.net/js/jquery.dataTables.js',
     'node_modules/datatables.net-bs/js/dataTables.bootstrap.js',
     'node_modules/twitter-bootstrap-wizard/jquery.bootstrap.wizard.js',
-    'node_modules/jquery-steps/build/jquery.steps.js',
-    'node_modules/jquery-validation/dist/jquery.validate.js',
     'node_modules/password-strength-meter/dist/password.min.js',
     'node_modules/clockpicker/dist/bootstrap-clockpicker.min.js',
     'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
     'node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js',
+    'node_modules/bootstrap-validator/dist/validator.min.js',
     'node_modules/moment/min/moment.min.js'
 ], 'public/js/all.js')
     .version();
+
