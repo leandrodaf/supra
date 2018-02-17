@@ -85,6 +85,10 @@
                     @include('pessoas.student')
                 @endif
 
+                    @if($pessoa->tipoPessoa['id'] == 4)
+                        @include('pessoas.teatcher')
+                    @endif
+
             </div>
         </div>
     </div>

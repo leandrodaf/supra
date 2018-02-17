@@ -64,9 +64,6 @@ class UserManagementController extends Controller
         $users = User::select(['id', 'name', 'email']);
 
         return Datatables::of($users)
-//            ->addColumn('pessoa_id', function ($user) {
-//                return $user->pessoa->nome;
-//            })
             ->addColumn('roles', function ($user) {
                 $roles = '';
 
@@ -78,10 +75,19 @@ class UserManagementController extends Controller
 
             })
             ->addColumn('link', function ($user) {
-                return '
+
+
+                $button = '
                 <a href="/management/' . $user->id . '' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i></a>
                 <a href="/management/' . $user->id . '/edit' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
                 ';
+
+                if ($user->id == 1) {
+                    return '----';
+                } else {
+                    return $button;
+                }
+
             })
             ->rawColumns(['link', 'roles'])
             ->make(true);

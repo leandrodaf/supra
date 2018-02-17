@@ -33,6 +33,10 @@ Route::get('management/getBasicData', 'UserManagementController@getBasicData')->
 Route::post('management/resetSenha/{id}', 'UserManagementController@resetSenha')->name('management.resetSenha');
 
 
+Route::get('classrooms/getAll', 'ClassRoomController@getAll');
+Route::get('class/getBasicData', 'YearClassController@getBasicData')->name('class.getBasicData');
+
+Route::resource('class', 'YearClassController');
 Route::resource('alunos', 'AlunosController');
 Route::resource('pessoas', 'PessoaController');
 Route::resource('emails', 'EmailController');
@@ -41,5 +45,5 @@ Route::resource('healthInformations', 'HealthInformationsController');
 Route::resource('roles', 'RoleController');
 Route::resource('departments', 'DepartmentController');
 Route::resource('management', 'UserManagementController');
-Route::resource('classrooms', 'ClassroomController');
+Route::resource('classrooms', 'ClassRoomController');
 Route::resource('schoolsubject', 'SchoolSubjectController');

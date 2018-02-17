@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateClassroomRequest;
 use App\Http\Requests\UpdateClassroomRequest;
+use App\Models\Classroom;
 use App\Repositories\ClassroomRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class ClassroomController extends AppBaseController
+class ClassRoomController extends AppBaseController
 {
     /** @var  ClassroomRepository */
     private $classroomRepository;
@@ -108,7 +109,7 @@ class ClassroomController extends AppBaseController
     /**
      * Update the specified Classroom in storage.
      *
-     * @param  int              $id
+     * @param  int $id
      * @param UpdateClassroomRequest $request
      *
      * @return Response
@@ -152,5 +153,27 @@ class ClassroomController extends AppBaseController
         Flash::success('Classroom deletada com sucesso.');
 
         return redirect(route('classrooms.index'));
+    }
+
+
+    public function getAll(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+
+            $classRoom = new Classroom();
+
+            $data = $classRoom
+                ->select("id", "nome_sala", "capacidade")
+                ->where([
+                    ['nome_sala', 'LIKE', "%$search%"],
+                    ['status', '<>', '0']])
+                ->limit(5)
+                ->get();
+        }
+
+        return response()->json($data);
     }
 }
