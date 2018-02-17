@@ -279,6 +279,7 @@ class PessoaController extends AppBaseController
     {
         $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
 
+        $schoolsubjects = \App\Models\SchoolSubject::all();
 
         if (empty($pessoa)) {
             $flash = new Flash();
@@ -287,7 +288,7 @@ class PessoaController extends AppBaseController
             return redirect(route('pessoas.index'));
         }
 
-        return view('pessoas.show')->with('pessoa', $pessoa);
+        return view('pessoas.show')->with(compact('schoolsubjects', 'pessoa'));
     }
 
     /**

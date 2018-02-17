@@ -1,5 +1,29 @@
 "use strict";
 
+$(document).on('click', '.remove', function () {
+    $(this).parent().slideUp();
+});
+
+$("#listSchoolSubjects").sortable();
+
+$(".add-new").click(function () {
+    var str = $("#schoolsubjects :selected").text();
+
+    if (str != "" && str != null) {
+        $("<li class='row'>" +
+            "<a class='remove' href='#'>" +
+            "<i class='fa fa-trash-o'></i></a>" +
+            "<a class='completed' href='#'>" +
+            "<i class='fa fa-check'></i></a>" + str + "</li>").fadeIn().appendTo("ul");
+
+        // "<li class="row list-group-item d-flex justify-content-between align-items-center">"+ str + "<span class="badge" style="background-color: #FFFFFF; color: #333333; font-size: 15px"><a class="remove" href="#"><i class="fa fa-trash-o"></i></a></span></li>"
+
+        $("#schoolsubjects :selected").text("");
+        // $( "#schoolsubjects :selected" ).focus();
+    }
+});
+
+
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -66,7 +90,7 @@ $(document).ready(function () {
     });
 
 
-    let validaInfoPessoaId = (condition) => {
+    let validaInfoPessoaId = function (condition) {
         let changeTipoPessoa = $("#tipo_pessoas_id option:selected").val();
 
         if (condition) {
@@ -469,5 +493,11 @@ $(document).ready(function () {
             }
         });
     })
+
+
+    $('#schoolsubjects').select2({
+        width: '100%',
+        language: 'pt-BR'
+    });
 
 });
