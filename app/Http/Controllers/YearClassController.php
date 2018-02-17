@@ -48,7 +48,7 @@ class YearClassController extends Controller
                 $activeTime = Carbon::parse($yearClass->activeTime);
 
                 $diferenca = Carbon::now()->diffInMonths($activeTime);
-                return $activeTime->format('M-Y') . ' Encerra em '. $diferenca . ' Meses';
+                return $activeTime->format('M-Y') . ' Encerra em ' . $diferenca . ' Meses';
             })
             ->addColumn('link', function ($yearClass) {
                 return '
