@@ -9,7 +9,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <!-- all -->
-    <link rel="stylesheet" href="{{asset('css/all.css')}}">
+    <link rel="stylesheet" href="{{mix('css/all.css')}}">
 
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
@@ -200,7 +200,7 @@
 
 
 <!-- plugin -->
-<script src="{{asset('js/all.js')}}"></script>
+<script src="{{mix('js/all.js')}}"></script>
 
 @yield('scripts')
 

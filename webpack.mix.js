@@ -47,7 +47,8 @@ mix.styles([
     'resources/assets/css/personalizacoes.css',
     'node_modules/clockpicker/dist/bootstrap-clockpicker.min.css',
     'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css'
-], 'public/css/all.css');
+], 'public/css/all.css')
+    .version();
 
 
 //Fonts
@@ -76,4 +77,5 @@ mix.scripts([
     'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
     'node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js',
     'node_modules/moment/min/moment.min.js'
-], 'public/js/all.js');
+], 'public/js/all.js')
+    .version();
