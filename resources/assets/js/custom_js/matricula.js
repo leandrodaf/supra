@@ -4,11 +4,7 @@ $(document).ready(function () {
 
     var form = $("#matriculaAluno");
 
-    form.validate({
-        errorPlacement: function errorPlacement(error, element) {
-            element.before(error);
-        }
-    });
+    form.validate();
 
     var settings = {
         labels: {
@@ -34,10 +30,10 @@ $(document).ready(function () {
             return form.valid();
         },
         onFinished: function (event, currentIndex) {
-            form.submit()
+            form.submit();
         },
         onFinish: function () {
-            alert('FOIIIIIIIIIIIIIII');
+            form.submit();
         }
 
     };
