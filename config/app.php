@@ -183,6 +183,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Auto deploy
+         */
+        Webklex\GitHook\Providers\LaravelServiceProvider::class,
+
 
     ],
 
