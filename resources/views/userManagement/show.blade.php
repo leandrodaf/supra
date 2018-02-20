@@ -73,7 +73,7 @@
     </div>
 
 
-    <div class="modal fade" id="modal-senha" style="display: none;">
+    <div class="modal fade" id="modal-senha" >
         <div class="modal-dialog" style="  width: 300px;">
             <div class="modal-content">
                 <div class="modal-header">
