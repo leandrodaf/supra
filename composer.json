@@ -22,6 +22,7 @@
     "laravelcollective/html": "^5.5.0",
     "phpunit/phpunit": "^6.4",
     "spatie/laravel-permission": "^2.7",
+    "webklex/laravel-git-hook": "1.0.1.7",
     "yajra/laravel-datatables-oracle": "~8.0"
   },
   "require-dev": {
