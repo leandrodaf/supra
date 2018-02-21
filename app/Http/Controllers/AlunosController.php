@@ -32,6 +32,11 @@ class AlunosController extends AppBaseController
      */
     public function index(Request $request)
     {
+
+        $helper = new Helpers();
+
+        return $helper->canRole(['admin']);
+
         $this->alunosRepository->pushCriteria(new RequestCriteria($request));
         return view('alunos.index');
     }

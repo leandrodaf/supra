@@ -83,7 +83,7 @@ $(document).ready(function () {
     $('#sexo_aluno').select2();
 
     $('#formularioAlunos').validator();
-
+    $('#formularioResponsaveis').validator();
 
     // $('input').iCheck({
     //     checkboxClass: 'icheckbox_square-blue',
