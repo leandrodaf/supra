@@ -4,6 +4,9 @@
 namespace App\Helpers;
 
 
+use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Boolean;
+
 class Helpers
 {
 
@@ -41,6 +44,21 @@ class Helpers
     {
         $states = array('AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO');
         return $states[$number];
+    }
+
+
+//    Facilitar as regras de validação
+    public function canRole(Array $roles)
+    {
+        $userAuthRoles = Auth::user()->getRoleNames()->toArray();
+
+        foreach ($roles as $role) {
+            if (in_array($role, $userAuthRoles)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
 

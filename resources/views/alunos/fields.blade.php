@@ -122,6 +122,7 @@
     @endif
 </div>
 
+
 <!-- Flg Certidao Nascimento Aluno Field -->
 <div class="form-group {{$errors->has('flg_certidao_nascimento_aluno') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
@@ -130,11 +131,19 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('flg_certidao_nascimento_aluno', true, false) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('flg_certidao_nascimento_aluno', false, true) !!} Não</label>
+
+            <input name="flg_certidao_nascimento_aluno" type="radio" value="1"
+                   id="flg_certidao_nascimento_aluno" {{ !empty($alunos) ? $alunos->flg_certidao_nascimento_aluno != false ? "checked":'':''}}>
+            Sim</label>
+
+        <label class="checkbox-inline">
+            <input name="flg_certidao_nascimento_aluno" type="radio" value="0"
+                   id="flg_certidao_nascimento_aluno" {{ !empty($alunos) ? $alunos->flg_certidao_nascimento_aluno != true ? "checked":'':''}}>
+            Não</label>
+
         </label>
     </div>
-
+    {{--{{!empty($alunos) ? $alunos->flg_irmaos_aluno ? true:false:false}}--}}
 </div>
 
 <!-- Flg Carteira Vacinacao Aluno Field -->
@@ -145,8 +154,15 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('flg_carteira_vacinacao_aluno', true, false) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('flg_carteira_vacinacao_aluno', false, true) !!} Não</label>
+            <label class="checkbox-inline">
+                <input name="flg_carteira_vacinacao_aluno" type="radio" value="1"
+                       id="flg_carteira_vacinacao_aluno" {{ !empty($alunos) ? $alunos->flg_carteira_vacinacao_aluno != false ? "checked":'':''}}>
+                Sim</label>
+
+            <label class="checkbox-inline">
+                <input name="flg_carteira_vacinacao_aluno" type="radio" value="0"
+                       id="flg_carteira_vacinacao_aluno" {{ !empty($alunos) ? $alunos->flg_carteira_vacinacao_aluno != true ? "checked":'':''}}>
+                Não</label>
         </label>
     </div>
 
@@ -161,8 +177,15 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('flg_frequentou_escola_aluno', true, false) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('flg_frequentou_escola_aluno', false, true) !!} Não</label>
+            <label class="checkbox-inline">
+                <input name="flg_frequentou_escola_aluno" type="radio" value="1"
+                       id="flg_frequentou_escola_aluno" {{ !empty($alunos) ? $alunos->flg_frequentou_escola_aluno != false ? "checked":'':''}}>
+                Sim</label>
+
+            <label class="checkbox-inline">
+                <input name="flg_frequentou_escola_aluno" type="radio" value="0"
+                       id="flg_frequentou_escola_aluno" {{ !empty($alunos) ? $alunos->flg_frequentou_escola_aluno != true ? "checked":'':''}}>
+                Não</label>
         </label>
     </div>
 </div>
@@ -176,11 +199,21 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('flg_irmaos_aluno', true, false) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('flg_irmaos_aluno', false, true) !!} Não</label>
+
+
+            <label class="checkbox-inline">
+                <input name="flg_irmaos_aluno" type="radio" value="1"
+                       id="flg_irmaos_aluno" {{ !empty($alunos) ? $alunos->flg_irmaos_aluno != false ? "checked":'':'checked'}}>
+                Sim</label>
+
+            <label class="checkbox-inline">
+                <input name="flg_irmaos_aluno" type="radio" value="0"
+                       id="flg_irmaos_aluno" {{ !empty($alunos) ? $alunos->flg_irmaos_aluno != true ? "checked":'':'checked'}}>
+                Não</label>
         </label>
     </div>
 </div>
+
 
 <!-- Qtd Irmaos Aluno Field -->
 <div id="qtdAlunos"
@@ -201,10 +234,20 @@
 
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::radio('flg_juntos_aos_pais_aluno', true, false) !!} Sim</label>
-            <label class="checkbox-inline">{!! Form::radio('flg_juntos_aos_pais_aluno', false, true) !!} Não</label>
+
+
+            <label class="checkbox-inline">
+                <input name="flg_juntos_aos_pais_aluno" type="radio" value="1"
+                       id="flg_juntos_aos_pais_aluno" {{ !empty($alunos) ? $alunos->flg_juntos_aos_pais_aluno != false ? "checked":'':'checked'}}>
+                Sim</label>
+
+            <label class="checkbox-inline">
+                <input name="flg_juntos_aos_pais_aluno" type="radio" value="0"
+                       id="flg_juntos_aos_pais_aluno" {{ !empty($alunos) ? $alunos->flg_juntos_aos_pais_aluno != true ? "checked":'':'checked'}}>
+                Não</label>
         </label>
     </div>
+
 
 </div>
 

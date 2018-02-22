@@ -120,10 +120,10 @@
                             <span aria-hidden="true">×</span></button>
                         <h4 class="modal-title">Adicionar responsáveis e Autorizados</h4>
                     </div>
-                    {!! Form::open(['route' => ['alunos.updateResponsaveis', $alunos->id], 'id' => 'formularioResponsaveis', 'data-toggle' => 'validator']) !!}
+                    {!! Form::open(['route' => ['alunos.updateResponsaveis', $alunos->id], 'id' => 'formularioResponsaveis']) !!}
 
                     <div class="modal-body">
-                        <select name="responsavel" id="responsavel" class="form-control"></select>
+                        <select name="responsavel" id="responsavel" class="form-control" required="required"></select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>

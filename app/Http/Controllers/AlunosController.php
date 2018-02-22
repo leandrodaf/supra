@@ -32,6 +32,7 @@ class AlunosController extends AppBaseController
      */
     public function index(Request $request)
     {
+
         $this->alunosRepository->pushCriteria(new RequestCriteria($request));
         return view('alunos.index');
     }
