@@ -6,19 +6,30 @@
             <button type="button" class="btn btn-box-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
             </button>
-            <button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#schoolsubjects-modal">
+            <button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#schoolsubjects-modal"
+                    id="btnLoadingSchoolSubjects">
                 <i class="fa fa-list-alt"></i>
             </button>
         </div>
     </div>
     <div class="box-body">
+        <div class="alert alert-info" role="alert" id="naoTemMateriasAtribuidas" style="display: none;">
+            <strong>Atenção!</strong> Não há matérias cadastradas.
+        </div>
 
+        <div id="loadinglistSchoolSubjectsStatic" class="overlay" style="display:none;">
+            <div class="fa fa-refresh fa-spin"></div>
+        </div>
+
+        <ul id="listSchoolSubjectsStatic" class="list-group">
+
+        </ul>
     </div>
 </div>
 
 
 <div id="schoolsubjects-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog" style="width: 500    px;">
+    <div class="modal-dialog" style="width: 450px;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -49,12 +60,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <ul id="listSchoolSubjects" class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Cras justo odio
-                                <span class="badge" style="background-color: #FFFFFF; color: #333333; font-size: 15px">
-                                        <a class="remove" href="#"><i class="fa fa-trash-o"></i></a>
-                                    </span>
-                            </li>
+                            <div id="loadinglistSchoolSubjects" class="overlay" style="display:none;">
+                                <div class="fa fa-refresh fa-spin"></div>
+                            </div>
                         </ul>
                     </div>
                 </div>

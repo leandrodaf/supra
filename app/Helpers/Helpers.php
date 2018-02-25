@@ -48,17 +48,29 @@ class Helpers
 
 
 //    Facilitar as regras de validação
-    public function canRole(Array $roles)
+    public static function canRole(Array $roles, Array $comparation = null)
     {
-        $userAuthRoles = Auth::user()->getRoleNames()->toArray();
 
-        foreach ($roles as $role) {
-            if (in_array($role, $userAuthRoles)) {
-                return true;
-            } else {
-                return false;
+        if ($comparation != null) {
+            foreach ($roles as $role) {
+                if (in_array($role, $comparation)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } else {
+            $userAuthRoles = Auth::user()->getRoleNames()->toArray();
+
+            foreach ($roles as $role) {
+                if (in_array($role, $userAuthRoles)) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
+
     }
 
 

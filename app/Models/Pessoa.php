@@ -269,4 +269,10 @@ class Pessoa extends Model
     }
 
 
+    public function schoolSubject()
+    {
+        return $this->belongsToMany(\App\Models\SchoolSubject::class);
+    }
+
+
 }

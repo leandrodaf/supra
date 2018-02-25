@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="id" content="{{ $pessoa->id }}">
+@endsection
+
 @section('content')
     <section class="content-header">
 
@@ -80,8 +85,7 @@
                 @if($pessoa->tipoPessoa['id'] == 2 || $pessoa->tipoPessoa['id'] == 3)
                     @include('pessoas.student')
                 @endif
-
-                @if($pessoa->tipoPessoa['id'] == 4)
+                @if($pessoa->tipoPessoa['id'] == 4 && \App\Helpers\Helpers::canRole(array_pluck($pessoa->departments->toArray(), 'nome'), ['Department acadêmico']))
                     @include('pessoas.teatcher')
                 @endif
 

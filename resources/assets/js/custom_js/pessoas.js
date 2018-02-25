@@ -1,30 +1,149 @@
 "use strict";
 
-$(document).on('click', '.remove', function () {
-    $(this).parent().slideUp();
-});
-
-$("#listSchoolSubjects").sortable();
-
-$(".add-new").click(function () {
-    var str = $("#schoolsubjects :selected").text();
-
-    if (str != "" && str != null) {
-        $("<li class='row'>" +
-            "<a class='remove' href='#'>" +
-            "<i class='fa fa-trash-o'></i></a>" +
-            "<a class='completed' href='#'>" +
-            "<i class='fa fa-check'></i></a>" + str + "</li>").fadeIn().appendTo("ul");
-
-        // "<li class="row list-group-item d-flex justify-content-between align-items-center">"+ str + "<span class="badge" style="background-color: #FFFFFF; color: #333333; font-size: 15px"><a class="remove" href="#"><i class="fa fa-trash-o"></i></a></span></li>"
-
-        $("#schoolsubjects :selected").text("");
-        // $( "#schoolsubjects :selected" ).focus();
-    }
-});
-
 
 $(document).ready(function () {
+
+    // Teatcher
+
+
+    $(document).on('click', '.remove', function () {
+        let item = $(this);
+
+        $.ajax({
+            async: true,
+            type: "DELETE",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/schoolsubject/teacher/" + $('meta[name="id"]').attr('content'),
+            data: {subjects: item[0].id},
+            cache: true,
+            success: function success(data) {
+
+            },
+            beforeSend: function beforeSend(data) {
+
+            },
+            complete: function complete(data) {
+            }
+        });
+
+        item.remove().slideUp();
+        $('#staticClassItem' + item[0].id).remove().slideUp();
+    });
+
+
+    let loadingSchoolSubjectsStatic = function () {
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            url: "/schoolsubject/teacher/" + $('meta[name="id"]').attr('content'),
+            cache: true,
+            success: function success(data) {
+                if (data.length < 1) {
+                    $('#naoTemMateriasAtribuidas').show();
+                } else {
+                    $('#naoTemMateriasAtribuidas').hide();
+                    for (var index in data) {
+                        let item =
+                            "<li class='list-group-item d-flex justify-content-between align-items-center' id='staticClassItem" + data[index].id + "'>" +
+                            data[index].nome +
+                            "</li>";
+
+                        $('#listSchoolSubjectsStatic').append(item).fadeIn();
+                    }
+                }
+
+
+            },
+            beforeSend: function beforeSend() {
+                $('#loadinglistSchoolSubjectsStatic').show();
+                $('#listSchoolSubjectsStatic').empty();
+            },
+            complete: function complete() {
+                $('#loadinglistSchoolSubjectsStatic').hide();
+            }
+        });
+    };
+
+    loadingSchoolSubjectsStatic();
+
+
+    let loadingSchoolSubjects = function () {
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            url: "/schoolsubject/teacher/" + $('meta[name="id"]').attr('content'),
+            cache: true,
+            success: function success(data) {
+                if (data.length < 1) {
+                    $('#naoTemMateriasAtribuidas').show();
+                } else {
+                    $('#naoTemMateriasAtribuidas').hide();
+                    for (var index in data) {
+                        let item =
+                            "<li class='list-group-item d-flex justify-content-between align-items-center remove' style='cursor: pointer;' id='" + data[index].id + "'>" +
+                            data[index].nome +
+                            "<span class='badge' style='background-color: #cb2027; color: #ffffff; font-size: 15px'>" +
+                            "<i class='fa fa-trash-o'></i>" +
+                            "</span>" +
+                            "</li>";
+
+                        $('#listSchoolSubjects').append(item).fadeIn();
+
+                        let item2 =
+                            "<li class='list-group-item d-flex justify-content-between align-items-center' >" +
+                            data[index].nome +
+                            "</li>";
+
+                        $('#listSchoolSubjectsStatic').append(item2).fadeIn();
+
+                    }
+                }
+                loadingSchoolSubjectsStatic()
+            },
+            beforeSend: function beforeSend() {
+                $('#loadinglistSchoolSubjects').show();
+                $('#listSchoolSubjects').empty();
+            },
+            complete: function complete() {
+                $('#loadinglistSchoolSubjects').hide();
+            }
+        });
+    };
+
+    $('#btnLoadingSchoolSubjects').click(function () {
+        loadingSchoolSubjects();
+    });
+
+    $("#listSchoolSubjects").sortable("disabled");
+
+    $(".add-new").click(function () {
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/schoolsubject/teacher/" + $('meta[name="id"]').attr('content'),
+            data: {subjects: $("#schoolsubjects :selected").val()},
+            cache: true,
+            success: function success(data) {
+                loadingSchoolSubjects();
+            },
+            beforeSend: function beforeSend(data) {
+            },
+            complete: function complete(data) {
+                loadingSchoolSubjects();
+            }
+        });
+
+
+    });
+
+    //
+
     $('[data-toggle="tooltip"]').tooltip();
 
     $('.verInfo').click(function (data) {
@@ -462,7 +581,6 @@ $(document).ready(function () {
             complete: function (complete) {
             },
             error: function (error) {
-                console.log(error);
             }
         });
     });
@@ -489,7 +607,6 @@ $(document).ready(function () {
             complete: function (complete) {
             },
             error: function (error) {
-                console.log(error);
             }
         });
     })
