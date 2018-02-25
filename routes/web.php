@@ -36,6 +36,12 @@ Route::post('management/resetSenha/{id}', 'UserManagementController@resetSenha')
 Route::get('classrooms/getAll', 'ClassRoomController@getAll');
 Route::get('class/getBasicData', 'YearClassController@getBasicData')->name('class.getBasicData');
 
+
+
+Route::get('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherAll');
+Route::post('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherAdd');
+Route::delete('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherRemove');
+
 Route::resource('class', 'YearClassController');
 Route::resource('alunos', 'AlunosController');
 Route::resource('pessoas', 'PessoaController');

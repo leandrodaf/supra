@@ -37,6 +37,60 @@ class SchoolSubjectController extends AppBaseController
             ->with('schoolSubjects', $schoolSubjects);
     }
 
+
+    public function teacherAll(Request $request, $idPessoa)
+    {
+        if ($idPessoa != null) {
+            try {
+                $pessoa = \App\Models\Pessoa::find($idPessoa);
+
+                return response()->json($pessoa->schoolSubject);
+
+
+            } catch (\Exception $e) {
+                return response()->json(array("message" => "Person not found"));
+            }
+
+        } else {
+            return response()->json(array("message" => "Something went wrong."));
+        }
+    }
+
+    public function teacherAdd(Request $request, $idPessoa)
+    {
+
+
+        if ($idPessoa != null) {
+            try {
+                $pessoa = \App\Models\Pessoa::find($idPessoa);
+                $pessoa->schoolSubject()->syncWithoutDetaching($request->input('subjects'));
+
+                return response('Successfully updated', 200);
+
+            } catch (\Exception $e) {
+                return response()->json(array("message" => "Person not found"));
+            }
+
+        } else {
+            return response()->json(array("message" => "Something went wrong."));
+        }
+    }
+
+    public function teacherRemove(Request $request, $idPessoa)
+    {
+        if ($idPessoa != null) {
+            try {
+                $pessoa = \App\Models\Pessoa::find($idPessoa);
+                $pessoa->schoolSubject()->detach($request->input('subjects'));
+            } catch (\Exception $e) {
+                return response()->json(array("message" => "Person not found"));
+            }
+
+        } else {
+            return response()->json(array("message" => "Something went wrong."));
+        }
+    }
+
     /**
      * Show the form for creating a new Materia.
      *
