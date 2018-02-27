@@ -26,6 +26,15 @@ class YearClassController extends Controller
     }
 
 
+    public function show($idClass)
+    {
+        $class = YearClass::find($idClass);
+
+
+        return view('yearClass.show')->with(compact('class'));
+    }
+
+
     public function getBasicData()
     {
 
@@ -73,6 +82,7 @@ class YearClassController extends Controller
         $input['activeTime'] = '01-' . $input['activeTime'];
         $input['activeTime'] = Carbon::createFromFormat('d-m-Y', $input['activeTime'])->format('Y-m-d');
         $yearClass = $this->yearClassRepository->create($input);
-        return dd($yearClass);
+
+        return view('yearClass.show')->with(compact('yearClass'));
     }
 }
