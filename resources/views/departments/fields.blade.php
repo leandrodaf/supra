@@ -20,4 +20,3 @@
     {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('departments.index') !!}" class="btn btn-default">Cancelar</a>
 </div>
-s

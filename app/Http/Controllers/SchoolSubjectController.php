@@ -18,7 +18,7 @@ class SchoolSubjectController extends AppBaseController
 
     public function __construct(SchoolSubjectRepository $schoolSubjectRepo)
     {
-
+        $this->middleware('auth');
         $this->schoolSubjectRepository = $schoolSubjectRepo;
     }
 

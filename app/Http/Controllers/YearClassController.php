@@ -17,6 +17,7 @@ class YearClassController extends Controller
 
     public function __construct(YearClassRepository $yearClassRepo)
     {
+        $this->middleware('auth');
         $this->yearClassRepository = $yearClassRepo;
     }
 
