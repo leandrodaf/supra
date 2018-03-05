@@ -26,16 +26,24 @@
 
                         </div>
                     </div>
-                    <div class="box-body">
-
-
-                    </div>
                 </div>
 
+                <div class="box">
+                    <div class="box-header with-border">
+                        <div class="box-tools pull-right">
+                            <div class="btn-group">
+                                Add aluno
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="box-body">
+                        @include('yearClass.alunos_table')
+                    </div>
+                </div>
             </div>
             <div class="col-lg-4">
-
+                @include('yearClass.teacher')
 
             </div>
         </div>

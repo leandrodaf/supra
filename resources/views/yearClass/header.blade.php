@@ -29,7 +29,9 @@
 
             <dt>Horas</dt>
 
-            <dd>{!! \Carbon\Carbon::createFromFormat('H:i:s', $class->startTime)->diffInHours(\Carbon\Carbon::createFromFormat('H:i:s', $class->endTime)).'h' !!}</dd>
+            <dd>{!! \Carbon\Carbon::createFromFormat('H:i:s', $class->startTime)->diffInHours(\Carbon\Carbon::createFromFormat('H:i:s', $class->endTime)).'h' !!}
+                por dia
+            </dd>
         </dl>
 
     </div>
