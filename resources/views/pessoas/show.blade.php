@@ -85,7 +85,7 @@
                 @if($pessoa->tipoPessoa['id'] == 2 || $pessoa->tipoPessoa['id'] == 3)
                     @include('pessoas.student')
                 @endif
-                @if($pessoa->tipoPessoa['id'] == 4 && \App\Helpers\Helpers::canRole(array_pluck($pessoa->departments->toArray(), 'nome'), ['Department acadêmico']))
+                @if($pessoa->tipoPessoa['id'] == 4 && \App\Helpers\Helpers::canRole(array_pluck($pessoa->departments->toArray(), 'nome'), ['Departamento acadêmico']))
                     @include('pessoas.teatcher')
                 @endif
 

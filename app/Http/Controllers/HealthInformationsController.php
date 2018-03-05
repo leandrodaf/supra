@@ -16,6 +16,7 @@ class HealthInformationsController extends AppBaseController
 
     public function __construct(HealthInformationsRepository $healthInformationsRepo)
     {
+        $this->middleware('auth');
         $this->healthInformationsRepository = $healthInformationsRepo;
     }
 

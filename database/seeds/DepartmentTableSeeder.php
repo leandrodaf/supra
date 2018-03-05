@@ -17,7 +17,7 @@ class DepartmentTableSeeder extends Seeder
                 'status' => "1",
             ],
             [
-                'nome' => "Department acadêmico",
+                'nome' => "Departamento acadêmico",
                 'status' => "1",
             ],
             [

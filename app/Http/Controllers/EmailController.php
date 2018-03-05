@@ -18,6 +18,7 @@ class EmailController extends AppBaseController
 
     public function __construct(EmailRepository $emailRepo)
     {
+        $this->middleware('auth');
         $this->emailRepository = $emailRepo;
     }
 

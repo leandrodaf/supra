@@ -14,6 +14,7 @@ class PhoneController extends Controller
 
     public function __construct(PhoneRepository $phoneRepo)
     {
+        $this->middleware('auth');
         $this->phoneRepository = $phoneRepo;
     }
 

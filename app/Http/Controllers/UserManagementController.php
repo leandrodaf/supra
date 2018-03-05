@@ -21,7 +21,7 @@ class UserManagementController extends Controller
 
     public function __construct(UsersRepository $userRepo)
     {
-        $this->middleware(['role:admin']);
+        $this->middleware(['role:admin', 'auth']);
         $this->userRepository = $userRepo;
     }
 

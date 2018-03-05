@@ -22,6 +22,7 @@ class PessoaController extends AppBaseController
 
     public function __construct(PessoaRepository $pessoaRepo)
     {
+        $this->middleware('auth');
         $this->pessoaRepository = $pessoaRepo;
     }
 
