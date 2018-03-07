@@ -9,11 +9,11 @@
 
         </div>
         <div class="box-title" style="overflow: hidden">
-            Professores
+            Professores / Matérias
         </div>
     </div>
     <div class="box-body">
 
-s
+        s
     </div>
 </div>

@@ -51,4 +51,10 @@ class YearClass extends Model
             'classroom_id'
         )->select('id', 'nome_sala');
     }
+
+
+    public function alunos()
+    {
+        return $this->belongsToMany(\App\Models\Alunos::class);
+    }
 }

@@ -106,4 +106,34 @@ $(document).ready(function () {
         }
     });
 
+
+//    Gerenciamento de sala
+
+
+    $('#aluno').select2({
+        width: '100%',
+        allowClear: true,
+        placeholder: 'Selecione um aluno',
+        language: 'pt-BR',
+        ajax: {
+            url: '/alunos/availableAlunos',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: 'Sala: ' + item.nome_sala + 'Capacidade: ' + item.capacidade,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+
+
+
+
 });

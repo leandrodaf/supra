@@ -32,12 +32,35 @@
                     <div class="box-header with-border">
                         <div class="box-tools pull-right">
                             <div class="btn-group">
-                                Add aluno
+                                <a data-toggle="collapse" href="#collapseExample" aria-expanded="false"
+                                   aria-controls="collapseExample">
+                                    Adicionar Aluno
+                                </a>
                             </div>
                         </div>
+                        Alunos
                     </div>
-
                     <div class="box-body">
+                        <div class="row">
+
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-block">
+                                    <div class="col-lg-10">
+                                        <select name="aluno" id="aluno" class="form-control"
+                                                required="required"></select>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="submit" class="btn btn-primary">Incluir aluno</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="box-body">
+
+
                         @include('yearClass.alunos_table')
                     </div>
                 </div>
@@ -49,8 +72,10 @@
         </div>
     </div>
 
+
+
 @endsection
 
 @section('scripts')
-    <script src="{{asset('/js/features/pessoas.js')}}"></script>
+    <script src="{{asset('/js/features/yearClass.js')}}"></script>
 @endsection
