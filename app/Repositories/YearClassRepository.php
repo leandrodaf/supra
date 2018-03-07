@@ -4,21 +4,13 @@ namespace App\Repositories;
 
 use App\Models\Alunos;
 use App\YearClass;
+use http\Env\Request;
 use InfyOm\Generator\Common\BaseRepository;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Requests\CreateAlunosRequest;
 use App\Http\Requests\UpdateAlunosRequest;
 use App\Http\Requests\StoreAlunoMatricula;
 
-/**
- * Class AlunosRepository
- * @package App\Repositories
- * @version November 1, 2017, 2:53 pm UTC
- *
- * @method Alunos findWithoutFail($id, $columns = ['*'])
- * @method Alunos find($id, $columns = ['*'])
- * @method Alunos first($columns = ['*'])
- */
 class YearClassRepository extends BaseRepository
 {
     /**
@@ -36,5 +28,26 @@ class YearClassRepository extends BaseRepository
         return YearClass::class;
     }
 
+
+    public function addAlunoToYearClass(Request $request, $id)
+    {
+
+        try {
+            $pessoa = $this->findWithoutFail($id);
+
+            $data = $request->all();
+
+            $pessoa->sync($data);
+
+            return response(200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error in synchronize objects'
+            ], 422);
+        }
+
+
+    }
 
 }

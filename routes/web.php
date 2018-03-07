@@ -17,8 +17,6 @@ Route::post('alunos/responsaveis/{responsavel}/desvincular', 'AlunosController@d
 Route::post('alunos/phoneMain', 'AlunosController@mainPhoneAlunosAjax')->name('alunos.phoneMain');
 
 
-
-
 Route::get('pessoas/getBasicData', 'PessoaController@getBasicData')->name('pessoas.getBasicData');
 Route::get('pessoas/getInfoUser/{idPessoa}', 'PessoaController@getInfoUser')->name('pessoas.getInfoUser');
 Route::get('pessoas/getAjax', 'PessoaController@dataAjax')->name('pessoas.getAjaxSelect2');
@@ -39,7 +37,7 @@ Route::post('management/resetSenha/{id}', 'UserManagementController@resetSenha')
 
 Route::get('classrooms/getAll', 'ClassRoomController@getAll');
 Route::get('class/getBasicData', 'YearClassController@getBasicData')->name('class.getBasicData');
-
+Route::post('class/syncAluno', 'YearClassController@syncAluno')->name('syncAluno');
 
 
 Route::get('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherAll');

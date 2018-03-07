@@ -81,8 +81,16 @@ class YearClassController extends Controller
         $input = $request->all();
         $input['activeTime'] = '01-' . $input['activeTime'];
         $input['activeTime'] = Carbon::createFromFormat('d-m-Y', $input['activeTime'])->format('Y-m-d');
-        $yearClass = $this->yearClassRepository->create($input);
+        $class = $this->yearClassRepository->create($input);
 
-        return view('yearClass.show')->with(compact('yearClass'));
+        return redirect(route('class.show', $class->id));
     }
+
+
+    public function syncAluno(Request $request, $id)
+    {
+        return $this->yearClassRepository->addAlunoToYearClass($request, $id);
+    }
+
+
 }

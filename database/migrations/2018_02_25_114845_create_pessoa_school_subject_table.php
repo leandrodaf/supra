@@ -30,6 +30,6 @@ class CreatePessoaSchoolSubjectTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pessoa_schoolsubject');
+        Schema::dropIfExists('pessoa_school_subject');
     }
 }

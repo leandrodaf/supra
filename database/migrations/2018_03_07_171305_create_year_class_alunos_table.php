@@ -30,6 +30,6 @@ class CreateYearClassAlunosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('year_class_alunos');
+        Schema::dropIfExists('alunos_year_class');
     }
 }
