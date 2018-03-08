@@ -1,6 +1,6 @@
 <!-- Nome Sala Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('nome_sala', 'Nome Sala:') !!}
+    {!! Form::label('nome_sala', 'Nome da Sala:') !!}
     {!! Form::text('nome_sala', null, ['class' => 'form-control']) !!}
 </div>
 

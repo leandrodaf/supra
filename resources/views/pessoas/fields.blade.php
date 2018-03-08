@@ -1,6 +1,6 @@
 <!-- Tipo Pessoas Id Field -->
 <div class="form-group {{$errors->has('tipo_pessoas_id') ? "has-error":""}} col-sm-6">
-    {!! Form::label('tipo_pessoas_id', 'Tipo Pessoa:') !!}
+    {!! Form::label('tipo_pessoas_id', 'Categoria:') !!}
     {!! Form::select('tipo_pessoas_id', $tipoPessoas, !empty($pessoa)? $pessoa->tipo_pessoa_id:2, ['class' => 'form-control']) !!}
 </div>
 
@@ -19,7 +19,7 @@
 
 <!-- Rg Field -->
 <div class="form-group rg {{$errors->has('rg') ? "has-error":""}} col-sm-6">
-    {!! Form::label('rg', 'Rg:') !!}
+    {!! Form::label('rg', 'RG:') !!}
     {!! Form::text('rg', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -31,7 +31,7 @@
 
 <!-- familySituation Field -->
 <div class="form-group familySituation {{$errors->has('familySituation') ? "has-error":""}} col-sm-6">
-    {!! Form::label('familySituation', 'Estado civil:') !!}
+    {!! Form::label('familySituation', 'Estado Civil:') !!}
     {!! Form::select('familySituation', $familySituation, !empty($pessoa)? $pessoa->familySituation:null, ['class' => 'form-control']) !!}
 </div>
 
@@ -44,7 +44,7 @@
 
 <!-- Sexo Field -->
 <div class="form-group sexo {{$errors->has('sexo') ? "has-error":""}} col-sm-6">
-    {!! Form::label('sexo', 'Sexo:') !!}
+    {!! Form::label('sexo', 'Gênero:') !!}
     <label class="checkbox-inline">
         {!! Form::select('sexo', $genders, !empty($pessoa)? $pessoa->sexo:null, ['class' => 'form-control']) !!}
     </label>
@@ -61,7 +61,7 @@
 
     @if(!empty($pessoa) )
         <p></p>
-        {!! Form::label('email', 'E-mails cadastrados:') !!}
+        {!! Form::label('email', 'E-mails Cadastrados:') !!}
         <dl class="dl-horizontal">
             <p></p>
             <!-- lista de emails -->
@@ -98,7 +98,7 @@
 
     @if(!empty($pessoa) )
         <p></p>
-        {!! Form::label('phone', 'Telefones cadastrados:') !!}
+        {!! Form::label('phone', 'Telefones Cadastrados:') !!}
         <dl class="dl-horizontal">
             <p></p>
             <!-- lista de phones -->
@@ -128,7 +128,7 @@
 
 <div id="tipoEmpresa" style="display: none;">
     <div class="form-group {{$errors->has('Dados da empresa') ? "has-error":""}} col-sm-12">
-        {!! Form::label('Dados da empresa', 'Dados da empresa:') !!}
+        {!! Form::label('Dados da empresa', 'Dados da Empresa:') !!}
     </div>
 
     <div class="form-group col-sm-12">
@@ -136,13 +136,13 @@
 
         <!-- Razaosocial Field -->
         <div class="form-group {{$errors->has('razaoSocial') ? "has-error":""}} col-sm-6">
-            {!! Form::label('razaoSocial', 'Razão social:') !!}
+            {!! Form::label('razaoSocial', 'Razão Social:') !!}
             {!! Form::text('razaoSocial', null, ['class' => 'form-control']) !!}
         </div>
 
         <!-- Inscricaoestadual Field -->
         <div class="form-group {{$errors->has('inscricaoEstadual') ? "has-error":""}} col-sm-6">
-            {!! Form::label('inscricaoEstadual', 'Inscrição estadual:') !!}
+            {!! Form::label('inscricaoEstadual', 'Inscrição Estadual:') !!}
             {!! Form::text('inscricaoEstadual', null, ['class' => 'form-control']) !!}
         </div>
     </div>
@@ -170,7 +170,7 @@
 
 
         <div class="form-group {{$errors->has('funcao') ? "has-error":""}} col-sm-6">
-            {!! Form::label('funcao', 'Função do funcionário:') !!}
+            {!! Form::label('funcao', 'Função:') !!}
             <select class="form-control" id="funcaoFuncionario" name="role[]" multiple="multiple">
 
                 @foreach($roles as $role)
@@ -182,7 +182,7 @@
 
         <!-- Datanascimento Field -->
         <div class="form-group {{$errors->has('data_admissao') ? "has-error":""}} col-sm-6">
-            {!! Form::label('data_admissao', 'Data admissão:') !!}
+            {!! Form::label('data_admissao', 'Admissão:') !!}
             {!! Form::text('data_admissao', !empty($pessoa->data_admissao)? $pessoa->data_admissao->format('d/m/Y') :null, ['class' => 'form-control', 'format' => 'dd/MM/yyyy']) !!}
         </div>
 
@@ -203,17 +203,17 @@
         </div>
 
         <div class="form-group {{$errors->has('salario_base') ? "has-error":""}} col-sm-6">
-            {!! Form::label('salario_base', 'Salário base:') !!}
+            {!! Form::label('salario_base', 'Base Salarial:') !!}
             {!! Form::text('salario_base', null, ['class' => 'form-control', 'data-thousands' => '.', 'data-decimal'=> ',', 'data-prefix' => 'R$ ']) !!}
         </div>
 
         <div class="form-group {{$errors->has('vale_refeicao') ? "has-error":""}} col-sm-6">
-            {!! Form::label('vale_refeicao', 'Vale refeição:') !!}
+            {!! Form::label('vale_refeicao', 'Vale Refeição:') !!}
             {!! Form::text('vale_refeicao', null, ['class' => 'form-control', 'data-thousands' => '.', 'data-decimal'=> ',', 'data-prefix' => 'R$ ']) !!}
         </div>
 
         <div class="form-group {{$errors->has('vale_transporte') ? "has-error":""}} col-sm-6">
-            {!! Form::label('vale_transporte', 'Vale transporte:') !!}
+            {!! Form::label('vale_transporte', 'Vale Transporte:') !!}
             {!! Form::text('vale_transporte', null, ['class' => 'form-control', 'data-thousands' => '.', 'data-decimal'=> ',', 'data-prefix' => 'R$ ']) !!}
         </div>
 
@@ -223,7 +223,7 @@
     <div class="form-group col-sm-12">
 
         <div class="form-group {{$errors->has('pis') ? "has-error":""}} col-sm-6">
-            {!! Form::label('contato_emergencial', 'Contato emergêncial') !!}
+            {!! Form::label('contato_emergencial', 'Contato Emergencial') !!}
             {!! Form::text('contato_emergencial', null, ['class' => 'form-control']) !!}
         </div>
     </div>
@@ -231,7 +231,7 @@
     <div>
 
         <div class="form-group {{$errors->has('dadossaude') ? "has-error":""}} col-sm-12">
-            {!! Form::label('Dados de saúde', 'Dados de saúde:') !!}
+            {!! Form::label('Dados de saúde', 'Dados de Saúde:') !!}
         </div>
 
 
