@@ -21,7 +21,7 @@
             <dt>{!! Form::label('diabetes', 'Diabetes:') !!}</dt>
             <dd>{!! $pessoa->getHealthInformation->diabete ? "Sim":"Não" !!}</dd>
 
-            <dt>{!! Form::label('falta de ar', 'Falta de ar:') !!}</dt>
+            <dt>{!! Form::label('falta de ar', 'Falta de Ar:') !!}</dt>
             <dd>{!! $pessoa->getHealthInformation->faltadear ? "Sim":"Não" !!}</dd>
 
             <dt>{!! Form::label('convulsao', 'Convulsão:') !!}</dt>

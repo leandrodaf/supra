@@ -50,16 +50,16 @@
                     <dd>{!! \Carbon\Carbon::parse($alunos->deleted_at)->format('d/m/Y') !!} </dd>
             @endif
             <!-- Sexo Aluno Field -->
-            <dt> {!! Form::label('sexo_aluno', 'Sexo Aluno:') !!} </dt>
+            <dt> {!! Form::label('sexo_aluno', 'Gênero:') !!} </dt>
             <dd> {!! $alunos->gender->nome !!}</dd>
 
             <!-- Flg Certidao Nascimento Aluno Field -->
-            <dt> {!! Form::label('flg_certidao_nascimento_aluno', 'Certidão de nascimento:') !!} </dt>
+            <dt> {!! Form::label('flg_certidao_nascimento_aluno', 'Certidão de Nascimento:') !!} </dt>
             <dd> {!! $alunos->flg_certidao_nascimento_aluno ? "Apresentou": "Não"!!}</dd>
 
             <!-- Flg Carteira Vacinacao Aluno Field -->
 
-            <dt> {!! Form::label('flg_carteira_vacinacao_aluno', 'Carteira de vacinação:') !!} </dt>
+            <dt> {!! Form::label('flg_carteira_vacinacao_aluno', 'Carteira de Vacinação:') !!} </dt>
             <dd> {!! $alunos->flg_carteira_vacinacao_aluno ? "Apresentou": "Não"!!}</dd>
 
             <!-- Flg Frequentou Escola Aluno Field -->

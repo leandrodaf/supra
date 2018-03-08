@@ -6,7 +6,7 @@
 
 <!-- Nome Sala Field -->
 <div class="form-group">
-    {!! Form::label('nome_sala', 'Nome Sala:') !!}
+    {!! Form::label('nome_sala', 'Nome da Sala:') !!}
     <p>{!! $classroom->nome_sala !!}</p>
 </div>
 
@@ -24,19 +24,19 @@
 
 <!-- Created At Field -->
 <div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
+    {!! Form::label('created_at', 'Criado em:') !!}
     <p>{!! $classroom->created_at !!}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
+    {!! Form::label('updated_at', 'Atualizado em:') !!}
     <p>{!! $classroom->updated_at !!}</p>
 </div>
 
 <!-- Deleted At Field -->
 <div class="form-group">
-    {!! Form::label('deleted_at', 'Deleted At:') !!}
+    {!! Form::label('deleted_at', 'Deletado em:') !!}
     <p>{!! $classroom->deleted_at !!}</p>
 </div>
 

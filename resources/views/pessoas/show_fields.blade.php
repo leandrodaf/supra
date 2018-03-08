@@ -5,7 +5,7 @@
     <!-- Nome Field -->
 
         @if($pessoa->tipoPessoa->id == 5)
-            <dt>{!! Form::label('nomeFantasia', 'Nome fantasia:') !!}</dt>
+            <dt>{!! Form::label('nomeFantasia', 'Nome Fantasia:') !!}</dt>
         @else
             <dt>{!! Form::label('nome', 'Nome:') !!}</dt>
         @endif
@@ -22,7 +22,7 @@
 
     @if(!empty($pessoa->gender->nome))
     <!-- Sexo Field -->
-        <dt>{!! Form::label('sexo', 'Sexo:') !!}</dt>
+        <dt>{!! Form::label('sexo', 'Gênero:') !!}</dt>
         <dd>{!! $pessoa->gender->nome !!}</dd>
     @endif
 
@@ -62,7 +62,7 @@
 
     @if(!empty($pessoa->razaoSocial))
     <!-- Razaosocial Field -->
-        <dt>{!! Form::label('razaoSocial', 'Razao Social:') !!}</dt>
+        <dt>{!! Form::label('razaoSocial', 'Razão Social:') !!}</dt>
         <dd>{!! $pessoa->razaoSocial !!}</dd>
     @endif
 
@@ -74,7 +74,7 @@
 
     @if(!empty($pessoa->inscricaoEstadual))
     <!-- Inscricaoestadual Field -->
-        <dt>{!! Form::label('inscricaoEstadual', 'Inscricao Estadual:') !!}</dt>
+        <dt>{!! Form::label('inscricaoEstadual', 'Inscrição Estadual:') !!}</dt>
         <dd>{!! $pessoa->inscricaoEstadual !!}</dd>
     @endif
 
@@ -111,13 +111,13 @@
 
     @if(!empty($pessoa->tipoPessoa->nome))
     <!-- Tipo Pessoas Id Field -->
-        <dt>{!! Form::label('tipo_pessoas_id', 'Tipo Pessoa:') !!}</dt>
+        <dt>{!! Form::label('tipo_pessoas_id', 'Categoria:') !!}</dt>
         <dd>{!! $pessoa->tipoPessoa->nome !!}</dd>
     @endif
 
     @if(!empty($pessoa->created_at))
     <!-- Created At Field -->
-        <dt>{!! Form::label('created_at', 'Criando em:') !!}</dt>
+        <dt>{!! Form::label('created_at', 'Criado em:') !!}</dt>
         <dd>{!! $pessoa->created_at->format('d/m/Y') !!}</dd>
     @endif
 
