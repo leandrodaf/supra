@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateYearClassAlunosTable extends Migration
+class CreateSchoolsubjectsYearClassTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateYearClassAlunosTable extends Migration
      */
     public function up()
     {
-
-        Schema::create('alunos_year_class', function (Blueprint $table) {
+        Schema::create('school_subject_year_class', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year_class_id')->unsigned();
             $table->foreign('year_class_id')->references('id')->on('yearClass')->onDelete('cascade');
-            $table->integer('alunos_id')->unsigned();
-            $table->foreign('alunos_id')->references('id')->on('alunos')->onDelete('cascade');
+            $table->integer('school_subject_id')->unsigned();
+            $table->foreign('school_subject_id')->references('id')->on('schoolsubjects')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateYearClassAlunosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alunos_year_class');
+        Schema::dropIfExists('school_subject_year_class');
     }
 }

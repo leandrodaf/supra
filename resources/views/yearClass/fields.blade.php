@@ -27,7 +27,7 @@
             {!! Form::label('startTime', 'Horário de Início:') !!}
         </div>
 
-        <div class="input-group startTime" data-placement="left" data-align="top" data-autoclose="true">
+        <div class="input-group startTime"  data-align="top" data-autoclose="true">
             <input type="text" name="startTime" id="startTime" class="form-control" placeholder="00:00" size="5"
                    maxlength="5" required="required">
             <span class="input-group-addon">
@@ -47,7 +47,7 @@
             {!! Form::label('endTime', 'Horário de encerramento:') !!}
         </div>
 
-        <div class="input-group endTime" data-placement="left" data-align="top" data-autoclose="true">
+        <div class="input-group endTime" data-align="top" data-autoclose="true">
             <input type="text" name="endTime" id="endTime" class="form-control" placeholder="00:00" size="5"
                    maxlength="5" required="required">
             <span class="input-group-addon">

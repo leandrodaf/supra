@@ -81,7 +81,16 @@ class YearClassController extends Controller
         $input = $request->all();
         $input['activeTime'] = '01-' . $input['activeTime'];
         $input['activeTime'] = Carbon::createFromFormat('d-m-Y', $input['activeTime'])->format('Y-m-d');
+
+
         $class = $this->yearClassRepository->create($input);
+        $class->pessoa()->sync(
+            $input['professor_id']
+        );
+
+        $class->schoolSubject()->sync(
+            $input['schoolsubjects_id']
+        );
 
         return redirect(route('class.show', $class->id));
     }

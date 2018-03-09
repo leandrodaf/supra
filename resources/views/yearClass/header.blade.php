@@ -23,8 +23,6 @@
                 @else
                     <span class="text-green">{!! \Carbon\Carbon::createFromFormat('Y-m-d', $class->activeTime)->format('M') .' de '. \Carbon\Carbon::createFromFormat('Y-m-d', $class->activeTime)->year!!}</span>
                 @endif
-
-
             </dd>
 
             <dt>Horas</dt>
@@ -32,6 +30,14 @@
             <dd>{!! \Carbon\Carbon::createFromFormat('H:i:s', $class->startTime)->diffInHours(\Carbon\Carbon::createFromFormat('H:i:s', $class->endTime)).'h' !!}
                 por dia
             </dd>
+
+            <dt>Professor</dt>
+
+            <dd>{{$class->pessoa[0]['nome']}}</dd>
+
+            <dt>Matéria</dt>
+
+            <dd>{{$class->schoolSubject[0]['nome']}}</dd>
         </dl>
 
     </div>

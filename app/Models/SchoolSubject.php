@@ -27,7 +27,7 @@ class SchoolSubject extends Model
     use SoftDeletes;
 
     public $table = 'schoolsubjects';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -57,8 +57,14 @@ class SchoolSubject extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
+    public function pessoa()
+    {
+        return $this->belongsToMany(\App\Models\Pessoa::class);
+    }
+
+
 }
