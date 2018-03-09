@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Pessoa;
 use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Facades\DB;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
@@ -64,34 +65,60 @@ class PessoaRepository extends BaseRepository
                 $email->pivot->save();
             }
         }
-
         return response()->json($pessoa->email);
-
     }
 
     public function setPhoneMain($pessoa, $idPhone)
     {
-
         $pessoa = $this->findWithoutFail($pessoa);
         if (count($pessoa->phone) == 1) {
             $phoneUnico = $pessoa->phone->get(0);
             $phoneUnico->pivot->flg_principal = 1;
             $phoneUnico->pivot->save();
         } else {
-
-
             foreach ($pessoa->phone as $phone) {
                 if ($phone->id == $idPhone) {
                     $phone->pivot->flg_principal = 1;
                 } else {
                     $phone->pivot->flg_principal = 0;
-
                 }
                 $phone->pivot->save();
             }
         }
-
         return response()->json($pessoa->phone);
+    }
+
+
+    public function getTeatcher($request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+
+            $pessoa = new Pessoa();
+
+            $data = $pessoa
+                ->select("id", "nome")
+                ->where([
+                    ['nome', 'LIKE', "%$search%"],
+                    ['tipo_pessoas_id', '=', '4']])
+                ->whereHas('departments', function ($query) {
+                    $query->where('department_id', 2);
+                })
+                ->limit(5)
+                ->get();
+        }
+
+        return response()->json($data);
+    }
+
+
+    public function teatcherSubjetc($id)
+    {
+        $schoolSubjects = $this->findWithoutFail($id)->schoolSubject;
+
+        return $schoolSubjects;
 
     }
 

@@ -1,7 +1,7 @@
 "use strict";
 
 $(document).ready(function () {
-
+    $('#yearclass').validator();
 
     $('#yearClass').DataTable({
         processing: true,
@@ -69,6 +69,7 @@ $(document).ready(function () {
         if (minutesOfDay(startTime) != minutesOfDay(endTime)) {
             if (minutesOfDay(startTime) > minutesOfDay(endTime)) {
                 $('.inicio').addClass('has-error');
+
             } else {
                 $('.inicio').removeClass('has-error');
                 $('.fim').removeClass('has-error');
@@ -91,12 +92,9 @@ $(document).ready(function () {
         var endTime = moment(this.value, 'HH:mm');
         var startTime = moment($('#startTime').val(), 'HH:mm');
 
-        console.log(minutesOfDay(startTime) != minutesOfDay(endTime));
-
         if (minutesOfDay(startTime) != minutesOfDay(endTime)) {
             if (minutesOfDay(endTime) < minutesOfDay(startTime)) {
                 $('.fim').addClass('has-error');
-                console.log("Erro no campo Final")
             } else {
                 $('.fim').removeClass('has-error');
                 $('.inicio').removeClass('has-error');
@@ -104,6 +102,76 @@ $(document).ready(function () {
         } else {
             $('.inicio').addClass('has-error');
         }
+    });
+
+
+    $('#professor').select2({
+        width: '100%',
+        allowClear: true,
+        placeholder: 'Selecione um professor',
+        language: 'pt-BR',
+        ajax: {
+            url: '/pessoas/getAllTeatcher',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.nome,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+
+    $('#professor').on("select2:select", function (e) {
+        let prof = $('#professor');
+
+        if (!(typeof prof.val() == "undefined") && prof.val() != '') {
+            $('#schoolsubjects').removeAttr('disabled', 'disabled');
+
+            loadsubjects(prof.val());
+
+        } else {
+            $('#schoolsubjects').attr('disabled', 'disabled');
+        }
+    });
+
+
+
+    let loadsubjects = function (id) {
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/pessoas/teatcherSchoolSubjects/" + id,
+            cache: true,
+            success: function success(data) {
+                for (var k in data) {
+                    $('#schoolsubjects')
+                        .append('<option value="' + data[k].id + '">' + data[k].nome + '</option>')
+                }
+            },
+            beforeSend: function beforeSend(data) {
+            },
+            complete: function complete(data) {
+            }
+        });
+    };
+
+    $('#professor').on("select2:unselecting instead", function (e) {
+
+        $('#schoolsubjects')
+            .empty()
+            .append('<option>Selecione uma matéria</option>')
+            .attr("selected", "selected")
+            .attr('disabled', 'disabled');
+
     });
 
 
@@ -132,8 +200,6 @@ $(document).ready(function () {
             cache: true
         }
     });
-
-
 
 
 });

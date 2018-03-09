@@ -493,4 +493,18 @@ class PessoaController extends AppBaseController
 
         return response()->json($data);
     }
+
+
+    public function getAllTeatcher(Request $request)
+    {
+        return $this->pessoaRepository->getTeatcher($request);
+    }
+
+    public function teatcherSchoolSubjects($id)
+    {
+        $subjects = $this->pessoaRepository->teatcherSubjetc($id);
+
+        return response()->json($subjects);
+    }
+
 }

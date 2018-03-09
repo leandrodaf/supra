@@ -23,6 +23,8 @@
     <script src="{{asset('js/template/respond.min.js')}}"></script>
     <![endif]-->
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     @yield('css')
 </head>
 

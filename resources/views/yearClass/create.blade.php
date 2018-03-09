@@ -13,7 +13,7 @@
             <div class="box-body">
                 <div class="row">
 
-                    {!! Form::open(['route' => 'class.store', 'autocomplete' => 'off']) !!}
+                    {!! Form::open(['route' => 'class.store', 'autocomplete' => 'off', 'id' => 'yearclass']) !!}
                     @include('yearClass.fields')
                     <div class="form-group col-sm-12">
                         {!! Form::submit('Criar', ['class' => 'btn btn-primary']) !!}

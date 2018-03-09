@@ -21,9 +21,12 @@ Route::get('pessoas/getBasicData', 'PessoaController@getBasicData')->name('pesso
 Route::get('pessoas/getInfoUser/{idPessoa}', 'PessoaController@getInfoUser')->name('pessoas.getInfoUser');
 Route::get('pessoas/getAjax', 'PessoaController@dataAjax')->name('pessoas.getAjaxSelect2');
 Route::get('pessoas/funcionario', 'PessoaController@dataAjaxPessoa')->name('pessoas.getFuncionarioAjaxSelect2');
+Route::get('pessoas/getAllTeatcher', 'PessoaController@getAllTeatcher')->name('pessoa.getAllTeatcher');
+Route::get('pessoas/teatcherSchoolSubjects/{id}', 'PessoaController@teatcherSchoolSubjects')->name('pessoa.teatcherSchoolSubjects');
 Route::post('pessoas/emailMain', 'PessoaController@mainEmailPessoaAjax')->name('pessoa.emailMain');
 Route::post('pessoas/phoneMain', 'PessoaController@mainPhonePessoaAjax')->name('pessoa.phoneMain');
 Route::post('pessoas/storeAjax', 'PessoaController@storeAjax')->name('pessoa.storeAjax');
+
 
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::get('roles/getAjax', 'RoleController@dataAjax')->name('roles.getAjaxSelect2');
