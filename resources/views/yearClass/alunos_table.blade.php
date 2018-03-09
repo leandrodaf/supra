@@ -1,5 +1,9 @@
-<table class="table table-bordered">
-    <tbody>
+<div class="overlay" id="loadingAlunos" style="display: none;">
+    <i class="fa fa-refresh fa-spin"></i>
+</div>
+<table id="contentAlunos" class="table table-bordered">
+
+    <thead>
     <tr>
         <th style="width: 10px">#</th>
         <th>Aluno</th>
@@ -7,21 +11,9 @@
         <th>Progresso</th>
         <th style="width: 40px">Média</th>
     </tr>
+    </thead>
 
-    @foreach($class->alunos as $aluno)
-        <tr>
-            <td>{{$aluno->id}}</td>
-            <td>{{$aluno->nome_aluno}}</td>
-            <td>Update software</td>
-            <td>
-                <div class="progress progress-xs">
-                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                </div>
-            </td>
-            <td><span class="badge bg-red">55%</span></td>
-        </tr>
-    @endforeach
-
+    <tbody>
 
     </tbody>
 </table>

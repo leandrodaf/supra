@@ -345,5 +345,16 @@ class AlunosController extends AppBaseController
         return response()->json($data);
     }
 
+    public function syncYearclass($id)
+    {
+        $this->alunosRepository->syncAluno($id);
+    }
+
+
+    public function getAllAlunos(Request $request, $id)
+    {
+        return $this->alunosRepository->getAllAlunos($request, $id);
+    }
+
 
 }

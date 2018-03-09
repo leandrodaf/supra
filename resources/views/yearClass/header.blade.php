@@ -36,7 +36,6 @@
             <dd>{{$class->pessoa[0]['nome']}}</dd>
 
             <dt>Matéria</dt>
-
             <dd>{{$class->schoolSubject[0]['nome']}}</dd>
         </dl>
 

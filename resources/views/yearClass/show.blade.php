@@ -2,6 +2,7 @@
 
 @section('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="id-class" content="{{ $class->id }}">
 @endsection
 
 @section('content')
@@ -43,17 +44,7 @@
                     <div class="box-body">
                         <div class="row">
 
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-block">
-                                    <div class="col-lg-10">
-                                        <select name="aluno" id="aluno" class="form-control"
-                                                required="required"></select>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <button type="submit" class="btn btn-primary">Incluir aluno</button>
-                                    </div>
-                                </div>
-                            </div>
+                            @include('yearClass.add_alunos')
 
 
                         </div>

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\YearClass;
-use function foo\func;
-use Illuminate\Http\Request;
+use App\Models\YearClass;
 use App\Repositories\YearClassRepository;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class YearClassController extends Controller
@@ -95,11 +94,14 @@ class YearClassController extends Controller
         return redirect(route('class.show', $class->id));
     }
 
-
     public function syncAluno(Request $request, $id)
     {
         return $this->yearClassRepository->addAlunoToYearClass($request, $id);
     }
 
+    public function synchronizedStudents($id)
+    {
+        return $this->yearClassRepository->synchronizedStudents($id);
+    }
 
 }

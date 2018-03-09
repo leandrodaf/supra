@@ -2,14 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Models\Alunos;
-use App\YearClass;
-use http\Env\Request;
+use App\Models\YearClass;
 use InfyOm\Generator\Common\BaseRepository;
-use Intervention\Image\ImageManagerStatic as Image;
-use App\Http\Requests\CreateAlunosRequest;
-use App\Http\Requests\UpdateAlunosRequest;
-use App\Http\Requests\StoreAlunoMatricula;
 
 class YearClassRepository extends BaseRepository
 {
@@ -29,15 +23,12 @@ class YearClassRepository extends BaseRepository
     }
 
 
-    public function addAlunoToYearClass(Request $request, $id)
+    public function addAlunoToYearClass($request, $id)
     {
-
         try {
-            $pessoa = $this->findWithoutFail($id);
-
             $data = $request->all();
-
-            $pessoa->sync($data);
+            $class = $this->findWithoutFail($id);
+            $class->alunos()->sync($data['aluno']);
 
             return response(200);
 
@@ -46,8 +37,25 @@ class YearClassRepository extends BaseRepository
                 'message' => 'Error in synchronize objects'
             ], 422);
         }
-
-
     }
+
+
+    public function synchronizedStudents($id)
+    {
+        try {
+            $class = $this->findWithoutFail($id);
+
+            $data['alunos'] = $class->alunos;
+            $data['schoolSubject'] = $class->schoolSubject[0]['nome'];
+
+            return response()->json($data);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error returning students'
+            ], 422);
+        }
+    }
+
 
 }

@@ -11,6 +11,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('alunos/getBasicData', 'AlunosController@getBasicData')->name('alunos.getBasicData');
 Route::get('alunos/getInfoUser/{idAluno}', 'AlunosController@getInfoUser')->name('alunos.getInfoUser');
 Route::get('alunos/availableAlunos', 'AlunosController@availableAlunos')->name('availableAlunos');
+Route::get('alunos/getAllAlunosClass/{id}', 'AlunosController@getAllAlunos')->name('alunos.getAllAlunosClass');
 Route::post('alunos/emailMain', 'AlunosController@mainEmailAlunoAjax')->name('alunos.emailMain');
 Route::post('alunos/responsaveis/{responsavel}', 'AlunosController@updateResponsaveis')->name('alunos.updateResponsaveis');
 Route::post('alunos/responsaveis/{responsavel}/desvincular', 'AlunosController@desvincularAluno')->name('alunos.desvincularAluno');
@@ -40,7 +41,8 @@ Route::post('management/resetSenha/{id}', 'UserManagementController@resetSenha')
 
 Route::get('classrooms/getAll', 'ClassRoomController@getAll');
 Route::get('class/getBasicData', 'YearClassController@getBasicData')->name('class.getBasicData');
-Route::post('class/syncAluno', 'YearClassController@syncAluno')->name('syncAluno');
+Route::get('class/synchronizedStudents/{id}', 'YearClassController@synchronizedStudents')->name('class.synchronizedStudents');
+Route::post('class/syncAluno/{id}', 'YearClassController@syncAluno')->name('class.syncAluno');
 
 
 Route::get('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherAll');

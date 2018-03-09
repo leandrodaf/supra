@@ -142,7 +142,6 @@ $(document).ready(function () {
     });
 
 
-
     let loadsubjects = function (id) {
         $.ajax({
             async: true,
@@ -164,14 +163,13 @@ $(document).ready(function () {
         });
     };
 
-    $('#professor').on("select2:unselecting instead", function (e) {
 
+    $('#professor').on("select2:unselecting instead", function (e) {
         $('#schoolsubjects')
             .empty()
             .append('<option>Selecione uma matéria</option>')
             .attr("selected", "selected")
             .attr('disabled', 'disabled');
-
     });
 
 
@@ -184,14 +182,14 @@ $(document).ready(function () {
         placeholder: 'Selecione um aluno',
         language: 'pt-BR',
         ajax: {
-            url: '/alunos/availableAlunos',
+            url: '/alunos/getAllAlunosClass/' + $('meta[name="id-class"]').attr('content'),
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
                 return {
                     results: $.map(data, function (item) {
                         return {
-                            text: 'Sala: ' + item.nome_sala + 'Capacidade: ' + item.capacidade,
+                            text: item.nome_aluno,
                             id: item.id
                         }
                     })
@@ -201,5 +199,130 @@ $(document).ready(function () {
         }
     });
 
+
+    $('#aluno').on("select2:select", function (e) {
+        let prof = $('#aluno');
+
+        if (!(typeof prof.val() == "undefined") && prof.val() != '') {
+            $('#incluirAluno').removeAttr('disabled', 'disabled');
+
+        } else {
+            $('#incluirAluno').attr('disabled', 'disabled');
+        }
+    });
+
+    $('#aluno').on("select2:unselecting instead", function (e) {
+        $('#incluirAluno')
+            .attr('disabled', 'disabled');
+    });
+
+    $('#incluirAluno').click(function () {
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/class/syncAluno/" + $('meta[name="id-class"]').attr('content'),
+            data: {aluno: $("#aluno :selected").val()},
+            success: function (data) {
+                loadAlunos();
+            },
+            beforeSend: function (before) {
+            },
+            complete: function (complete) {
+            },
+            error: function (error) {
+            }
+        });
+    });
+
+
+    $(window).on("load", function () {
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/class/synchronizedStudents/" + $('meta[name="id-class"]').attr('content'),
+            cache: true,
+            success: function success(data) {
+
+
+                let rowEmpaty = '    <td colspan="5"><div class="alert alert-info">\n' +
+                    '                    <strong>Atenção!</strong> Essa turma ainda não tem alunos cadastrados!.\n' +
+                    '                </div></td>';
+
+                if (data.alunos.length == 0) {
+                    $('#contentAlunos tbody')
+                        .append(rowEmpaty);
+                }
+
+                for (var k in data.alunos) {
+
+                    let row = ' <tr>\n' +
+                        '            <td>' + data.alunos[k].id + '</td>\n' +
+                        '            <td>' + data.alunos[k].nome_aluno + '</td>\n' +
+                        '            <td>' + data.schoolSubject + '</td>\n' +
+                        '            <td>\n' +
+                        '                <div class="progress progress-xs">\n' +
+                        '                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>\n' +
+                        '                </div>\n' +
+                        '            </td>\n' +
+                        '            <td><span class="badge bg-red">55%</span></td>\n' +
+                        '        </tr>';
+
+
+                    $('#contentAlunos tbody')
+                        .empty()
+                        .append(row);
+                }
+            },
+            beforeSend: function beforeSend(data) {
+                $('#loadingAlunos').show()
+            },
+            complete: function complete(data) {
+                $('#loadingAlunos').hide();
+            }
+        });
+    });
+
+    let loadAlunos = function () {
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/class/synchronizedStudents/" + $('meta[name="id-class"]').attr('content'),
+            cache: true,
+            success: function success(data) {
+
+                for (var k in data.alunos) {
+
+                    let row = ' <tr>\n' +
+                        '            <td>' + data.alunos[k].id + '</td>\n' +
+                        '            <td>' + data.alunos[k].nome_aluno + '</td>\n' +
+                        '            <td>' + data.materia + '</td>\n' +
+                        '            <td>\n' +
+                        '                <div class="progress progress-xs">\n' +
+                        '                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>\n' +
+                        '                </div>\n' +
+                        '            </td>\n' +
+                        '            <td><span class="badge bg-red">55%</span></td>\n' +
+                        '        </tr>';
+
+
+                    $('#contentAlunos tbody')
+                        .empty()
+                        .append(row);
+                }
+            },
+            beforeSend: function beforeSend(data) {
+                $('#loadingAlunos').show()
+            },
+            complete: function complete(data) {
+                $('#loadingAlunos').hide();
+            }
+        });
+    };
 
 });
