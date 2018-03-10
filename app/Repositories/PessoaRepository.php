@@ -116,7 +116,7 @@ class PessoaRepository extends BaseRepository
 
     public function teatcherSubjetc($id)
     {
-        $schoolSubjects = $this->findWithoutFail($id)->schoolSubject;
+        $schoolSubjects = $this->findWithoutFail($id)->SchoolSubject;
 
         return $schoolSubjects;
 
