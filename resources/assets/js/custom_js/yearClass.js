@@ -250,8 +250,6 @@ $(document).ready(function () {
                 url: "/class/synchronizedStudents/" + $('meta[name="id-class"]').attr('content'),
                 cache: true,
                 success: function success(data) {
-
-
                     let rowEmpaty = '    <td colspan="5"><div class="alert alert-info">\n' +
                         '                    <strong>Atenção!</strong> Essa turma ainda não tem alunos cadastrados!.\n' +
                         '                </div></td>';
@@ -262,7 +260,6 @@ $(document).ready(function () {
                     }
 
                     for (var k in data.alunos) {
-
                         let row = ' <tr>\n' +
                             '            <td>' + data.alunos[k].id + '</td>\n' +
                             '            <td>' + data.alunos[k].nome_aluno + '</td>\n' +
@@ -277,7 +274,6 @@ $(document).ready(function () {
 
 
                         $('#contentAlunos tbody')
-                            .empty()
                             .append(row);
                     }
                 },
@@ -302,6 +298,8 @@ $(document).ready(function () {
             url: "/class/synchronizedStudents/" + $('meta[name="id-class"]').attr('content'),
             cache: true,
             success: function success(data) {
+                $('#contentAlunos tbody')
+                    .empty();
 
                 for (var k in data.alunos) {
 
@@ -319,7 +317,6 @@ $(document).ready(function () {
 
 
                     $('#contentAlunos tbody')
-                        .empty()
                         .append(row);
                 }
             },

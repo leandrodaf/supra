@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateSchoolSubjectRequest;
 use App\Http\Requests\UpdateSchoolSubjectRequest;
 use App\Repositories\SchoolSubjectRepository;
-use App\Http\Controllers\AppBaseController;
-use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -58,8 +57,6 @@ class SchoolSubjectController extends AppBaseController
 
     public function teacherAdd(Request $request, $idPessoa)
     {
-
-
         if ($idPessoa != null) {
             try {
                 $pessoa = \App\Models\Pessoa::find($idPessoa);
