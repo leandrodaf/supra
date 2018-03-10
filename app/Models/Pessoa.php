@@ -274,5 +274,9 @@ class Pessoa extends Model
         return $this->belongsToMany(\App\Models\SchoolSubject::class);
     }
 
+    public function yearClass()
+    {
+        return $this->belongsToMany(\App\Models\YearClass::class);
+    }
 
 }

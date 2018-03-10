@@ -1,7 +1,7 @@
 "use strict";
 
 $(document).ready(function () {
-
+    $('#yearclass').validator();
 
     $('#yearClass').DataTable({
         processing: true,
@@ -69,6 +69,7 @@ $(document).ready(function () {
         if (minutesOfDay(startTime) != minutesOfDay(endTime)) {
             if (minutesOfDay(startTime) > minutesOfDay(endTime)) {
                 $('.inicio').addClass('has-error');
+
             } else {
                 $('.inicio').removeClass('has-error');
                 $('.fim').removeClass('has-error');
@@ -91,12 +92,9 @@ $(document).ready(function () {
         var endTime = moment(this.value, 'HH:mm');
         var startTime = moment($('#startTime').val(), 'HH:mm');
 
-        console.log(minutesOfDay(startTime) != minutesOfDay(endTime));
-
         if (minutesOfDay(startTime) != minutesOfDay(endTime)) {
             if (minutesOfDay(endTime) < minutesOfDay(startTime)) {
                 $('.fim').addClass('has-error');
-                console.log("Erro no campo Final")
             } else {
                 $('.fim').removeClass('has-error');
                 $('.inicio').removeClass('has-error');
@@ -105,5 +103,226 @@ $(document).ready(function () {
             $('.inicio').addClass('has-error');
         }
     });
+
+
+    $('#professor').select2({
+        width: '100%',
+        allowClear: true,
+        placeholder: 'Selecione um professor',
+        language: 'pt-BR',
+        ajax: {
+            url: '/pessoas/getAllTeatcher',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.nome,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+
+    $('#professor').on("select2:select", function (e) {
+        let prof = $('#professor');
+
+        if (!(typeof prof.val() == "undefined") && prof.val() != '') {
+            $('#schoolsubjects').removeAttr('disabled', 'disabled');
+
+            loadsubjects(prof.val());
+
+        } else {
+            $('#schoolsubjects').attr('disabled', 'disabled');
+        }
+    });
+
+
+    let loadsubjects = function (id) {
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/pessoas/teatcherSchoolSubjects/" + id,
+            cache: true,
+            success: function success(data) {
+                for (var k in data) {
+                    $('#schoolsubjects')
+                        .append('<option value="' + data[k].id + '">' + data[k].nome + '</option>')
+                }
+            },
+            beforeSend: function beforeSend(data) {
+            },
+            complete: function complete(data) {
+            }
+        });
+    };
+
+
+    $('#professor').on("select2:unselecting instead", function (e) {
+        $('#schoolsubjects')
+            .empty()
+            .append('<option>Selecione uma matéria</option>')
+            .attr("selected", "selected")
+            .attr('disabled', 'disabled');
+    });
+
+
+//    Gerenciamento de sala
+
+
+    $('#aluno').select2({
+        width: '100%',
+        allowClear: true,
+        placeholder: 'Selecione um aluno',
+        language: 'pt-BR',
+        ajax: {
+            url: '/alunos/getAllAlunosClass/' + $('meta[name="id-class"]').attr('content'),
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.nome_aluno,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+
+
+    $('#aluno').on("select2:select", function (e) {
+        let prof = $('#aluno');
+
+        if (!(typeof prof.val() == "undefined") && prof.val() != '') {
+            $('#incluirAluno').removeAttr('disabled', 'disabled');
+
+        } else {
+            $('#incluirAluno').attr('disabled', 'disabled');
+        }
+    });
+
+    $('#aluno').on("select2:unselecting instead", function (e) {
+        $('#incluirAluno')
+            .attr('disabled', 'disabled');
+    });
+
+    $('#incluirAluno').click(function () {
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/class/syncAluno/" + $('meta[name="id-class"]').attr('content'),
+            data: {aluno: $("#aluno :selected").val()},
+            success: function (data) {
+                loadAlunos();
+            },
+            beforeSend: function (before) {
+            },
+            complete: function (complete) {
+            },
+            error: function (error) {
+            }
+        });
+    });
+
+
+    $(window).on("load", function () {
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/class/synchronizedStudents/" + $('meta[name="id-class"]').attr('content'),
+            cache: true,
+            success: function success(data) {
+
+
+                let rowEmpaty = '    <td colspan="5"><div class="alert alert-info">\n' +
+                    '                    <strong>Atenção!</strong> Essa turma ainda não tem alunos cadastrados!.\n' +
+                    '                </div></td>';
+
+                if (data.alunos.length == 0) {
+                    $('#contentAlunos tbody')
+                        .append(rowEmpaty);
+                }
+
+                for (var k in data.alunos) {
+
+                    let row = ' <tr>\n' +
+                        '            <td>' + data.alunos[k].id + '</td>\n' +
+                        '            <td>' + data.alunos[k].nome_aluno + '</td>\n' +
+                        '            <td>' + data.schoolSubject + '</td>\n' +
+                        '            <td>\n' +
+                        '                <div class="progress progress-xs">\n' +
+                        '                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>\n' +
+                        '                </div>\n' +
+                        '            </td>\n' +
+                        '            <td><span class="badge bg-red">55%</span></td>\n' +
+                        '        </tr>';
+
+
+                    $('#contentAlunos tbody')
+                        .empty()
+                        .append(row);
+                }
+            },
+            beforeSend: function beforeSend(data) {
+                $('#loadingAlunos').show()
+            },
+            complete: function complete(data) {
+                $('#loadingAlunos').hide();
+            }
+        });
+    });
+
+    let loadAlunos = function () {
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/class/synchronizedStudents/" + $('meta[name="id-class"]').attr('content'),
+            cache: true,
+            success: function success(data) {
+
+                for (var k in data.alunos) {
+
+                    let row = ' <tr>\n' +
+                        '            <td>' + data.alunos[k].id + '</td>\n' +
+                        '            <td>' + data.alunos[k].nome_aluno + '</td>\n' +
+                        '            <td>' + data.materia + '</td>\n' +
+                        '            <td>\n' +
+                        '                <div class="progress progress-xs">\n' +
+                        '                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>\n' +
+                        '                </div>\n' +
+                        '            </td>\n' +
+                        '            <td><span class="badge bg-red">55%</span></td>\n' +
+                        '        </tr>';
+
+
+                    $('#contentAlunos tbody')
+                        .empty()
+                        .append(row);
+                }
+            },
+            beforeSend: function beforeSend(data) {
+                $('#loadingAlunos').show()
+            },
+            complete: function complete(data) {
+                $('#loadingAlunos').hide();
+            }
+        });
+    };
 
 });

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\YearClass;
-use function foo\func;
-use Illuminate\Http\Request;
+use App\Models\YearClass;
 use App\Repositories\YearClassRepository;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class YearClassController extends Controller
@@ -24,6 +23,15 @@ class YearClassController extends Controller
     public function index()
     {
         return view('yearClass.index');
+    }
+
+
+    public function show($idClass)
+    {
+        $class = YearClass::find($idClass);
+
+
+        return view('yearClass.show')->with(compact('class'));
     }
 
 
@@ -73,7 +81,28 @@ class YearClassController extends Controller
         $input = $request->all();
         $input['activeTime'] = '01-' . $input['activeTime'];
         $input['activeTime'] = Carbon::createFromFormat('d-m-Y', $input['activeTime'])->format('Y-m-d');
-        $yearClass = $this->yearClassRepository->create($input);
-        return dd($yearClass);
+
+
+        $class = $this->yearClassRepository->create($input);
+        $class->pessoa()->sync(
+            $input['professor_id']
+        );
+
+        $class->schoolSubject()->sync(
+            $input['schoolsubjects_id']
+        );
+
+        return redirect(route('class.show', $class->id));
     }
+
+    public function syncAluno(Request $request, $id)
+    {
+        return $this->yearClassRepository->addAlunoToYearClass($request, $id);
+    }
+
+    public function synchronizedStudents($id)
+    {
+        return $this->yearClassRepository->synchronizedStudents($id);
+    }
+
 }

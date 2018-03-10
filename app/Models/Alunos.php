@@ -190,4 +190,11 @@ class Alunos extends Model
             'phone_id'
         )->withPivot('flg_principal');
     }
+
+
+    public function yearClass()
+    {
+        return $this->belongsToMany(\App\Models\YearClass::class);
+    }
+
 }

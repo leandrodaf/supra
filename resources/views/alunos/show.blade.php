@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+    {{\Carbon\Carbon::setLocale('pt_BR')}}
+
     <section class="content-header">
 
     </section>

@@ -125,8 +125,38 @@ class AlunosRepository extends BaseRepository
                 $email->pivot->save();
             }
         }
-
         return response()->json($alunos->email);
-
     }
+
+
+    public function getAllAlunos($request, $id)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+
+            $aluno = new Alunos();
+
+            $data = $aluno
+                ->select("id", "nome_aluno")
+                ->where([
+                    ['nome_aluno', 'LIKE', "%$search%"]
+                ])
+                ->whereDoesntHave('yearClass', function ($query) use ($id) {
+                    $query->where('year_class_id', '=', $id);
+                })
+                ->limit(5)
+                ->get();
+        }
+
+        return response()->json($data);
+    }
+
+
+    public function subQueryAlunosClass($query, $id)
+    {
+        $query->whereNotIn('year_class_id', $id);
+    }
+
 }

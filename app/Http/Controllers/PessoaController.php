@@ -337,7 +337,7 @@ class PessoaController extends AppBaseController
             'cpf_cnpj' => 'required|string|unique:pessoas,cpf_cnpj,' . $idPessoa,
         ]);
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return Redirect::back()->withErrors($validator);
         }
 
@@ -456,7 +456,7 @@ class PessoaController extends AppBaseController
             $pessoa = new Pessoa();
 
             $data = $pessoa
-                ->select("id", "nome", 'cpf_cnpj', 'tipo_pessoas_id' )
+                ->select("id", "nome", 'cpf_cnpj', 'tipo_pessoas_id')
                 ->where([
                     ['nome', 'LIKE', "%$search%"],
                     ['tipo_pessoas_id', '=', '4']])
@@ -483,7 +483,7 @@ class PessoaController extends AppBaseController
             $pessoa = new Pessoa();
 
             $data = $pessoa
-                ->select("id", "nome", 'cpf_cnpj', 'tipo_pessoas_id' )
+                ->select("id", "nome", 'cpf_cnpj', 'tipo_pessoas_id')
                 ->where([
                     ['nome', 'LIKE', "%$search%"],
                     ['tipo_pessoas_id', '=', '2']])
@@ -494,4 +494,18 @@ class PessoaController extends AppBaseController
 
         return response()->json($data);
     }
+
+
+    public function getAllTeatcher(Request $request)
+    {
+        return $this->pessoaRepository->getTeatcher($request);
+    }
+
+    public function teatcherSchoolSubjects(Request $request)
+    {
+        $subjects = $this->pessoaRepository->teatcherSubjetc($request);
+
+        return $subjects;
+    }
+
 }

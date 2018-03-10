@@ -13,7 +13,7 @@
             {!! Form::label('activeTime', 'Encerra em:') !!}
         </div>
 
-        <input type="text" class="form-control" name="activeTime" id="activeTime" value="">
+        <input type="text" class="form-control" name="activeTime" id="activeTime" value="" required="required">
 
         @if ($errors->has('activeTime'))
             <span class="help-block">
@@ -27,8 +27,9 @@
             {!! Form::label('startTime', 'Horário de Início:') !!}
         </div>
 
-        <div class="input-group startTime" data-placement="right" data-align="top" data-autoclose="true">
-            <input type="text" name="startTime"  id="startTime" class="form-control" value="00:00" size="5" maxlength="5">
+        <div class="input-group startTime"  data-align="top" data-autoclose="true">
+            <input type="text" name="startTime" id="startTime" class="form-control" placeholder="00:00" size="5"
+                   maxlength="5" required="required">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-time"></span>
             </span>
@@ -46,8 +47,9 @@
             {!! Form::label('endTime', 'Horário de encerramento:') !!}
         </div>
 
-        <div class="input-group endTime" data-placement="right" data-align="top" data-autoclose="true">
-            <input type="text" name="endTime" id="endTime" class="form-control" value="00:00" size="5" maxlength="5">
+        <div class="input-group endTime" data-align="top" data-autoclose="true">
+            <input type="text" name="endTime" id="endTime" class="form-control" placeholder="00:00" size="5"
+                   maxlength="5" required="required">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-time"></span>
             </span>
@@ -58,6 +60,23 @@
                 <strong>{{ $errors->first('endTime') }}</strong>
             </span>
         @endif
+    </div>
+
+    <div id="professor_id" class="form-group {{$errors->has('professor_id') ? "has-error":""}} col-sm-8">
+        <div class="text-left">
+            {!! Form::label('classroom', 'Professor:') !!}
+        </div>
+        <select name="professor_id" id="professor" class="form-control" required="required"></select>
+    </div>
+
+    <div id="schoolSubjects" class="form-group col-sm-4">
+        <div class="text-left">
+            {!! Form::label('schoolsubjects_id', 'Matéria:') !!}
+        </div>
+        <select name="schoolsubjects_id" id="schoolsubjects" class="form-control" disabled="disabled"
+                required="required">
+            <option>Selecione uma matéria</option>
+        </select>
     </div>
 
 

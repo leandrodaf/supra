@@ -327,5 +327,35 @@ class AlunosController extends AppBaseController
     }
 
 
+    public function availableAlunos(Request $request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+
+            $aluno = new Alunos();
+
+            $data = $aluno
+                ->select("id", "nome_aluno")
+//                ->where()
+                ->limit(5)
+                ->get();
+        }
+
+        return response()->json($data);
+    }
+
+    public function syncYearclass($id)
+    {
+        $this->alunosRepository->syncAluno($id);
+    }
+
+
+    public function getAllAlunos(Request $request, $id)
+    {
+        return $this->alunosRepository->getAllAlunos($request, $id);
+    }
+
 
 }
