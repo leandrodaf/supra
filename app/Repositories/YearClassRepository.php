@@ -28,7 +28,7 @@ class YearClassRepository extends BaseRepository
         try {
             $data = $request->all();
             $class = $this->findWithoutFail($id);
-            $class->alunos()->sync($data['aluno']);
+            $class->alunos()->syncWithoutDetaching($data['aluno']);
 
             return response(200);
 
