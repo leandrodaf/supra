@@ -105,4 +105,11 @@ class YearClassController extends Controller
         return $this->yearClassRepository->synchronizedStudents($id);
     }
 
+    public function detachStudents(Request $request)
+    {
+        $data = $request->all();
+
+        return $this->yearClassRepository->detachStudents($data['idClass'], $data['idAluno']);
+    }
+
 }

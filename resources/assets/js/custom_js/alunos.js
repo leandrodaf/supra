@@ -410,7 +410,7 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 
 
-    $('#yearclass tr').click(function(){
+    $('#yearclass tr').click(function () {
         window.location = $(this).data('url');
         return false;
     });

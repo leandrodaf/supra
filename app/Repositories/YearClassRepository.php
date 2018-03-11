@@ -58,4 +58,21 @@ class YearClassRepository extends BaseRepository
     }
 
 
+    public function detachStudents($idClass, $idAluno)
+    {
+        try {
+            $class = $this->findWithoutFail($idClass);
+
+            $class->alunos()->detach($idAluno);
+
+            return $idAluno;
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error removing student'
+            ], 422);
+        }
+    }
+
+
 }

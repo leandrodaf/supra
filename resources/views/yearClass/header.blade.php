@@ -33,7 +33,7 @@
 
             <dt>Professor</dt>
 
-            <dd>{{$class->pessoa[0]['nome']}}</dd>
+            <dd><a href="{{route('pessoas.show', $class->pessoa[0]['id'])}}">{{$class->pessoa[0]['nome']}}</a></dd>
 
             <dt>Matéria</dt>
             <dd>{{$class->schoolSubject[0]['nome']}}</dd>

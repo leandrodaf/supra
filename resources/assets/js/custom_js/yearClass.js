@@ -1,6 +1,8 @@
 "use strict";
 
 $(document).ready(function () {
+
+
     $('#yearclass').validator();
 
     $('#yearClass').DataTable({
@@ -261,7 +263,6 @@ $(document).ready(function () {
 
                     for (var k in data.alunos) {
                         let row = ' <tr>\n' +
-                            '            <td>' + data.alunos[k].id + '</td>\n' +
                             '            <td>' + data.alunos[k].nome_aluno + '</td>\n' +
                             '            <td>' + data.schoolSubject + '</td>\n' +
                             '            <td>\n' +
@@ -270,8 +271,10 @@ $(document).ready(function () {
                             '                </div>\n' +
                             '            </td>\n' +
                             '            <td><span class="badge bg-red">55%</span></td>\n' +
+                            '            <td style="text-align: center;" data-toggle="tooltip" data-placement="right" title="Desvincular aluno">' +
+                            '                <i class="fa fa-plug" data-id="' + data.alunos[k].id + '"  style="color: #cb2027; cursor: pointer;"  data-toggle="modal" data-target="#unsync" data-aluno-id="' + data.alunos[k].id + '"></i>' +
+                            '            </td>' +
                             '        </tr>';
-
 
                         $('#contentAlunos tbody')
                             .append(row);
@@ -304,15 +307,17 @@ $(document).ready(function () {
                 for (var k in data.alunos) {
 
                     let row = ' <tr>\n' +
-                        '            <td>' + data.alunos[k].id + '</td>\n' +
                         '            <td>' + data.alunos[k].nome_aluno + '</td>\n' +
-                        '            <td>' + data.materia + '</td>\n' +
+                        '            <td>' + data.schoolSubject + '</td>\n' +
                         '            <td>\n' +
                         '                <div class="progress progress-xs">\n' +
                         '                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>\n' +
                         '                </div>\n' +
                         '            </td>\n' +
                         '            <td><span class="badge bg-red">55%</span></td>\n' +
+                        '            <td style="text-align: center;" data-toggle="tooltip" data-placement="right" title="Desvincular aluno">' +
+                        '                <i class="fa fa-plug" data-id="' + data.alunos[k].id + '"  style="color: #cb2027; cursor: pointer;"  data-toggle="modal" data-target="#unsync" data-aluno-id="' + data.alunos[k].id + '"></i>' +
+                        '            </td>' +
                         '        </tr>';
 
 
@@ -328,5 +333,52 @@ $(document).ready(function () {
             }
         });
     };
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+
+    $('#unsync').on('show.bs.modal', function (e) {
+        var alunoId = $(e.relatedTarget).data('aluno-id');
+        $(e.currentTarget).find('#unsyncButton').val(alunoId);
+    });
+
+
+    $('#unsyncButton').click(function () {
+        detachStudents(this.value);
+    });
+
+    let detachStudents = function (id) {
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/class/syncAluno",
+            data: {
+                idAluno: id,
+                idClass: $('meta[name="id-class"]').attr('content')
+            },
+            success: function (data) {
+                $('#unsync').modal('hide');
+                $('#alertDelete').removeClass('fa-refresh fa-spin');
+                $('#alertDelete').addClass('fa-exclamation');
+            },
+            beforeSend: function (before) {
+                $('#alertDelete').removeClass('fa-exclamation');
+                $('#alertDelete').addClass('fa-refresh fa-spin');
+            },
+            complete: function (complete) {
+                loadAlunos();
+            },
+            error: function (error) {
+                console.log(error);
+                $('#alertDelete').removeClass('fa-refresh fa-spin');
+                $('#alertDelete').addClass('fa-exclamation');
+            }
+        });
+
+
+    }
+
 
 });
