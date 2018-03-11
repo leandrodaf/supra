@@ -617,4 +617,9 @@ $(document).ready(function () {
         language: 'pt-BR'
     });
 
+    $('#yearclass tr').click(function () {
+        window.location = $(this).data('url');
+        return false;
+    });
+
 });

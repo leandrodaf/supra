@@ -87,7 +87,10 @@
                 @endif
                 @if($pessoa->tipoPessoa['id'] == 4 && \App\Helpers\Helpers::canRole(array_pluck($pessoa->departments->toArray(), 'nome'), ['Departamento acadêmico']))
                     @include('pessoas.teatcher')
+                    @include('pessoas.yearClass')
+
                 @endif
+
 
             </div>
         </div>
