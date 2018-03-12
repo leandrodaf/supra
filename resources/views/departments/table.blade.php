@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="setors-table">
+<table class="table table-responsive table-responsive" id="setors-table">
     <thead>
         <tr>
             <th>Nome</th>

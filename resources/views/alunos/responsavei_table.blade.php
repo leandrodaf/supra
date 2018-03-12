@@ -1,6 +1,6 @@
 @if(count($alunos->pessoa->toArray()) != 0)
     <ul class="nav nav-stacked">
-        <table class="table table-condensed">
+        <table class="table table-condensed table-responsive">
             <tbody>
             @foreach($alunos->pessoa as $responsavel)
 

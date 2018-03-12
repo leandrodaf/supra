@@ -28,6 +28,7 @@ mix.js('resources/assets/js/custom_js/pessoas.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/matricula.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/management.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/yearClass.js', 'public/js/features/');
+mix.js('resources/assets/js/custom_js/activities.js', 'public/js/features/');
 
 
 mix.js('resources/assets/js/plugins/jquery.cpfcnpj.min.js', 'public/js/plugins/jquery.cpfcnpj.min.js');

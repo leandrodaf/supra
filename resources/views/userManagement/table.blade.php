@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered dt-responsive nowrap" id="management-user-table">
+<table class="table table-striped table-bordered dt-responsive nowrap table-responsive" id="management-user-table">
     <thead>
     <tr>
         <th>#</th>

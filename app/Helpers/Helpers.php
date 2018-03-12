@@ -5,7 +5,8 @@ namespace App\Helpers;
 
 
 use Illuminate\Support\Facades\Auth;
-use phpDocumentor\Reflection\Types\Boolean;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class Helpers
 {
@@ -70,7 +71,19 @@ class Helpers
                 }
             }
         }
+    }
 
+    public function saveFile($data, $fieldName, $model)
+    {
+        foreach ($data->file($fieldName) as $file) {
+            $extension = $file->getClientOriginalExtension();
+            Storage::disk('local')->put($file->getFilename() . '.' . $extension, File::get($file));
+            $entry['mime'] = $file->getClientMimeType();
+            $entry['original_filename'] = $file->getClientOriginalName();
+            $entry['filename'] = $file->getFilename() . '.' . $extension;
+            $entry['activitie_id'] = $model->id;
+            $model->fileentry()->create($entry);
+        }
     }
 
 

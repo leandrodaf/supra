@@ -61,3 +61,4 @@ Route::resource('departments', 'DepartmentController');
 Route::resource('management', 'UserManagementController');
 Route::resource('classrooms', 'ClassRoomController');
 Route::resource('schoolsubject', 'SchoolSubjectController');
+Route::resource('activitie', 'ActivitieController');

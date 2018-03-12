@@ -102,7 +102,6 @@ class Alunos extends Model
         'flg_juntos_aos_pais_aluno' => 'required',
         'qtd_irmaos_aluno' => 'nullable|min:1|max:10',
         'tipo_pessoas_id' => 'required'
-
     ];
 
 //'email.*' => 'email|distinct|unique:alunos'
