@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFileentriesTable extends Migration
+class CreateAlunosActivitieTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateFileentriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('fileentrys', function (Blueprint $table) {
+        Schema::create('activitie_alunos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('filename');
-            $table->string('mime');
-            $table->string('original_filename');
-            $table->string('extension');
-            $table->integer('activitie_id')->unsigned()->nullable();
+            $table->integer('activitie_id')->unsigned();
             $table->foreign('activitie_id')->references('id')->on('activities')->onDelete('cascade');
-
+            $table->integer('alunos_id')->unsigned();
+            $table->foreign('alunos_id')->references('id')->on('alunos')->onDelete('cascade');
+            $table->float('media');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ class CreateFileentriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fileentries');
+        Schema::dropIfExists('activitie_alunos');
     }
 }

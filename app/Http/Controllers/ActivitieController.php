@@ -16,11 +16,15 @@ class ActivitieController extends Controller
         $this->activitieRepository = $activitieRepo;
     }
 
-
     public function store(Request $request)
     {
         return $this->activitieRepository->storeActivitie($request);
 
+    }
+
+    public function loadActivitie($id)
+    {
+        return response()->json($this->activitieRepository->loadActivitie($id));
     }
 
 }

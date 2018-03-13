@@ -40,7 +40,21 @@ class ActivitieRepository extends BaseRepository
             $helper->saveFile($request, 'attachedFile', $activitie);
         }
 
-        return dd($activitie);
+        return $activitie;
+    }
+
+
+    public function loadActivitie($id)
+    {
+        $activitie = $this->findWithoutFail($id);
+        $activitie->load(['fileentry' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }, 'aluno' => function ($query) {
+            $query->orderBy('nome_aluno', 'asc');
+        }]);
+
+
+        return $activitie;
     }
 
 }

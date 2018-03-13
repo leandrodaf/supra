@@ -13,7 +13,15 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-        @include('pessoas.yearClass_table')
+
+        @if(count($pessoa->yearClass) != 0)
+
+            @include('pessoas.yearClass_table')
+
+        @else
+            O professor não gerencia nenhuma turma
+        @endif
+
     </div>
     <!-- /.box-body -->
 </div>

@@ -15,7 +15,8 @@ class Fileentry extends Model
     public $fillable = [
         'filename',
         'mime',
-        'original_filename'
+        'original_filename',
+        'extension'
     ];
 
 

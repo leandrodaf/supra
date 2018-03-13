@@ -81,6 +81,7 @@ class Helpers
             $entry['mime'] = $file->getClientMimeType();
             $entry['original_filename'] = $file->getClientOriginalName();
             $entry['filename'] = $file->getFilename() . '.' . $extension;
+            $entry['extension'] = $extension;
             $entry['activitie_id'] = $model->id;
             $model->fileentry()->create($entry);
         }

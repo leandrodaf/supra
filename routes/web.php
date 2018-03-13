@@ -50,6 +50,9 @@ Route::get('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherA
 Route::post('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherAdd');
 Route::delete('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherRemove');
 
+
+Route::get('/activitie/{id}', 'ActivitieController@loadActivitie');
+
 Route::resource('class', 'YearClassController');
 Route::resource('alunos', 'AlunosController');
 Route::resource('pessoas', 'PessoaController');

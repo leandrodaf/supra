@@ -67,4 +67,9 @@ class Activitie extends Model
         return $this->belongsTo(\App\Models\YearClass::class);
     }
 
+    public function aluno()
+    {
+        return $this->belongsToMany(\App\Models\Alunos::class)->withPivot('media');
+    }
+
 }

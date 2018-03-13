@@ -13,7 +13,15 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-        @include('alunos.yearClass_table')
+
+        @if(count($alunos->yearClass) != 0)
+
+            @include('alunos.yearClass_table')
+
+            @else
+
+            O aluno não possui turma
+        @endif
     </div>
     <!-- /.box-body -->
 </div>

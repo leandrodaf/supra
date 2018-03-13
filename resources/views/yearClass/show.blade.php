@@ -181,12 +181,12 @@
                             </div>
                         </div>
                         <div class="box-body collapse">
-                            <table class="table table-responsive">
+                            <table class="table table-responsive" id="listDocs">
                                 <thead>
                                 <tr>
                                     <th>Nome</th>
                                     <th>Data</th>
-                                    <th>Tipo</th>
+                                    <th>Formato</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -200,7 +200,7 @@
                         </div>
                     </div>
 
-                    <div class="box box-primary">
+                    <div class="box box-primary" id="listAlunos">
                         <table class="table table-striped table-responsive">
                             <thead>
                             <tr>
