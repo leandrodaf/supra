@@ -2,6 +2,30 @@
 
 $(document).ready(function () {
 
+
+        $('#activitieAluno').select2({
+            width: '100%',
+            allowClear: true,
+            placeholder: 'Selecione um aluno',
+            language: 'pt-BR',
+            ajax: {
+                url: '/class/getAlunos?id=' + $('meta[name="id-class"]').attr('content'),
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                text: item.nome_aluno,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
         $('#activitiesClass').validator();
 
         $(".date").mask("99/99/9999", {placeholder: "__/__ /___"});
@@ -45,7 +69,6 @@ $(document).ready(function () {
                     $('#activitiesInfoModal #title').text(data.title);
                     $('#activitiesInfoModal #dates').text(inicio + ' há ' + fim);
                     $('#removeActivities').removeAttr("data-activitie");
-                    $('#removeActivities').attr("data-activitie", data.id);
 
                     $('#listAlunos tbody')
                         .empty();
@@ -76,54 +99,53 @@ $(document).ready(function () {
         }
 
 
+        let setValueIdActivities = function (id) {
+            $('#removeActivities').data("data-activitie", id);
+        }
+
+
         $('#activitiesInfoModal').on('show.bs.modal', function (e) {
             var activitieId = $(e.relatedTarget).data('id');
             loadActivities(activitieId);
+            $('#removeActivities').val(activitieId);
         });
 
         $('#media').maskMoney({
             defaultZero: false
         });
 
-        $('#activitieAluno').select2({
-            width: '100%',
-            allowClear: true,
-            placeholder: 'Selecione um aluno',
-            language: 'pt-BR',
-            ajax: {
-                url: '/class/getAlunos?id=' + $('meta[name="id-class"]').attr('content'),
-                dataType: 'json',
-                delay: 250,
-                processResults: function (data) {
-                    return {
-                        results: $.map(data, function (item) {
-                            return {
-                                text: item.nome_aluno,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        });
 
         $('#removeActivities').click(function () {
-            console.log($('#removeActivities').data('activitie'));
+            $('#activitiesInfoModal').modal("hide");
+            $('#deleteActivities').modal("show");
+        });
 
-            // $.ajax({
-            //     async: true,
-            //     type: "DELETE",
-            //     dataType: "json",
-            //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            //     url: "/activitie/" + removeActivities,
-            //     data: { subjects: item[0].id },
-            //     cache: true,
-            //     success: function success(data) {},
-            //     beforeSend: function beforeSend(data) {},
-            //     complete: function complete(data) {}
-            // });
-        })
+        $('#deleteActivitiesButton').click(function () {
+            $.ajax({
+                async: true,
+                type: "DELETE",
+                dataType: "json",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: "/activitie/" + $('#removeActivities').val(),
+                cache: true,
+                success: function success(data) {
+                    $('#deleteActivities').modal('hide');
+                    $('#alertDeleteActivities').removeClass('fa-refresh fa-spin');
+                    $('#alertDeleteActivities').addClass('fa-exclamation');
+                },
+                beforeSend: function beforeSend(data) {
+                    $('#alertDeleteActivities').removeClass('fa-exclamation');
+                    $('#alertDeleteActivities').addClass('fa-refresh fa-spin');
+                },
+                complete: function complete(data) {
+                    $('[data-id="' + $('#removeActivities').val() + '"]').slideUp().remove();
+                },
+                error: function (error) {
+                    $('#alertDeleteActivities').removeClass('fa-refresh fa-spin');
+                    $('#alertDeleteActivities').addClass('fa-exclamation');
+                }
+            });
+        });
 
     }
 );

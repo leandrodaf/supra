@@ -87,6 +87,29 @@
         </div>
     </div>
 
+    <div class="modal fade" id="deleteActivities" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><strong>Desvincular aluno?</strong></h5>
+                </div>
+                <div class="modal-body text-center">
+
+                    <div class="alert alert-warning">
+                        <i id="alertDeleteActivities" class="fa fa-exclamation" style="font-size:80px; color: #333;"></i>
+                        <p></p>
+                        <strong>Atenção!</strong> Você realmente deseja deletar essa atividade?
+                    </div>
+
+                    <p></p>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button id="deleteActivitiesButton" type="button" value="" class="btn btn-warning">Desvincular</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- Modal add activities-->
 
 
@@ -159,13 +182,14 @@
         </div>
     </div>
 
-    <div class="modal fade" id="activitiesInfoModal" tabindex="-1" role="dialog" aria-labelledby="activitiesInfoModal"
-         aria-hidden="true">
+    <div class="modal fade" id="activitiesInfoModal" role="dialog" aria-labelledby="activitiesInfoModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="box-tools pull-right">
-                        <button id="removeActivities" type="button" class="btn btn-box-tool" aria-expanded="false" data-toggle="tooltip" data-placement="right" title="" data-original-title="Excluir atividade">
+                        <button id="removeActivities" type="button" class="btn btn-box-tool" aria-expanded="false"
+                                data-toggle="tooltip" data-placement="right" title=""
+                                data-original-title="Excluir atividade">
                             <i class="fa fa-trash" style="font-size: 20px; color: #cb2027;"></i>
                         </button>
                     </div>
@@ -177,9 +201,9 @@
                                     required="required"></select>
                         </div>
                         <div class="col-lg-3">
-                            <input type="text" id="media" name="media" class="form-control" required="required"
+                            <input type="number" id="media" name="media" class="form-control" required="required"
                                    placeholder="Média" ata-affixes-stay="true" data-suffix="%" data-thousands="."
-                                   data-decimal="," maxlength="7">
+                                   data-decimal="," maxlength="7" max="100.00">
                         </div>
                         <div class="col-lg-3">
                             <input type="button" value="Incluir" class="btn btn-primary">

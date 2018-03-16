@@ -34,17 +34,12 @@ class ActivitieController extends Controller
         $activitie = $this->activitieRepository->findWithoutFail($activitieId);
 
         if (empty($activitie)) {
-            $flash = new Flash();
-            $flash::error('Erro ao deletar atividade.');
-
-            return redirect(route('class.index'));
+            return response()->json(array('message' => 'Item not existe!'));
         }
 
         $this->activitieRepository->delete($activitieId);
 
-        $flash = new Flash();
-        $flash::success('A atividade foi deletada com sucesso');
+        return response(200);
 
-        return redirect()->back();
     }
 }

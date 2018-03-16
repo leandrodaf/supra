@@ -1,4 +1,4 @@
-<table class="table table-condensed table-responsive">
+<table class="table table-condensed table-responsive" id="listActitivites">
     <thead>
     <tr>
         <th>Titulo</th>
