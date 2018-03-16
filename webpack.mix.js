@@ -28,6 +28,7 @@ mix.js('resources/assets/js/custom_js/pessoas.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/matricula.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/management.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/yearClass.js', 'public/js/features/');
+mix.js('resources/assets/js/custom_js/activities.js', 'public/js/features/');
 
 
 mix.js('resources/assets/js/plugins/jquery.cpfcnpj.min.js', 'public/js/plugins/jquery.cpfcnpj.min.js');
@@ -72,6 +73,7 @@ mix.scripts([
     'node_modules/jquery-validation/dist/jquery.validate.js',
     'node_modules/jquery-sortable/source/js/jquery-sortable-min.js',
     'node_modules/jquery-loading/dist/jquery.loading.min.js',
+    'node_modules/jquery-price-format/jquery.priceformat.min.js',
     'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
     'node_modules/jquery-maskmoney/dist/jquery.maskMoney.min.js',
     'node_modules/datatables.net/js/jquery.dataTables.js',

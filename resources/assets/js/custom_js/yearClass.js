@@ -371,7 +371,6 @@ $(document).ready(function () {
                 loadAlunos();
             },
             error: function (error) {
-                console.log(error);
                 $('#alertDelete').removeClass('fa-refresh fa-spin');
                 $('#alertDelete').addClass('fa-exclamation');
             }

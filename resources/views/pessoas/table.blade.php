@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered dt-responsive nowrap" id="pessoas-table">
+<table class="table table-striped table-bordered dt-responsive nowrap table-responsive" id="pessoas-table">
     <thead>
     <tr>
         <th>#</th>

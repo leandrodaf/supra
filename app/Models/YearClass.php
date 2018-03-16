@@ -62,4 +62,9 @@ class YearClass extends Model
     {
         return $this->belongsToMany(\App\Models\SchoolSubject::class);
     }
+
+    public function activitie()
+    {
+        return $this->hasMany(\App\Models\Activitie::class, 'yearClass_id');
+    }
 }

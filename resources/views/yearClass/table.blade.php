@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered dt-responsive nowrap" id="yearClass">
+<table class="table table-striped table-bordered dt-responsive nowrap table-responsive" id="yearClass">
     <thead>
     <tr>
         <th>#</th>
