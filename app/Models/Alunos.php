@@ -193,7 +193,7 @@ class Alunos extends Model
 
     public function yearClass()
     {
-        return $this->belongsToMany(\App\Models\YearClass::class)->withPivot('media');
+        return $this->belongsToMany(\App\Models\YearClass::class);
     }
 
 }

@@ -44,11 +44,14 @@ Route::get('class/getBasicData', 'YearClassController@getBasicData')->name('clas
 Route::get('class/synchronizedStudents/{id}', 'YearClassController@synchronizedStudents')->name('class.synchronizedStudents');
 Route::post('class/syncAluno/{id}', 'YearClassController@syncAluno')->name('class.syncAluno');
 Route::post('class/syncAluno', 'YearClassController@detachStudents')->name('class.detachStudents');
+Route::get('class/getAlunos', 'YearClassController@getAlunos')->name('class.getAlunos');
 
 
 Route::get('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherAll');
 Route::post('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherAdd');
 Route::delete('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherRemove');
+
+Route::get('disk/file', 'FileentryController@getFile')->name('file.get');
 
 
 Route::get('/activitie/{id}', 'ActivitieController@loadActivitie');

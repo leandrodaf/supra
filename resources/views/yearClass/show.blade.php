@@ -159,18 +159,35 @@
         </div>
     </div>
 
-
     <div class="modal fade" id="activitiesInfoModal" tabindex="-1" role="dialog" aria-labelledby="activitiesInfoModal"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="title">Titulo</h4>
-                    <h5 id="dates">11/04/2018 há 11/05/2018</h5>
-
+                    <div class="box-tools pull-right">
+                        <button id="removeActivities" type="button" class="btn btn-box-tool" aria-expanded="false" data-toggle="tooltip" data-placement="right" title="" data-original-title="Excluir atividade">
+                            <i class="fa fa-trash" style="font-size: 20px; color: #cb2027;"></i>
+                        </button>
+                    </div>
+                    <h4 class="modal-title" id="title"></h4>
+                    <h5 id="dates"></h5>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <select name="activitieAluno" id="activitieAluno" class="form-control"
+                                    required="required"></select>
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="text" id="media" name="media" class="form-control" required="required"
+                                   placeholder="Média" ata-affixes-stay="true" data-suffix="%" data-thousands="."
+                                   data-decimal="," maxlength="7">
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="button" value="Incluir" class="btn btn-primary">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-body">
-                    <div class="box box-success">
+                    <div class="box box-success collapsed-box">
                         <div class="box-header with-border">
                             <h3 class="box-title">Arquivos Anexados</h3>
                             <div class="box-tools pull-right">
@@ -185,16 +202,13 @@
                                 <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>Data</th>
-                                    <th>Formato</th>
+                                    <th style="text-align: center">Data</th>
+                                    <th style="text-align: center">Formato</th>
+                                    <th style="text-align: center">Ação</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Atividade de colorir</td>
-                                    <td>11/04/1995</td>
-                                    <td>.PDF</td>
-                                </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -210,28 +224,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>Leandro Ferreira</td>
-                                <td><span class="badge bg-green">70%</span></td>
-                                <td class="text-center"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Lucas Quirino</td>
-                                <td><span class="badge bg-red">40%</span></td>
-                                <td class="text-center"><i class="fa fa-trash"></i></td>
-                            </tr>
-                            <tr>
-                                <td>Ana Karolina</td>
-                                <td><span class="badge bg-yellow">69%</span></td>
-                                <td class="text-center"><i class="fa fa-trash"></i></td>
-                            </tr>
+
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

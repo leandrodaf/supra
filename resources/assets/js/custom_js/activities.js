@@ -39,36 +39,29 @@ $(document).ready(function () {
                 url: "/activitie/" + id,
                 cache: true,
                 success: function success(data) {
-                    console.log(data);
-
                     let inicio = formatDate(new Date(data.start_date));
                     let fim = formatDate(new Date(data.end_date));
 
-
                     $('#activitiesInfoModal #title').text(data.title);
                     $('#activitiesInfoModal #dates').text(inicio + ' há ' + fim);
-
+                    $('#removeActivities').removeAttr("data-activitie");
+                    $('#removeActivities').attr("data-activitie", data.id);
 
                     $('#listAlunos tbody')
                         .empty();
 
                     for (var k in data.aluno) {
-
                         let row = '<tr><td>' + data.aluno[k].nome_aluno + '</td> <td><span class="badge ' + validationColorLabel(data.aluno[k].pivot.media) + '">' + data.aluno[k].pivot.media + '%' + '</span></td> <td class="text-center"><i class="fa fa-trash"></i></td></tr>';
-
-                        $('#listAlunos tbody')
-                            .append(row);
+                        $('#listAlunos tbody').append(row);
                     }
 
                     //Append docs
-                    $('#listDocs tbody')
-                        .empty();
+                    $('#listDocs tbody').empty();
 
                     for (var k in data.fileentry) {
 
-                        let row = '<tr><td>' + data.fileentry[k].original_filename + '</td> <td>' + formatDate(new Date(data.fileentry[k].created_at)) + '</td> <td>' + '.' + data.fileentry[k].extension + '</td> </tr>';
-                        $('#listDocs tbody')
-                            .append(row);
+                        let row = '<tr><td>' + data.fileentry[k].original_filename + '</td> <td style="text-align: center">' + formatDate(new Date(data.fileentry[k].created_at)) + '</td> <td style="text-align: center">' + '.' + data.fileentry[k].extension + '</td><td style="text-align: center"><a href="/disk/file?file=' + data.fileentry[k].filename + '" ><i class="fa fa-download"></i></td> </tr>';
+                        $('#listDocs tbody').append(row);
                     }
 
                 },
@@ -77,9 +70,7 @@ $(document).ready(function () {
                 complete: function complete(data) {
                 },
                 error: function (error) {
-                    console.log(error)
                 }
-
 
             });
         }
@@ -87,10 +78,52 @@ $(document).ready(function () {
 
         $('#activitiesInfoModal').on('show.bs.modal', function (e) {
             var activitieId = $(e.relatedTarget).data('id');
-
             loadActivities(activitieId);
-
         });
+
+        $('#media').maskMoney({
+            defaultZero: false
+        });
+
+        $('#activitieAluno').select2({
+            width: '100%',
+            allowClear: true,
+            placeholder: 'Selecione um aluno',
+            language: 'pt-BR',
+            ajax: {
+                url: '/class/getAlunos?id=' + $('meta[name="id-class"]').attr('content'),
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                text: item.nome_aluno,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+        $('#removeActivities').click(function () {
+            console.log($('#removeActivities').data('activitie'));
+
+            // $.ajax({
+            //     async: true,
+            //     type: "DELETE",
+            //     dataType: "json",
+            //     headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //     url: "/activitie/" + removeActivities,
+            //     data: { subjects: item[0].id },
+            //     cache: true,
+            //     success: function success(data) {},
+            //     beforeSend: function beforeSend(data) {},
+            //     complete: function complete(data) {}
+            // });
+        })
 
     }
 );

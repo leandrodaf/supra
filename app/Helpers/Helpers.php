@@ -87,5 +87,16 @@ class Helpers
         }
     }
 
+    public function getFile($name)
+    {
+
+        if ($file = Storage::disk('local')->exists($name)) {
+            return $file = Storage::download($name);
+        } else {
+            return array("message" => "File not found!");
+        }
+
+    }
+
 
 }

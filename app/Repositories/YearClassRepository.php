@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Alunos;
 use App\Models\YearClass;
 use InfyOm\Generator\Common\BaseRepository;
 
@@ -72,6 +73,32 @@ class YearClassRepository extends BaseRepository
                 'message' => 'Error removing student'
             ], 422);
         }
+    }
+
+
+    public function getAlunos($request)
+    {
+        $data = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $class = $request->id;
+
+
+            $alunos = new Alunos();
+
+            $data = $alunos
+                ->select("id", "nome_aluno")
+                ->where([
+                    ['nome_aluno', 'LIKE', "%$search%"]
+                ])
+                ->whereHas('yearClass', function ($query) use ($class) {
+                    $query->where('year_class_id', $class);
+                })
+                ->get();
+        }
+
+        return response()->json($data);
     }
 
 
