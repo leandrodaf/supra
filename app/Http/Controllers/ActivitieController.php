@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\ActivitieRepository;
 use Illuminate\Http\Request;
-use Flash;
+use Illuminate\Support\Facades\Storage;
 
 class ActivitieController extends Controller
 {
@@ -37,9 +37,15 @@ class ActivitieController extends Controller
             return response()->json(array('message' => 'Item not existe!'));
         }
 
+        Storage::delete($activitie->fileentry->pluck('filename'));
+
         $this->activitieRepository->delete($activitieId);
 
         return response(200);
-
     }
+
+    public function syncAluno(Request $request, $id){
+        return $this->activitieRepository->syncAluno($request, $id);
+    }
+
 }

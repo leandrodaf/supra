@@ -55,6 +55,7 @@ Route::get('disk/file', 'FileentryController@getFile')->name('file.get');
 
 
 Route::get('/activitie/{id}', 'ActivitieController@loadActivitie');
+Route::post('/activitie/{id}/pessoa', 'ActivitieController@syncAluno');
 
 Route::resource('class', 'YearClassController');
 Route::resource('alunos', 'AlunosController');

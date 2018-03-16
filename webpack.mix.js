@@ -73,6 +73,7 @@ mix.scripts([
     'node_modules/jquery-validation/dist/jquery.validate.js',
     'node_modules/jquery-sortable/source/js/jquery-sortable-min.js',
     'node_modules/jquery-loading/dist/jquery.loading.min.js',
+    'node_modules/jquery-price-format/jquery.priceformat.min.js',
     'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
     'node_modules/jquery-maskmoney/dist/jquery.maskMoney.min.js',
     'node_modules/datatables.net/js/jquery.dataTables.js',

@@ -96,14 +96,15 @@
                 <div class="modal-body text-center">
 
                     <div class="alert alert-warning">
-                        <i id="alertDeleteActivities" class="fa fa-exclamation" style="font-size:80px; color: #333;"></i>
+                        <i id="alertDeleteActivities" class="fa fa-exclamation"
+                           style="font-size:80px; color: #333;"></i>
                         <p></p>
                         <strong>Atenção!</strong> Você realmente deseja deletar essa atividade?
                     </div>
 
                     <p></p>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button id="deleteActivitiesButton" type="button" value="" class="btn btn-warning">Desvincular</button>
+                    <button id="deleteActivitiesButton" type="button" value="" class="btn btn-warning">Remover</button>
                 </div>
 
             </div>
@@ -201,12 +202,15 @@
                                     required="required"></select>
                         </div>
                         <div class="col-lg-3">
-                            <input type="number" id="media" name="media" class="form-control" required="required"
-                                   placeholder="Média" ata-affixes-stay="true" data-suffix="%" data-thousands="."
-                                   data-decimal="," maxlength="7" max="100.00">
+                            <div class="input-group">
+                                <input type="text" class="form-control" min="0" max="100" step="5" maxlength="6"
+                                       placeholder="0.00" name="media"
+                                       id="media" required="" aria-required="true" aria-invalid="false" disabled="disabled">
+                                <span class="input-group-addon">%</span>
+                            </div>
                         </div>
                         <div class="col-lg-3">
-                            <input type="button" value="Incluir" class="btn btn-primary">
+                            <button type="submit" id="incluirAlunoActivitie" class="btn btn-primary" disabled="disabled">Incluir aluno</button>
                         </div>
                     </div>
                 </div>
@@ -239,6 +243,10 @@
                     </div>
 
                     <div class="box box-primary" id="listAlunos">
+                        <div class="overlay" id="listAluno" style="display: none;">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+
                         <table class="table table-striped table-responsive">
                             <thead>
                             <tr>

@@ -53,8 +53,23 @@ class ActivitieRepository extends BaseRepository
             $query->orderBy('nome_aluno', 'asc');
         }]);
 
-
         return $activitie;
     }
+
+    public function syncAluno($request, $id)
+    {
+        $data = $request->all();
+        $activitie = $this->findWithoutFail($id);
+
+        if (empty($activitie)) {
+            return response()->json(array('message' => 'Item not existe!'));
+        }
+
+        $activitie->aluno()->sync(array($data['idAluno'] => ['media' => $data['average']]), false);
+
+        return response(200);
+
+    }
+
 
 }
