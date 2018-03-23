@@ -238,6 +238,16 @@ $(document).ready(function () {
         });
     });
 
+    let validationColorLabel = function (media) {
+        if (media >= 70) {
+            return 'bg-green';
+        } else if (media < 70 && media > 50) {
+            return 'bg-yellow';
+        } else if (media <= 50) {
+            return 'bg-red';
+        }
+    };
+
 
     $(window).on("load", function () {
 
@@ -252,25 +262,24 @@ $(document).ready(function () {
                 url: "/class/synchronizedStudents/" + $('meta[name="id-class"]').attr('content'),
                 cache: true,
                 success: function success(data) {
+
                     let rowEmpaty = '    <td colspan="5"><div class="alert alert-info">\n' +
                         '                    <strong>Atenção!</strong> Essa turma ainda não tem alunos cadastrados!.\n' +
                         '                </div></td>';
 
                     if (data.alunos.length == 0) {
-                        $('#contentAlunos tbody')
-                            .append(rowEmpaty);
+                        $('#contentAlunos tbody').append(rowEmpaty);
                     }
-
                     for (var k in data.alunos) {
                         let row = ' <tr>\n' +
                             '            <td>' + data.alunos[k].nome_aluno + '</td>\n' +
-                            '            <td>' + data.schoolSubject + '</td>\n' +
+                            '            <td>' + data.school_subject[0].nome + '</td>\n' +
                             '            <td>\n' +
                             '                <div class="progress progress-xs">\n' +
                             '                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>\n' +
                             '                </div>\n' +
                             '            </td>\n' +
-                            '            <td><span class="badge bg-red">55%</span></td>\n' +
+                            '            <td><span class="badge bg-red '+ validationColorLabel(data.alunos[k].media)+'">' + data.alunos[k].media + '%</span></td>' +
                             '            <td style="text-align: center;" data-toggle="tooltip" data-placement="right" title="Desvincular aluno">' +
                             '                <i class="fa fa-plug" data-id="' + data.alunos[k].id + '"  style="color: #cb2027; cursor: pointer;"  data-toggle="modal" data-target="#unsync" data-aluno-id="' + data.alunos[k].id + '"></i>' +
                             '            </td>' +
@@ -301,28 +310,23 @@ $(document).ready(function () {
             url: "/class/synchronizedStudents/" + $('meta[name="id-class"]').attr('content'),
             cache: true,
             success: function success(data) {
-                $('#contentAlunos tbody')
-                    .empty();
-
+                $('#contentAlunos tbody').empty();
                 for (var k in data.alunos) {
-
                     let row = ' <tr>\n' +
                         '            <td>' + data.alunos[k].nome_aluno + '</td>\n' +
-                        '            <td>' + data.schoolSubject + '</td>\n' +
+                        '            <td>' + data.school_subject[0].nome + '</td>\n' +
                         '            <td>\n' +
                         '                <div class="progress progress-xs">\n' +
                         '                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>\n' +
                         '                </div>\n' +
                         '            </td>\n' +
-                        '            <td><span class="badge bg-red">55%</span></td>\n' +
+                        '            <td><span class="badge bg-red '+ validationColorLabel(data.alunos[k].media)+'">' + data.alunos[k].media + '%</span></td>' +
                         '            <td style="text-align: center;" data-toggle="tooltip" data-placement="right" title="Desvincular aluno">' +
                         '                <i class="fa fa-plug" data-id="' + data.alunos[k].id + '"  style="color: #cb2027; cursor: pointer;"  data-toggle="modal" data-target="#unsync" data-aluno-id="' + data.alunos[k].id + '"></i>' +
                         '            </td>' +
                         '        </tr>';
 
-
-                    $('#contentAlunos tbody')
-                        .append(row);
+                    $('#contentAlunos tbody').append(row);
                 }
             },
             beforeSend: function beforeSend(data) {
@@ -371,6 +375,7 @@ $(document).ready(function () {
                 loadAlunos();
             },
             error: function (error) {
+                console.log(error);
                 $('#alertDelete').removeClass('fa-refresh fa-spin');
                 $('#alertDelete').addClass('fa-exclamation');
             }

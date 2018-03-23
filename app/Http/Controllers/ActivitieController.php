@@ -19,8 +19,9 @@ class ActivitieController extends Controller
 
     public function store(Request $request)
     {
-        return $this->activitieRepository->storeActivitie($request);
+        $this->activitieRepository->storeActivitie($request);
 
+        return redirect()->back();
     }
 
     public function loadActivitie($id)
@@ -44,7 +45,8 @@ class ActivitieController extends Controller
         return response(200);
     }
 
-    public function syncAluno(Request $request, $id){
+    public function syncAluno(Request $request, $id)
+    {
         return $this->activitieRepository->syncAluno($request, $id);
     }
 

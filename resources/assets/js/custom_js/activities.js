@@ -68,6 +68,7 @@ $(document).ready(function () {
             url: "/activitie/" + id,
             cache: true,
             success: function success(data) {
+
                 let inicio = formatDate(new Date(data.start_date));
                 let fim = formatDate(new Date(data.end_date));
 
@@ -78,7 +79,7 @@ $(document).ready(function () {
                 $('#listAlunos tbody').empty();
 
                 for (var k in data.aluno) {
-                    let row = '<tr><td>' + data.aluno[k].nome_aluno + '</td> <td><span class="badge ' + validationColorLabel(data.aluno[k].pivot.media) + '">' + data.aluno[k].pivot.media + '%' + '</span></td> <td class="text-center"><a class="unsyncAluno" href="#test"><i class="fa fa-trash"></i></a> </td></tr>';
+                    let row = '<tr><td>' + data.aluno[k].nome_aluno + '</td> <td><span class="badge ' + validationColorLabel(data.aluno[k].pivot.media) + '">' + data.aluno[k].pivot.media + '%' + '</span></td></tr>';
                     $('#listAlunos tbody').append(row);
                 }
 
@@ -132,7 +133,6 @@ $(document).ready(function () {
             url: "/activitie/" + $('#removeActivities').val(),
             cache: true,
             success: function success(data) {
-                console.log(data);
                 $('#deleteActivities').modal('hide');
                 $('#alertDeleteActivities').removeClass('fa-refresh fa-spin');
                 $('#alertDeleteActivities').addClass('fa-exclamation');
@@ -145,7 +145,6 @@ $(document).ready(function () {
                 $('[data-id="' + $('#removeActivities').val() + '"]').slideUp().remove();
             },
             error: function (error) {
-                console.log(error);
 
                 $('#alertDeleteActivities').removeClass('fa-refresh fa-spin');
                 $('#alertDeleteActivities').addClass('fa-exclamation');
@@ -192,13 +191,8 @@ $(document).ready(function () {
             complete: function (complete) {
             },
             error: function (error) {
-                console.log(error);
             }
         });
     });
 
-
-    $( ".unsyncAluno" ).click(function(){
-        console.log("teste");
-    })
 });

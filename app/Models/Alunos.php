@@ -196,4 +196,30 @@ class Alunos extends Model
         return $this->belongsToMany(\App\Models\YearClass::class);
     }
 
+
+    public function activitie()
+    {
+        return $this->belongsToMany('\App\Models\Activitie')->withPivot('media');
+    }
+
+    public function average($classid)
+    {
+        $media = 0.0;
+        $qtdActivitie = count($this->activitie);
+
+        foreach ($this->activitie as $activitie) {
+            if ($activitie->yearClass_id == $classid) {
+                $media += $activitie->pivot->media;
+            }
+        }
+
+        if ($qtdActivitie != 0) {
+            return number_format($media / $qtdActivitie, 2);
+        } else {
+            return 0.0;
+        }
+
+    }
+
+
 }

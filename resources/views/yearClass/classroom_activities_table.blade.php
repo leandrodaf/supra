@@ -9,7 +9,8 @@
     </thead>
     <tbody id="yearclass">
     @foreach($class->activitie as $activitie)
-        <tr data-id="{{$activitie->id}}" style="cursor: pointer; color: #3c8dbc;" data-toggle="modal" data-target="#activitiesInfoModal">
+        <tr data-id="{{$activitie->id}}" style="cursor: pointer; color: #3c8dbc;" data-toggle="modal"
+            data-target="#activitiesInfoModal">
             <td>
                 {{$activitie->title}}
             </td>
@@ -22,7 +23,15 @@
             <td style="text-align: center">
                 {{count($activitie->fileentry)}}
             </td>
+
         </tr>
     @endforeach
+    @if(count($class->activitie) == 0 )
+        <tr>
+            <div class="alert alert-info">
+                <strong>Atenção!</strong> Sem atividades cadastradas.
+            </div>
+        </tr>
+    @endif
     </tbody>
 </table>

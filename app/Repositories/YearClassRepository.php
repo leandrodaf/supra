@@ -43,11 +43,15 @@ class YearClassRepository extends BaseRepository
 
     public function synchronizedStudents($id)
     {
+
         try {
             $class = $this->findWithoutFail($id);
 
-            $data['alunos'] = $class->alunos;
-            $data['schoolSubject'] = $class->schoolSubject[0]['nome'];
+            $data = $class->load('alunos', 'schoolSubject');
+
+            foreach ($data->alunos as $aluno) {
+                $aluno['media'] = $aluno->average($id);
+            }
 
             return response()->json($data);
 
@@ -63,6 +67,10 @@ class YearClassRepository extends BaseRepository
     {
         try {
             $class = $this->findWithoutFail($idClass);
+
+            foreach ($class->activitie as $activitie) {
+                $activitie->aluno()->detach($idAluno);
+            }
 
             $class->alunos()->detach($idAluno);
 

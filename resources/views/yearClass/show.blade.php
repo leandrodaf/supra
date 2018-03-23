@@ -50,8 +50,6 @@
                         </div>
                     </div>
                     <div class="box-body">
-
-
                         @include('yearClass.alunos_table')
                     </div>
                 </div>
@@ -205,12 +203,15 @@
                             <div class="input-group">
                                 <input type="text" class="form-control" min="0" max="100" step="5" maxlength="6"
                                        placeholder="0.00" name="media"
-                                       id="media" required="" aria-required="true" aria-invalid="false" disabled="disabled">
+                                       id="media" required="" aria-required="true" aria-invalid="false"
+                                       disabled="disabled">
                                 <span class="input-group-addon">%</span>
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <button type="submit" id="incluirAlunoActivitie" class="btn btn-primary" disabled="disabled">Incluir aluno</button>
+                            <button type="submit" id="incluirAlunoActivitie" class="btn btn-primary"
+                                    disabled="disabled">Incluir aluno
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -252,7 +253,6 @@
                             <tr>
                                 <th>Aluno</th>
                                 <th>Nota</th>
-                                <th class="text-center">Ações</th>
                             </tr>
                             </thead>
                             <tbody>
