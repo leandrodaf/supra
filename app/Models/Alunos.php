@@ -208,7 +208,7 @@ class Alunos extends Model
         $qtdActivitie = count($this->activitie);
 
         foreach ($this->activitie as $activitie) {
-            if ($activitie->yearClass_id == $classid) {
+            if ($activitie->yearClass_id == $classid && $activitie->deleted_at == null) {
                 $media += $activitie->pivot->media;
             }
         }
