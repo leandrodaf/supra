@@ -65,12 +65,8 @@ $(document).ready(function () {
 
             },
             beforeSend: function beforeSend(data) {
-                $('#makeCall').button('loading');
-                $('#alterCall').button('loading');
             },
             complete: function complete(data) {
-                $('#makeCall').button('reset');
-                $('#alterCall').button('reset');
             },
             error: function (error) {
             }
