@@ -31,8 +31,18 @@ class Helpers
     //Formata a data do padrão BR para o padrão americano
     public function formataDataPtBr($date)
     {
+        $arrayDate = [];
+
         if ($date != null) {
-            $arrayDate = explode('/', $date);
+
+            if (strpos($date, '-') !== false) {
+                $arrayDate = explode('-', $date);
+            }
+
+            if (strpos($date, '/') !== false) {
+                $arrayDate = explode('/', $date);
+            }
+
             return $arrayDate[2] . '-' . $arrayDate[1] . '-' . $arrayDate[0];
         } else {
             return null;

@@ -1,6 +1,77 @@
 "use strict";
 
 $(document).ready(function () {
+    $('.datepicker').datepicker({
+        orientation: 'left bottom',
+        autoclose: true,
+        todayHighlight: true,
+        locale: 'pt-BR',
+        format: 'dd-mm-yyyy',
+        todayHighlight: true,
+        daysOfWeekDisabled: [0, 6]
+    }).on('changeDate', function (e) {
+        $('#callAlterForm').attr('action', '/call/' + e.format());
+        $('#date_callUpdate').val(e.format());
+        $('#date_call').val(e.format());
+        getCall(e.format())
+    });
+
+
+    let getCall = function (data) {
+
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            url: "/call/existCall/" + data,
+            cache: true,
+            success: function success(data) {
+
+                if (data.length == 0) {
+                    $('#makeCallButton').removeAttr('disabled', 'disabled');
+                    $('#alteredCallButton').attr('disabled', 'disabled');
+                } else {
+                    $('#makeCallButton').attr('disabled', 'disabled');
+                    $('#alteredCallButton').removeAttr('disabled', 'disabled');
+                    $('#tableAlterCall  tbody').empty();
+                }
+
+
+                for (var k in data) {
+
+                    let presenceChecked = data[k].pivot.presence == '1' ? 'checked="checked"' : '';
+                    let presenceNotChecked = data[k].pivot.presence == '0' ? 'checked="checked"' : '';
+
+                    let row = '' +
+                        '   <tr>\n' +
+                        '       <th scope="row">' + data[k].nome_aluno + '</th>\n' +
+                        '       <td>\n' +
+                        '           <label class="radio-inline">\n' +
+                        '               <input type="radio" value="1" name="aluno[' + data[k].id + '][presence]" ' + presenceChecked + '>\n' +
+                        '               Presença\n' +
+                        '           </label>\n' +
+                        '       </td>\n' +
+                        '       <td>\n' +
+                        '           <label class="radio-inline">\n' +
+                        '               <input type="radio" value="0" name="aluno[' + data[k].id + '][presence]" ' + presenceNotChecked + '>\n' +
+                        '               Falta\n' +
+                        '           </label>\n' +
+                        '       </td>\n' +
+                        '   </tr>';
+
+                    $('#tableAlterCall  tbody').append(row);
+                }
+
+            },
+            beforeSend: function beforeSend(data) {
+            },
+            complete: function complete(data) {
+            },
+            error: function (error) {
+            }
+        });
+    };
 
 
     $('#yearclass').validator();
@@ -279,7 +350,7 @@ $(document).ready(function () {
                             '                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>\n' +
                             '                </div>\n' +
                             '            </td>\n' +
-                            '            <td><span class="badge bg-red '+ validationColorLabel(data.alunos[k].media)+'">' + data.alunos[k].media + '%</span></td>' +
+                            '            <td><span class="badge bg-red ' + validationColorLabel(data.alunos[k].media) + '">' + data.alunos[k].media + '%</span></td>' +
                             '            <td style="text-align: center;" data-toggle="tooltip" data-placement="right" title="Desvincular aluno">' +
                             '                <i class="fa fa-plug" data-id="' + data.alunos[k].id + '"  style="color: #cb2027; cursor: pointer;"  data-toggle="modal" data-target="#unsync" data-aluno-id="' + data.alunos[k].id + '"></i>' +
                             '            </td>' +
@@ -320,7 +391,7 @@ $(document).ready(function () {
                         '                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>\n' +
                         '                </div>\n' +
                         '            </td>\n' +
-                        '            <td><span class="badge bg-red '+ validationColorLabel(data.alunos[k].media)+'">' + data.alunos[k].media + '%</span></td>' +
+                        '            <td><span class="badge bg-red ' + validationColorLabel(data.alunos[k].media) + '">' + data.alunos[k].media + '%</span></td>' +
                         '            <td style="text-align: center;" data-toggle="tooltip" data-placement="right" title="Desvincular aluno">' +
                         '                <i class="fa fa-plug" data-id="' + data.alunos[k].id + '"  style="color: #cb2027; cursor: pointer;"  data-toggle="modal" data-target="#unsync" data-aluno-id="' + data.alunos[k].id + '"></i>' +
                         '            </td>' +
@@ -375,7 +446,6 @@ $(document).ready(function () {
                 loadAlunos();
             },
             error: function (error) {
-                console.log(error);
                 $('#alertDelete').removeClass('fa-refresh fa-spin');
                 $('#alertDelete').addClass('fa-exclamation');
             }
@@ -383,6 +453,7 @@ $(document).ready(function () {
 
 
     }
+//Chamada
 
 
 });
