@@ -58,4 +58,25 @@ class CallRepository extends BaseRepository
 
     }
 
+    public function checkDateUpdate($request)
+    {
+        $helper = new Helpers();
+
+        try {
+            $data = $request->all();
+
+            $calls = Call::whereDate('date', $helper->formataDataPtBr($request->date))->firstOrFail();
+
+            $calls->aluno()->sync($request->aluno);
+
+            return response(200);
+
+
+        } catch (\Exception $e) {
+            return array();
+        }
+
+    }
+
+
 }

@@ -10,11 +10,10 @@ $(document).ready(function () {
         todayHighlight: true,
         daysOfWeekDisabled: [0, 6]
     }).on('changeDate', function (e) {
+        $('#callAlterForm').attr('action', '/call/' + e.format());
+        $('#date_callUpdate').val(e.format());
         $('#date_call').val(e.format());
-
-        console.log(getCall(e.format()));
-
-
+        getCall(e.format())
     });
 
 
@@ -29,12 +28,13 @@ $(document).ready(function () {
             cache: true,
             success: function success(data) {
 
-                if(data.length == 0){
+                if (data.length == 0) {
                     $('#makeCallButton').removeAttr('disabled', 'disabled');
                     $('#alteredCallButton').attr('disabled', 'disabled');
                 } else {
                     $('#makeCallButton').attr('disabled', 'disabled');
                     $('#alteredCallButton').removeAttr('disabled', 'disabled');
+                    $('#tableAlterCall  tbody').empty();
                 }
 
 
@@ -60,7 +60,7 @@ $(document).ready(function () {
                         '       </td>\n' +
                         '   </tr>';
 
-                    $('#tableCall  tbody').append(row);
+                    $('#tableAlterCall  tbody').append(row);
                 }
 
             },
@@ -69,15 +69,9 @@ $(document).ready(function () {
             complete: function complete(data) {
             },
             error: function (error) {
-                console.log(error);
             }
         });
     };
-
-
-    $('#doneCall').click(function () {
-        console.log("Teste")
-    });
 
 
     $('#yearclass').validator();

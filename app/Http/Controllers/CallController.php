@@ -19,7 +19,8 @@ class CallController extends AppBaseController
     public function store(Request $request)
     {
 
-        return $this->callRepository->store($request);
+        $this->callRepository->store($request);
+        return redirect()->back();
     }
 
     public function index()
@@ -32,5 +33,9 @@ class CallController extends AppBaseController
         return $this->callRepository->checkDate($date);
     }
 
-
+    public function update(Request $request)
+    {
+        $this->callRepository->checkDateUpdate($request);
+        return redirect()->back();
+    }
 }
