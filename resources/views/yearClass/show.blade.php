@@ -285,6 +285,7 @@
         <div class="modal-dialog" role="document">
             {!! Form::open(['route' => 'call.store', 'id' => 'callMakeForm', 'data-toggle' => 'validator', 'autocomplete' => 'off']) !!}
             <input id="date_call" name="date" type="hidden" value="">
+            <input id="year_class_id" name="year_class_id" type="hidden" value="{{$class->id}}">
 
             <div class="modal-content">
                 <div class="modal-header">
@@ -341,6 +342,7 @@
         <div class="modal-dialog" role="document">
             {!! Form::open(['route' => ['call.update', ''],'id' => 'callAlterForm', 'data-toggle' => 'validator', 'autocomplete' => 'off',  'method' => 'put']) !!}
             <input id="date_callUpdate" name="date" type="hidden" value="">
+            <input id="year_class_id" name="year_class_id" type="hidden" value="{{$class->id}}">
 
             <div class="modal-content">
                 <div class="modal-header">

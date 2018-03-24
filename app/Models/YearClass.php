@@ -67,4 +67,9 @@ class YearClass extends Model
     {
         return $this->hasMany(\App\Models\Activitie::class, 'yearClass_id');
     }
+
+    public function call()
+    {
+        return $this->hasMany(\App\Models\Call::class);
+    }
 }

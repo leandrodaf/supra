@@ -27,6 +27,7 @@ class CallRepository extends BaseRepository
 
     public function store($request)
     {
+
         if (empty($request)) {
             return response(500);
         }
@@ -45,12 +46,14 @@ class CallRepository extends BaseRepository
     }
 
 
-    public function checkDate($date)
+    public function checkDate($date, $id)
     {
         $helper = new Helpers();
 
         try {
-            $calls = Call::whereDate('date', $helper->formataDataPtBr($date))->firstOrFail();
+            $calls = Call::whereDate('date', $helper->formataDataPtBr($date))
+                ->where('year_class_id', '=', $id)
+                ->firstOrFail();
             return $calls->aluno;
         } catch (\Exception $e) {
             return array();
@@ -63,9 +66,9 @@ class CallRepository extends BaseRepository
         $helper = new Helpers();
 
         try {
-            $data = $request->all();
-
-            $calls = Call::whereDate('date', $helper->formataDataPtBr($request->date))->firstOrFail();
+            $calls = Call::whereDate('date', $helper->formataDataPtBr($request->date))
+                ->where('year_class_id', '=', $request->year_class_id)
+                ->firstOrFail();
 
             $calls->aluno()->sync($request->aluno);
 

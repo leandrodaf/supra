@@ -18,7 +18,6 @@ class CallController extends AppBaseController
 
     public function store(Request $request)
     {
-
         $this->callRepository->store($request);
         return redirect()->back();
     }
@@ -28,13 +27,14 @@ class CallController extends AppBaseController
 
     }
 
-    public function existCall($date)
+    public function existCall(Request $request, $date)
     {
-        return $this->callRepository->checkDate($date);
+        return $this->callRepository->checkDate($date, $request->idClass);
     }
 
     public function update(Request $request)
     {
+
         $this->callRepository->checkDateUpdate($request);
         return redirect()->back();
     }
