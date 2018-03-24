@@ -32,6 +32,19 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <div class="box-tools pull-right">
+
+                        </div>
+                        <i class="fa fa-calendar"></i> Chamada
+                    </div>
+
+                    <div class="box-body">
+                        @include('yearClass.call')
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="box-header with-border">
+                        <div class="box-tools pull-right">
                             <div class="btn-group">
                                 <a data-toggle="collapse" href="#collapseAluno" aria-expanded="false"
                                    aria-controls="collapseAluno">
@@ -265,6 +278,61 @@
         </div>
     </div>
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="makeCall" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            {!! Form::open(['route' => 'call.store', 'id' => 'callForm', 'data-toggle' => 'validator', 'autocomplete' => 'off']) !!}
+            <input id="date_call" name="date" type="hidden" value="">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titleMakeCall"><i class="fa fa-calendar"></i> Chamada</h5>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="table-responsive-sm">
+
+                        <table class="table" id="tableCall">
+                            <thead>
+                            <tr>
+                                <th scope="col">Aluno</th>
+                                <th scope="col" align="right">Presença</th>
+                                <th scope="col" align="right">Falta</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{--@foreach($class->alunos as $user)--}}
+                                {{--<tr>--}}
+                                    {{--<th scope="row">{{$user->nome_aluno}}</th>--}}
+                                    {{--<td>--}}
+                                        {{--<label class="radio-inline">--}}
+                                            {{--<input type="radio" value="1" name="aluno[{{$user->id}}][presence]">--}}
+                                            {{--Presença--}}
+                                        {{--</label>--}}
+                                    {{--</td>--}}
+                                    {{--<td>--}}
+                                        {{--<label class="radio-inline">--}}
+                                            {{--<input type="radio" value="0" name="aluno[{{$user->id}}][presence]" checked>--}}
+                                            {{--Falta--}}
+                                        {{--</label>--}}
+                                    {{--</td>--}}
+                                {{--</tr>--}}
+                            {{--@endforeach--}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="doneCall">Concluir</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
