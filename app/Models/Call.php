@@ -18,7 +18,8 @@ class Call extends Model
     protected $dates = ['deleted_at', 'date'];
 
     public $fillable = [
-        'date'
+        'date',
+        'year_class_id'
     ];
 
     protected $casts = [
@@ -32,6 +33,11 @@ class Call extends Model
     public function aluno()
     {
         return $this->belongsToMany(\App\Models\Alunos::class)->withPivot('presence');
+    }
+
+    public function yearClass()
+    {
+        return $this->belongsTo(\App\Models\YearClass::class);
     }
 
 }

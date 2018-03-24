@@ -24,6 +24,9 @@ $(document).ready(function () {
             type: "GET",
             dataType: "json",
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+                idClass: $('meta[name="id-class"]').attr('content')
+            },
             url: "/call/existCall/" + data,
             cache: true,
             success: function success(data) {
@@ -87,7 +90,6 @@ $(document).ready(function () {
             {data: 'startTime', name: 'id'},
             {data: 'activeTime', name: 'activeTime'},
             {data: 'link', name: 'link', orderable: false, searchable: false}
-
         ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Portuguese-Brasil.json"
