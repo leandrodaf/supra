@@ -23,6 +23,11 @@ Route::post('pessoas/emailMain', 'PessoaController@mainEmailPessoaAjax')->name('
 Route::post('pessoas/phoneMain', 'PessoaController@mainPhonePessoaAjax')->name('pessoa.phoneMain');
 Route::post('pessoas/storeAjax', 'PessoaController@storeAjax')->name('pessoa.storeAjax');
 
+//RECADOS
+Route::get('/home/messageGetBasicData', 'HomeController@messageGetBasicData')->name('home.messageGetBasicData');
+// Route::get('/home/getInfoMessage/{idMessage}', 'HomeController@getInfoMessage')->name('messages.getInfoMessage');
+Route::post('/home/messageStore', 'HomeController@messageStore')->name('message.store');
+
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::get('roles/getAjax', 'RoleController@dataAjax')->name('roles.getAjaxSelect2');
 Route::post('matricula', 'MatriculaController@store')->name('matricula.store');

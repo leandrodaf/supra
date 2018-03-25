@@ -20,6 +20,11 @@
     overflow: hidden;
 }
 
+.pull-none{
+    float:none !important;
+    clear:both;
+}
+
 
 .addressInfo {
     margin-left: 15px;

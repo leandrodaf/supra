@@ -33,6 +33,13 @@ class Phone extends Model
         return $this->belongsToMany(\App\Models\Alunos::class);
     }
 
+    
+    public function message()
+    {
+      return $this->belongsTo(App\Models\Message::class);
+    }
+
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      **/
