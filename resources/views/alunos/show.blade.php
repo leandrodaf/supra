@@ -83,9 +83,8 @@
             </div>
             <div class="col-lg-4">
                 @include('alunos.responsavel')
-
-
                 @include('alunos.yearClass')
+                @include('alunos.presence')
             </div>
         </div>
 
