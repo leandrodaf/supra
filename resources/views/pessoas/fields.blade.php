@@ -45,15 +45,8 @@
 <!-- Sexo Field -->
 <div class="form-group sexo {{$errors->has('sexo') ? "has-error":""}} col-sm-6">
     {!! Form::label('sexo', 'Gênero:') !!}
-    <label class="checkbox-inline">
         {!! Form::select('sexo', $genders, !empty($pessoa)? $pessoa->sexo:null, ['class' => 'form-control']) !!}
-    </label>
 </div>
-<div class="form-group  col-sm-6">
-</div>
-<div class="form-group  col-sm-6">
-</div>
-
 
 <div class="form-group {{$errors->has('email') ? "has-error":""}} col-sm-6">
     {!! Form::label('email', 'Email:') !!}

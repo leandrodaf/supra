@@ -5,33 +5,6 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/**
- * Class Pessoa
- * @package App\Models
- * @version October 31, 2017, 1:16 am UTC
- *
- * @property \App\Models\TipoPessoa tipoPessoa
- * @property \Illuminate\Database\Eloquent\Collection alunoEmail
- * @property \Illuminate\Database\Eloquent\Collection alunolocation
- * @property \Illuminate\Database\Eloquent\Collection alunoEscola
- * @property \Illuminate\Database\Eloquent\Collection AlunoPessoa
- * @property \Illuminate\Database\Eloquent\Collection alunophone
- * @property \Illuminate\Database\Eloquent\Collection PessoaEmail
- * @property \Illuminate\Database\Eloquent\Collection Pessoalocation
- * @property \Illuminate\Database\Eloquent\Collection Pessoaphone
- * @property \Illuminate\Database\Eloquent\Collection UsuarioPessoa
- * @property string nome
- * @property string cpf_cnpj
- * @property boolean sexo
- * @property string rg
- * @property date dataNascimento
- * @property string familySituation
- * @property string razaoSocial
- * @property string inscricaoEstadual
- * @property string citizenship
- * @property boolean status
- * @property integer tipo_pessoas_id
- */
 class Pessoa extends Model
 {
     use SoftDeletes;

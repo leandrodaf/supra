@@ -16,6 +16,8 @@ class CreateNotificacaoTable extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
             $table->mediumText('description');
+            $table->date('exibition')->nullable();
+            $table->boolean('flg_satus')->default(false);
             $table->integer('alunos_id')->unsigned();
             $table->foreign('alunos_id')->references('id')->on('alunos')->onDelete('cascade');
             $table->integer('year_class_id')->unsigned()->nullable();
@@ -26,7 +28,6 @@ class CreateNotificacaoTable extends Migration
             $table->softDeletes();
         });
     }
-
 
 
     /**

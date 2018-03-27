@@ -5,9 +5,8 @@ namespace App\Http\Requests;
 use App\Models\Notification;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRoleRequest extends FormRequest
+class UpdateNotificationRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -15,7 +14,7 @@ class CreateRoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
