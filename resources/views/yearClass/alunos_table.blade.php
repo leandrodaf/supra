@@ -6,10 +6,9 @@
     <thead>
     <tr>
         <th>Aluno</th>
-        <th>Matérias</th>
         <th>Progresso</th>
         <th style="width: 40px">Média</th>
-        <th style="width: 10px">Ação</th>
+        <th style="width: 10px"></th>
     </tr>
     </thead>
 

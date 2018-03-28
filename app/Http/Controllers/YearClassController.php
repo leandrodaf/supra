@@ -57,7 +57,7 @@ class YearClassController extends Controller
                 $activeTime = Carbon::parse($yearClass->activeTime);
 
                 $diferenca = Carbon::now()->diffInMonths($activeTime);
-                return $activeTime->format('M-Y') . ' Encerra em ' . $diferenca . ' Meses';
+                return ' Encerra em ' . $diferenca . ' Meses';
             })
             ->addColumn('link', function ($yearClass) {
                 return '
@@ -65,7 +65,13 @@ class YearClassController extends Controller
                 <a href="/class/' . $yearClass->id . '/edit' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
                 ';
             })
-            ->rawColumns(['link', 'funcionamento'])
+            ->addColumn('materia', function ($yearClass) {
+                return $yearClass->schoolSubject[0]['nome'];
+            })
+            ->addColumn('professor', function ($yearClass) {
+                return $yearClass->pessoa[0]['nome'];
+            })
+            ->rawColumns(['professor', 'link', 'materia', 'funcionamento'])
             ->make(true);
     }
 

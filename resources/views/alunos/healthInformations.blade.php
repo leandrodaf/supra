@@ -17,22 +17,21 @@
                 </div>
             </dl>
             <dl class="dl-horizontal">
-                {{--<h4>Teste</h4>--}}
                 <dt>Bronquite</dt>
                 <dd id="bronquite"></dd>
                 <dt>Falta de ar</dt>
                 <dd id="faltadear"></dd>
-                <dt>Diabete</dt>
+                <dt>Diabetes</dt>
                 <dd id="diabete"></dd>
                 <dt>Refluxo</dt>
                 <dd id="refluxo"></dd>
-                <dt>Convulsao</dt>
+                <dt>Convulsão</dt>
                 <dd id="convulsao"></dd>
                 <div class="medicamosTomar">
-                    <dt>Medicamos a tomar</dt>
+                    <dt>Medicamentos a tomar</dt>
                     <dd id="medicamentotomar"></dd>
                 </div>
-                <dt>alergia</dt>
+                <dt>Alergia</dt>
                 <dd id="alergia"></dd>
                 <div class="sintomasalergia">
                     <dt>Sintomas da alergia</dt>
@@ -46,10 +45,10 @@
                 <dd id="fala"></dd>
                 <dt>Audição</dt>
                 <dd id="audicao"></dd>
-                <dt>Deficiencia Fisica</dt>
+                <dt>Deficiência Fisica</dt>
                 <dd id="edfisica"></dd>
                 <div class="outrasDeficiencias">
-                    <dt>Outras deficiencias</dt>
+                    <dt>Outras Deficiências</dt>
                     <dd id="outradeficienciax"></dd>
                 </div>
             </dl>
@@ -145,11 +144,11 @@
                         <label class="checkbox-inline">{!! Form::radio('healthInformations[convulsao]', '0', null, ['id' => 'convulsaoFieldFalse']) !!}
                             Não</label>
                     </dd>
-                    <dt>Medicamos a tomar</dt>
+                    <dt>Medicamentos a tomar</dt>
                     <dd id="medicamentotomar">
                         <label class="checkbox-inline">{!! Form::textarea('healthInformations[medicamentotomar]', null,['rows' => '3', 'id' => 'medicamentotomarField']) !!}</label>
                     </dd>
-                    <dt>alergia</dt>
+                    <dt>Alergia</dt>
                     <dd id="alergia">
                         <label class="checkbox-inline">{!! Form::radio('healthInformations[alergia]', '1', null, ['id' => 'alergiaField']) !!}
                             Sim</label>
