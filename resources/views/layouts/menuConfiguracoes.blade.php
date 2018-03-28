@@ -3,7 +3,7 @@
 </li>
 
 <li class="{{ Request::is('schoolsubject*') ? 'active' : '' }}">
-    <a href="{!! route('schoolsubject.index') !!}"><i class="fa fa-caret-right"></i><span>Materias</span></a>
+    <a href="{!! route('schoolsubject.index') !!}"><i class="fa fa-caret-right"></i><span>Matérias</span></a>
 </li>
 
 <li class="{{ Request::is('roles*') ? 'active' : '' }}">

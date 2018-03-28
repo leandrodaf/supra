@@ -89,6 +89,8 @@ $(document).ready(function () {
             {data: 'classroom_id', name: 'classroom_id'},
             {data: 'startTime', name: 'id'},
             {data: 'activeTime', name: 'activeTime'},
+            {data: 'materia', name: 'materia'},
+            {data: 'professor', name: 'professor'},
             {data: 'link', name: 'link', orderable: false, searchable: false}
         ],
         "language": {
@@ -322,6 +324,16 @@ $(document).ready(function () {
     };
 
 
+    let validationColorprogress = function (media) {
+        if (media >= 70) {
+            return 'progress-bar-success';
+        } else if (media < 70 && media > 50) {
+            return 'progress-bar-warning';
+        } else if (media <= 50) {
+            return 'progress-bar-danger';
+        }
+    };
+
     $(window).on("load", function () {
 
         let id = $('meta[name="id-class"]').attr('content');
@@ -346,13 +358,12 @@ $(document).ready(function () {
                     for (var k in data.alunos) {
                         let row = ' <tr>\n' +
                             '            <td>' + data.alunos[k].nome_aluno + '</td>\n' +
-                            '            <td>' + data.school_subject[0].nome + '</td>\n' +
                             '            <td>\n' +
                             '                <div class="progress progress-xs">\n' +
-                            '                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>\n' +
+                            '                    <div class="progress-bar ' + validationColorprogress(data.alunos[k].media) + '" style="width: ' + data.alunos[k].media + '%"></div>\n' +
                             '                </div>\n' +
                             '            </td>\n' +
-                            '            <td><span class="badge bg-red ' + validationColorLabel(data.alunos[k].media) + '">' + data.alunos[k].media + '%</span></td>' +
+                            '            <td><span class="badge bg-red ' + validationColorLabel(data.alunos[k].media) + '">' + data.alunos[k].media + '</span></td>' +
                             '            <td style="text-align: center;" data-toggle="tooltip" data-placement="right" title="Desvincular aluno">' +
                             '                <i class="fa fa-plug" data-id="' + data.alunos[k].id + '"  style="color: #cb2027; cursor: pointer;"  data-toggle="modal" data-target="#unsync" data-aluno-id="' + data.alunos[k].id + '"></i>' +
                             '            </td>' +

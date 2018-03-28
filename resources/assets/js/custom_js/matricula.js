@@ -371,21 +371,6 @@ $(document).ready(function () {
     });
 
 
-    $('input[name="healthInformations[convulsao]"]').on('click', function (event) {
-        if (this.value == 1) {
-
-            $('textarea[name="healthInformations[medicamentotomar]"]').removeAttr("disabled", "disabled");
-            $('textarea[name="healthInformations[medicamentotomar]"]').attr('required', 'required');
-
-        } else {
-            $('textarea[name="healthInformations[medicamentotomar]"]').attr("disabled", "disabled");
-            $('textarea[name="healthInformations[medicamentotomar]"]').removeAttr("required", "required");
-            $('textarea[name="healthInformations[medicamentotomar]"]').val("");
-        }
-
-    });
-
-
     $('input[name="healthInformations[alergia]"]').on('click', function (event) {
         if (this.value == 1) {
 

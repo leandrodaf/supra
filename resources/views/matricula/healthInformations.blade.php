@@ -54,7 +54,7 @@
 <!-- outradoenca -->
 <div class="form-group {{$errors->has('healthInformations.outradoenca') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('outradoenca', 'Aprensentou outradoenca') !!}
+        {!! Form::label('outradoenca', 'Aprensentou outra doença') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -79,7 +79,7 @@
 <!-- faltadear -->
 <div class="form-group {{$errors->has('healthInformations.faltadear') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('faltadear', 'Faltadear') !!}
+        {!! Form::label('faltadear', 'Falta de ar') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -92,7 +92,7 @@
 <!-- diabete -->
 <div class="form-group {{$errors->has('healthInformations.diabete') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('diabete', 'Diabete') !!}
+        {!! Form::label('diabete', 'Diabetes') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -118,7 +118,7 @@
 <!-- convulsao -->
 <div class="form-group {{$errors->has('healthInformations.convulsao') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('convulsao', 'Convulsao') !!}
+        {!! Form::label('convulsao', 'Convulsão') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -132,11 +132,11 @@
 <!-- medicamentotomar -->
 <div class="form-group medicamentotomar{{$errors->has('healthInformations.medicamentotomar') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('medicamentotomar', 'Quais medicamentos tomar') !!}
+        {!! Form::label('medicamentotomar', 'Quais medicamentos toma') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
-            <label class="checkbox-inline">{!! Form::textarea('healthInformations[medicamentotomar]', false,['rows' => '3', 'disabled' => 'disabled']) !!}</label>
+            <label class="checkbox-inline">{!! Form::textarea('healthInformations[medicamentotomar]', false,['rows' => '3']) !!}</label>
         </label>
     </div>
 </div>
@@ -169,7 +169,7 @@
 <!-- visao -->
 <div class="form-group {{$errors->has('healthInformations.visao') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('visao', 'Deficiente visaul') !!}
+        {!! Form::label('visao', 'Deficiência visual') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -182,7 +182,7 @@
 <!-- fala -->
 <div class="form-group {{$errors->has('healthInformations.fala') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('fala', 'Deficiencia na fala') !!}
+        {!! Form::label('fala', 'Deficiência na fala') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -195,7 +195,7 @@
 <!-- audicao -->
 <div class="form-group {{$errors->has('healthInformations.audicao') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('audicao', 'Deficiente auditivo') !!}
+        {!! Form::label('audicao', 'Deficiência auditivo') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -208,7 +208,7 @@
 <!-- edfisica -->
 <div class="form-group {{$errors->has('healthInformations.edfisica') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('edfisica', 'Deficiente Fisica') !!}
+        {!! Form::label('edfisica', 'Deficiência Fisica') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">
@@ -221,7 +221,7 @@
 <!-- outradeficienciax -->
 <div class="form-group {{$errors->has('healthInformations.outradeficienciax') ? "has-error":""}} col-sm-12">
     <div class="col-sm-3 -align-right">
-        {!! Form::label('outradeficienciax', 'Outra deficiente ') !!}
+        {!! Form::label('outradeficienciax', 'Outra Deficiência ') !!}
     </div>
     <div class="col-sm-3 -align-left">
         <label class="checkbox-inline">

@@ -17,6 +17,17 @@
                         <div class="box-tools pull-right">
 
                             <div class="btn-group">
+                                <!-- Collapse Button -->
+                                <button type="button" class="btn btn-info btn-sm btn-flat dropdown-toggle"
+                                        data-toggle="dropdown">
+                                    Ações &nbsp; <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="#notificar">Notificar turma</a>
+                                    </li>
+                                </ul>
 
 
                             </div>

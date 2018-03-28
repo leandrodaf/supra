@@ -33,6 +33,6 @@ class CreateFileentriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fileentries');
+        Schema::dropIfExists('fileentrys');
     }
 }

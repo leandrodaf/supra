@@ -79,7 +79,7 @@ $(document).ready(function () {
                 $('#listAlunos tbody').empty();
 
                 for (var k in data.aluno) {
-                    let row = '<tr><td>' + data.aluno[k].nome_aluno + '</td> <td><span class="badge ' + validationColorLabel(data.aluno[k].pivot.media) + '">' + data.aluno[k].pivot.media + '%' + '</span></td></tr>';
+                    let row = '<tr><td>' + data.aluno[k].nome_aluno + '</td> <td><span class="badge ' + validationColorLabel(data.aluno[k].pivot.media) + '">' + data.aluno[k].pivot.media + '</span></td></tr>';
                     $('#listAlunos tbody').append(row);
                 }
 

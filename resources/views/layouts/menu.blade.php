@@ -7,7 +7,7 @@
 </li>
 
 <li class="{{ Request::is('class*') ? 'active' : '' }}">
-    <a href="{!! route('class.index') !!}"><i class="fa fa-graduation-cap"></i><span>Gerênciar Turmas</span></a>
+    <a href="{!! route('class.index') !!}"><i class="fa fa-graduation-cap"></i><span>Gerenciar Turmas</span></a>
 </li>
 
 @if(Auth::user()->hasRole('admin'))
