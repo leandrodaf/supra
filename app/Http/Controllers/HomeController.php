@@ -76,15 +76,18 @@ class HomeController extends Controller
 
     }
 
-
+    //método para trazer os dados dos recados com data desc
     public function messageGetBasicData()
     {
         $m = date('m');
         $y = date('y');
-        $messages = Message::select(DB::raw(' DATE_FORMAT(data_message, "%d/%m/%Y") as data_message'),'id','nome')
-        ->whereMonth('data_message','=',$m)
+        $messages = Message::select(DB::raw(' DATE_FORMAT(data_message, "%d") as dat'),DB::raw(' DATE_FORMAT(data_message, "%m") as date'),DB::raw(' DATE_FORMAT(data_message, "%d/%m/%Y") as data_message'),'id','nome')
+        // ->whereMonth('data_message','=',$m)
         ->whereYear('data_message','=','20'.$y)
-        ->orderBy('data_message','desc');
+        ->orderBy('date','desc')
+        ->orderBy('dat','desc');
+        
+
         // whereMonth('data_message','=',$y)
         // $messges = DB::select("SELECT messages.*, 
         // DATE_FORMAT(data_message,'%d/%m/%Y')");
@@ -97,7 +100,11 @@ class HomeController extends Controller
             ->addColumn('link', function ($message) {
                 return '
                 <a href="/messages/' . $message->id . '/edit' . '" class="btn btn-info btn-xs" data-toggle="modal" data-target="#modal-info"><i class="glyphicon glyphicon-edit"></i></a>
-                <a href="/messages/' . $message->id . '' . '" class="btn  btn-danger btn-xs"><i class="fa fa-fw fa-trash"></i></a>
+                
+                
+                <a href="" class="btn  btn-danger btn-xs del" value="'.$message->id.'"><i class="fa fa-fw fa-trash"></i></a>
+
+                  
                 ';
             })
             ->rawColumns(['datas', 'link'])
@@ -176,6 +183,25 @@ class HomeController extends Controller
 
         $flash = new Flash();
         $flash::success('Recado atualizado com sucesso.');
+
+        return redirect(route('home'));
+    }
+
+    public function destroy($idMessage)
+    {
+        $message = $this->messageRepository->findWithoutFail($idMessage);
+
+        // if (empty($message)) {
+        //     $flash = new Flash();
+        //     $flash::error('Recado não encontrado.');
+
+        //     return redirect(route('home'));
+        // }
+
+        $this->messageRepository->delete($idMessage);
+
+        // $flash = new Flash();
+        // $flash::success('Recado deletado com sucesso.');
 
         return redirect(route('home'));
     }

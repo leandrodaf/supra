@@ -9,6 +9,29 @@ $(document).ready(function () {
         format: 'dd/mm/yyyy'
     });
 
+    $('.del').click(function (data,event) {
+        event.preventDefalt();
+        var id = this;
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "json",
+            url: "/home/destroy/" + data.id,
+            cache: true,
+            success: function success(data) {
+               
+                alert("Recado deletado com sucesso!");
+
+            },
+            beforeSend: function beforeSend() {
+                $('#loadingResponsavel').show();
+            },
+            complete: function complete() {
+                $('#loadingResponsavel').hide();
+            }
+        });
+    });
+
     $.extend( jQuery.fn.dataTableExt.oSort, {
         "date-br-pre": function ( a ) {
          if (a == null || a == "") {
