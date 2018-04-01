@@ -4,7 +4,7 @@
 @section('css')
 
     <link rel="stylesheet" href="{{asset('css/plugins/trumbowyg.min.css')}}">
-    <meta name="aluno-title" content="{{ old('title') }}">
+    <meta name="notification-title" content="{{ old('title') }}">
     <style>
         .trumbowyg-editor[contenteditable=true]:empty::before {
             content: attr(placeholder);
@@ -217,6 +217,7 @@
 
 @section('scripts')
     <script src="{{asset('/js/features/alunos.js')}}"></script>
+    <script src="{{asset('/js/features/notification.js')}}"></script>
     <script src="{{asset('js/plugins/trumbowyg.min.js')}}"></script>
     <script src="{{asset('js/plugins/pt_br.min.js')}}"></script>
 @endsection

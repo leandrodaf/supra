@@ -463,6 +463,7 @@
 @section('scripts')
     <script src="{{asset('/js/features/yearClass.js')}}"></script>
     <script src="{{asset('/js/features/activities.js')}}"></script>
+    <script src="{{asset('/js/features/notification.js')}}"></script>
     <script src="{{asset('js/plugins/trumbowyg.min.js')}}"></script>
     <script src="{{asset('js/plugins/pt_br.min.js')}}"></script>
 
