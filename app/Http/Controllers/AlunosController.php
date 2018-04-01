@@ -13,6 +13,7 @@ use Response;
 use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
 use App\Helpers\Helpers;
+use Illuminate\Support\Facades\DB;
 
 class AlunosController extends AppBaseController
 {
@@ -150,12 +151,14 @@ class AlunosController extends AppBaseController
     public function show($idAluno)
     {
         $alunos = $this->alunosRepository->findWithoutFail($idAluno);
+        $notificationType = DB::table('notification_type')->select('id', 'title')->get();
         if (empty($alunos)) {
             $flash = new Flash();
             $flash::error('Aluno não encontrado.');
             return redirect(route('alunos.index'));
         }
-        return view('alunos.show')->with('alunos', $alunos);
+
+        return view('alunos.show')->with(compact('alunos','notificationType'));
     }
 
     /**

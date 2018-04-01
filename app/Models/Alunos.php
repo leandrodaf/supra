@@ -207,6 +207,11 @@ class Alunos extends Model
         return $this->belongsToMany(\App\Models\Call::class)->withPivot('presence');
     }
 
+    public function notification()
+    {
+        return $this->hasMany(\App\Models\Notification::class);
+    }
+
     public function average($classid)
     {
         $media = 0.0;
