@@ -66,8 +66,6 @@ class Helpers
             foreach ($roles as $role) {
                 if (in_array($role, $comparation)) {
                     return true;
-                } else {
-                    return false;
                 }
             }
         } else {
