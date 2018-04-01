@@ -26,7 +26,7 @@ $(document).ready(function () {
         language: 'pt-BR'
     });
 
-    if ($('meta[name="aluno-title"]').attr('content').length > 0) {
+    if ($('meta[name="notification-title"]').attr('content').length > 0) {
         $('#notificationModal').modal().show();
     }
 });
