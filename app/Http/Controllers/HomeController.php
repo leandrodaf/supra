@@ -111,21 +111,9 @@ class HomeController extends Controller
             ->make(true);
     }
 
-    public function edit($idMessage)
-    {
-        $message = $this->messageRepository->findWithoutFail($idMessage);
-        $roles = \App\Models\Role::where('status', '=', 1)->get();
+    
 
-        if (empty($message)) {
-            $flash = new Flash();
-            $flash::error('Recado não encontrado.');
-
-            return redirect(route('messages.index'));
-        }
-
-        return view('messages.edit')->with(compact('message'));
-    }
-
+    // metodo para realizar o update em recados
     public function update($idMessage, Request $request)
     {
         $helper = new Helpers();
@@ -187,6 +175,24 @@ class HomeController extends Controller
         return redirect(route('home'));
     }
 
+    //metodo para trazer no form os dados do recado (acessado via ajax)
+    public function getInfoMessage($idMessage)
+    {
+        $message = $this->messageRepository->findWithoutFail($idMessage);
+
+        $resposta = [];
+
+        $resposta['id'] = $message->id;
+        $resposta['nome'] = $message->nome;
+        // $resposta['dataNascimento'] = $aluno->data_nascimento_aluno->format('d/m/Y');
+        // $resposta['sexo'] = $aluno->gender->nome;
+        // $resposta['rg'] = $aluno->rg_aluno;
+
+        return response()->json($resposta);
+    }
+    
+    
+    //metodo para realizar o delete de recados (via ajax)
     public function destroy($idMessage)
     {
         $message = $this->messageRepository->findWithoutFail($idMessage);

@@ -9,6 +9,8 @@ $(document).ready(function () {
         format: 'dd/mm/yyyy'
     });
 
+
+    //ajax para deletar
     $('.del').click(function (data,event) {
         event.preventDefalt();
         var id = this;
@@ -21,6 +23,33 @@ $(document).ready(function () {
             success: function success(data) {
                
                 alert("Recado deletado com sucesso!");
+
+            },
+            beforeSend: function beforeSend() {
+                $('#loadingResponsavel').show();
+            },
+            complete: function complete() {
+                $('#loadingResponsavel').hide();
+            }
+        });
+    });
+
+    //ajax para trazer o dado para o modal
+    $('.verMessage').click(function (data, event) {
+       event.preventDefault();
+        var id = this;
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            url: "/home/getInfoMessage/" + id,
+            cache: true,
+            success: function success(data) {
+                $('#nome').text(data.nome);
+                $('#data_message').text(data.data_message);
+                // $('#dataNascimentodynamic').text(data.dataNascimento);
+                // $('#rgdynamic').text(data.rg);
+                // $('#redirectdynamic').attr('href', '/alunos/' + data.id);
 
             },
             beforeSend: function beforeSend() {
