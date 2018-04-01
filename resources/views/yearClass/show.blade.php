@@ -1,8 +1,22 @@
 @extends('layouts.app')
 
 @section('css')
+
+    <link rel="stylesheet" href="{{asset('css/plugins/trumbowyg.min.css')}}">
+
+
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="id-class" content="{{ $class->id }}">
+    <meta name="notification-title" content="{{ old('title') }}">
+
+    <style>
+        .trumbowyg-editor[contenteditable=true]:empty::before {
+            content: attr(placeholder);
+            color: #999;
+        }
+    </style>
+
 @endsection
 
 @section('content')
@@ -25,7 +39,8 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="#notificar">Notificar turma</a>
+                                        <a href="#notificar" data-toggle="modal" data-target="#notificationModal">Notificar
+                                            turma</a>
                                     </li>
                                 </ul>
 
@@ -387,10 +402,68 @@
         </div>
     </div>
 
+
+    {{--Modal Notificação geral --}}
+
+    <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            {!! Form::open(['route' => ['notification.class.new'],'id' => 'notificationModal', 'data-toggle' => 'validator', 'autocomplete' => 'off',  'method' => 'put']) !!}
+
+            <input id="year_class_id" name="year_class_id" type="hidden" value="{{$class->id}}">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titleMakeCall"><i class="fa fa-comment"></i> Notificar turma</h5>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="title" class="form-control-label">Titulo:</label>
+                                <input name="title" value="{{ old('title') }}" type="text" id="recipient-name"
+                                       required="required"
+                                       class="form-control" maxlength="220"></div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="exibition" class="form-control-label">Expira em:</label>
+                                <input name="exibition" value="{{ old('exibition') }}" type="text" id="exibitionDate"
+                                       required="required" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="exibition" class="form-control-label">Tipo de notificação:</label>
+
+                                <select class="form-control" name="notification_type_id">
+                                    @foreach($notificationType as $type)
+                                        <option value="{{$type->id}}" {{$type->id == old('notification_type_id') ? 'selected':'' }} >{{$type->title}}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <textarea name="description" id="notifictionMessage" class="trumbowyg-editor"
+                              placeholder="Sua menssagem...">{{ old('description') }}</textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="doneCall">Concluir</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
     <script src="{{asset('/js/features/yearClass.js')}}"></script>
     <script src="{{asset('/js/features/activities.js')}}"></script>
+    <script src="{{asset('js/plugins/trumbowyg.min.js')}}"></script>
+    <script src="{{asset('js/plugins/pt_br.min.js')}}"></script>
 
 @endsection

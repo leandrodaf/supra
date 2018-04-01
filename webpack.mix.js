@@ -2,6 +2,9 @@ let mix = require('laravel-mix');
 
 const node = "node_modules/";
 
+//Fonts
+mix.copyDirectory('node_modules/font-awesome/fonts', 'public/fonts');
+mix.copyDirectory('node_modules/bootstrap3/dist/fonts', 'public/fonts');
 
 
 mix.js('resources/assets/js/app.js', 'public/js')
@@ -43,6 +46,12 @@ mix.js('resources/assets/js/template/app.min.js', 'public/js/template');
 mix.js('node_modules/html5shiv/dist/html5shiv.js', 'public/js/template');
 mix.js('resources/assets/js/template/respond.min.js', 'public/js/template');
 
+mix.copy('node_modules/trumbowyg/dist/trumbowyg.min.js', 'public/js/plugins');
+mix.copy('node_modules/trumbowyg/dist/langs/pt_br.min.js', 'public/js/plugins');
+mix.copy('node_modules/trumbowyg/dist/ui/icons.svg', 'public/js/plugins/ui');
+mix.copy('node_modules/trumbowyg/dist/ui/trumbowyg.min.css', 'public/css/plugins');
+
+
 //Mix Plugins style
 mix.styles([
     'node_modules/bootstrap3/dist/css/bootstrap.min.css',
@@ -55,16 +64,9 @@ mix.styles([
     'node_modules/password-strength-meter/dist/password.min.css',
     'resources/assets/css/personalizacoes.css',
     'node_modules/clockpicker/dist/bootstrap-clockpicker.min.css',
-    'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css'
+    'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
 ], 'public/css/all.css')
     .version();
-
-
-//Fonts
-mix.copyDirectory('node_modules/font-awesome/fonts', 'public/fonts');
-mix.copyDirectory('node_modules/bootstrap3/dist/fonts', 'public/fonts');
-
-
 
 //Mix Plugins js
 mix.scripts([
@@ -84,7 +86,6 @@ mix.scripts([
     'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
     'node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js',
     'node_modules/bootstrap-validator/dist/validator.min.js',
-    'node_modules/moment/min/moment.min.js'
+    'node_modules/moment/min/moment.min.js',
 ], 'public/js/all.js')
     .version();
-

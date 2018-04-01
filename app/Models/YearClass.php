@@ -72,4 +72,9 @@ class YearClass extends Model
     {
         return $this->hasMany(\App\Models\Call::class);
     }
+
+    public function notification()
+    {
+        return $this->hasMany(\App\Models\Notification::class);
+    }
 }

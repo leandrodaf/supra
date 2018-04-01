@@ -38,6 +38,8 @@ Route::get('departments/getAjax', 'DepartmentController@dataAjax')->name('depart
 Route::get('management/getBasicData', 'UserManagementController@getBasicData')->name('management.getBasicData');
 Route::post('management/resetSenha/{id}', 'UserManagementController@resetSenha')->name('management.resetSenha');
 
+Route::put('notification/class/new', 'NotificationController@storeByYearClass')->name('notification.class.new');
+Route::put('notification/aluno/new', 'NotificationController@storeByAluno')->name('notification.aluno.new');
 
 Route::get('classrooms/getAll', 'ClassRoomController@getAll');
 Route::get('class/getBasicData', 'YearClassController@getBasicData')->name('class.getBasicData');

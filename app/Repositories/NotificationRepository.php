@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Helpers\Helpers;
 use App\Models\Notification;
+use App\Models\YearClass;
 use InfyOm\Generator\Common\BaseRepository;
 
 class NotificationRepository extends BaseRepository
@@ -23,28 +25,42 @@ class NotificationRepository extends BaseRepository
     }
 
 
-    public function store($request)
+    public function storeNotificationAllClass($request)
     {
-        if ($request->has('alunos')) {
-            foreach ($request->alunos as $alunos) {
-                $this->create([
-                    'description' => $request->description,
-                    'flg_satus' => $request->satus,
-                    'exibition' => !empty($request->exibition) ? $request->exibition : null,
-                    'notification_type_id' => $request->notification_type_id,
-                    'alunos_id' => $alunos->id
-                ]);
-            }
-            return response(200);
+
+        $helper = new Helpers();
+
+        $notification = $request->all();
+        $notification['flg_status'] = false;
+        $notification['exibition'] = $helper->formataDataPtBr($request->exibition);
+
+        array_forget($notification, '_token');
+        array_forget($notification, '_method');
+
+        $class = YearClass::find($request->year_class_id);
+
+        foreach ($class->alunos as $alunos) {
+            $notification['alunos_id'] = $alunos->id;
+            $this->create($notification);
         }
 
-        $this->create([
-            'description' => $request->description,
-            'flg_satus' => $request->satus,
-            'exibition' => !empty($request->exibition) ? $request->exibition : null,
-            'notification_type_id' => $request->notification_type_id,
-            'alunos_id' => $request->aluno->id
-        ]);
     }
+
+    public function storeNotificationAluno($request)
+    {
+
+        $helper = new Helpers();
+
+        $notification = $request->all();
+
+        $notification['flg_status'] = false;
+        $notification['exibition'] = $helper->formataDataPtBr($request->exibition);
+
+        array_forget($notification, '_token');
+        array_forget($notification, '_method');
+
+        $this->create($notification);
+    }
+
 
 }

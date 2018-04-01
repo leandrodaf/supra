@@ -17,12 +17,13 @@ class Notification extends Model
     protected $dates = ['deleted_at', 'exibition'];
 
     public $fillable = [
-        'description',
-        'flg_satus',
-        'exibition',
-        'alunos_id',
         'year_class_id',
-        'notification_type_id'
+        'title',
+        'exibition',
+        'notification_type_id',
+        'description',
+        'flg_status',
+        'alunos_id',
     ];
 
     /**
@@ -32,12 +33,14 @@ class Notification extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'description' => 'string',
-        'flg_satus' => 'boolean',
+        'title' => 'string',
         'exibition' => 'date',
-        'alunos_id' => 'integer',
         'year_class_id' => 'integer',
         'notification_type_id' => 'integer',
+        'description' => 'string',
+        'flg_status' => 'boolean',
+        'alunos_id' => 'integer',
+
     ];
 
     /**
@@ -46,19 +49,21 @@ class Notification extends Model
      * @var array
      */
     public static $rules = [
-        'nome' => '',
-        'description' => 'required',
-        'flg_satus' => 'required',
-        'exibition' => '',
-        'alunos_id' => 'required',
+        'title' => 'required',
+        'exibition' => 'required',
         'year_class_id' => '',
         'notification_type_id' => '',
+        'description' => 'required',
+        'flg_status' => '',
+        'alunos_id' => '',
     ];
 
 
-    public function notifiicationType()
+    public function type()
     {
-        return $this->hasOne(\App\Models\NotificationType::class);
+        return $this->hasMany(\App\Models\NotificationType::class,
+            'id',
+            'notification_type_id');
     }
 
 }

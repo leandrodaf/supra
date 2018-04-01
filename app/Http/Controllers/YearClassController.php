@@ -6,6 +6,7 @@ use App\Models\YearClass;
 use App\Repositories\YearClassRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class YearClassController extends Controller
@@ -30,8 +31,9 @@ class YearClassController extends Controller
     {
         $class = YearClass::find($idClass);
 
+        $notificationType = DB::table('notification_type')->select('id', 'title')->get();
 
-        return view('yearClass.show')->with(compact('class'));
+        return view('yearClass.show')->with(compact('class', 'notificationType'));
     }
 
 
