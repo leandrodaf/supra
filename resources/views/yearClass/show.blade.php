@@ -15,6 +15,14 @@
             content: attr(placeholder);
             color: #999;
         }
+
+        a.disabled {
+            pointer-events: none;
+        }
+
+        span.disable-links {
+            pointer-events: none;
+        }
     </style>
 
 @endsection
@@ -39,8 +47,18 @@
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="#notificar" data-toggle="modal" data-target="#notificationModal">Notificar
-                                            turma</a>
+                                        @if(count($class->alunos) > 0)
+                                            <a href="#notificar" data-toggle="modal" data-target="#notificationModal">
+                                                Notificar turma
+                                            </a>
+
+                                        @else
+                                            <span class="disable-links">
+                                            <a href="#notificar" data-toggle="modal" data-target="#notificationModal">
+                                                Notificar turma
+                                            </a>
+                                        </span>
+                                        @endif
                                     </li>
                                 </ul>
 
@@ -404,7 +422,6 @@
 
 
     {{--Modal Notificação geral --}}
-
     <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
