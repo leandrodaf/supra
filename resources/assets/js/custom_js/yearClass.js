@@ -112,7 +112,7 @@ $(document).ready(function () {
                 return {
                     results: $.map(data, function (item) {
                         return {
-                            text: 'Sala: ' + item.nome_sala + 'Capacidade: ' + item.capacidade,
+                            text: item.nome_sala + ' - ' + item.capacidade +' Alunos',
                             id: item.id
                         }
                     })

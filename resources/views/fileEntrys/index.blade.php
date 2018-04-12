@@ -5,7 +5,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">Gerenciamento de Documentos</h1>
+        <h1 class="pull-left">Arquivos</h1>
         <h1 class="pull-right">
         </h1>
     </section>
