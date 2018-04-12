@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateAlunosRequest;
+use App\Http\Requests\CreateDocRequest;
 use App\Http\Requests\UpdateAlunosRequest;
 use App\Models\Alunos;
 use App\Repositories\AlunosRepository;
@@ -151,6 +152,9 @@ class AlunosController extends AppBaseController
     public function show($idAluno)
     {
         $alunos = $this->alunosRepository->findWithoutFail($idAluno);
+        $docType = DB::table('type_doc')->select('id', 'name')
+            ->whereNotIn('id', [2, 5])
+            ->get();
         $notificationType = DB::table('notification_type')->select('id', 'title')->get();
         if (empty($alunos)) {
             $flash = new Flash();
@@ -158,7 +162,7 @@ class AlunosController extends AppBaseController
             return redirect(route('alunos.index'));
         }
 
-        return view('alunos.show')->with(compact('alunos','notificationType'));
+        return view('alunos.show')->with(compact('alunos', 'notificationType', 'docType'));
     }
 
     /**
@@ -360,5 +364,12 @@ class AlunosController extends AppBaseController
         return $this->alunosRepository->getAllAlunos($request, $id);
     }
 
+
+    public function storeDoc(CreateDocRequest $request)
+    {
+
+        $this->alunosRepository->storeDoc($request);
+        return redirect()->back();
+    }
 
 }

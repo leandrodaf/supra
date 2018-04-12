@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Helpers\Helpers;
+use App\Helpers\StorageHelper;
 use App\Models\Activitie;
 use InfyOm\Generator\Common\BaseRepository;
 
@@ -31,13 +32,13 @@ class ActivitieRepository extends BaseRepository
     {
         $data = $request->all();
         $helper = new Helpers();
+        $storage = new StorageHelper();
         $data['start_date'] = $helper->formataDataPtBr($data['start_date']);
         $data['end_date'] = $helper->formataDataPtBr($data['end_date']);
-
         $activitie = $this->create($data);
 
         if ($request->hasFile('attachedFile')) {
-            $helper->saveFile($request, 'attachedFile', $activitie);
+            $storage->saveFile($request, 'attachedFile', $activitie, 'activitie_id');
         }
 
         return $activitie;
