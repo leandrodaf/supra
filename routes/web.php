@@ -55,7 +55,8 @@ Route::delete('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teach
 
 Route::get('disk/file', 'FileentryController@getFile')->name('file.get');
 Route::get('disk/file/delete', 'FileentryController@deleteFile')->name('file.delete');
-
+Route::get('file', 'FileentryController@index')->name('file.index');
+Route::get('file/getBasicData', 'FileentryController@getBasicData')->name('file.getBasicData');
 
 Route::get('/activitie/{id}', 'ActivitieController@loadActivitie');
 Route::post('/activitie/{id}/pessoa', 'ActivitieController@syncAluno');
