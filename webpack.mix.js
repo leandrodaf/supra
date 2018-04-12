@@ -33,7 +33,7 @@ mix.js('resources/assets/js/custom_js/management.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/yearClass.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/activities.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/notification.js', 'public/js/features/');
-
+mix.js('resources/assets/js/custom_js/fileentry.js', 'public/js/features/');
 
 mix.js('resources/assets/js/plugins/jquery.cpfcnpj.min.js', 'public/js/plugins/jquery.cpfcnpj.min.js');
 mix.copy('resources/assets/images/avatarPadrao.jpg', 'public/uploads/');

@@ -30,12 +30,8 @@
                                            onclick="document.getElementById('#deletetarUsuario').submit();">Excluir</a>
                                     </li>
                                 </ul>
-
-
                                 {!! Form::open(['route' => ['pessoas.destroy', $pessoa->id], 'method' => 'delete', 'id' => 'deletetarUsuario']) !!}
-
                                 {!! Form::close() !!}
-
                             </div>
 
                         </div>
@@ -81,7 +77,6 @@
 
             </div>
             <div class="col-lg-4">
-
                 @include('pessoas.docPessoa')
 
                 @if($pessoa->tipoPessoa['id'] == 2 || $pessoa->tipoPessoa['id'] == 3)
@@ -89,12 +84,8 @@
                 @endif
                 @if($pessoa->tipoPessoa['id'] == 4 && \App\Helpers\Helpers::canRole(array_pluck($pessoa->departments->toArray(), 'nome'), ['Departamento acadêmico']))
                     @include('pessoas.teatcher')
-
                     @include('pessoas.yearClass')
-
                 @endif
-
-
             </div>
         </div>
     </div>
