@@ -18,7 +18,6 @@ Route::post('alunos/responsaveis/{responsavel}/desvincular', 'AlunosController@d
 Route::post('alunos/phoneMain', 'AlunosController@mainPhoneAlunosAjax')->name('alunos.phoneMain');
 Route::post('alunos/storedoc', 'AlunosController@storeDoc')->name('alunos.storeDoc');
 
-
 Route::get('pessoas/getBasicData', 'PessoaController@getBasicData')->name('pessoas.getBasicData');
 Route::get('pessoas/getInfoUser/{idPessoa}', 'PessoaController@getInfoUser')->name('pessoas.getInfoUser');
 Route::get('pessoas/getAjax', 'PessoaController@dataAjax')->name('pessoas.getAjaxSelect2');
@@ -28,7 +27,7 @@ Route::get('pessoas/teatcherSchoolSubjects/{id}', 'PessoaController@teatcherScho
 Route::post('pessoas/emailMain', 'PessoaController@mainEmailPessoaAjax')->name('pessoa.emailMain');
 Route::post('pessoas/phoneMain', 'PessoaController@mainPhonePessoaAjax')->name('pessoa.phoneMain');
 Route::post('pessoas/storeAjax', 'PessoaController@storeAjax')->name('pessoa.storeAjax');
-
+Route::post('pessoas/storedoc', 'PessoaController@storeDoc')->name('pessoa.storeDoc');
 
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::get('roles/getAjax', 'RoleController@dataAjax')->name('roles.getAjaxSelect2');

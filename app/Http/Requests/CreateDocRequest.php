@@ -25,6 +25,7 @@ class CreateDocRequest extends FormRequest
     {
         return [
             'alunos_id',
+            'pessoa_id',
             'docType',
             'attachedFile' => 'required|file',
         ];
