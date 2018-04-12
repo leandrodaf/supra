@@ -2,12 +2,14 @@
 
 namespace App\Repositories;
 
+use App\Helpers\StorageHelper;
 use App\Models\Alunos;
 use InfyOm\Generator\Common\BaseRepository;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Requests\CreateAlunosRequest;
 use App\Http\Requests\UpdateAlunosRequest;
 use App\Http\Requests\StoreAlunoMatricula;
+use App\Helpers\Helpers;
 
 /**
  * Class AlunosRepository
@@ -157,6 +159,22 @@ class AlunosRepository extends BaseRepository
     public function subQueryAlunosClass($query, $id)
     {
         $query->whereNotIn('year_class_id', $id);
+    }
+
+
+    public function storeDoc($request)
+    {
+        $helper = new StorageHelper();
+
+        $aluno = new Alunos();
+        $aluno->id = $request->alunos_id;
+
+        if ($request->hasFile('attachedFile')) {
+            $helper->saveFile($request, 'attachedFile', $aluno, 'alunos_id');
+        }
+
+//        $this->create();
+
     }
 
 }

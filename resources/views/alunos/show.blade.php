@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('css')
 
     <link rel="stylesheet" href="{{asset('css/plugins/trumbowyg.min.css')}}">
@@ -36,12 +35,13 @@
                                     <li><a href="{!! route('alunos.edit', [$alunos->id]) !!}">Editar</a></li>
                                     <li class="divider"></li>
                                     {{--<li>--}}
-                                        {{--<a href="#deletetarUsuario"--}}
-                                           {{--onclick="document.getElementById('#deletetarUsuario').submit();">Excluir</a>--}}
+                                    {{--<a href="#deletetarUsuario"--}}
+                                    {{--onclick="document.getElementById('#deletetarUsuario').submit();">Excluir</a>--}}
                                     {{--</li>--}}
 
                                     <li>
-                                        <a href="#notificar" data-toggle="modal" data-target="#notificationModal">Notificar aluno</a>
+                                        <a href="#notificar" data-toggle="modal" data-target="#notificationModal">Notificar
+                                            aluno</a>
                                     </li>
                                 </ul>
                                 <!-- Collapse Button -->
@@ -108,7 +108,8 @@
                             <i class="fa fa-comment-o"></i> Notificações
                         </div>
                         <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-plus"></i>
                             </button>
                         </div>
 
@@ -123,6 +124,7 @@
 
             </div>
             <div class="col-lg-4">
+                @include('alunos.docAluno')
                 @include('alunos.responsavel')
                 @include('alunos.yearClass')
                 @include('alunos.presence')
@@ -151,6 +153,50 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="modal-doc-aluno" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">Adicionar Documento</h4>
+                    </div>
+                    {!! Form::open(['route' => 'alunos.storeDoc', 'files' => true, 'id' => 'activitiesClass', 'data-toggle' => 'validator', 'autocomplete' => 'off']) !!}
+
+                    <input type="hidden" name="alunos_id" value="{{ $alunos->id }}">
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="doc_type">Tipo do documento</label>
+                            <select name="type_doc" class="form-control mb-2 mr-sm-2 mb-sm-0" id="type_doc"
+                                    required="required">
+                                <option disabled="disabled" selected="selected">Tipo do documento</option>
+                                @foreach($docType as $type)
+                                    <option value="{{$type->id}}" {{old('type_doc') == $type->id ? 'selected="selected"':null}}>{{$type->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group {{ $errors->has('attachedFile') ? ' has-error' : '' }}">
+                            <label for="attachedFile" class="form-control-label">Anexar Documento:</label>
+                            <input name="attachedFile" type="file" value="{{old('attachedFile')}}" required="required">
+                            @if ($errors->has('attachedFileemail'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('attachedFile') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                    {!! Form::close() !!}
+
+                </div>
+            </div>
+        </div>
+
     </div>
 
     {{--Modal Notificação geral --}}

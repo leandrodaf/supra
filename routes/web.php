@@ -16,6 +16,7 @@ Route::post('alunos/emailMain', 'AlunosController@mainEmailAlunoAjax')->name('al
 Route::post('alunos/responsaveis/{responsavel}', 'AlunosController@updateResponsaveis')->name('alunos.updateResponsaveis');
 Route::post('alunos/responsaveis/{responsavel}/desvincular', 'AlunosController@desvincularAluno')->name('alunos.desvincularAluno');
 Route::post('alunos/phoneMain', 'AlunosController@mainPhoneAlunosAjax')->name('alunos.phoneMain');
+Route::post('alunos/storedoc', 'AlunosController@storeDoc')->name('alunos.storeDoc');
 
 
 Route::get('pessoas/getBasicData', 'PessoaController@getBasicData')->name('pessoas.getBasicData');
@@ -54,6 +55,7 @@ Route::post('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacher
 Route::delete('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherRemove');
 
 Route::get('disk/file', 'FileentryController@getFile')->name('file.get');
+Route::get('disk/file/delete', 'FileentryController@deleteFile')->name('file.delete');
 
 
 Route::get('/activitie/{id}', 'ActivitieController@loadActivitie');
