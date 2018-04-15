@@ -3,13 +3,12 @@
 namespace App\Repositories;
 
 use App\Helpers\StorageHelper;
+use App\Http\Requests\CreateAlunosRequest;
+use App\Http\Requests\StoreAlunoMatricula;
+use App\Http\Requests\UpdateAlunosRequest;
 use App\Models\Alunos;
 use InfyOm\Generator\Common\BaseRepository;
 use Intervention\Image\ImageManagerStatic as Image;
-use App\Http\Requests\CreateAlunosRequest;
-use App\Http\Requests\UpdateAlunosRequest;
-use App\Http\Requests\StoreAlunoMatricula;
-use App\Helpers\Helpers;
 
 /**
  * Class AlunosRepository

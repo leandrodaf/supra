@@ -105,6 +105,7 @@ class YearClassController extends Controller
 
     public function syncAluno(Request $request, $id)
     {
+
         return $this->yearClassRepository->addAlunoToYearClass($request, $id);
     }
 
@@ -116,8 +117,7 @@ class YearClassController extends Controller
     public function detachStudents(Request $request)
     {
         $data = $request->all();
-
-        return $this->yearClassRepository->detachStudents($data['idClass'], $data['idAluno']);
+        return $this->yearClassRepository->detachStudents($data['body']['idClass'], $data['body']['aluno']);
     }
 
     public function getAlunos(Request $request)

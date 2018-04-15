@@ -212,6 +212,11 @@ class Alunos extends Model
         return $this->hasMany(\App\Models\Notification::class);
     }
 
+    public function diairy()
+    {
+        return $this->hasMany(\App\Models\Diary::class);
+    }
+
     public function average($classid)
     {
         $media = 0.0;

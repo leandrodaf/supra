@@ -3,10 +3,19 @@
 $(document).ready(function () {
 //    Notification feature
 
+    $('#diaryMessage').trumbowyg({
+        btns: [
+            ['strong', 'em', 'del', 'italic'],
+        ],
+        lang: 'pt_br',
+        removeformatPasted: true,
+        autogrow: true
+    });
+
     $('#notifictionMessage').trumbowyg({
         btns: [
             ['viewHTML'],
-            ['undo', 'redo'], // Only supported in Blink browsers
+            ['undo', 'redo'],
             ['strong', 'em', 'del'],
             ['superscript', 'subscript'],
             ['link'],

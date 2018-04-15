@@ -4,8 +4,6 @@ namespace App\Repositories;
 
 use App\Helpers\StorageHelper;
 use App\Models\Pessoa;
-use GuzzleHttp\Psr7\Response;
-use Illuminate\Support\Facades\DB;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**

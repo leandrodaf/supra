@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Http\Requests\CreateDocRequest;
 use App\Http\Requests\CreatePessoaRequest;
 use App\Http\Requests\UpdatePessoaRequest;
@@ -10,11 +11,10 @@ use App\Repositories\PessoaRepository;
 use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-use App\Helpers\Helpers;
 use Yajra\DataTables\DataTables;
-use Illuminate\Support\Facades\Redirect;
 
 class PessoaController extends AppBaseController
 {

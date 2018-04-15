@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
+
 @section('css')
 
     <link rel="stylesheet" href="{{asset('css/plugins/trumbowyg.min.css')}}">
     <meta name="notification-title" content="{{ old('title') }}">
+    <meta name="user-id" content="{{ $alunos->id }}">
+
+
     <style>
         .trumbowyg-editor[contenteditable=true]:empty::before {
             content: attr(placeholder);
@@ -35,13 +39,12 @@
                                     <li><a href="{!! route('alunos.edit', [$alunos->id]) !!}">Editar</a></li>
                                     <li class="divider"></li>
                                     {{--<li>--}}
-                                    {{--<a href="#deletetarUsuario"--}}
-                                    {{--onclick="document.getElementById('#deletetarUsuario').submit();">Excluir</a>--}}
+                                        {{--<a href="#deletetarUsuario"--}}
+                                           {{--onclick="document.getElementById('#deletetarUsuario').submit();">Excluir</a>--}}
                                     {{--</li>--}}
 
                                     <li>
-                                        <a href="#notificar" data-toggle="modal" data-target="#notificationModal">Notificar
-                                            aluno</a>
+                                        <a href="#notificar" data-toggle="modal" data-target="#notificationModal">Notificar aluno</a>
                                     </li>
                                 </ul>
                                 <!-- Collapse Button -->
@@ -128,6 +131,7 @@
                 @include('alunos.responsavel')
                 @include('alunos.yearClass')
                 @include('alunos.presence')
+                @include('alunos.studentDiary')
             </div>
         </div>
 
@@ -255,7 +259,90 @@
                     <button type="submit" class="btn btn-primary" id="doneCall">Concluir</button>
                 </div>
             </div>
-            </form>
+            {!! Form::close() !!}
+        </div>
+    </div>
+
+    <div class="modal fade" id="studentDiaryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document" style="width: 450px; ">
+            {!! Form::open(['route' => 'diary.store', 'id' => 'callMakeForm', 'data-toggle' => 'validator', 'autocomplete' => 'off', 'class' => '']) !!}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titleMakeCall"><i class="fa fa-book"></i> Diario do Aluno</h5>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-lg-3 col-form-label">Data</label>
+                        <div class="col-sm-9 col-lg-9">
+                            <input id="dateDiary" name="date" type="hidden" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}">
+                            <input id="userAuth" name="user_id" type="hidden" value="{{Auth()->user()->id}}">
+                            <input id="idAluno" name="alunos_id" type="hidden" value="{{$alunos->id}}">
+                            <p id="fakeDate" class="form-control-static">{{\Carbon\Carbon::now()->format('d/m/Y')}}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-inline row">
+                        <label class="col-sm-3 col-lg-3 col-form-label">Atenção</label>
+                        <div class="radio col-sm-9 col-lg-9">
+                            <label style="margin-right: 10px;">
+                                <input type="radio" id="atention1" name="flg_atention" value="1" required> Bom
+                            </label>
+                            <label style="margin-right: 10px;">
+                                <input type="radio" id="atention2" name="flg_atention" value="2" required> Regular
+                            </label>
+                            <label style="margin-right: 10px;"s>
+                                <input type="radio" id="atention3" name="flg_atention" value="3" required> Ruim
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-inline row">
+                        <label class="col-sm-3 col-lg-3 col-form-label">Disciplina</label>
+                        <div class="radio col-sm-9 col-lg-9">
+                            <label style="margin-right: 10px;">
+                                <input type="radio" id="discipline1" name="flg_discipline" value="1" required> Bom
+                            </label>
+                            <label style="margin-right: 10px;">
+                                <input type="radio" id="discipline2" name="flg_discipline" value="2" required> Regular
+                            </label>
+                            <label style="margin-right: 10px;">
+                                <input type="radio" id="discipline3" name="flg_discipline" value="3" required> Ruim
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-inline row">
+                        <label class="col-sm-3 col-lg-3 col-form-label">Humor</label>
+                        <div class="radio col-sm-9 col-lg-9">
+                            <label style="margin-right: 10px;">
+                                <input type="radio" id="humor1" name="flg_humor" value="1" required> Bom
+                            </label>
+                            <label style="margin-right: 10px;">
+                                <input type="radio" id="humor2" name="flg_humor" value="2" required> Regular
+                            </label>
+                            <label style="margin-right: 10px;">
+                                <input type="radio" id="humor3" name="flg_humor" value="3" required> Ruim
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-inline row">
+                        <label class="col-sm-3 col-lg-3 col-form-label">Anotação</label>
+                        <div class="textarea col-sm-9 col-lg-9">
+                            <textarea name="description" id="diaryMessage" class="trumbowyg-editor"
+                                      placeholder="Anotação do professor...">{{ old('description') }}</textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="doneCall">Concluir</button>
+                </div>
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
 

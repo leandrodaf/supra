@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Department;
+use App\Models\Diary;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateDepartmentRequest extends FormRequest
+class CreateDiaryRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,6 +24,6 @@ class CreateDepartmentRequest extends FormRequest
      */
     public function rules()
     {
-        return Department::$rules;
+        return Diary::$rules;
     }
 }

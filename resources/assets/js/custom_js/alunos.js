@@ -415,4 +415,130 @@ $(document).ready(function () {
         return false;
     });
 
+    function dataAtualFormatada(date) {
+
+        var dia = date.getDate();
+        if (dia.toString().length == 1)
+            dia = "0" + dia;
+        var mes = date.getMonth() + 1;
+        if (mes.toString().length == 1)
+            mes = "0" + mes;
+        var ano = date.getFullYear();
+        return dia + "/" + mes + "/" + ano;
+    }
+
+
+    let getDiary = function (date) {
+        let dateDiary;
+        const dateToday = new Date().toISOString().split('T')[0];
+
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            data: {
+                "date": date,
+                "user_id": $('meta[name="user-id"]').attr('content')
+            },
+            url: "/diary",
+            cache: true,
+            success: function (data) {
+
+                if (data.status == false) {
+                    $("#atention1").removeAttr('checked', 'checked');
+                    $("#atention2").removeAttr('checked', 'checked');
+                    $("#atention3").removeAttr('checked', 'checked');
+                    $("#discipline1").removeAttr('checked', 'checked');
+                    $("#discipline2").removeAttr('checked', 'checked');
+                    $("#discipline3").removeAttr('checked', 'checked');
+                    $("#humor1").removeAttr('checked', 'checked');
+                    $("#humor2").removeAttr('checked', 'checked');
+                    $("#humor3").removeAttr('checked', 'checked');
+
+                    $("#atention1").removeAttr('disabled', 'disabled');
+                    $("#atention2").removeAttr('disabled', 'disabled');
+                    $("#atention3").removeAttr('disabled', 'disabled');
+                    $("#discipline1").removeAttr('disabled', 'disabled');
+                    $("#discipline2").removeAttr('disabled', 'disabled');
+                    $("#discipline3").removeAttr('disabled', 'disabled');
+                    $("#humor1").removeAttr('disabled', 'disabled');
+                    $("#humor2").removeAttr('disabled', 'disabled');
+                    $("#humor3").removeAttr('disabled', 'disabled');
+
+                    $('.trumbowyg-editor').removeAttr('disabled', 'disabled');
+                    $('#doneCall').removeAttr('disabled', 'disabled');
+                    $('#fakeDate').text(dataAtualFormatada(new Date()));
+
+                    $('#callMakeForm .trumbowyg-editor').text(' ');
+
+                } else {
+                    dateDiary = new Date(data[0].date).toISOString().split('T')[0];
+                    data[0].flg_atention === 1 ? $("#atention1").attr('checked', 'checked') : '';
+                    data[0].flg_atention === 2 ? $("#atention2").attr('checked', 'checked') : '';
+                    data[0].flg_atention === 3 ? $("#atention3").attr('checked', 'checked') : '';
+
+                    data[0].flg_discipline === 1 ? $("#discipline1").attr('checked', 'checked') : '';
+                    data[0].flg_discipline === 2 ? $("#discipline2").attr('checked', 'checked') : '';
+                    data[0].flg_discipline === 3 ? $("#discipline3").attr('checked', 'checked') : '';
+
+                    data[0].flg_humor === 1 ? $("#humor1").attr('checked', 'checked') : '';
+                    data[0].flg_humor === 2 ? $("#humor2").attr('checked', 'checked') : '';
+                    data[0].flg_humor === 3 ? $("#humor3").attr('checked', 'checked') : '';
+                    $('#fakeDate').text(dataAtualFormatada(new Date(data[0].date)));
+                    $('#callMakeForm .trumbowyg-editor').text(data[0].message);
+
+                    $('.trumbowyg-editor').text(data[0].description);
+
+                    if (dateDiary !== dateToday) {
+                        $("#atention1").attr('disabled', 'disabled');
+                        $("#atention2").attr('disabled', 'disabled');
+                        $("#atention3").attr('disabled', 'disabled');
+                        $("#discipline1").attr('disabled', 'disabled');
+                        $("#discipline2").attr('disabled', 'disabled');
+                        $("#discipline3").attr('disabled', 'disabled');
+                        $("#humor1").attr('disabled', 'disabled');
+                        $("#humor2").attr('disabled', 'disabled');
+                        $("#humor3").attr('disabled', 'disabled');
+                        $('.trumbowyg-editor').attr('disabled', 'disabled');
+                        $('#doneCall').attr('disabled', 'disabled');
+                    } else {
+                        $("#atention1").removeAttr('disabled', 'disabled');
+                        $("#atention2").removeAttr('disabled', 'disabled');
+                        $("#atention3").removeAttr('disabled', 'disabled');
+                        $("#discipline1").removeAttr('disabled', 'disabled');
+                        $("#discipline2").removeAttr('disabled', 'disabled');
+                        $("#discipline3").removeAttr('disabled', 'disabled');
+                        $("#humor1").removeAttr('disabled', 'disabled');
+                        $("#humor2").removeAttr('disabled', 'disabled');
+                        $("#humor3").removeAttr('disabled', 'disabled');
+                        $('.trumbowyg-editor').removeAttr('disabled', 'disabled');
+                        $('#doneCall').removeAttr('disabled', 'disabled');
+                    }
+
+                }
+            },
+            beforeSend: function () {
+            },
+            complete: function () {
+            }
+            ,
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    };
+
+    $('#studentDiaryModal').on('show.bs.modal', function (e) {
+        var diaryDate = $(e.relatedTarget).data('date');
+        const dateToday = new Date().toISOString().split('T')[0];
+
+        if (diaryDate == undefined) {
+            getDiary(dateToday);
+        } else {
+            getDiary(diaryDate);
+        }
+
+
+    });
+
 });
