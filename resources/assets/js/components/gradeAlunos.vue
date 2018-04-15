@@ -6,10 +6,12 @@
             </div>
         </div>
 
+        <div class="overlay" id="loadingAlunos" v-show="showLoading">
+            <i class="fa fa-refresh fa-spin"></i>
+        </div>
+
         <div v-if="alunos.length >= 1">
-            <div class="overlay" id="loadingAlunos" v-show="showLoading">
-                <i class="fa fa-refresh fa-spin"></i>
-            </div>
+
             <table id="contentAlunos" class="table table-bordered">
 
                 <thead>
@@ -65,11 +67,6 @@
                 class_id: parseInt($('meta[name="id-class"]').attr('content')),
                 updateAlunos: false
             }
-        },
-        watch: function() {
-            $on('id-selected', function (id) {
-                this.total = id;
-            })
         },
         created() {
             this.getAlunos();
