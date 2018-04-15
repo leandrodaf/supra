@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Helpers\StorageHelper;
 use App\Models\Pessoa;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Facades\DB;
@@ -119,6 +120,18 @@ class PessoaRepository extends BaseRepository
         $schoolSubjects = $this->findWithoutFail($id)->SchoolSubject;
 
         return $schoolSubjects;
+
+    }
+
+    public function storeDoc($request)
+    {
+        $helper = new StorageHelper();
+        $pessoa = new Pessoa();
+        $pessoa->id = $request->pessoa_id;
+
+        if ($request->hasFile('attachedFile')) {
+            $helper->saveFile($request, 'attachedFile', $pessoa, 'pessoa_id');
+        }
 
     }
 

@@ -39,4 +39,5 @@ class User extends Authenticatable
             'pessoa_id');
     }
 
+
 }

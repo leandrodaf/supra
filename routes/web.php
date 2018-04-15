@@ -16,7 +16,7 @@ Route::post('alunos/emailMain', 'AlunosController@mainEmailAlunoAjax')->name('al
 Route::post('alunos/responsaveis/{responsavel}', 'AlunosController@updateResponsaveis')->name('alunos.updateResponsaveis');
 Route::post('alunos/responsaveis/{responsavel}/desvincular', 'AlunosController@desvincularAluno')->name('alunos.desvincularAluno');
 Route::post('alunos/phoneMain', 'AlunosController@mainPhoneAlunosAjax')->name('alunos.phoneMain');
-
+Route::post('alunos/storedoc', 'AlunosController@storeDoc')->name('alunos.storeDoc');
 
 Route::get('pessoas/getBasicData', 'PessoaController@getBasicData')->name('pessoas.getBasicData');
 Route::get('pessoas/getInfoUser/{idPessoa}', 'PessoaController@getInfoUser')->name('pessoas.getInfoUser');
@@ -27,7 +27,7 @@ Route::get('pessoas/teatcherSchoolSubjects/{id}', 'PessoaController@teatcherScho
 Route::post('pessoas/emailMain', 'PessoaController@mainEmailPessoaAjax')->name('pessoa.emailMain');
 Route::post('pessoas/phoneMain', 'PessoaController@mainPhonePessoaAjax')->name('pessoa.phoneMain');
 Route::post('pessoas/storeAjax', 'PessoaController@storeAjax')->name('pessoa.storeAjax');
-
+Route::post('pessoas/storedoc', 'PessoaController@storeDoc')->name('pessoa.storeDoc');
 
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::get('roles/getAjax', 'RoleController@dataAjax')->name('roles.getAjaxSelect2');
@@ -54,7 +54,9 @@ Route::post('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacher
 Route::delete('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherRemove');
 
 Route::get('disk/file', 'FileentryController@getFile')->name('file.get');
-
+Route::get('disk/file/delete', 'FileentryController@deleteFile')->name('file.delete');
+Route::get('file', 'FileentryController@index')->name('file.index');
+Route::get('file/getBasicData', 'FileentryController@getBasicData')->name('file.getBasicData');
 
 Route::get('/activitie/{id}', 'ActivitieController@loadActivitie');
 Route::post('/activitie/{id}/pessoa', 'ActivitieController@syncAluno');
