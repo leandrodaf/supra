@@ -334,56 +334,7 @@ $(document).ready(function () {
         }
     };
 
-    $(window).on("load", function () {
 
-        let id = $('meta[name="id-class"]').attr('content');
-
-        if (!(typeof id == "undefined") && id != '') {
-            $.ajax({
-                async: true,
-                type: "GET",
-                dataType: "json",
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                url: "/class/synchronizedStudents/" + $('meta[name="id-class"]').attr('content'),
-                cache: true,
-                success: function success(data) {
-
-                    let rowEmpaty = '    <td colspan="5"><div class="alert alert-info">\n' +
-                        '                    <strong>Atenção!</strong> Essa turma ainda não tem alunos cadastrados!.\n' +
-                        '                </div></td>';
-
-                    if (data.alunos.length == 0) {
-                        $('#contentAlunos tbody').append(rowEmpaty);
-                    }
-                    for (var k in data.alunos) {
-                        let row = ' <tr>\n' +
-                            '            <td>' + data.alunos[k].nome_aluno + '</td>\n' +
-                            '            <td>\n' +
-                            '                <div class="progress progress-xs">\n' +
-                            '                    <div class="progress-bar ' + validationColorprogress(data.alunos[k].media) + '" style="width: ' + data.alunos[k].media + '%"></div>\n' +
-                            '                </div>\n' +
-                            '            </td>\n' +
-                            '            <td><span class="badge bg-red ' + validationColorLabel(data.alunos[k].media) + '">' + data.alunos[k].media + '</span></td>' +
-                            '            <td style="text-align: center;" data-toggle="tooltip" data-placement="right" title="Desvincular aluno">' +
-                            '                <i class="fa fa-plug" data-id="' + data.alunos[k].id + '"  style="color: #cb2027; cursor: pointer;"  data-toggle="modal" data-target="#unsync" data-aluno-id="' + data.alunos[k].id + '"></i>' +
-                            '            </td>' +
-                            '        </tr>';
-
-                        $('#contentAlunos tbody')
-                            .append(row);
-                    }
-                },
-                beforeSend: function beforeSend(data) {
-                    $('#loadingAlunos').show()
-                },
-                complete: function complete(data) {
-                    $('#loadingAlunos').hide();
-                }
-            });
-        }
-
-
-    });
 
     let loadAlunos = function () {
         $.ajax({
