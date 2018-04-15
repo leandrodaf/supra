@@ -24,8 +24,10 @@
 
                 <tbody>
                 <tr v-for="aluno in alunos">
-                    <td @click="goToAluno(aluno.id)"><img :src="'/uploads/avatars/' + aluno.foto_aluno"
-                                                          style="height: 50px; width: 50px;"/></td>
+                    <td @click="goToAluno(aluno.id)">
+                        <img :src="'/uploads/avatars/' + aluno.foto_aluno" style="cursor: pointer; height: 50px; width: 50px;" data-toggle="tooltip" data-placement="left"
+                             title="Acessar aluno"/>
+                    </td>
                     <td @click="goToAluno(aluno.id)">{{aluno.nome_aluno}}</td>
                     <td>
                         <div class="progress progress-xs">
@@ -37,9 +39,8 @@
                     </td>
                     <td style="text-align: center;" data-toggle="tooltip" data-placement="right"
                         title="Desvincular aluno">
-                        <i class="fa fa-plug" :data-id="aluno.id" style="color: #cb2027; cursor: pointer;"
-                           data-toggle="modal" @click="removeAluno(aluno.id)" data-target="#unsync"
-                           :data-aluno-id="aluno.id"></i>
+                        <i class="fa fa-plug" style="color: #cb2027; cursor: pointer;"
+                           @click="removeAluno(aluno.id)"></i>
                     </td>
                 </tr>
                 </tbody>
@@ -47,7 +48,7 @@
         </div>
 
         <!-- Modal remover aluno -->
-        <modal-aluno-desvincular aluno-id="1" class-id="1"></modal-aluno-desvincular>
+        <modal-aluno-desvincular v-bind:aluno-id="aluno_id" v-bind:class-id="class_id"></modal-aluno-desvincular>
     </div>
 
 </template>
@@ -57,17 +58,28 @@
         name: "gradeAlunos",
         data: function () {
             return {
+                total: false,
                 alunos: [],
-                aluno_id: 1,
+                aluno_id: null,
                 showLoading: true,
-                class_id: parseInt($('meta[name="id-class"]').attr('content'))
+                class_id: parseInt($('meta[name="id-class"]').attr('content')),
+                updateAlunos: false
             }
+        },
+        watch: function() {
+            $on('id-selected', function (id) {
+                this.total = id;
+            })
         },
         created() {
             this.getAlunos();
         },
         methods: {
+            incrementTotal: function () {
+                this.total += 1
+            },
             removeAluno(id) {
+                $('#unsync').modal('show');
                 if (this.aluno_id) {
                     this.aluno_id = null;
                 } else {
@@ -75,7 +87,9 @@
                 }
             },
             getAlunos() {
+
                 this.showLoading = true;
+                this.alunos = [];
                 Vue.axios.get('/class/synchronizedStudents/' + this.class_id).then((response) => {
                     this.alunos = response.data.alunos;
                     this.showLoading = false;

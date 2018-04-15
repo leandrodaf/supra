@@ -301,7 +301,7 @@ $(document).ready(function () {
             url: "/class/syncAluno/" + $('meta[name="id-class"]').attr('content'),
             data: {aluno: $("#aluno :selected").val()},
             success: function (data) {
-                loadAlunos();
+                location.reload();
             },
             beforeSend: function (before) {
             },
