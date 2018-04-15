@@ -36,7 +36,6 @@
                     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     body: {'aluno': aluno, 'idClass': yearclass}
                 }).then(response => {
-                    console.log(response);
                     this.isActive = false;
                     $('#unsync').modal('hide');
                     location.reload();

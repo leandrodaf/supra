@@ -21,7 +21,6 @@
     "axios": "^0.15.3",
     "vue": "^2.1.10",
     "jquery": "^3.3.1",
-    "bootstrap": "^4.0.0",
     "bootstrap-datepicker": "^1.7.1",
     "bootstrap-validator": "^0.11.9",
     "bootstrap3": "^3.3.5",
@@ -49,7 +48,6 @@
     "spinkit": "^1.2.5",
     "trumbowyg": "^2.9.4",
     "twitter-bootstrap-wizard": "^1.2.0",
-    "vue-axios": "^2.1.1",
-    "vue-resource": "^1.5.0"
+    "vue-axios": "^2.1.1"
   }
 }
