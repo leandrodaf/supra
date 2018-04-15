@@ -40,10 +40,22 @@
                     this.isActive = false;
                     $('#unsync').modal('hide');
                     location.reload();
-                }).catch(e => {
-                    console.log(e);
-                    $('#unsync').modal('hide');
-                })
+                }).catch(function (error) {
+                    if (error.response) {
+                        console.log("data");
+                        console.log(error.response.data);
+                        console.log("status");
+                        console.log(error.response.status);
+                        console.log("headers");
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log("request");
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                    console.log(error.config);
+                });
             }
         }
     }

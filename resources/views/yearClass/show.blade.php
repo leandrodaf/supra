@@ -3,10 +3,6 @@
 @section('css')
 
     <link rel="stylesheet" href="{{asset('css/plugins/trumbowyg.min.css')}}">
-
-
-
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="id-class" content="{{ $class->id }}">
     <meta name="notification-title" content="{{ old('title') }}">
 

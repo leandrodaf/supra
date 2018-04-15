@@ -7,9 +7,11 @@
     </tr>
     </thead>
     <tbody id="studentDiary">
+
     @foreach($alunos->diairy()->take(5)->get() as $diary)
         <tr>
             <td>
+            
                 {{$diary->date->format('d/m/Y')}}
             </td>
             <td>
