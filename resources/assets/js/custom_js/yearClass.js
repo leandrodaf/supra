@@ -4,7 +4,6 @@ $(document).ready(function () {
     $('.datepicker').datepicker({
         orientation: 'left bottom',
         autoclose: true,
-        todayHighlight: true,
         locale: 'pt-BR',
         format: 'dd-mm-yyyy',
         todayHighlight: true,

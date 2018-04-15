@@ -2,10 +2,9 @@
     <div class="box-header with-border">
         <h3 class="box-title">Responsáveis e Autorizados</h3>
         <div class="box-tools pull-right">
-            <!-- Collapse Button -->
-            {{--<button type="button" class="btn btn-box-tool" data-widget="collapse">--}}
-            {{--<i class="fa fa-minus"></i>--}}
-            {{--</button>--}}
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
 
             <a href="#formIncluirParticipante" class="module-control pull-right" data-toggle="modal">
                 <i class="icon-plus"></i>
@@ -18,11 +17,8 @@
                 </a>
             @endif
         </div>
-        <!-- /.box-tools -->
     </div>
-    <!-- /.box-header -->
     <div class="box-body">
         @include('alunos.responsavei_table')
     </div>
-    <!-- /.box-body -->
 </div>

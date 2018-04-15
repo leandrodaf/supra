@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Http\Requests\CreateAlunosRequest;
 use App\Http\Requests\CreateDocRequest;
 use App\Http\Requests\UpdateAlunosRequest;
 use App\Models\Alunos;
 use App\Repositories\AlunosRepository;
+use Carbon\Carbon;
 use Flash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Yajra\DataTables\DataTables;
-use Carbon\Carbon;
-use App\Helpers\Helpers;
-use Illuminate\Support\Facades\DB;
 
 class AlunosController extends AppBaseController
 {

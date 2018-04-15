@@ -5,6 +5,9 @@
 
     <link rel="stylesheet" href="{{asset('css/plugins/trumbowyg.min.css')}}">
     <meta name="notification-title" content="{{ old('title') }}">
+    <meta name="user-id" content="{{ $alunos->id }}">
+
+
     <style>
         .trumbowyg-editor[contenteditable=true]:empty::before {
             content: attr(placeholder);

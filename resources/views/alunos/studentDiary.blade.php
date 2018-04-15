@@ -1,27 +1,17 @@
 <div class="box">
     <div class="box-header with-border">
-        <h3 class="box-title">Turmas</h3>
+        <h3 class="box-title">Diário do aluno</h3>
         <div class="box-tools pull-right">
-
-            <a href="#formIncluirParticipante" class="module-control pull-right" data-toggle="modal">
-                <i class="icon-plus"></i>
-            </a>
-
-
+            <button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#studentDiaryModal">
+                <i class="fa fa-plus"></i>
+            </button>
         </div>
-        <!-- /.box-tools -->
     </div>
-    <!-- /.box-header -->
     <div class="box-body">
-
-        @if(count($alunos->yearClass) != 0)
-
-            @include('alunos.yearClass_table')
-
-            @else
-
-            O aluno não possui turma
+        @if(count($alunos->diairy()->take(5)->get()) != 0)
+            @include('alunos.studentDiary_table')
+        @else
+            O aluno não possui registro de diário
         @endif
     </div>
-    <!-- /.box-body -->
 </div>
