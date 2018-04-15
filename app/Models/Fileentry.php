@@ -16,7 +16,8 @@ class Fileentry extends Model
         'filename',
         'mime',
         'original_filename',
-        'extension'
+        'extension',
+        'type_doc_id'
     ];
 
 
@@ -24,4 +25,15 @@ class Fileentry extends Model
     {
         return $this->belongsTo('\App\Models\Activitie', 'activitie_id');
     }
+
+    public function alunos()
+    {
+        return $this->belongsTo(\App\Models\Alunos::class, 'alunos_id');
+    }
+
+    public function pessoa()
+    {
+        return $this->belongsTo(\App\Models\Pessoa::class, 'pessoa_id');
+    }
+
 }

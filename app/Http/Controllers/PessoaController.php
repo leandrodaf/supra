@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateDocRequest;
 use App\Http\Requests\CreatePessoaRequest;
 use App\Http\Requests\UpdatePessoaRequest;
 use App\Models\Pessoa;
@@ -278,8 +279,12 @@ class PessoaController extends AppBaseController
      */
     public function show($idPessoa)
     {
-        $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
 
+
+        $pessoa = $this->pessoaRepository->findWithoutFail($idPessoa);
+        $docType = DB::table('type_doc')->select('id', 'name')
+            ->whereNotIn('id', [2, 5])
+            ->get();
         $schoolsubjects = \App\Models\SchoolSubject::all();
 
         if (empty($pessoa)) {
@@ -289,7 +294,7 @@ class PessoaController extends AppBaseController
             return redirect(route('pessoas.index'));
         }
 
-        return view('pessoas.show')->with(compact('schoolsubjects', 'pessoa'));
+        return view('pessoas.show')->with(compact('schoolsubjects', 'pessoa', 'docType'));
     }
 
     /**
@@ -506,6 +511,13 @@ class PessoaController extends AppBaseController
         $subjects = $this->pessoaRepository->teatcherSubjetc($id);
 
         return $subjects;
+    }
+
+    public function storeDoc(CreateDocRequest $request)
+    {
+
+        $this->pessoaRepository->storeDoc($request);
+        return redirect()->back();
     }
 
 }

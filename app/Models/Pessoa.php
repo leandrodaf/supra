@@ -257,4 +257,9 @@ class Pessoa extends Model
         return $this->belongsToMany(\App\Models\Activitie::class);
     }
 
+    public function fileentry()
+    {
+        return $this->hasMany(\App\Models\Fileentry::class);
+    }
+
 }

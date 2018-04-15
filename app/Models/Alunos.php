@@ -236,5 +236,10 @@ class Alunos extends Model
 
     }
 
+    public function fileentry()
+    {
+        return $this->hasMany(\App\Models\Fileentry::class);
+    }
+
 
 }
