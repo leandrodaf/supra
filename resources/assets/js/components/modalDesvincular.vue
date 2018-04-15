@@ -32,14 +32,12 @@
         props: ['alunoId', 'classId'],
         methods: {
             removeAluno(aluno, yearclass) {
-                Vue.axios.post('/class/syncAluno/', {
-                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                this.axios.post('/class/unsyncAluno', {
                     body: {'aluno': aluno, 'idClass': yearclass}
                 }).then(response => {
-                    this.isActive = false;
                     $('#unsync').modal('hide');
                     location.reload();
-                }).catch(function (error) {
+                }).catch(function (serror) {
                     if (error.response) {
                         console.log("data");
                         console.log(error.response.data);

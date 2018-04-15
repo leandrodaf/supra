@@ -64,6 +64,11 @@
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover"
+    ],
+    "producao": [
+      "composer install --optimize-autoloader",
+      "php artisan config:cache",
+      "php artisan route:cache"
     ]
   },
   "config": {

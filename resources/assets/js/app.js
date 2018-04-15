@@ -2,7 +2,6 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-Vue.use(VueAxios, axios);
 
 window.$ = window.jQuery = require('jquery');
 
@@ -16,6 +15,9 @@ window.Vue = require('vue');
 
 Vue.component('gradeAlunos', require('./components/gradeAlunos.vue'));
 Vue.component('modalAlunoDesvincular', require('./components/modalDesvincular'));
+
+Vue.use(VueAxios, axios);
+
 
 const app = new Vue({
     el: '#app'

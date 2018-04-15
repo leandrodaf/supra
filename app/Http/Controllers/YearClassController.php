@@ -117,6 +117,7 @@ class YearClassController extends Controller
     public function detachStudents(Request $request)
     {
         $data = $request->all();
+
         return $this->yearClassRepository->detachStudents($data['body']['idClass'], $data['body']['aluno']);
     }
 

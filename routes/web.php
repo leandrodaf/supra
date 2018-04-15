@@ -45,7 +45,7 @@ Route::get('classrooms/getAll', 'ClassRoomController@getAll');
 Route::get('class/getBasicData', 'YearClassController@getBasicData')->name('class.getBasicData');
 Route::get('class/synchronizedStudents/{id}', 'YearClassController@synchronizedStudents')->name('class.synchronizedStudents');
 Route::post('class/syncAluno/{id}', 'YearClassController@syncAluno')->name('class.syncAluno');
-Route::post('class/syncAluno', 'YearClassController@detachStudents')->name('class.detachStudents');
+Route::post('class/unsyncAluno', 'YearClassController@detachStudents')->name('class.detachStudents');
 Route::get('class/getAlunos', 'YearClassController@getAlunos')->name('class.getAlunos');
 
 
