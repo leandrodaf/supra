@@ -622,4 +622,75 @@ $(document).ready(function () {
         return false;
     });
 
+    var analisaAlteraDados = function (idCampo, valor) {
+        if (valor) {
+            $('#' + idCampo).prop("checked", true);
+        } else {
+            $('#' + idCampo + 'False').prop("checked", true);
+        }
+    }
+
+    var carregaHealthInformations = function (data) {
+        var id = $('.healthInformations').get(0).id;
+        $.ajax({
+            async: true,
+            type: "GET",
+            dataType: "json",
+            url: "/healthInformations/" + id,
+            cache: true,
+            success: function (data) {
+                if (data.errors) {
+                    $('#errorsHealthInformations').show();
+                    } else {
+                    $('.healthInformations').show();
+                    $('#bronquite').text(data.bronquite ? "Sim" : "Não");
+                    analisaAlteraDados('bronquiteField', data.bronquite);
+
+                    $('#faltadear').text(data.faltadear ? "Sim" : "Não");
+                    analisaAlteraDados('faltadearField', data.faltadear);
+
+                    $('#diabete').text(data.diabete ? "Sim" : "Não");
+                    analisaAlteraDados('diabeteField', data.diabete);
+
+                    $('#convulsao').text(data.convulsao ? "Sim" : "Não");
+                    analisaAlteraDados('convulsaoField', data.convulsao);
+                }
+                window.location.reload();
+
+            },
+            beforeSend: function () {
+                $('#loadingHealthInformations').show();
+            },
+            complete: function () {
+                $('#loadingHealthInformations').hide();
+            }
+        });
+    };
+
+    $('#buttonAtualizarHealthInformations').on('click', function () {
+        var id = $('.numeroResponsavel').get(0).id;
+
+        $.ajax({
+            async: true,
+            url: '/healthInformations/' + id,
+            type: 'POST',
+            data: $('#formHealthInformations').serialize(),
+            dataType: 'JSON',
+            success: function (data) {
+                carregaHealthInformations();
+                $('#editarHealthInformations').modal('hide');
+            },
+            beforeSend: function (before) {
+                $('#loadingAtualizaHealthInformations').show('show');
+            },
+            complete: function (complete) {
+                $('#loadingAtualizaHealthInformations').hide('hide');
+            },
+            error: function (error) {
+                $('#loadingAtualizaHealthInformations').hide('hide');
+                console.log(error);
+            }
+        });
+    });
+
 });
