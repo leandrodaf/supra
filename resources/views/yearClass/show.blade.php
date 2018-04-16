@@ -423,6 +423,31 @@
             </form>
         </div>
     </div>
+
+    <div class="modal fade" id="deleteActivities" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><strong>Desvincular aluno?</strong></h5>
+                </div>
+                <div class="modal-body text-center">
+
+                    <div class="alert alert-warning">
+                        <i id="alertDeleteActivities" class="fa fa-exclamation"
+                           style="font-size:80px; color: #333;"></i>
+                        <p></p>
+                        <strong>Atenção!</strong> Você realmente deseja deletar essa atividade?
+                    </div>
+
+                    <p></p>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button id="deleteActivitiesButton" type="button" value="" class="btn btn-warning">Remover</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('scripts')
