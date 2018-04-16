@@ -116,4 +116,12 @@ class HealthInformations extends Model
     {
         return $this->hasOne(\App\Models\Alunos::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function pessoa()
+    {
+        return $this->hasOne(\App\Models\Pessoa::class);
+    }
 }
