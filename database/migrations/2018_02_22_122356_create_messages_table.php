@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatephonesTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreatephonesTable extends Migration
      */
     public function up()
     {
-        Schema::create('phones', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
+            //
             $table->increments('id');
-            $table->string('number', 17);
+            $table->string('nome');
             $table->timestamps();
-            $table->softDeletes();
-
-
         });
     }
 
@@ -30,6 +28,6 @@ class CreatephonesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phones');
+        Schema::dropIfExists('messages');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatephonesTable extends Migration
+class AddDateToMessageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreatephonesTable extends Migration
      */
     public function up()
     {
-        Schema::create('phones', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('number', 17);
-            $table->timestamps();
-            $table->softDeletes();
-
+        Schema::table('messages', function (Blueprint $table) {
+            //
+            $table->date('data_message');
 
         });
     }
@@ -30,6 +27,10 @@ class CreatephonesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('phones');
+        Schema::table('messages', function (Blueprint $table) {
+            //
+            $table->dropColumn(['data_message']);
+
+        });
     }
 }

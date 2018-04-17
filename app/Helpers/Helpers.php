@@ -50,6 +50,11 @@ class Helpers
 
     }
 
+    public function date_br($value, $format='d/m/Y')
+    {
+    return date($format, strtotime($value));
+    }
+
 
     public static function returnSateCity($number)
     {

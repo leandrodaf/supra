@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SchoolSubjectsTableSeeder::class);
         $this->call(PermissionsSeeder::class);
         $this->call(UsersTableSeeder::class);
-        $this->call(NotificationTypeTableSeeder::class);
-
+        $this->call(MessagesTableSeeder::class);
+        $this->call(PhonesTableSeeder::class);
+    //    $this->call(UsersPermission::class);
     }
 }

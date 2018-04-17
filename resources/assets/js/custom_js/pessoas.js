@@ -187,7 +187,7 @@ $(document).ready(function () {
             if (validateEmail(value)) {
                 return {
                     id: value,
-                    text: value
+                   text: value
                 };
             }
             return null;
