@@ -27,13 +27,13 @@
                 <tbody>
 
                 <tr v-for="aluno in alunos">
-                    <td @click="goToAluno(aluno.id)">
+                    <td @click="goToAluno(aluno.aluno)">
                         <img :src="'/uploads/avatars/' + aluno.foto_aluno"
                              style="cursor: pointer; height: 50px; width: 50px;" data-toggle="tooltip"
                              data-placement="left"
                              title="Acessar aluno"/>
                     </td>
-                    <td @click="goToAluno(aluno.id)">{{aluno.nome_aluno}}</td>
+                    <td @click="goToAluno(aluno.aluno)" style="cursor: pointer; padding-top:25px;">{{aluno.nome_aluno}}</td>
                     <td>
                         <div class="progress progress-xs">
                             <div :class="progressBar((aluno.media / quantidadeAtividade))"
