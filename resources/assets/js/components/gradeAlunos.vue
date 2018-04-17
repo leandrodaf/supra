@@ -10,8 +10,8 @@
             <i class="fa fa-refresh fa-spin"></i>
         </div>
 
-        <div v-if="alunos.length >= 1">
-
+        <!--<div v-if="alunos.length >= 1">-->
+        <div>
             <table id="contentAlunos" class="table table-bordered">
 
                 <thead>
@@ -25,19 +25,23 @@
                 </thead>
 
                 <tbody>
+
                 <tr v-for="aluno in alunos">
                     <td @click="goToAluno(aluno.id)">
-                        <img :src="'/uploads/avatars/' + aluno.foto_aluno" style="cursor: pointer; height: 50px; width: 50px;" data-toggle="tooltip" data-placement="left"
+                        <img :src="'/uploads/avatars/' + aluno.foto_aluno"
+                             style="cursor: pointer; height: 50px; width: 50px;" data-toggle="tooltip"
+                             data-placement="left"
                              title="Acessar aluno"/>
                     </td>
                     <td @click="goToAluno(aluno.id)">{{aluno.nome_aluno}}</td>
                     <td>
                         <div class="progress progress-xs">
-                            <div :class="progressBar(aluno.media)" :style="'width: '+ aluno.media +'%'"></div>
+                            <div :class="progressBar((aluno.media / quantidadeAtividade))"
+                                 :style="'width: '+ (aluno.media / quantidadeAtividade) +'%'"></div>
                         </div>
                     </td>
                     <td>
-                        <span :class="colorLabel(aluno.media)"> {{aluno.media}} </span>
+                        <span :class="colorLabel((aluno.media / quantidadeAtividade))"> {{(aluno.media / quantidadeAtividade).toString().substring(0, 5)}} </span>
                     </td>
                     <td style="text-align: center;" data-toggle="tooltip" data-placement="right"
                         title="Desvincular aluno">
@@ -62,6 +66,7 @@
             return {
                 total: false,
                 alunos: [],
+                quantidadeAtividade: 0,
                 aluno_id: null,
                 showLoading: true,
                 class_id: parseInt($('meta[name="id-class"]').attr('content')),
@@ -86,8 +91,9 @@
             getAlunos() {
 
                 this.showLoading = true;
-                this.alunos = [];
                 Vue.axios.get('/class/synchronizedStudents/' + this.class_id).then((response) => {
+                    console.log(response.data.quantidade);
+                    this.quantidadeAtividade = response.data.quantidade;
                     this.alunos = response.data.alunos;
                     this.showLoading = false;
                 });
