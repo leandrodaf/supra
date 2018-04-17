@@ -40,6 +40,38 @@ class YearClassRepository extends BaseRepository
         }
     }
 
+    private function analisaMedias($data)
+    {
+        $qtdActivitie = count($data->activitie);
+        $medias = collect();
+
+        foreach ($data->activitie as $activitie) {
+            foreach ($activitie->aluno as $aluno) {
+                $item = $medias->where('aluno', $aluno->id);
+                $media = new \App\Models\Media();
+
+                if ($item->isNotEmpty()) {
+                    $key = $item->keys()[0];
+                    $base = $medias->get($key);
+
+                    $media->aluno = $base->aluno;
+                    $media->nome_aluno = $base->nome_aluno;
+                    $media->foto_aluno = $base->foto_aluno;
+                    $media->media = $base->media + $aluno->pivot->media;
+
+                    $medias->forget($key);
+                    $medias->push($media);
+                } else {
+                    $media->aluno = $aluno->id;
+                    $media->nome_aluno = $aluno->nome_aluno;
+                    $media->foto_aluno = $aluno->foto_aluno;
+                    $media->media = $aluno->pivot->media;
+                    $medias->push($media);
+                }
+            }
+        }
+        return ['alunos' => $medias, 'quantidade' => $qtdActivitie];
+    }
 
     public function synchronizedStudents($id)
     {
@@ -47,13 +79,9 @@ class YearClassRepository extends BaseRepository
         try {
             $class = $this->findWithoutFail($id);
 
-            $data = $class->load('alunos', 'schoolSubject');
+            $data = $class->load('alunos', 'schoolSubject', 'activitie');
 
-            foreach ($data->alunos as $aluno) {
-                $aluno['media'] = $aluno->average($id);
-            }
-
-            return response()->json($data);
+            return response()->json($this->analisaMedias($data));
 
         } catch (\Exception $e) {
             return response()->json([
@@ -61,7 +89,6 @@ class YearClassRepository extends BaseRepository
             ], 422);
         }
     }
-
 
     public function detachStudents($idClass, $idAluno)
     {
