@@ -77,3 +77,4 @@ Route::resource('classrooms', 'ClassRoomController');
 Route::resource('schoolsubject', 'SchoolSubjectController');
 Route::resource('activitie', 'ActivitieController');
 Route::resource('diary', 'DiaryController');
+Route::resource('dash/secretaria', 'DashSecretariaController');
