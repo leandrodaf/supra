@@ -17,7 +17,7 @@
                         <span class="info-box-icon bg-aqua"><i class="fa fa-check"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Tarefas abertas</span>
+                            <span class="info-box-text">Turmas abertas</span>
                             <span class="info-box-number">90<small>%</small></span>
                         </div>
                         <!-- /.info-box-content -->

@@ -367,9 +367,35 @@ class AlunosController extends AppBaseController
 
     public function storeDoc(CreateDocRequest $request)
     {
-
         $this->alunosRepository->storeDoc($request);
         return redirect()->back();
     }
+
+    public function disableOrEnableAluno(Request $request, $id)
+    {
+
+        if (empty($id) && $request->method()->isMethod('post')) {
+            $flash = new Flash();
+            $flash::error('Não foi possivel identificar o aluno');
+
+            return response()->json(['message' => 'Não foi possivel identificar o aluno.']);
+        }
+
+        $aluno = new Alunos();
+
+        $data = $aluno->find($id);
+
+        if ($data->status) {
+            $data->status = false;
+        } else {
+            $data->status = true;
+        }
+
+        $data->save();
+
+        return redirect()->back();
+
+    }
+
 
 }
