@@ -50,13 +50,12 @@ class DashSecretariaController extends Controller
         $turmasFecadas = YearClass::where('activeTime', '<', \Carbon\Carbon::now())
             ->count();
 
-        return response()->json(["turmasAbertas" => $turmasAbertas, "turmasFechadas" => $turmasFecadas]);
+        return response()->json([['Turmas Abertas', $turmasAbertas], ['Turmas Fechadas', $turmasFecadas]]);
     }
 
 
     public function dataAlunosxAlunos()
     {
-        $totalAlunos = Alunos::count();
         $alunosAtivos = Alunos::where('status', '=', true)->count();
         $alunosInativos = Alunos::where('status', '=', false)->count();
 
@@ -68,8 +67,21 @@ class DashSecretariaController extends Controller
             })
             ->count();
 
+        $alunosInativosEstudando = Alunos::where('status', '=', false)
+            ->whereHas('yearClass', function ($query) {
+                $query
+                    ->where('activeTime', '=', \Carbon\Carbon::now()->format('Y-m-d'))
+                    ->orWhere('activeTime', '>', \Carbon\Carbon::now()->format('Y-m-d'));
+            })
+            ->count();
 
-        return response()->json(["alunosAtivos" => $alunosAtivos, "alunosInativos" => $alunosInativos, "alunosEstudando" => $alunosEstudando]);
+        return response()->json(
+            [
+                ['Alunos Ativo', $alunosAtivos],
+                ['Alunos Inativos', $alunosInativos],
+                ['Alunos Estudando', $alunosEstudando],
+                ['Alunos Inativos estudando', $alunosInativosEstudando]
+            ]);
     }
 
 

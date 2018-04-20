@@ -19,12 +19,11 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "vue": "^2.1.10",
-    "jquery": "^3.3.1",
     "bootstrap-datepicker": "^1.7.1",
     "bootstrap-validator": "^0.11.9",
     "bootstrap3": "^3.3.5",
     "bower": "^1.8.2",
+    "chart.js": "^2.7.2",
     "clockpicker": "0.0.7",
     "datatables.net": "^1.10.16",
     "datatables.net-bs": "^1.10.16",
@@ -32,6 +31,7 @@
     "html5shiv": "^3.7.3",
     "icheck": "^1.0.2",
     "ionicons": "^3.0.0",
+    "jquery": "^3.3.1",
     "jquery-mask-plugin": "^1.14.12",
     "jquery-maskmoney": "^3.0.2",
     "jquery-price-format": "0.0.1",
@@ -48,6 +48,9 @@
     "spinkit": "^1.2.5",
     "trumbowyg": "^2.9.4",
     "twitter-bootstrap-wizard": "^1.2.0",
-    "vue-axios": "^2.1.1"
+    "vue": "^2.1.10",
+    "vue-axios": "^2.1.1",
+    "vue-chartkick": "^0.3.1",
+    "vue-spinner": "^1.0.3"
   }
 }

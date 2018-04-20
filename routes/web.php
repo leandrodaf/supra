@@ -65,6 +65,7 @@ Route::get('/activitie/{id}', 'ActivitieController@loadActivitie');
 Route::post('/activitie/{id}/pessoa', 'ActivitieController@syncAluno');
 
 Route::get('call/existCall/{date}', 'CallController@existCall');
+
 Route::get('dash/secretaria/topBox', 'DashSecretariaController@dataBoxCountTop');
 Route::get('dash/secretaria/BoxTurmas', 'DashSecretariaController@dataBoxTurmas');
 Route::get('dash/secretaria/dataAlunosxAlunos', 'DashSecretariaController@dataAlunosxAlunos');
