@@ -36,7 +36,17 @@
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{!! route('alunos.edit', [$alunos->id]) !!}">Editar</a></li>
+                                    <li>
+                                        <a href="{!! route('alunos.edit', [$alunos->id]) !!}">
+                                            Editar
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="disableOrEnable-form" onclick="event.preventDefault(); document.getElementById('disableOrEnable-form').submit();">
+                                            {{$alunos->status ? 'Inativar':'Ativar'}} Aluno
+                                        </a>
+                                    </li>
                                     <li class="divider"></li>
                                     {{--<li>--}}
                                     {{--<a href="#deletetarUsuario"--}}
@@ -44,9 +54,12 @@
                                     {{--</li>--}}
 
                                     <li>
-                                        <a href="#notificar" data-toggle="modal" data-target="#notificationModal">Notificar
-                                            aluno</a>
+                                        <a href="#notificar" data-toggle="modal" data-target="#notificationModal">
+                                            Notificar aluno
+                                        </a>
                                     </li>
+
+
                                 </ul>
                                 <!-- Collapse Button -->
                                 {{--<button type="button" class="btn btn-info btn-sm btn-flat" data-widget="collapse">--}}
@@ -66,8 +79,13 @@
                             <div style="overflow: hidden">
                                 <h3 class="profile-name justificado">{!! $alunos->nome_aluno !!}</h3>
                             </div>
-                            <span class="label label-info">ID {!! $alunos->tipoPessoa['nome'] !!}
-                                : {!! $alunos->id !!}</span>
+                            <span class="label label-info">
+                                ID {!! $alunos->tipoPessoa['nome'] !!} : {!! $alunos->id !!}
+                            </span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="label {{$alunos->status ? 'label-success':'label-danger'}}">
+                                {{$alunos->status ? 'Ativo':'Inativo'}}
+                            </span>
                         </div>
                         <!-- /.box-tools -->
                     </div>
@@ -564,6 +582,11 @@
             {!! Form::close() !!}
         </div>
     </div>
+
+    <form id="disableOrEnable-form" action="{{ route('alunos.disableOrEnableAluno', $alunos->id) }}" method="POST"
+          style="display: none;">
+        {{ csrf_field() }}
+    </form>
 
 @endsection
 

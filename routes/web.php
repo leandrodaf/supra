@@ -17,6 +17,9 @@ Route::post('alunos/responsaveis/{responsavel}', 'AlunosController@updateRespons
 Route::post('alunos/responsaveis/{responsavel}/desvincular', 'AlunosController@desvincularAluno')->name('alunos.desvincularAluno');
 Route::post('alunos/phoneMain', 'AlunosController@mainPhoneAlunosAjax')->name('alunos.phoneMain');
 Route::post('alunos/storedoc', 'AlunosController@storeDoc')->name('alunos.storeDoc');
+Route::post('alunos/disableOrEnableAluno/{id}', 'AlunosController@disableOrEnableAluno')->name('alunos.disableOrEnableAluno');
+
+
 
 Route::get('pessoas/getBasicData', 'PessoaController@getBasicData')->name('pessoas.getBasicData');
 Route::get('pessoas/getInfoUser/{idPessoa}', 'PessoaController@getInfoUser')->name('pessoas.getInfoUser');
@@ -63,6 +66,11 @@ Route::post('/activitie/{id}/pessoa', 'ActivitieController@syncAluno');
 
 Route::get('call/existCall/{date}', 'CallController@existCall');
 
+Route::get('dash/secretaria/topBox', 'DashSecretariaController@dataBoxCountTop');
+Route::get('dash/secretaria/BoxTurmas', 'DashSecretariaController@dataBoxTurmas');
+Route::get('dash/secretaria/dataAlunosxAlunos', 'DashSecretariaController@dataAlunosxAlunos');
+
+
 Route::resource('call', 'CallController');
 Route::resource('class', 'YearClassController');
 Route::resource('alunos', 'AlunosController');
@@ -77,3 +85,4 @@ Route::resource('classrooms', 'ClassRoomController');
 Route::resource('schoolsubject', 'SchoolSubjectController');
 Route::resource('activitie', 'ActivitieController');
 Route::resource('diary', 'DiaryController');
+Route::resource('dash/secretaria', 'DashSecretariaController');
