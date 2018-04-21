@@ -47,7 +47,6 @@
             getData() {
                 this.loadingSpinnet = true;
                 Vue.axios.get('/dash/secretaria/topBox').then((response) => {
-                    console.log(response.data.turmas);
                     this.turmasAbertas = response.data.turmas;
                     this.funcionarios = response.data.funcionarios;
                     this.totalAlunos = response.data.alunos;
