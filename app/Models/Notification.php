@@ -66,4 +66,19 @@ class Notification extends Model
             'notification_type_id');
     }
 
+    public function aluno()
+    {
+        return $this->hasMany(\App\Models\Alunos::class,
+            'id',
+            'alunos_id');
+    }
+
+    public function yearclass()
+    {
+        return $this->hasMany(\App\Models\YearClass::class,
+            'id',
+            'year_class_id');
+    }
+
+
 }

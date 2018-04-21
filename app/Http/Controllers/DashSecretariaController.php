@@ -50,7 +50,7 @@ class DashSecretariaController extends Controller
         $turmasFecadas = YearClass::where('activeTime', '<', \Carbon\Carbon::now())
             ->count();
 
-        return response()->json([['Turmas Abertas', $turmasAbertas], ['Turmas Fechadas', $turmasFecadas]]);
+        return response()->json([['Turmas em Andamento', $turmasAbertas], ['Turmas Encerrada', $turmasFecadas]]);
     }
 
 
@@ -79,8 +79,8 @@ class DashSecretariaController extends Controller
             [
                 ['Alunos Ativo', $alunosAtivos],
                 ['Alunos Inativos', $alunosInativos],
-                ['Alunos Estudando', $alunosEstudando],
-                ['Alunos Inativos estudando', $alunosInativosEstudando]
+                ['Alunos Cursando', $alunosEstudando],
+                ['Alunos Inativos cursando', $alunosInativosEstudando]
             ]);
     }
 

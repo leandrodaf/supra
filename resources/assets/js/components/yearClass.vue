@@ -8,7 +8,11 @@
             </div>
         </div>
         <div class="box-body">
-            <column-chart :data="dataPieTurma"></column-chart>
+            <div class="text-center">
+                <pulse-loader :loading="loading" :color="spinner.color" :size="spinner.size"></pulse-loader>
+                <column-chart :data="dataPieTurma"></column-chart>
+            </div>
+
         </div>
     </div>
 
@@ -20,7 +24,13 @@
         props: ['title'],
         data: () => {
             return {
+                loading: true,
                 dataPieTurma: [],
+                spinner: {
+                    size: '5px',
+                    color: 'black',
+                    loadingDefault: true
+                }
             }
         },
         mounted() {
@@ -28,11 +38,10 @@
         },
         methods: {
             getData() {
-                // this.spinner.loading = true;
+                this.loading = true;
                 Vue.axios.get('/dash/secretaria/dataAlunosxAlunos').then((response) => {
-                    console.log();
                     this.dataPieTurma = response.data;
-                    // this.spinner.loading = false;
+                    this.loading = false;
                 });
             },
         }

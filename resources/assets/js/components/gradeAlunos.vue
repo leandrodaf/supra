@@ -33,7 +33,9 @@
                              data-placement="left"
                              title="Acessar aluno"/>
                     </td>
-                    <td @click="goToAluno(aluno.aluno)" style="cursor: pointer; padding-top:25px;">{{aluno.nome_aluno}}</td>
+                    <td @click="goToAluno(aluno.aluno)" style="cursor: pointer; padding-top:25px;">
+                        {{aluno.nome_aluno}}
+                    </td>
                     <td>
                         <div class="progress progress-xs">
                             <div :class="progressBar((aluno.media / quantidadeAtividade))"
@@ -92,7 +94,6 @@
 
                 this.showLoading = true;
                 Vue.axios.get('/class/synchronizedStudents/' + this.class_id).then((response) => {
-                    console.log(response.data.quantidade);
                     this.quantidadeAtividade = response.data.quantidade;
                     this.alunos = response.data.alunos;
                     this.showLoading = false;
