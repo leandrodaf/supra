@@ -332,7 +332,6 @@ $(document).ready(function () {
             },
             error: function (error) {
                 $('#loadingAtualizaHealthInformations').hide('hide');
-                console.log(error);
             }
         });
     });
@@ -374,7 +373,6 @@ $(document).ready(function () {
             complete: function (complete) {
             },
             error: function (error) {
-                console.log(error);
             }
         });
     });
@@ -401,7 +399,6 @@ $(document).ready(function () {
             complete: function (complete) {
             },
             error: function (error) {
-                console.log(error);
             }
         });
     })
@@ -523,7 +520,6 @@ $(document).ready(function () {
             }
             ,
             error: function (error) {
-                console.log(error);
             }
         });
     };

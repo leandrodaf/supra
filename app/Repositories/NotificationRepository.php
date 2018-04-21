@@ -48,11 +48,9 @@ class NotificationRepository extends BaseRepository
 
     public function storeNotificationAluno($request)
     {
-
         $helper = new Helpers();
 
         $notification = $request->all();
-
         $notification['flg_status'] = false;
         $notification['exibition'] = $helper->formataDataPtBr($request->exibition);
 
@@ -60,6 +58,21 @@ class NotificationRepository extends BaseRepository
         array_forget($notification, '_method');
 
         $this->create($notification);
+    }
+
+
+    public function getNotifciationById($id)
+    {
+        $notification = $this->where('alunos_id', '=', $id);
+        $notification->load('type');
+        return $notification;
+    }
+
+    public function getAll()
+    {
+        $notification = $this->all();
+        $notification->load('type');
+        return $notification;
     }
 
 

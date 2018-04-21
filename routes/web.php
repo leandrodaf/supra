@@ -20,7 +20,6 @@ Route::post('alunos/storedoc', 'AlunosController@storeDoc')->name('alunos.storeD
 Route::post('alunos/disableOrEnableAluno/{id}', 'AlunosController@disableOrEnableAluno')->name('alunos.disableOrEnableAluno');
 
 
-
 Route::get('pessoas/getBasicData', 'PessoaController@getBasicData')->name('pessoas.getBasicData');
 Route::get('pessoas/getInfoUser/{idPessoa}', 'PessoaController@getInfoUser')->name('pessoas.getInfoUser');
 Route::get('pessoas/getAjax', 'PessoaController@dataAjax')->name('pessoas.getAjaxSelect2');
@@ -43,6 +42,10 @@ Route::post('management/resetSenha/{id}', 'UserManagementController@resetSenha')
 
 Route::put('notification/class/new', 'NotificationController@storeByYearClass')->name('notification.class.new');
 Route::put('notification/aluno/new', 'NotificationController@storeByAluno')->name('notification.aluno.new');
+Route::get('notification/{id}', 'NotificationController@show')->name('notification.show');
+Route::get('notification/aluno/{id}', 'NotificationController@getNotification')->name('management.getNotification');
+Route::get('notification/', 'NotificationController@getAll')->name('management.getAll');
+Route::get('dash/secretaria/getBasicData', 'NotificationController@getBasicData')->name('management.getBasicData');
 
 Route::get('classrooms/getAll', 'ClassRoomController@getAll');
 Route::get('class/getBasicData', 'YearClassController@getBasicData')->name('class.getBasicData');
@@ -66,9 +69,9 @@ Route::post('/activitie/{id}/pessoa', 'ActivitieController@syncAluno');
 
 Route::get('call/existCall/{date}', 'CallController@existCall');
 
-Route::get('dash/secretaria/topBox', 'DashSecretariaController@dataBoxCountTop');
-Route::get('dash/secretaria/BoxTurmas', 'DashSecretariaController@dataBoxTurmas');
-Route::get('dash/secretaria/dataAlunosxAlunos', 'DashSecretariaController@dataAlunosxAlunos');
+Route::get('dash/secretaria/topBox', 'DashSecretariaController@dataBoxCountTop')->name('dash.secretaria.dataBoxCountTop');
+Route::get('dash/secretaria/BoxTurmas', 'DashSecretariaController@dataBoxTurmas')->name('dash.secretaria.dataBoxTurmas');
+Route::get('dash/secretaria/dataAlunosxAlunos', 'DashSecretariaController@dataAlunosxAlunos')->name('dash.secretaria.dataAlunosxAlunos');
 
 
 Route::resource('call', 'CallController');
