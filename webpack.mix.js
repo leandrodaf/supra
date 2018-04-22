@@ -5,6 +5,8 @@ const node = "node_modules/";
 //Fonts
 mix.copyDirectory('node_modules/font-awesome/fonts', 'public/fonts');
 mix.copyDirectory('node_modules/bootstrap3/dist/fonts', 'public/fonts');
+mix.copyDirectory('node_modules/ti-icons/fonts', 'public/fonts');
+mix.copyDirectory('node_modules/ti-icons/SVG', 'public/svg');
 
 
 mix.js('resources/assets/js/app.js', 'public/js')
@@ -68,6 +70,7 @@ mix.styles([
     'resources/assets/css/personalizacoes.css',
     'node_modules/clockpicker/dist/bootstrap-clockpicker.min.css',
     'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
+    'node_modules/ti-icons/css/themify-icons.css'
 ], 'public/css/all.css')
     .version();
 

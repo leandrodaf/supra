@@ -58,6 +58,16 @@ class AlunosRepository extends BaseRepository
         }
     }
 
+    public function matriculaAvatarEncode64($image)
+    {
+        $png_url = "product-" . time() . ".png";
+        $path = public_path('/uploads/avatars/' . $png_url);
+        Image::make(file_get_contents($image))->save($path);
+
+        return $png_url;
+
+    }
+
 
     public function matriculaAvatar(StoreAlunoMatricula $request)
     {

@@ -26,7 +26,7 @@ class StoreAlunoMatricula extends FormRequest
         return [
             'nome_aluno' => 'required|min:3|max:255',
             'foto_aluno' => '',
-            'rg_aluno' => 'required|min:12|unique:alunos',
+            'rg_aluno' => 'required|unique:alunos',
             'sexo_aluno' => 'required',
             'flg_certidao_nascimento_aluno' => 'required',
             'flg_carteira_vacinacao_aluno' => 'required',

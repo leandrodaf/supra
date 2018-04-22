@@ -18,11 +18,10 @@
     "lodash": "^4.17.4"
   },
   "dependencies": {
-    "axios": "^0.15.3",
-    "bootstrap-datepicker": "^1.7.1",
+    "axios": "^0.18.0",
+    "bootstrap-datepicker": "^1.8.0",
     "bootstrap-validator": "^0.11.9",
     "bootstrap3": "^3.3.5",
-    "bower": "^1.8.2",
     "chart.js": "^2.7.2",
     "clockpicker": "0.0.7",
     "datatables.net": "^1.10.16",
@@ -46,11 +45,17 @@
     "select2": "^4.0.6-rc.0",
     "smartwizard": "^4.2.2",
     "spinkit": "^1.2.5",
+    "ti-icons": "^0.1.2",
     "trumbowyg": "^2.9.4",
     "twitter-bootstrap-wizard": "^1.2.0",
+    "v-mask": "^1.3.2",
+    "vee-validate": "^2.0.6",
     "vue": "^2.1.10",
     "vue-axios": "^2.1.1",
     "vue-chartkick": "^0.3.1",
+    "vue-form-wizard": "^0.8.4",
+    "vue-picture-input": "^2.1.5",
+    "vue-select": "^2.4.0",
     "vue-spinner": "^1.0.3"
   }
 }
