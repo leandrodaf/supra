@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helpers;
 use App\Http\Requests\StoreAlunoMatricula;
 use App\Repositories\AlunosRepository;
 use Flash;
-use App\Helpers\Helpers;
 
 class MatriculaController extends AppBaseController
 {
@@ -31,65 +31,43 @@ class MatriculaController extends AppBaseController
         $departments = \App\Models\Department::where('status', '=', 1)->get();
         $roles = \App\Models\Role::where('status', '=', 1)->get();
 
-        return view('matricula.index')->with(compact('tipoPessoas', 'genders', 'familySituation', 'citizenships','departments','roles', 'tipoPessoasResponsavel'));
+        return view('matricula.refac')->with(compact('tipoPessoas', 'genders', 'familySituation', 'citizenships', 'departments', 'roles', 'tipoPessoasResponsavel'));
     }
 
 
     public function store(StoreAlunoMatricula $request)
     {
-
         $helper = new Helpers();
         $input = $request->all();
 
+        $emails = array_get($input, 'emailAluno');
+        $responsavel1 = array_get($input, 'responsavel1');
+        $responsavel2 = array_get($input, 'responsavel2');
 
-        $emails = array_get($input, 'email');
-        $responsaveis = array_get($input, 'responsaveis');
-        $healthInformations = array_get($input, 'healthInformations');
-        $phones = array_get($input, 'phone');
+        $healthInformations = array_get($input, 'boxMedico');
+        $phones = array_get($input, 'telefoneAluno');
 
         array_forget($input, 'responsaveis');
-        array_forget($input, 'healthInformations');
-        array_forget($input, 'email');
-        array_forget($input, 'phone');
-
+        array_forget($input, 'boxMedico');
+        array_forget($input, 'emailAluno');
+        array_forget($input, 'telefoneAluno');
 
         $input['data_nascimento_aluno'] = $helper->formataDataPtBr($input['data_nascimento_aluno']);
-
-        $input['foto_aluno'] = $this->alunosRepository->matriculaAvatar($request);
-
+        $input['foto_aluno'] =  $this->alunosRepository->matriculaAvatarEncode64($input['foto_aluno']);
         $aluno = $this->alunosRepository->create($input);
 
-        if (!empty($emails)) {
-            $aluno->email()->createMany(
-                $emails
-            );
+        $aluno->email()->create(['email' => $emails]);
+        $aluno->phone()->create(['number' => $phones]);
+        $healthInformations = $aluno->getHealthInformation()->create($healthInformations);
+        $aluno->healthInformations_id = $healthInformations->id;
+        $aluno->save();
+
+        $aluno->pessoa()->sync($responsavel1['id']);
+
+        if (!empty($responsavel2)) {
+            $aluno->pessoa()->sync($responsavel2['id'], true);
         }
 
-        if (!empty($phones)) {
-            $aluno->phone()->createMany(
-                $phones
-            );
-        }
-
-        if (!empty($responsaveis)) {
-            $aluno->pessoa()->sync($responsaveis);
-        }
-
-        if (!empty($healthInformations)) {
-            $healthInformations = $aluno->getHealthInformation()->create(
-                $healthInformations
-            );
-
-            $aluno->healthInformations_id = $healthInformations->id;
-
-            $aluno->save();
-
-        }
-
-
-        $flash = new Flash();
-        $flash::success('Aluno criado com sucesso.');
-
-        return redirect(route('alunos.show', $aluno->id));
+        return response()->json($aluno->id);
     }
 }

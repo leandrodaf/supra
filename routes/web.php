@@ -31,10 +31,6 @@ Route::post('pessoas/phoneMain', 'PessoaController@mainPhonePessoaAjax')->name('
 Route::post('pessoas/storeAjax', 'PessoaController@storeAjax')->name('pessoa.storeAjax');
 Route::post('pessoas/storedoc', 'PessoaController@storeDoc')->name('pessoa.storeDoc');
 
-Route::get('matricula/refac', function () {
-    return view('matricula.refac');
-});
-
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::get('roles/getAjax', 'RoleController@dataAjax')->name('roles.getAjaxSelect2');
 Route::post('matricula', 'MatriculaController@store')->name('matricula.store');
