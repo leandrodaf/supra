@@ -64,8 +64,8 @@ class MatriculaController extends AppBaseController
 
         $aluno->pessoa()->sync($responsavel1['id']);
 
-        if (!empty($responsavel2)) {
-            $aluno->pessoa()->sync($responsavel2['id'], true);
+        if (!empty($responsavel2['id'])) {
+            $aluno->pessoa()->syncWithoutDetaching($responsavel2['id'], true);
         }
 
         return response()->json($aluno->id);
