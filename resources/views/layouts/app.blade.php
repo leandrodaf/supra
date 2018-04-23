@@ -37,7 +37,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="{{route('home')}}" class="logo">
+                            <a href="{{Auth::user()->getRoutePanel()}}" class="logo">
                                 <b>SU</b>PRA
                             </a>
 
@@ -50,45 +50,13 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                             <ul class="nav navbar-nav">
-                                @if(Auth::user()->hasRole('admin', 'secretaria'))
 
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            Funcionalidades<span class="caret"></span>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
+                                @include('layouts.menu')
 
-                                            @include('layouts.menu')
-                                            {{--<li class="divider"></li>--}}
-                                        </ul>
-                                        @endif
+                                @include('layouts.menuConfiguracoes')
 
-                                    </li>
-
-                                    <li class="dropdown">
-                                        @if(Auth::user()->hasRole('admin', 'secretaria'))
-
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                Configurações<span class="caret"></span>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                @include('layouts.menuConfiguracoes')
-                                                {{--<li class="divider"></li>--}}
-                                            </ul>
-                                        @endif
-
-                                    </li>
                             </ul>
-                            <!-- Form
-                                                    <form action="#" method="get" class="navbar-form navbar-left" role="search">
-                                                        <div class="input-group">
-                                                            <input type="text" name="q" class="form-control" id="navbar-search-input"
-                                                                   placeholder="Pesquisa rápida..."/>
-                                                        </div>
-                                                    </form>-->
-
                         </div>
-                        <!-- /.navbar-collapse -->
                         <!-- Navbar Right Menu -->
                         <div class="navbar-custom-menu">
                             <ul class="nav navbar-nav">

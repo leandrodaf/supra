@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Laravel\Passport\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -39,5 +39,15 @@ class User extends Authenticatable
             'pessoa_id');
     }
 
+
+    public function getRoutePanel()
+    {
+        if ($this->hasRole('secretaria')) {
+            return route('secretaria.index');
+        } else {
+            return '/';
+        }
+
+    }
 
 }
