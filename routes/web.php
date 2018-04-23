@@ -28,6 +28,16 @@ Route::post('pessoas/emailMain', 'PessoaController@mainEmailPessoaAjax')->name('
 Route::post('pessoas/phoneMain', 'PessoaController@mainPhonePessoaAjax')->name('pessoa.phoneMain');
 Route::post('pessoas/storeAjax', 'PessoaController@storeAjax')->name('pessoa.storeAjax');
 
+//TIPOATIVO
+Route::get('typeactives/', 'TypeActiveController@index')->name('typeactives.index');
+Route::get('typeactives/create', 'TypeActiveController@create')->name('typeactives.create');
+Route::delete('typeactives/destroy/{id}', 'TypeActiveController@destroy')->name('typeactives.destroy');
+Route::get('typeactives/{id}/edit', 'TypeActiveController@edit')->name('typeactives.edit');
+Route::get('typeactives/typeActioveGetBasicData', 'TypeActiveController@typeActiveGetBasicData')->name('typeActive.typeActiveGetBasicData');
+Route::get('typeactives/getInfoTypeActives/{idTypeActibe}', 'TypeActiveController@getInfoTypeActive')->name('typeActives.getInfoTypeActive');
+Route::post('typeactives/store', 'TypeActiveController@store')->name('typeactives.store');
+Route::patch('typeactives/update/{id}', 'TypeActiveController@update')->name('typeactives.update');
+
 //RECADOS
 Route::get('/home/messageGetBasicData', 'HomeController@messageGetBasicData')->name('home.messageGetBasicData');
 // Route::get('/home/getInfoMessage/{idMessage}', 'HomeController@getInfoMessage')->name('messages.getInfoMessage');
