@@ -53,7 +53,12 @@ class MatriculaController extends AppBaseController
         array_forget($input, 'telefoneAluno');
 
         $input['data_nascimento_aluno'] = $helper->formataDataPtBr($input['data_nascimento_aluno']);
-        $input['foto_aluno'] =  $this->alunosRepository->matriculaAvatarEncode64($input['foto_aluno']);
+
+        if (isset($input['foto_aluno'])) {
+            $input['foto_aluno'] = $this->alunosRepository->matriculaAvatarEncode64($input['foto_aluno']);
+        }
+
+
         $aluno = $this->alunosRepository->create($input);
 
         $aluno->email()->create(['email' => $emails]);

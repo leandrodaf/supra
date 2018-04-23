@@ -42,7 +42,7 @@
                                     </label>
                                     <input name="rg_aluno" v-model="matricula.rg_aluno" type="text" class="form-control"
                                            id="rg_aluno" placeholder="__.___.___-__"
-                                           v-mask="'##.###.###-NN'"
+                                           v-mask="rgMask"
                                            v-validate="'required'">
                                     <span class="help-block"
                                           v-show="errors.has('step1.rg_aluno')">O campo RG é obrigatório</span>
@@ -646,6 +646,7 @@
     export default {
         name: "matricula",
         data: () => ({
+            rgMask: '##.###.###-##',
             options: [],
             formStateBox: {
                 boxAluno: true,

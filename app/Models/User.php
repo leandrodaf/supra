@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     public function getRoutePanel()
     {
-        if ($this->hasRole('secretaria')) {
+        if ($this->hasRole('secretaria') || $this->hasRole('admin')) {
             return route('secretaria.index');
         } else {
             return '/';
