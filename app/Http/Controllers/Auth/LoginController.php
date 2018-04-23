@@ -32,11 +32,6 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if(auth()->user()->hasRole('secretaria'))
-        {
-            return redirect('/dash/secretaria');
-        }
-
-        return redirect('/home');
+        return redirect(auth()->user()->getRoutePanel());
     }
 }
