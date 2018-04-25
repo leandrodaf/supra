@@ -41,6 +41,14 @@ Route::get('typeactives/getInfoTypeActives/{idTypeActibe}', 'TypeActiveControlle
 Route::post('typeactives/store', 'TypeActiveController@store')->name('typeactives.store');
 Route::patch('typeactives/update/{id}', 'TypeActiveController@update')->name('typeactives.update');
 
+//TIPO PAGAMENTO
+Route::get('payments/', 'PaymentController@index')->name('payments.index');
+Route::get('payments/create','PaymentController@create')->name('payments.create');
+Route::post('payments/store', 'PaymentController@store')->name('payments.store');
+Route::patch('payments/update/{id}', 'PaymentController@update')->name('payments.update');
+Route::delete('payments/destroy/{id}', 'PaymentController@destroy')->name('payments.destroy');
+Route::get('payments/{id}/edit', 'PaymentController@edit')->name('payments.edit');
+
 
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::get('roles/getAjax', 'RoleController@dataAjax')->name('roles.getAjaxSelect2');
