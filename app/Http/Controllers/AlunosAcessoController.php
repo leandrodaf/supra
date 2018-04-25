@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\AlunosAcessoRepository;
 use Illuminate\Http\Request;
+use Auth;
 
 class AlunosAcessoController extends Controller
 {
@@ -24,6 +25,18 @@ class AlunosAcessoController extends Controller
     {
         return view('dash.aluno.index');
     }
+
+    public function atividade()
+    {
+        $aluno = \App\Models\Alunos::find(Auth::user()->alunos_id);
+        $activities = $aluno->getActivitiesByAluno($aluno);
+        $atividadespaginate = \App\Helpers\Paginate::paginate($activities->sortBy('end_date'), 10);
+
+        $atividadespaginate->withPath('/aluno/dash/atividade');
+
+        return view('dash.aluno.atividade')->with(compact('atividadespaginate'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

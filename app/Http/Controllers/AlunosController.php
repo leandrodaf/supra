@@ -424,7 +424,7 @@ class AlunosController extends AppBaseController
 
         $activities = $this->alunosRepository->getActivitiesByAluno($aluno);
 
-        $paginate = \App\Helpers\Paginate::paginate($activities->sortBy('end_date'), 10);
+        $paginate = \App\Helpers\Paginate::paginate($activities->sortBy('end_date'), 10, null, ['path' => 'aluno/dash/atividade/']);
 
         return response()->json($paginate);
     }
