@@ -401,10 +401,14 @@ class AlunosController extends AppBaseController
     {
         $aluno = Alunos::find($idaluno);
 
-        $this->alunosRepository->createUserAluno($aluno);
+        $status = $this->alunosRepository->createUserAluno($aluno);
         $flash = new Flash();
 
-        $flash::success('O acesso do aluno foi criado com sucesso!');
+        if ($status) {
+            $flash::success('O acesso do aluno foi criado com sucesso!');
+        } else {
+            $flash::error('Erro ao criar usuário');
+        }
 
         return redirect(route('alunos.show', $aluno->id));
     }

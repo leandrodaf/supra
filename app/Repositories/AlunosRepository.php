@@ -6,7 +6,10 @@ use App\Helpers\StorageHelper;
 use App\Http\Requests\CreateAlunosRequest;
 use App\Http\Requests\StoreAlunoMatricula;
 use App\Http\Requests\UpdateAlunosRequest;
+use App\Mail\AccessAluno;
 use App\Models\Alunos;
+use Flash;
+use Illuminate\Support\Facades\Mail;
 use InfyOm\Generator\Common\BaseRepository;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -193,8 +196,8 @@ class AlunosRepository extends BaseRepository
 
         $exist = \App\User::where('email', '=', $email)->get();
 
-        if (count($exist) >= 1 ){
-            return response()->json(['message' => 'O Aluno já tem um nome de usuário e senha!']);
+        if (count($exist) >= 1) {
+            return false;
         }
 
         $user = \App\User::create([
@@ -207,7 +210,10 @@ class AlunosRepository extends BaseRepository
         $aluno->status_user = true;
         $aluno->save();
 
-        return $user;
+        Mail::to($email)
+            ->send(new AccessAluno($aluno->nome_aluno, $email, $senha));
+
+        return true;
 
     }
 
