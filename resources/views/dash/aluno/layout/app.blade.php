@@ -10,7 +10,7 @@
     <link rel="icon" href="{{asset('dashboard/aluno/img/kit/free/favicon.png')}}">
 
     <title>
-        Signup &#45; Material Kit by Creative Tim
+        Supra - Painel do aluno
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
@@ -30,11 +30,85 @@
 </head>
 
 <body class="signup-page">
+
 <div class="page-header header-filter" filter-color="purple"
      style="background-image: url('https://picsum.photos/g/1000/517/?random'); background-size: cover; background-position: top center;">
-    <div class="container">
-        @yield('content')
-    </div>
+
+    @if(Auth::check())
+        <nav class="navbar navbar-expand-lg bg-primary" role="navigation-demo">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-translate">
+
+                    <div class="profile-photo-small">
+                        <img src="{{asset('/uploads/avatars/'.Auth::user()->aluno->foto_aluno)}}" alt="Circle Image"
+                             class="rounded-circle img-fluid" height="40" width="40">
+                        <span class="navbar-brand"
+                              style="padding-left: 10px;">{{Auth::user()->aluno->nome_aluno}}</span>
+                        <span class="navbar-brand"><small>{{Auth::user()->alunos_id}}</small></span>
+                    </div>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        {{--<li class="nav-item">--}}
+                        {{--<a href="#pablo" class="nav-link">--}}
+                        {{--Discover--}}
+                        {{--</a>--}}
+                        {{--</li>--}}
+                        <li class="nav-item">
+                            <a style="cursor: pointer;" class="nav-link"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Sair
+                            </a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                  style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-->
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 ml-auto mr-auto">
+                    <div class="card card-signup">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-auto col-md-auto">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <ul class="nav nav-pills nav-pills-icons flex-column" role="tablist">
+                                                @include('dash.aluno.layout.menu')
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @yield('content')
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @else
+        <div class="container">
+            @yield('content')
+        </div>
+    @endif
+
 
 </div>
 <!--   Core JS Files   -->
