@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alunos;
 use App\Repositories\ActivitieRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;

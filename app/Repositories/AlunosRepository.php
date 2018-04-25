@@ -217,5 +217,4 @@ class AlunosRepository extends BaseRepository
         return true;
 
     }
-
 }

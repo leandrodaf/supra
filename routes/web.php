@@ -67,6 +67,8 @@ Route::get('file/getBasicData', 'FileentryController@getBasicData')->name('file.
 Route::get('/activitie/{id}', 'ActivitieController@loadActivitie');
 Route::post('/activitie/{id}/pessoa', 'ActivitieController@syncAluno');
 
+Route::get('teste/{id}', 'AlunosController@getActivitieByAluno');
+
 Route::get('call/existCall/{date}', 'CallController@existCall');
 
 //Dashboard Secretária
@@ -79,6 +81,9 @@ Route::get('dash/secretaria/getBasicData', 'NotificationController@getBasicData'
 
 Route::get('aluno/login', 'LoginAlunoController@loginUserAluno')->name('login.aluno');
 Route::post('aluno/login', 'LoginAlunoController@login');
+
+Route::get('aluno/dash/atividade', 'AlunosAcessoController@atividade')->name('aluno.dash.atividade');
+
 
 Route::resource('call', 'CallController');
 Route::resource('class', 'YearClassController');

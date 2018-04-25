@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+use App\Repositories\AlunosRepository;
 
 class LoginAlunoController extends Controller
 {

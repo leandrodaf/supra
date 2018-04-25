@@ -10,7 +10,14 @@ class Media extends Model
     public $fillable = [
         'aluno',
         'nome_aluno',
-        'media'
+        'media',
+        'start_date',
+        'end_date',
+        'title',
+        'description',
+        'fileentry',
+        'yearClass_id',
+        'activitie_id'
     ];
 
 }
