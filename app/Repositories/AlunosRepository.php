@@ -218,4 +218,51 @@ class AlunosRepository extends BaseRepository
 
     }
 
+
+    public function getActivitiesByAluno(Alunos $aluno)
+    {
+        $atividadesAluno = collect();
+
+        foreach ($aluno->yearClass as $yearClass) {
+            foreach ($yearClass->activitie as $activitie) {
+                $media = new \App\Models\Media();
+                $media->yearClass_id = $yearClass->id;
+                $media->activitie_id = $activitie->id;
+                $media->title = $activitie->title;
+                $media->start_date = $activitie->start_date->format('d/m/Y');
+                $media->end_date = $activitie->end_date->format('d/m/Y');
+                $media->description = $activitie->description;
+                if (count($activitie->fileentry) > 0) {
+                    foreach ($activitie->fileentry as $fileentry) {
+                        $media->fileentry = [
+                            "original_filename" => $fileentry->original_filename,
+                            "url" => route('file.get') . '?file=' . $fileentry->filename];
+                    }
+                } else {
+                    $media->fileentry = [
+                        "original_filename" => null,
+                        "url" => null
+                        ];
+                }
+
+                if (count($activitie->aluno) > 0) {
+                    foreach ($activitie->aluno as $alunoActivit) {
+                        if ($alunoActivit->id == $aluno->id) {
+                            $media->media = $alunoActivit->pivot->media;
+                        } else {
+                            $media->media = 0.0;
+                        }
+                    }
+                } else {
+                    $media->media = 0.0;
+                }
+
+                $atividadesAluno->push($media);
+            }
+        }
+
+        return $atividadesAluno;
+
+
+    }
 }

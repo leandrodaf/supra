@@ -412,4 +412,22 @@ class AlunosController extends AppBaseController
 
         return redirect(route('alunos.show', $aluno->id));
     }
+
+
+    public function getActivitieByAluno($id)
+    {
+        $aluno = Alunos::find($id);
+
+        if (empty($aluno)) {
+            return response()->json(["message" => "Aluno não encontrado"]);
+        }
+
+        $activities = $this->alunosRepository->getActivitiesByAluno($aluno);
+
+        $paginate = \App\Helpers\Paginate::paginate($activities->sortBy('end_date'), 10);
+
+        return response()->json($paginate);
+    }
+
+
 }

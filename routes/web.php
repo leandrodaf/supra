@@ -67,6 +67,8 @@ Route::get('file/getBasicData', 'FileentryController@getBasicData')->name('file.
 Route::get('/activitie/{id}', 'ActivitieController@loadActivitie');
 Route::post('/activitie/{id}/pessoa', 'ActivitieController@syncAluno');
 
+Route::get('teste/{id}', 'AlunosController@getActivitieByAluno');
+
 Route::get('call/existCall/{date}', 'CallController@existCall');
 
 //Dashboard Secretária

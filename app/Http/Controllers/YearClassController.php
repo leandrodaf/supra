@@ -90,11 +90,10 @@ class YearClassController extends Controller
         $input = $request->all();
         $input['activeTime'] = '01-' . $input['activeTime'];
         $input['activeTime'] = Carbon::createFromFormat('d-m-Y', $input['activeTime'])->format('Y-m-d');
-//        return dd(!($input['activeTime'] > Carbon::now()));
+
         if (!($input['activeTime'] > Carbon::now())) {
             return redirect()->back()->withErrors(['errors' => 'Não é possivel criar uma turma com data retroativa.'], 'store');
         }
-
 
         $class = $this->yearClassRepository->create($input);
         $class->pessoa()->sync(

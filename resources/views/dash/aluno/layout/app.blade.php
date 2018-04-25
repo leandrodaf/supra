@@ -32,7 +32,7 @@
 <body class="signup-page">
 
 <div class="page-header header-filter" filter-color="purple"
-     style="background-image: url('https://picsum.photos/g/1000/517/?random'); background-size: cover; background-position: top center;">
+     style="background: #fd5dff">
 
     @if(Auth::check())
         <nav class="navbar navbar-expand-lg bg-primary" role="navigation-demo">
