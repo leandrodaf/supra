@@ -80,10 +80,6 @@ Route::get('dash/secretaria/getBasicData', 'NotificationController@getBasicData'
 Route::get('aluno/login', 'LoginAlunoController@loginUserAluno')->name('login.aluno');
 Route::post('aluno/login', 'LoginAlunoController@login');
 
-Route::get('teste/email', function () {
-    return view('email.accessAluno');
-});
-
 Route::resource('call', 'CallController');
 Route::resource('class', 'YearClassController');
 Route::resource('alunos', 'AlunosController');

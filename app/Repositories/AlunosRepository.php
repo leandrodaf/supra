@@ -209,6 +209,7 @@ class AlunosRepository extends BaseRepository
 
         $aluno->status_user = true;
         $aluno->save();
+        $user->assignRole("Aluno");
 
         Mail::to($email)
             ->send(new AccessAluno($aluno->nome_aluno, $email, $senha));
