@@ -27,6 +27,7 @@ class Helpers
     }
 
 
+
     //Formata a data do padrão BR para o padrão americano
     public function formataDataPtBr($date)
     {

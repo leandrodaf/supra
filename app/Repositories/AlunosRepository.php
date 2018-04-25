@@ -186,4 +186,29 @@ class AlunosRepository extends BaseRepository
 
     }
 
+    public function createUserAluno(Alunos $aluno)
+    {
+        $email = $aluno->email->get(0)->email;
+        $senha = preg_replace('/[^a-z0-9]/i', '', $aluno->data_nascimento_aluno->format('d/m/Y'));
+
+        $exist = \App\User::where('email', '=', $email)->get();
+
+        if (count($exist) >= 1 ){
+            return response()->json(['message' => 'O Aluno já tem um nome de usuário e senha!']);
+        }
+
+        $user = \App\User::create([
+            'name' => $aluno->nome_aluno,
+            'email' => $email,
+            'alunos_id' => $aluno->id,
+            'password' => bcrypt($senha),
+        ]);
+
+        $aluno->status_user = true;
+        $aluno->save();
+
+        return $user;
+
+    }
+
 }

@@ -18,7 +18,7 @@ Route::post('alunos/responsaveis/{responsavel}/desvincular', 'AlunosController@d
 Route::post('alunos/phoneMain', 'AlunosController@mainPhoneAlunosAjax')->name('alunos.phoneMain');
 Route::post('alunos/storedoc', 'AlunosController@storeDoc')->name('alunos.storeDoc');
 Route::post('alunos/disableOrEnableAluno/{id}', 'AlunosController@disableOrEnableAluno')->name('alunos.disableOrEnableAluno');
-
+Route::post('aluno/create/new/{idAluno}', 'AlunosController@createUserAluno');
 
 Route::get('pessoas/getBasicData', 'PessoaController@getBasicData')->name('pessoas.getBasicData');
 Route::get('pessoas/getInfoUser/{idPessoa}', 'PessoaController@getInfoUser')->name('pessoas.getInfoUser');
@@ -45,7 +45,7 @@ Route::put('notification/aluno/new', 'NotificationController@storeByAluno')->nam
 Route::get('notification/{id}', 'NotificationController@show')->name('notification.show');
 Route::get('notification/aluno/{id}', 'NotificationController@getNotification')->name('management.getNotification');
 Route::get('notification/', 'NotificationController@getAll')->name('management.getAll');
-Route::get('dash/secretaria/getBasicData', 'NotificationController@getBasicData')->name('management.getBasicData');
+
 
 Route::get('classrooms/getAll', 'ClassRoomController@getAll');
 Route::get('class/getBasicData', 'YearClassController@getBasicData')->name('class.getBasicData');
@@ -69,9 +69,17 @@ Route::post('/activitie/{id}/pessoa', 'ActivitieController@syncAluno');
 
 Route::get('call/existCall/{date}', 'CallController@existCall');
 
+//Dashboard Secretária
 Route::get('dash/secretaria/topBox', 'DashSecretariaController@dataBoxCountTop')->name('dash.secretaria.dataBoxCountTop');
 Route::get('dash/secretaria/BoxTurmas', 'DashSecretariaController@dataBoxTurmas')->name('dash.secretaria.dataBoxTurmas');
 Route::get('dash/secretaria/dataAlunosxAlunos', 'DashSecretariaController@dataAlunosxAlunos')->name('dash.secretaria.dataAlunosxAlunos');
+Route::get('dash/secretaria/getBasicData', 'NotificationController@getBasicData')->name('management.getBasicData');
+
+//Dashboard Aluno
+
+Route::get('aluno/login', 'LoginAlunoController@loginUserAluno');
+Route::post('aluno/login', 'LoginAlunoController@login');
+
 
 
 Route::resource('call', 'CallController');
@@ -89,3 +97,4 @@ Route::resource('schoolsubject', 'SchoolSubjectController');
 Route::resource('activitie', 'ActivitieController');
 Route::resource('diary', 'DiaryController');
 Route::resource('dash/secretaria', 'DashSecretariaController');
+Route::resource('aluno/dash', 'AlunosAcessoController');

@@ -397,5 +397,15 @@ class AlunosController extends AppBaseController
 
     }
 
+    public function createUserAluno(Request $request, $idaluno)
+    {
+        $aluno = Alunos::find($idaluno);
 
+        $this->alunosRepository->createUserAluno($aluno);
+        $flash = new Flash();
+
+        $flash::success('O acesso do aluno foi criado com sucesso!');
+
+        return redirect(route('alunos.show', $aluno->id));
+    }
 }
