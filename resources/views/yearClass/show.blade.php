@@ -25,9 +25,8 @@
 
 @section('content')
     <section class="content-header">
-
     </section>
-    <div class="contnt">
+    <div class="content">
         <div class="row">
             <div class="col-lg-8">
                 <div class="box">

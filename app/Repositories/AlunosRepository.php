@@ -6,7 +6,10 @@ use App\Helpers\StorageHelper;
 use App\Http\Requests\CreateAlunosRequest;
 use App\Http\Requests\StoreAlunoMatricula;
 use App\Http\Requests\UpdateAlunosRequest;
+use App\Mail\AccessAluno;
 use App\Models\Alunos;
+use Flash;
+use Illuminate\Support\Facades\Mail;
 use InfyOm\Generator\Common\BaseRepository;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -183,6 +186,34 @@ class AlunosRepository extends BaseRepository
         }
 
 //        $this->create();
+
+    }
+
+    public function createUserAluno(Alunos $aluno)
+    {
+        $email = $aluno->email->get(0)->email;
+        $senha = preg_replace('/[^a-z0-9]/i', '', $aluno->data_nascimento_aluno->format('d/m/Y'));
+
+        $exist = \App\User::where('email', '=', $email)->get();
+
+        if (count($exist) >= 1) {
+            return false;
+        }
+
+        $user = \App\User::create([
+            'name' => $aluno->nome_aluno,
+            'email' => $email,
+            'alunos_id' => $aluno->id,
+            'password' => bcrypt($senha),
+        ]);
+
+        $aluno->status_user = true;
+        $aluno->save();
+
+        Mail::to($email)
+            ->send(new AccessAluno($aluno->nome_aluno, $email, $senha));
+
+        return true;
 
     }
 

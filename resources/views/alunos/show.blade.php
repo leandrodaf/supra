@@ -20,9 +20,9 @@
 @section('content')
 
     <section class="content-header">
-
+        @include('flash::message')
     </section>
-    <div class="contnt">
+    <div class="content">
         <div class="row">
             <div class="col-lg-8">
                 <div class="box">
@@ -43,7 +43,8 @@
                                     </li>
 
                                     <li>
-                                        <a href="disableOrEnable-form" onclick="event.preventDefault(); document.getElementById('disableOrEnable-form').submit();">
+                                        <a href="disableOrEnable-form"
+                                           onclick="event.preventDefault(); document.getElementById('disableOrEnable-form').submit();">
                                             {{$alunos->status ? 'Inativar':'Ativar'}} Aluno
                                         </a>
                                     </li>
@@ -59,12 +60,19 @@
                                         </a>
                                     </li>
 
+                                    <li>
+
+                                        @if(!$alunos->status_user)
+                                            <a style="cursor: pointer"
+                                               onclick="event.preventDefault(); document.getElementById('novo-usuario').submit();">
+                                                Criar Usuário
+                                            </a>
+                                        @endif
+
+                                    </li>
 
                                 </ul>
-                                <!-- Collapse Button -->
-                                {{--<button type="button" class="btn btn-info btn-sm btn-flat" data-widget="collapse">--}}
-                                {{--<i class="fa fa-minus"></i>--}}
-                                {{--</button>--}}
+
                                 {!! Form::open(['route' => ['alunos.destroy', $alunos->id], 'method' => 'delete', 'id' => 'deletetarUsuario']) !!}
 
                                 {!! Form::close() !!}
@@ -588,6 +596,10 @@
         {{ csrf_field() }}
     </form>
 
+    <form id="novo-usuario" action="/aluno/create/new/{{$alunos->id}}" method="POST"
+          style="display: none;">
+        {{ csrf_field() }}
+    </form>
 @endsection
 
 @section('scripts')

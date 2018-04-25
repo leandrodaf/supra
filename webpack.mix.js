@@ -8,6 +8,8 @@ mix.copyDirectory('node_modules/bootstrap3/dist/fonts', 'public/fonts');
 mix.copyDirectory('node_modules/ti-icons/fonts', 'public/fonts');
 mix.copyDirectory('node_modules/ti-icons/SVG', 'public/svg');
 
+mix.copyDirectory('resources/assets/dash/aluno/assets', 'public/dashboard/aluno');
+
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .extract([

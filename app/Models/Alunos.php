@@ -59,7 +59,8 @@ class Alunos extends Model
         'qtd_irmaos_aluno',
         'data_nascimento_aluno',
         'tipo_pessoas_id',
-        'healthInformations_id'
+        'healthInformations_id',
+        'status_user'
     ];
 
     /**
