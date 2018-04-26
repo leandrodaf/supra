@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Notification;
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateRoleRequest extends FormRequest
@@ -25,6 +26,6 @@ class CreateRoleRequest extends FormRequest
      */
     public function rules()
     {
-        return Notification::$rules;
+        return Role::$rules;
     }
 }
