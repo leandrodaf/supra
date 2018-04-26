@@ -62,7 +62,7 @@ class UserManagementController extends Controller
     public function getBasicData()
     {
         $users = User::select(['id', 'name', 'email']);
-        $users->whereNotNull('alunos_id');
+        $users->whereNull('alunos_id');
 
         return Datatables::of($users)
             ->addColumn('roles', function ($user) {
