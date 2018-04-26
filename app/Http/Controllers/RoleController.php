@@ -20,7 +20,7 @@ class RoleController extends AppBaseController
     public function __construct(RoleRepository $roleRepo)
     {
         $this->middleware('auth');
-        $this->RoleRepository = $roleRepo;
+        $this->roleRepository = $roleRepo;
     }
 
     /**
@@ -31,8 +31,8 @@ class RoleController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->RoleRepository->pushCriteria(new RequestCriteria($request));
-        $roles = $this->RoleRepository->all();
+        $this->roleRepository->pushCriteria(new RequestCriteria($request));
+        $roles = $this->roleRepository->all();
 
         return view('roles.index')
             ->with('roles', $roles);
@@ -79,7 +79,7 @@ class RoleController extends AppBaseController
     {
         $input = $request->all();
 
-        $role = $this->RoleRepository->create($input);
+        $role = $this->roleRepository->create($input);
 
         Flash::success('Função salva com sucesso.');
 
@@ -95,7 +95,7 @@ class RoleController extends AppBaseController
      */
     public function show($id)
     {
-        $role = $this->RoleRepository->findWithoutFail($id);
+        $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
             Flash::error('Função não encontrada');
@@ -115,7 +115,7 @@ class RoleController extends AppBaseController
      */
     public function edit($id)
     {
-        $role = $this->RoleRepository->findWithoutFail($id);
+        $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
             Flash::error('Função não encontrada');
@@ -136,7 +136,7 @@ class RoleController extends AppBaseController
      */
     public function update($id, UpdateRoleRequest $request)
     {
-        $role = $this->RoleRepository->findWithoutFail($id);
+        $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
             Flash::error('Função não encontrada');
@@ -144,7 +144,7 @@ class RoleController extends AppBaseController
             return redirect(route('roles.index'));
         }
 
-        $role = $this->RoleRepository->update($request->all(), $id);
+        $role = $this->roleRepository->update($request->all(), $id);
 
         Flash::success('Função atualizada com sucesso.');
 
@@ -160,7 +160,7 @@ class RoleController extends AppBaseController
      */
     public function destroy($id)
     {
-        $role = $this->RoleRepository->findWithoutFail($id);
+        $role = $this->roleRepository->findWithoutFail($id);
 
         if (empty($role)) {
             Flash::error('Função não encontrada');
@@ -168,7 +168,7 @@ class RoleController extends AppBaseController
             return redirect(route('roles.index'));
         }
 
-        $this->RoleRepository->delete($id);
+        $this->roleRepository->delete($id);
 
         Flash::success('Função deletada com sucesso.');
 
