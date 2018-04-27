@@ -65,7 +65,6 @@ class YearClassController extends Controller
             ->addColumn('link', function ($yearClass) {
                 return '
                 <a href="/class/' . $yearClass->id . '' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i></a>
-                <a href="/class/' . $yearClass->id . '/edit' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
                 ';
             })
             ->addColumn('materia', function ($yearClass) {

@@ -243,7 +243,7 @@ class Alunos extends Model
         return $this->hasMany(\App\Models\Fileentry::class);
     }
 
-    public function getActivitiesByAluno(Alunos $aluno )
+    public function getActivitiesByAluno(Alunos $aluno)
     {
         $atividadesAluno = collect();
 
@@ -269,7 +269,6 @@ class Alunos extends Model
                         "url" => null
                     ];
                 }
-
                 if (count($activitie->aluno) > 0) {
                     foreach ($activitie->aluno as $alunoActivit) {
                         if ($alunoActivit->id == $aluno->id) {
@@ -281,13 +280,31 @@ class Alunos extends Model
                 } else {
                     $media->media = 0.0;
                 }
-
                 $atividadesAluno->push($media);
             }
         }
-
         return $atividadesAluno;
-
-
     }
+
+
+    public function getTurmaByIdAluno(Alunos $aluno)
+    {
+        $class = [];
+
+        foreach ($aluno->yearClass as $year) {
+            $item = [
+                'sala' => $year->classroom->nome_sala,
+                'inicia' => substr($year->startTime, 0, 5),
+                'encerra' => substr($year->endTime, 0, 5),
+                'professor' => substr($year->pessoa[0]->nome, 0, 17),
+                'materia' => $year->schoolSubject[0]->nome,
+                'lockStatus' => \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::createFromFormat('Y-m-d', $year->activeTime), false)
+            ];
+
+            $class = array_prepend($class, $item);
+        }
+
+        return $class;
+    }
+
 }

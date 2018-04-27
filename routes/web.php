@@ -83,7 +83,7 @@ Route::get('aluno/login', 'LoginAlunoController@loginUserAluno')->name('login.al
 Route::post('aluno/login', 'LoginAlunoController@login');
 
 Route::get('aluno/dash/atividade', 'AlunosAcessoController@atividade')->name('aluno.dash.atividade');
-
+Route::get('aluno/dash/turma', 'AlunosAcessoController@turma')->name('aluno.dash.turma');
 
 Route::resource('call', 'CallController');
 Route::resource('class', 'YearClassController');
