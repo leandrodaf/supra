@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\AlunosAcessoRepository;
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 
 class AlunosAcessoController extends Controller
 {
@@ -37,6 +37,18 @@ class AlunosAcessoController extends Controller
         return view('dash.aluno.atividade')->with(compact('atividadespaginate'));
     }
 
+
+    public function turma()
+    {
+        $aluno = \App\Models\Alunos::find(Auth::user()->alunos_id);
+        $turmas = $aluno->getTurmaByIdAluno($aluno);
+
+        $turmasPaginate = \App\Helpers\Paginate::paginate($turmas, 10);
+
+        $turmasPaginate->withPath('/aluno/dash/turma');
+
+        return view('dash.aluno.turma')->with(compact('turmasPaginate'));
+    }
 
     /**
      * Show the form for creating a new resource.

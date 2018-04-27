@@ -5,8 +5,9 @@
         <i class="material-icons">class</i> Atividades
     </a>
 </li>
-<li class="nav-item">
-    <a class="nav-link {{ Request::is('aluno/dash/turma*') ? 'active' : '' }}" data-toggle="tab"
+<li class=" nav-item">
+    <a href="{{Request::is('aluno/dash/turma*') ? '#turma':route('aluno.dash.turma')}}"
+       class="nav-link {{ Request::is('aluno/dash/turma*') ? 'active' : '' }}"
        style="cursor: pointer;">
         <i class="material-icons">perm_contact_calendar</i> Turma
     </a>
