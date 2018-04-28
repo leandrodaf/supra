@@ -4,7 +4,7 @@
 
             <i data-toggle="tooltip" data-original-title="{{$notification->type[0]->title}}"
                class="fa
-{{$notification->type[0]->id == 1 ? 'fa-money':''}}
+               {{$notification->type[0]->id == 1 ? 'fa-money':''}}
                {{$notification->type[0]->id == 2 ? 'fa-file-text-o':''}}
                {{$notification->type[0]->id == 3 ? 'fa-graduation-cap':''}}
                {{Carbon\Carbon::parse($notification->exibition)->gt($notification->created_at) ? $notification->type[0]->id == 1 ? 'bg-green':'': 'bg-red'}}
