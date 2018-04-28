@@ -32,14 +32,17 @@ Route::post('pessoas/storeAjax', 'PessoaController@storeAjax')->name('pessoa.sto
 Route::post('pessoas/storedoc', 'PessoaController@storeDoc')->name('pessoa.storeDoc');
 
 //TIPOATIVO
-Route::get('typeactives/', 'TypeActiveController@index')->name('typeactives.index');
-Route::get('typeactives/create', 'TypeActiveController@create')->name('typeactives.create');
-Route::delete('typeactives/destroy/{id}', 'TypeActiveController@destroy')->name('typeactives.destroy');
-Route::get('typeactives/{id}/edit', 'TypeActiveController@edit')->name('typeactives.edit');
+//Route::get('typeactives/', 'TypeActiveController@index')->name('typeactives.index');
+//Route::get('typeactives/create', 'TypeActiveController@create')->name('typeactives.create');
+//Route::delete('typeactives/destroy/{id}', 'TypeActiveController@destroy')->name('typeactives.destroy');
+//Route::get('typeactives/{id}/edit', 'TypeActiveController@edit')->name('typeactives.edit');
+//Route::post('typeactives/store', 'TypeActiveController@store')->name('typeactives.store');
+//Route::patch('typeactives/update/{id}', 'TypeActiveController@update')->name('typeactives.update');
+
+
 Route::get('typeactives/typeActioveGetBasicData', 'TypeActiveController@typeActiveGetBasicData')->name('typeActive.typeActiveGetBasicData');
 Route::get('typeactives/getInfoTypeActives/{idTypeActibe}', 'TypeActiveController@getInfoTypeActive')->name('typeActives.getInfoTypeActive');
-Route::post('typeactives/store', 'TypeActiveController@store')->name('typeactives.store');
-Route::patch('typeactives/update/{id}', 'TypeActiveController@update')->name('typeactives.update');
+
 
 
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
@@ -100,3 +103,4 @@ Route::resource('schoolsubject', 'SchoolSubjectController');
 Route::resource('activitie', 'ActivitieController');
 Route::resource('diary', 'DiaryController');
 Route::resource('dash/secretaria', 'DashSecretariaController');
+Route::resource('typeactives', 'TypeActiveController');
