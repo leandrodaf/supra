@@ -1,11 +1,8 @@
 <?php
 
-
 namespace App\Helpers;
 
-
 use Illuminate\Support\Facades\Auth;
-
 
 class Helpers
 {
@@ -25,6 +22,7 @@ class Helpers
             return null;
         }
     }
+
 
 
     //Formata a data do padrão BR para o padrão americano

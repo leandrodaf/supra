@@ -1,6 +1,5 @@
 "use strict";
 
-
 $(document).ready(function () {
     $('#messageSecretariaTables').DataTable({
         processing: true,

@@ -72,5 +72,9 @@ class ActivitieRepository extends BaseRepository
 
     }
 
+    public function getActivitiesByAluno(Alunos $alunos)
+    {
+
+    }
 
 }

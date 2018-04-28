@@ -8,6 +8,8 @@ mix.copyDirectory('node_modules/bootstrap3/dist/fonts', 'public/fonts');
 mix.copyDirectory('node_modules/ti-icons/fonts', 'public/fonts');
 mix.copyDirectory('node_modules/ti-icons/SVG', 'public/svg');
 
+mix.copyDirectory('resources/assets/dash/aluno/assets', 'public/dashboard/aluno');
+
 
 mix.js('resources/assets/js/app.js', 'public/js')
     .extract([
@@ -37,7 +39,7 @@ mix.js('resources/assets/js/custom_js/activities.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/notification.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/fileentry.js', 'public/js/features/');
 mix.js('resources/assets/js/custom_js/dashSecretaria.js', 'public/js/features/');
-
+mix.js('resources/assets/js/custom_js/dashAluno.js', 'public/js/features/');
 
 mix.js('resources/assets/js/plugins/jquery.cpfcnpj.min.js', 'public/js/plugins/jquery.cpfcnpj.min.js');
 mix.copy('resources/assets/images/avatarPadrao.jpg', 'public/uploads/');
@@ -56,6 +58,7 @@ mix.copy('node_modules/trumbowyg/dist/langs/pt_br.min.js', 'public/js/plugins');
 mix.copy('node_modules/trumbowyg/dist/ui/icons.svg', 'public/js/plugins/ui');
 mix.copy('node_modules/trumbowyg/dist/ui/trumbowyg.min.css', 'public/css/plugins');
 
+mix.sass('resources/assets/css/dashAluno.scss', 'public/css');
 
 //Mix Plugins style
 mix.styles([

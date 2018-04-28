@@ -397,5 +397,37 @@ class AlunosController extends AppBaseController
 
     }
 
+    public function createUserAluno(Request $request, $idaluno)
+    {
+        $aluno = Alunos::find($idaluno);
+
+        $status = $this->alunosRepository->createUserAluno($aluno);
+        $flash = new Flash();
+
+        if ($status) {
+            $flash::success('O acesso do aluno foi criado com sucesso!');
+        } else {
+            $flash::error('Erro ao criar usuário');
+        }
+
+        return redirect(route('alunos.show', $aluno->id));
+    }
+
+
+    public function getActivitieByAluno($id)
+    {
+        $aluno = Alunos::find($id);
+
+        if (empty($aluno)) {
+            return response()->json(["message" => "Aluno não encontrado"]);
+        }
+
+        $activities = $this->alunosRepository->getActivitiesByAluno($aluno);
+
+        $paginate = \App\Helpers\Paginate::paginate($activities->sortBy('end_date'), 10, null, ['path' => 'aluno/dash/atividade/']);
+
+        return response()->json($paginate);
+    }
+
 
 }

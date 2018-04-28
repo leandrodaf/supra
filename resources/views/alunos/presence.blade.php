@@ -1,6 +1,6 @@
 <div class="box">
     <div class="box-header with-border">
-        <h3 class="box-title">Ultimas presenças</h3>
+        <h3 class="box-title">Ultimas chamadas</h3>
         <div class="box-tools pull-right">
             <a href="#formIncluirParticipante" class="module-control pull-right" data-toggle="modal">
                 <i class="icon-plus"></i>

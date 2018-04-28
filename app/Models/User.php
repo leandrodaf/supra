@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'pessoa_id',
+        'name', 'email', 'password', 'pessoa_id', 'alunos_id',
     ];
 
     /**
@@ -39,13 +39,21 @@ class User extends Authenticatable
             'pessoa_id');
     }
 
+    public function aluno()
+    {
+        return $this->hasOne(\App\Models\Alunos::class,
+            'id',
+            'alunos_id');
+    }
 
     public function getRoutePanel()
     {
         if ($this->hasRole('secretaria') || $this->hasRole('admin')) {
             return route('secretaria.index');
+        } elseif ($this->hasRole('Aluno')) {
+            return route('aluno.dash.atividade');
         } else {
-            return '/';
+            return route('aluno.dash.atividade');
         }
 
     }
