@@ -23,7 +23,7 @@ class AlunosAcessoController extends Controller
      */
     public function index()
     {
-        return view('dash.aluno.index');
+        return redirect(route('aluno.dash.atividade'));
     }
 
     public function atividade()

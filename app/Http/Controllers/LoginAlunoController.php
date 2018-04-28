@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use App\Repositories\AlunosRepository;
 
 class LoginAlunoController extends Controller
 {
@@ -18,7 +16,7 @@ class LoginAlunoController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dash/aluno';
+    protected $redirectTo = '';
 
     /**
      * Create a new controller instance.
@@ -32,10 +30,11 @@ class LoginAlunoController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        return redirect(auth()->user()->getRoutePanel());
+        $this->redirectTo = auth()->user()->getRoutePanel();
     }
 
-    public function loginUserAluno(){
+    public function loginUserAluno()
+    {
         return view('dash.aluno.auth.index');
 
     }
