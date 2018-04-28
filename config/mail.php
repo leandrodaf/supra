@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'secretaria@educandarioanjinhofeliz.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'naorespondaaf@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'Secretária Educandário Anjinho Feliz'),
     ],
 
