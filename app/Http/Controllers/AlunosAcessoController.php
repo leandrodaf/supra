@@ -63,6 +63,19 @@ class AlunosAcessoController extends Controller
         return view('dash.aluno.mensagem')->with(compact('notifciationPaginate'));
     }
 
+    public function diario()
+    {
+        $aluno = \App\Models\Alunos::find(Auth::user()->alunos_id);
+
+        $diarios = $aluno->diairy()->take(5)->get();
+
+        $diarioPaginate = \App\Helpers\Paginate::paginate($diarios, 10);
+
+        $diarioPaginate->withPath('/aluno/dash/diario');
+
+        return view('dash.aluno.diario')->with(compact('diarioPaginate'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
