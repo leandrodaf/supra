@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return redirect(route('login'));
+    return redirect(route('login.aluno'));
 });
 
 Auth::routes();
@@ -18,7 +18,7 @@ Route::post('alunos/responsaveis/{responsavel}/desvincular', 'AlunosController@d
 Route::post('alunos/phoneMain', 'AlunosController@mainPhoneAlunosAjax')->name('alunos.phoneMain');
 Route::post('alunos/storedoc', 'AlunosController@storeDoc')->name('alunos.storeDoc');
 Route::post('alunos/disableOrEnableAluno/{id}', 'AlunosController@disableOrEnableAluno')->name('alunos.disableOrEnableAluno');
-
+Route::post('aluno/create/new/{idAluno}', 'AlunosController@createUserAluno');
 
 Route::get('pessoas/getBasicData', 'PessoaController@getBasicData')->name('pessoas.getBasicData');
 Route::get('pessoas/getInfoUser/{idPessoa}', 'PessoaController@getInfoUser')->name('pessoas.getInfoUser');
@@ -31,24 +31,10 @@ Route::post('pessoas/phoneMain', 'PessoaController@mainPhonePessoaAjax')->name('
 Route::post('pessoas/storeAjax', 'PessoaController@storeAjax')->name('pessoa.storeAjax');
 Route::post('pessoas/storedoc', 'PessoaController@storeDoc')->name('pessoa.storeDoc');
 
-//TIPOATIVO
-Route::get('typeactives/', 'TypeActiveController@index')->name('typeactives.index');
-Route::get('typeactives/create', 'TypeActiveController@create')->name('typeactives.create');
-Route::delete('typeactives/destroy/{id}', 'TypeActiveController@destroy')->name('typeactives.destroy');
-Route::get('typeactives/{id}/edit', 'TypeActiveController@edit')->name('typeactives.edit');
 Route::get('typeactives/typeActioveGetBasicData', 'TypeActiveController@typeActiveGetBasicData')->name('typeActive.typeActiveGetBasicData');
 Route::get('typeactives/getInfoTypeActives/{idTypeActibe}', 'TypeActiveController@getInfoTypeActive')->name('typeActives.getInfoTypeActive');
 Route::post('typeactives/store', 'TypeActiveController@store')->name('typeactives.store');
 Route::patch('typeactives/update/{id}', 'TypeActiveController@update')->name('typeactives.update');
-
-//TIPO PAGAMENTO
-Route::get('payments/', 'PaymentController@index')->name('payments.index');
-Route::get('payments/create','PaymentController@create')->name('payments.create');
-Route::post('payments/store', 'PaymentController@store')->name('payments.store');
-Route::patch('payments/update/{id}', 'PaymentController@update')->name('payments.update');
-Route::delete('payments/destroy/{id}', 'PaymentController@destroy')->name('payments.destroy');
-Route::get('payments/{id}/edit', 'PaymentController@edit')->name('payments.edit');
-
 
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::get('roles/getAjax', 'RoleController@dataAjax')->name('roles.getAjaxSelect2');
@@ -64,7 +50,6 @@ Route::put('notification/aluno/new', 'NotificationController@storeByAluno')->nam
 Route::get('notification/{id}', 'NotificationController@show')->name('notification.show');
 Route::get('notification/aluno/{id}', 'NotificationController@getNotification')->name('management.getNotification');
 Route::get('notification/', 'NotificationController@getAll')->name('management.getAll');
-Route::get('dash/secretaria/getBasicData', 'NotificationController@getBasicData')->name('management.getBasicData');
 
 Route::get('classrooms/getAll', 'ClassRoomController@getAll');
 Route::get('class/getBasicData', 'YearClassController@getBasicData')->name('class.getBasicData');
@@ -86,12 +71,25 @@ Route::get('file/getBasicData', 'FileentryController@getBasicData')->name('file.
 Route::get('/activitie/{id}', 'ActivitieController@loadActivitie');
 Route::post('/activitie/{id}/pessoa', 'ActivitieController@syncAluno');
 
+Route::get('teste/{id}', 'AlunosController@getActivitieByAluno');
+
 Route::get('call/existCall/{date}', 'CallController@existCall');
 
+//Dashboard Secretária
 Route::get('dash/secretaria/topBox', 'DashSecretariaController@dataBoxCountTop')->name('dash.secretaria.dataBoxCountTop');
 Route::get('dash/secretaria/BoxTurmas', 'DashSecretariaController@dataBoxTurmas')->name('dash.secretaria.dataBoxTurmas');
 Route::get('dash/secretaria/dataAlunosxAlunos', 'DashSecretariaController@dataAlunosxAlunos')->name('dash.secretaria.dataAlunosxAlunos');
+Route::get('dash/secretaria/getBasicData', 'NotificationController@getBasicData')->name('management.getBasicData');
 
+//Dashboard Aluno
+
+Route::get('aluno/login', 'LoginAlunoController@loginUserAluno')->name('login.aluno');
+Route::post('aluno/login', 'LoginAlunoController@login');
+
+Route::get('aluno/dash/atividade', 'AlunosAcessoController@atividade')->name('aluno.dash.atividade');
+Route::get('aluno/dash/turma', 'AlunosAcessoController@turma')->name('aluno.dash.turma');
+Route::get('aluno/dash/mensagem', 'AlunosAcessoController@mensagem')->name('aluno.dash.mensagem');
+Route::get('aluno/dash/diario', 'AlunosAcessoController@diario')->name('aluno.dash.diario');
 
 Route::resource('call', 'CallController');
 Route::resource('class', 'YearClassController');
@@ -108,3 +106,6 @@ Route::resource('schoolsubject', 'SchoolSubjectController');
 Route::resource('activitie', 'ActivitieController');
 Route::resource('diary', 'DiaryController');
 Route::resource('dash/secretaria', 'DashSecretariaController');
+Route::resource('aluno/dash', 'AlunosAcessoController');
+Route::resource('typeactives', 'TypeActiveController');
+Route::resource('payments', 'PaymentController');

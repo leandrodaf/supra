@@ -45,6 +45,21 @@ class YearClassRepository extends BaseRepository
         $qtdActivitie = count($data->activitie);
         $medias = collect();
 
+        if (count($data->alunos) != 0) {
+            foreach ($data->alunos as $aluno) {
+                $media = new \App\Models\Media();
+
+                $media->aluno = $aluno->id;
+                $media->nome_aluno = $aluno->nome_aluno;
+                $media->foto_aluno = $aluno->foto_aluno;
+                $media->media = $aluno->media + $aluno->pivot->media;
+
+                $medias->push($media);
+
+            }
+        }
+
+
         foreach ($data->activitie as $activitie) {
             foreach ($activitie->aluno as $aluno) {
                 $item = $medias->where('aluno', $aluno->id);

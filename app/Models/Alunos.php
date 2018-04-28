@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -59,7 +60,8 @@ class Alunos extends Model
         'qtd_irmaos_aluno',
         'data_nascimento_aluno',
         'tipo_pessoas_id',
-        'healthInformations_id'
+        'healthInformations_id',
+        'status_user'
     ];
 
     /**
@@ -241,5 +243,68 @@ class Alunos extends Model
         return $this->hasMany(\App\Models\Fileentry::class);
     }
 
+    public function getActivitiesByAluno(Alunos $aluno)
+    {
+        $atividadesAluno = collect();
+
+        foreach ($aluno->yearClass as $yearClass) {
+            foreach ($yearClass->activitie as $activitie) {
+                $media = new \App\Models\Media();
+                $media->yearClass_id = $yearClass->id;
+                $media->activitie_id = $activitie->id;
+                $media->title = $activitie->title;
+                $media->start_date = $activitie->start_date->format('d/m/Y');
+                $media->end_date = $activitie->end_date->format('d/m/Y');
+                $media->encerra = \Carbon\Carbon::now()->diffInDays($activitie->end_date, false);
+                $media->description = $activitie->description;
+                if (count($activitie->fileentry) > 0) {
+                    foreach ($activitie->fileentry as $fileentry) {
+                        $media->fileentry = [
+                            "original_filename" => $fileentry->original_filename,
+                            "url" => route('file.get') . '?file=' . $fileentry->filename];
+                    }
+                } else {
+                    $media->fileentry = [
+                        "original_filename" => null,
+                        "url" => null
+                    ];
+                }
+                if (count($activitie->aluno) > 0) {
+                    foreach ($activitie->aluno as $alunoActivit) {
+                        if ($alunoActivit->id == $aluno->id) {
+                            $media->media = $alunoActivit->pivot->media;
+                        } else {
+                            $media->media = 0.0;
+                        }
+                    }
+                } else {
+                    $media->media = 0.0;
+                }
+                $atividadesAluno->push($media);
+            }
+        }
+        return $atividadesAluno;
+    }
+
+
+    public function getTurmaByIdAluno(Alunos $aluno)
+    {
+        $class = [];
+
+        foreach ($aluno->yearClass as $year) {
+            $item = [
+                'sala' => $year->classroom->nome_sala,
+                'inicia' => substr($year->startTime, 0, 5),
+                'encerra' => substr($year->endTime, 0, 5),
+                'professor' => substr($year->pessoa[0]->nome, 0, 17),
+                'materia' => $year->schoolSubject[0]->nome,
+                'lockStatus' => \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::createFromFormat('Y-m-d', $year->activeTime), false)
+            ];
+
+            $class = array_prepend($class, $item);
+        }
+
+        return $class;
+    }
 
 }

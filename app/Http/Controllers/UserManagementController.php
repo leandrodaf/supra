@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\UsersRepository;
-use Illuminate\Http\Request;
 use App\User;
 use Flash;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Foundation\Auth\ResetsPasswords;
 use Yajra\DataTables\DataTables;
 
 class UserManagementController extends Controller
@@ -62,6 +62,7 @@ class UserManagementController extends Controller
     public function getBasicData()
     {
         $users = User::select(['id', 'name', 'email']);
+        $users->whereNull('alunos_id');
 
         return Datatables::of($users)
             ->addColumn('roles', function ($user) {
@@ -75,8 +76,6 @@ class UserManagementController extends Controller
 
             })
             ->addColumn('link', function ($user) {
-
-
                 $button = '
                 <a href="/management/' . $user->id . '' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i></a>
                 <a href="/management/' . $user->id . '/edit' . '" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
