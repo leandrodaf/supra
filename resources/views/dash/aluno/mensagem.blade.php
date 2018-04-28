@@ -1,7 +1,6 @@
 @extends('dash.aluno.layout.app')
 
 @section('css')
-    <link rel="stylesheet" href="{{ mix('css/dashAluno.css') }}">
 @endsection
 
 @section('content')
@@ -17,6 +16,7 @@
                     </tr>
                     </thead>
                     <tbody>
+
                     @foreach($notifciationPaginate as $notification)
                         <tr
                                 data-html="true"
@@ -50,5 +50,4 @@
 @endsection
 
 @section('scripts')
-    <script src="{{asset('/js/features/dashAluno.js')}}"></script>
 @endsection
