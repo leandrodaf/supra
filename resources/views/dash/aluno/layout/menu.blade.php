@@ -13,7 +13,8 @@
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link {{ Request::is('aluno/dash/mensagem*') ? 'active' : '' }}" data-toggle="tab"
+    <a href="{{Request::is('aluno/dash/mensagem*') ? '#mensagens':route('aluno.dash.mensagem')}}"
+       class="nav-link {{ Request::is('aluno/dash/mensagem*') ? 'active' : '' }}"
        style="cursor: pointer;">
         <i class="material-icons">local_post_office</i> Mensagens
     </a>
