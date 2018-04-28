@@ -53,7 +53,7 @@ class User extends Authenticatable
         } elseif ($this->hasRole('Aluno')) {
             return route('aluno.dash.atividade');
         } else {
-            return '/';
+            return route('aluno.dash.atividade');
         }
 
     }

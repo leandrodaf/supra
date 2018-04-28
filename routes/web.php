@@ -36,6 +36,7 @@ Route::get('typeactives/getInfoTypeActives/{idTypeActibe}', 'TypeActiveControlle
 Route::post('typeactives/store', 'TypeActiveController@store')->name('typeactives.store');
 Route::patch('typeactives/update/{id}', 'TypeActiveController@update')->name('typeactives.update');
 
+
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::get('roles/getAjax', 'RoleController@dataAjax')->name('roles.getAjaxSelect2');
 Route::post('matricula', 'MatriculaController@store')->name('matricula.store');
@@ -57,7 +58,6 @@ Route::get('class/synchronizedStudents/{id}', 'YearClassController@synchronizedS
 Route::post('class/syncAluno/{id}', 'YearClassController@syncAluno')->name('class.syncAluno');
 Route::post('class/unsyncAluno', 'YearClassController@detachStudents')->name('class.detachStudents');
 Route::get('class/getAlunos', 'YearClassController@getAlunos')->name('class.getAlunos');
-
 
 Route::get('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherAll');
 Route::post('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherAdd');
@@ -109,3 +109,4 @@ Route::resource('dash/secretaria', 'DashSecretariaController');
 Route::resource('aluno/dash', 'AlunosAcessoController');
 Route::resource('typeactives', 'TypeActiveController');
 Route::resource('payments', 'PaymentController');
+
