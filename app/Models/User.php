@@ -51,7 +51,9 @@ class User extends Authenticatable
         if ($this->hasRole('secretaria') || $this->hasRole('admin')) {
             return route('secretaria.index');
         } elseif ($this->hasRole('Aluno')) {
-            return '/aluno/dash';
+            return route('aluno.dash.atividade');
+        } else {
+            return route('aluno.dash.atividade');
         }
 
     }
