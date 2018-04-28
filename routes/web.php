@@ -33,6 +33,9 @@ Route::post('pessoas/storedoc', 'PessoaController@storeDoc')->name('pessoa.store
 
 Route::get('typeactives/typeActioveGetBasicData', 'TypeActiveController@typeActiveGetBasicData')->name('typeActive.typeActiveGetBasicData');
 Route::get('typeactives/getInfoTypeActives/{idTypeActibe}', 'TypeActiveController@getInfoTypeActive')->name('typeActives.getInfoTypeActive');
+Route::post('typeactives/store', 'TypeActiveController@store')->name('typeactives.store');
+Route::patch('typeactives/update/{id}', 'TypeActiveController@update')->name('typeactives.update');
+
 
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::get('roles/getAjax', 'RoleController@dataAjax')->name('roles.getAjaxSelect2');
@@ -49,14 +52,12 @@ Route::get('notification/{id}', 'NotificationController@show')->name('notificati
 Route::get('notification/aluno/{id}', 'NotificationController@getNotification')->name('management.getNotification');
 Route::get('notification/', 'NotificationController@getAll')->name('management.getAll');
 
-
 Route::get('classrooms/getAll', 'ClassRoomController@getAll');
 Route::get('class/getBasicData', 'YearClassController@getBasicData')->name('class.getBasicData');
 Route::get('class/synchronizedStudents/{id}', 'YearClassController@synchronizedStudents')->name('class.synchronizedStudents');
 Route::post('class/syncAluno/{id}', 'YearClassController@syncAluno')->name('class.syncAluno');
 Route::post('class/unsyncAluno', 'YearClassController@detachStudents')->name('class.detachStudents');
 Route::get('class/getAlunos', 'YearClassController@getAlunos')->name('class.getAlunos');
-
 
 Route::get('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherAll');
 Route::post('schoolsubject/teacher/{idPessoa}', 'SchoolSubjectController@teacherAdd');
@@ -107,3 +108,5 @@ Route::resource('diary', 'DiaryController');
 Route::resource('dash/secretaria', 'DashSecretariaController');
 Route::resource('aluno/dash', 'AlunosAcessoController');
 Route::resource('typeactives', 'TypeActiveController');
+Route::resource('payments', 'PaymentController');
+
