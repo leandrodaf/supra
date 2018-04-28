@@ -31,6 +31,9 @@ Route::post('pessoas/phoneMain', 'PessoaController@mainPhonePessoaAjax')->name('
 Route::post('pessoas/storeAjax', 'PessoaController@storeAjax')->name('pessoa.storeAjax');
 Route::post('pessoas/storedoc', 'PessoaController@storeDoc')->name('pessoa.storeDoc');
 
+Route::get('typeactives/typeActioveGetBasicData', 'TypeActiveController@typeActiveGetBasicData')->name('typeActive.typeActiveGetBasicData');
+Route::get('typeactives/getInfoTypeActives/{idTypeActibe}', 'TypeActiveController@getInfoTypeActive')->name('typeActives.getInfoTypeActive');
+
 Route::get('matricula', 'MatriculaController@index')->name('matricula.index');
 Route::get('roles/getAjax', 'RoleController@dataAjax')->name('roles.getAjaxSelect2');
 Route::post('matricula', 'MatriculaController@store')->name('matricula.store');
@@ -103,3 +106,4 @@ Route::resource('activitie', 'ActivitieController');
 Route::resource('diary', 'DiaryController');
 Route::resource('dash/secretaria', 'DashSecretariaController');
 Route::resource('aluno/dash', 'AlunosAcessoController');
+Route::resource('typeactives', 'TypeActiveController');
