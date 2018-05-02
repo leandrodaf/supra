@@ -1,7 +1,7 @@
 <template>
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title"> Tarefas</h3>
+            <h3 class="box-title"> Visitas</h3>
 
             <div class="box-tools pull-right">
 
@@ -10,17 +10,17 @@
         <div class="box-body">
             <form action="#" @submit.prevent="createTask()">
                 <div class="input-group">
-                    <input placeholder="Nova tarefa" v-model="task.body" type="text" name="body" class="form-control" autofocus>
+                    <input placeholder="Nova visita" v-model="task.body" type="text" name="body" class="form-control" autofocus>
                     <span class="input-group-btn">
                     <button type="submit" class="btn btn-primary">Incluir</button>
                 </span>
                 </div>
             </form>
             <hr />
-            <h4>Lista de tarefas</h4>
+            <h4>Lista de visitas</h4>
             <ul class="list-group">
                 <div v-if='list.length === 0' class="alert alert-warning">
-                    Lista de tarefas vázia!
+                    Lista de visitas vázia!
                 </div>
 
                 <li class="list-group-item" v-for="(task, index) in list">
