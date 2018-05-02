@@ -8,4 +8,9 @@ Route::middleware(['auth:api'])->group(function () {
         return $request->user();
     });
 
+    Route::get('/alunos/atividade', 'AlunosController@atividade');
+    Route::get('/alunos/turma', 'AlunosController@turma');
+    Route::get('/alunos/mensagem', 'AlunosController@mensagem');
+    Route::get('/alunos/diario', 'AlunosController@diario');
+
 });
