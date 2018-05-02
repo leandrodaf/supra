@@ -27,6 +27,7 @@ Vue.component('quadradeco', require('./components/quadradeco'));
 Vue.component('infoNotifciation', require('./components/InfoNotifications'));
 Vue.component('matricula', require('./components/matricula'));
 Vue.component('boxDefault', require('./components/boxDefault'));
+Vue.component('taskList', require('./components/TaskList'));
 Vue.component('picture-input', PictureInput);
 
 Vue.use(VueAxios, axios);
