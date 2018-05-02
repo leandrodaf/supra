@@ -29,7 +29,7 @@
                                 <div class="description">
                                     <h4 class="info-title">Programas</h4>
                                     <p class="description">
-                                        Programas Venha conhecer nossos programas de aprendizagem e tudo que disponibilizamos para a boa educação de nossas crianças.
+                                        Venha conhecer nossos programas de aprendizagem e tudo que disponibilizamos para a boa educação de nossas crianças. <a href="https://www.educandarioanjinhofeliz.com/programas">Clique aqui.</a>
                                     </p>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                 <div class="description">
                                     <h4 class="info-title">Galeria</h4>
                                     <p class="description">
-                                        Entre para ver nossa galeria de fotos, aqui sempre postamos imagens dos nossos eventos e momentos especiais.
+                                        Entre para ver nossa galeria de fotos, aqui sempre postamos imagens dos nossos eventos e momentos especiais. <a href="https://www.educandarioanjinhofeliz.com/programas">Clique aqui.</a>
                                     </p>
                                 </div>
                             </div>
