@@ -4,15 +4,33 @@ use Illuminate\Http\Request;
 
 Route::middleware(['auth:api'])->group(function () {
 
-    Route::get('/user', function (Request $request) {
-        return $request->user();
+    Route::get('/aluno', function (Request $request) {
+        $aluno = \App\Models\Alunos::find($request->user()->alunos_id);
+        return response()->json($aluno, 200);
     });
 
+    Route::get('/alunos/atividade', function (Request $request) {
+        $aluno = \App\Models\Alunos::find($request->user()->alunos_id);
+        $activities = $aluno->getActivitiesByAluno($aluno);
+        return response()->json($activities, 200);
+    });
 
-    Route::get('/aluno', 'AlunosController@aluno');
-    Route::get('/alunos/atividade', 'AlunosController@atividade');
-    Route::get('/alunos/turma', 'AlunosController@turma');
-    Route::get('/alunos/mensagem', 'AlunosController@mensagem');
-    Route::get('/alunos/diario', 'AlunosController@diario');
+    Route::get('/alunos/turma', function (Request $request) {
+        $aluno = \App\Models\Alunos::find($request->user()->alunos_id);
+        $turmas = $aluno->getTurmaByIdAluno($aluno);
+        return response()->json($turmas, 200);
+    });
+
+    Route::get('/alunos/mensagem', function (Request $request) {
+        $aluno = \App\Models\Alunos::find($request->user()->alunos_id);
+        $notifications = $aluno->notification()->whereBetween('created_at', [\Carbon\Carbon::today()->subDays(15), \Carbon\Carbon::today()->addDays(20)])->orderBy('created_at', 'asc')->get();
+        return response()->json($notifications, 200);
+    });
+
+    Route::get('/alunos/diario', function (Request $request) {
+        $aluno = \App\Models\Alunos::find($request->user()->alunos_id);
+        $diarios = $aluno->diairy()->take(5)->get();
+        return response()->json($diarios, 200);
+    });
 
 });
