@@ -10,14 +10,14 @@ class AlunosController extends Controller
 
     public function aluno(Request $request)
     {
-        $aluno = \App\Models\Alunos::find($request->user()->id);
+        $aluno = \App\Models\Alunos::find(Auth::user()->alunos_id);
 
         return response()->json($aluno, 200);
     }
 
     public function atividade(Request $request)
     {
-        $aluno = \App\Models\Alunos::find($request->user()->id);
+        $aluno = \App\Models\Alunos::find(Auth::user()->alunos_id);
         $activities = $aluno->getActivitiesByAluno($aluno);
 
         return response()->json($activities, 200);
@@ -25,7 +25,7 @@ class AlunosController extends Controller
 
     public function turma(Request $request)
     {
-        $aluno = \App\Models\Alunos::find($request->user()->id);
+        $aluno = \App\Models\Alunos::find(Auth::user()->alunos_id);
         $turmas = $aluno->getTurmaByIdAluno($aluno);
 
         return response()->json($turmas, 200);
@@ -33,7 +33,7 @@ class AlunosController extends Controller
 
     public function mensagem(Request $request)
     {
-        $aluno = \App\Models\Alunos::find($request->user()->id);
+        $aluno = \App\Models\Alunos::find(Auth::user()->alunos_id);
 
         $notifications = $aluno->notification()->whereBetween('created_at', [\Carbon\Carbon::today()->subDays(15), \Carbon\Carbon::today()->addDays(20)])->orderBy('created_at', 'asc')->get();
 
@@ -42,7 +42,7 @@ class AlunosController extends Controller
 
     public function diario(Request $request)
     {
-        $aluno = \App\Models\Alunos::find($request->user()->id);
+        $aluno = \App\Models\Alunos::find(Auth::user()->alunos_id);
 
         $diarios = $aluno->diairy()->take(5)->get();
 
