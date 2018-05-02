@@ -109,4 +109,4 @@ Route::resource('dash/secretaria', 'DashSecretariaController');
 Route::resource('aluno/dash', 'AlunosAcessoController');
 Route::resource('typeactives', 'TypeActiveController');
 Route::resource('payments', 'PaymentController');
-
+Route::resource('tasks', 'TaskController');

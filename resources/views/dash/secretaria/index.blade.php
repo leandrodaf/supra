@@ -13,7 +13,10 @@
         <div class="col-md-9 col-sm-6 col-xs-12">
             <year-class :title="'Situação dos Alunos'"></year-class>
         </div>
-        <div class="col-md-12 col-sm-6 col-xs-12">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <task-list></task-list>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
             <info-notifciation :title="'Notifcações'"></info-notifciation>
         </div>
     </section>
