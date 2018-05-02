@@ -63,7 +63,7 @@ $(document).ready(function () {
                 $('.time-created_at').text(new Date(data.created_at).toISOString().substr(0, 10).split('-').reverse().join('/'));
                 $('.href-aluno-info').attr('href', "/alunos/" + data.aluno[0].id);
                 $('.href-aluno-info').text(data.aluno[0].nome_aluno);
-                $('.timeline-body').text(data.description);
+                $('.timeline-body').html(data.description);
                 $('#iconetypenotification').addClass(typeNotification(data.type[0].id));
                 $('#title-info').text("- " + data.title);
                 $('.data-notification').text(data.description);
