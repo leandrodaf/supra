@@ -7,6 +7,7 @@ use App\Models\Classroom;
 use App\Models\Pessoa;
 use App\Models\YearClass;
 use App\Repositories\DashSecretariaRepository;
+use Illuminate\Support\Facades\Auth;
 
 class DashSecretariaController extends Controller
 {
@@ -21,7 +22,12 @@ class DashSecretariaController extends Controller
 
     public function index()
     {
-        return view('dash.secretaria.index');
+        if (Auth::user()->hasRole('secretaria') || Auth::user()->hasRole('admin')) {
+            return view('dash.secretaria.index');
+        } else {
+            return redirect(Auth::user()->getRoutePanel());
+        }
+
     }
 
 

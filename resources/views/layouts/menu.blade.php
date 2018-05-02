@@ -7,15 +7,18 @@
             <li class="{{ Request::is('pessoas*') ? 'active' : '' }}">
                 <a href="{!! route('pessoas.index') !!}"><i class="fa fa-users"></i><span>Pessoas</span></a>
             </li>
-
+        @endif
+        @if(Auth::user()->hasRole('secretaria') || Auth::user()->hasRole('admin') || Auth::user()->hasRole('Professor'))
             <li class="{{ Request::is('alunos*') ? 'active' : '' }}">
                 <a href="{!! route('alunos.index') !!}"><i class="fa fa-child"></i><span>Alunos</span></a>
             </li>
-
+        @endif
+        @if(Auth::user()->hasRole('secretaria') || Auth::user()->hasRole('admin') || Auth::user()->hasRole('Professor'))
             <li class="{{ Request::is('class') || Request::is('class/*')? 'active' : '' }}">
                 <a href="{!! route('class.index') !!}"><i class="fa fa-graduation-cap"></i><span>Gerenciar Turmas</span></a>
             </li>
-
+        @endif
+        @if(Auth::user()->hasRole('secretaria') || Auth::user()->hasRole('admin'))
             <li class="{{ Request::is('file*') ? 'active' : '' }}">
                 <a href="{!! route('file.index') !!}"><i class="fa fa-folder-open"></i><span>Arquivos</span></a>
             </li>

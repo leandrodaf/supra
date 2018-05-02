@@ -106,6 +106,7 @@ Route::resource('schoolsubject', 'SchoolSubjectController');
 Route::resource('activitie', 'ActivitieController');
 Route::resource('diary', 'DiaryController');
 Route::resource('dash/secretaria', 'DashSecretariaController');
+Route::resource('dash/professor', 'ProfessorController');
 Route::resource('aluno/dash', 'AlunosAcessoController');
 Route::resource('typeactives', 'TypeActiveController');
 Route::resource('payments', 'PaymentController');

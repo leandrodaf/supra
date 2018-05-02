@@ -2,9 +2,12 @@
     <div class="box-header with-border">
         <h3 class="box-title">Diário do aluno</h3>
         <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#studentDiaryModal">
-                <i class="fa fa-plus"></i>
-            </button>
+            @if(Auth::user()->hasRole('Professor') || Auth::user()->hasRole('admin'))
+                <button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#studentDiaryModal">
+                    <i class="fa fa-plus"></i>
+                </button>
+            @endif
+
         </div>
     </div>
     <div class="box-body">

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Auth;
 
 class AlunosController extends AppBaseController
 {
@@ -174,15 +175,22 @@ class AlunosController extends AppBaseController
      */
     public function edit($idAluno)
     {
-        $tipoPessoas = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '=', 1]])->get()->pluck('nome', 'id');
-        $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
-        $alunos = $this->alunosRepository->findWithoutFail($idAluno);
-        if (empty($alunos)) {
-            $flash = new Flash();
-            $flash::error('Aluno não encontrado');
-            return redirect(route('alunos.index'));
+
+        if (Auth::user()->hasRole('secretaria') || Auth::user()->hasRole('admin')) {
+            $tipoPessoas = \App\Models\TipoPessoa::where([['status', '=', 1], ['id', '=', 1]])->get()->pluck('nome', 'id');
+            $genders = \App\Models\Gender::where('status', '=', 1)->get()->pluck('nome', 'id');
+            $alunos = $this->alunosRepository->findWithoutFail($idAluno);
+            if (empty($alunos)) {
+                $flash = new Flash();
+                $flash::error('Aluno não encontrado');
+                return redirect(route('alunos.index'));
+            }
+            return view('alunos.edit')->with('alunos', $alunos)->with(compact('tipoPessoas', 'genders'));
+        } else {
+            return redirect(Auth::user()->getRoutePanel());
         }
-        return view('alunos.edit')->with('alunos', $alunos)->with(compact('tipoPessoas', 'genders'));
+
+
     }
 
     /**
