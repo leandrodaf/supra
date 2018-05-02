@@ -4,13 +4,10 @@ use Illuminate\Http\Request;
 
 Route::middleware(['auth:api'])->group(function () {
 
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-
-    Route::get('/alunos/atividade', 'AlunosController@atividade');
-    Route::get('/alunos/turma', 'AlunosController@turma');
-    Route::get('/alunos/mensagem', 'AlunosController@mensagem');
-    Route::get('/alunos/diario', 'AlunosController@diario');
+    Route::get('/aluno', 'API\AlunosController@aluno');
+    Route::get('/aluno/atividade', 'API\AlunosController@atividade');
+    Route::get('/aluno/turma', 'API\AlunosController@turma');
+    Route::get('/aluno/mensagem', 'API\AlunosController@mensagem');
+    Route::get('/aluno/diario', 'API\AlunosController@diario');
 
 });
