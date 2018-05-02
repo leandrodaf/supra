@@ -4,9 +4,9 @@
         <th>#</th>
         <th>Sala</th>
         <th>Horario de funcionamento</th>
+        <th>Encerra em</th>
         <th>Matéria</th>
         <th>Professor</th>
-        <th>Encerra em</th>
         <th>Ação</th>
     </tr>
     </thead>
