@@ -252,6 +252,26 @@ class Pessoa extends Model
         return $this->belongsToMany(\App\Models\YearClass::class);
     }
 
+    public function getTurmaByIdAluno(Pessoa $pessoa)
+    {
+        $class = [];
+
+        foreach ($pessoa->yearClass as $year) {
+            $item = [
+                'id' => $year->id,
+                'sala' => $year->classroom->nome_sala,
+                'inicia' => substr($year->startTime, 0, 5),
+                'encerra' => substr($year->endTime, 0, 5),
+                'materia' => $year->schoolSubject[0]->nome,
+                'lockStatus' => \Carbon\Carbon::now()->diffInDays(\Carbon\Carbon::createFromFormat('Y-m-d', $year->activeTime), false)
+            ];
+
+            $class = array_prepend($class, $item);
+        }
+
+        return $class;
+    }
+
     public function activitie()
     {
         return $this->belongsToMany(\App\Models\Activitie::class);

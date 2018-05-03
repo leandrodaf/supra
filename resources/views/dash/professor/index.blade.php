@@ -21,13 +21,35 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Turmas</h3>
-
+                    <h3 class="box-title"><i class="fa fa-graduation-cap"></i> Turmas</h3>
                 </div>
                 <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Sala</th>
+                                <th class="text-center">Inicia</th>
+                                <th class="text-center">Encerra</th>
+                                <th class="text-center">Matéria</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($turmas as $turma)
+                                <tr class="clickable-row {{$turma['lockStatus'] > 0 ? 'table-light': 'table-danger'}}"
+                                    data-href='{{route('class.show', $turma['id'])}}' style="cursor: pointer;">
+                                    <td>{{$turma['sala']}}</td>
+                                    <td class="text-center">{{$turma['inicia']}}</td>
+                                    <td class="text-center">{{$turma['encerra']}}</td>
+                                    <td class="text-center">{{$turma['materia']}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="box-footer no-padding">
-
+                    {{$turmas->links()}}
                 </div>
             </div>
         </div>
@@ -61,4 +83,13 @@
 @endsection
 
 @section('scripts')
+
+    <script>
+        $(document).ready(function () {
+            $(".clickable-row").click(function () {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>
+
 @endsection
