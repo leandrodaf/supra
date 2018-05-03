@@ -21,7 +21,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title"><i class="fa fa-graduation-cap"></i> Turmas</h3>
+                    <h3 class="box-title"><i class="fa fa-graduation-cap    "></i> Turmas</h3>
                 </div>
                 <div class="box-body">
                     <div class="table-responsive">
@@ -60,6 +60,7 @@
 
                 </div>
                 <div class="box-body">
+
                 </div>
                 <div class="box-footer no-padding">
 
@@ -73,9 +74,26 @@
 
                 </div>
                 <div class="box-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Aluno</th>
+                            <th class="text-center">Data</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($diarios as $diario)
+                            <tr class="clickable-row"
+                                data-href='{{route('alunos.show', $diario['alunos_id'])}}' style="cursor: pointer;">
+                                <td>{{$diario->alunos->get(0)->nome_aluno}}</td>
+                                <td class="text-center">{{$diario->date->format('d/m/Y')}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
                 <div class="box-footer no-padding">
-
+                    {{$diarios->links()}}
                 </div>
             </div>
         </div>
