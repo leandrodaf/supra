@@ -84,23 +84,27 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <div class="box-tools pull-right">
-                            <div class="btn-group">
-                                <a data-toggle="collapse" href="#collapseAluno" aria-expanded="false"
-                                   aria-controls="collapseAluno">
-                                    Adicionar Aluno
-                                </a>
-                            </div>
+                            @if(Auth::user()->hasRole('secretaria') || Auth::user()->hasRole('admin'))
+                                <div class="btn-group">
+                                    <a data-toggle="collapse" href="#collapseAluno" aria-expanded="false"
+                                       aria-controls="collapseAluno">
+                                        Adicionar Aluno
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                         Alunos
                     </div>
-                    <div class="box-body">
-                        <div class="row">
+                    @if(Auth::user()->hasRole('secretaria') || Auth::user()->hasRole('admin'))
+                        <div class="box-body">
+                            <div class="row">
 
-                            @include('yearClass.add_alunos')
+                                @include('yearClass.add_alunos')
 
 
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="box-body">
                         @include('yearClass.alunos_table')
                     </div>

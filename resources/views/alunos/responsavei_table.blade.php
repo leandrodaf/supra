@@ -5,11 +5,13 @@
             @foreach($alunos->pessoa as $responsavel)
 
                 <tr>
-                    <td>
-                        <a onclick="document.getElementById({!! "'#desvincular-".$responsavel->id."'" !!}).submit();">
-                            <i class="fa fa-plug" data-toggle="tooltip" title="Desvincular"></i>
-                        </a>
-                    </td>
+                    @if(Auth::user()->hasRole('secretaria') || Auth::user()->hasRole('admin'))
+                        <td>
+                            <a onclick="document.getElementById({!! "'#desvincular-".$responsavel->id."'" !!}).submit();">
+                                <i class="fa fa-plug" data-toggle="tooltip" title="Desvincular"></i>
+                            </a>
+                        </td>
+                    @endif
                     <td class="verInfo" id="{{$responsavel->id}}" data-toggle="modal" data-target="#detalhes">
                         <span class="informacoesTitulo" style="cursor:pointer;" data-placement="top"
                               title="Clique para ver o perfil de {{$responsavel->nome}}">{{$responsavel->nome}}</span>

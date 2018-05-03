@@ -33,7 +33,13 @@
 
             <dt>Professor</dt>
 
-            <dd><a href="{{route('pessoas.show', $class->pessoa[0]['id'])}}">{{$class->pessoa[0]['nome']}}</a></dd>
+            <dd>
+                @if(Auth::user()->hasRole('secretaria') || Auth::user()->hasRole('admin'))
+                    <a href="{{route('pessoas.show', $class->pessoa[0]['id'])}}">{{$class->pessoa[0]['nome']}}</a>
+                @else
+                    {{$class->pessoa[0]['nome']}}
+                @endif
+            </dd>
 
             <dt>Matéria</dt>
             <dd>{{$class->schoolSubject[0]['nome']}}</dd>

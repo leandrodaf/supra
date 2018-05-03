@@ -36,18 +36,20 @@
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
+                                    @if(Auth::user()->hasRole('secretaria') || Auth::user()->hasRole('admin'))
                                     <li>
                                         <a href="{!! route('alunos.edit', [$alunos->id]) !!}">
                                             Editar
                                         </a>
                                     </li>
 
-                                    <li>
-                                        <a href="disableOrEnable-form"
-                                           onclick="event.preventDefault(); document.getElementById('disableOrEnable-form').submit();">
-                                            {{$alunos->status ? 'Inativar':'Ativar'}} Aluno
-                                        </a>
-                                    </li>
+                                        <li>
+                                            <a href="disableOrEnable-form"
+                                               onclick="event.preventDefault(); document.getElementById('disableOrEnable-form').submit();">
+                                                {{$alunos->status ? 'Inativar':'Ativar'}} Aluno
+                                            </a>
+                                        </li>
+                                    @endif
                                     <li class="divider"></li>
                                     {{--<li>--}}
                                     {{--<a href="#deletetarUsuario"--}}
