@@ -48,7 +48,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="box-footer no-padding">
+                <div class="box-footer no-padding text-center">
                     {{$turmas->links()}}
                 </div>
             </div>
@@ -92,7 +92,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="box-footer no-padding">
+                <div class="box-footer no-padding text-center">
                     {{$diarios->links()}}
                 </div>
             </div>
