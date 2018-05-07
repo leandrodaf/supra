@@ -78,7 +78,7 @@
                             <tbody>
                             @foreach ($chamadas as $chamada)
                                 <tr class="clickable-row"
-                                    data-href='{{route('alunos.show', $chamada['class']->id)}}'
+                                    data-href='{{route('class.show', $chamada['class']->id)}}'
                                     style="cursor: pointer;">
                                     <td>{{$chamada['class']->classroom->nome_sala}}</td>
                                     <td class="text-center">{{$chamada['class']->schoolSubject->get(0)->nome}}</td>
