@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Call;
 use App\Models\Diary;
 use App\Repositories\DashProfessorRepository;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,8 +25,9 @@ class ProfessorController extends Controller
         if (Auth::user()->hasRole('Professor')) {
             $turmas = $this->turmas();
             $diarios = $this->diarioAluno();
+            $chamadas = $this->chamadaAluno();
 
-            return view('dash.professor.index')->with(compact('turmas', 'diarios'));
+            return view('dash.professor.index')->with(compact('turmas', 'diarios', 'chamadas'));
         } else {
             return redirect(Auth::user()->getRoutePanel());
         }
@@ -45,8 +48,8 @@ class ProfessorController extends Controller
     public function diarioAluno()
     {
         $pessoa = \App\Models\Pessoa::find(Auth::user()->pessoa_id);
-        $dateNow = \Carbon\Carbon::now();
-        $dateFiltrar = \Carbon\Carbon::create($dateNow->year, $dateNow->month, $dateNow->day, 0, 0, 0);
+        $dateNow = Carbon::now();
+        $dateFiltrar = Carbon::create($dateNow->year, $dateNow->month, $dateNow->day, 0, 0, 0);
         $diaryProfessor = new Collection();
 
         foreach ($pessoa->yearClass as $class) {
@@ -72,5 +75,29 @@ class ProfessorController extends Controller
         return $diarioPaginate;
     }
 
+
+    public function chamadaAluno()
+    {
+        $pessoa = \App\Models\Pessoa::find(Auth::user()->pessoa_id);
+        $chamadas = new Collection();
+        $yearclass = $pessoa->yearclass;
+        $call = Call::whereIn('year_class_id', $yearclass->pluck('id'))->get();
+        $dateNow = Carbon::now();
+
+        foreach ($yearclass as $class) {
+            $dateStart = \App\Helpers\RangeDates::createDate($class->activeTime);
+            $dateEnd = Carbon::create($dateNow->year, $dateNow->month, $dateNow->day, 0, 0, 0);
+            $rangeDate = \App\Helpers\RangeDates::generateDateRange($dateStart, $dateEnd, $class);
+            $notRange = \App\Helpers\RangeDates::formatDateColection($call->pluck('date'));
+
+            foreach ($rangeDate->whereNotIn('date', $notRange) as $item) {
+                $chamadas->push($item);
+            }
+        }
+
+        $chamadasPendentes = \App\Helpers\Paginate::paginate($chamadas, 5);
+        $chamadasPendentes->withPath('/dash/professor');
+        return $chamadasPendentes;
+    }
 
 }
